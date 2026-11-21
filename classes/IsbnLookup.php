@@ -86,8 +86,9 @@ class IsbnLookup {
 	/**
 	 * Look up an ISBN.
 	 * @param string $isbn A normalized ISBN
-	 * @return array|null Form field values plus "source", or null if nothing was found
-	 * @throws \Exception if no source could be queried
+	 * @return array|null Form field values plus "source", or null if every source answered and none has it
+	 * @throws \Exception if a source could not be queried and the others don't have it (e.g. Crossref
+	 *   rate-limited): "not found" would be wrong then, and the caller can try again later
 	 */
 	public static function lookup($isbn) {
 		$failures = 0;
@@ -100,7 +101,7 @@ class IsbnLookup {
 				$failures++;
 			}
 		}
-		if ($failures === 2) {
+		if ($failures > 0) {
 			throw new \Exception('ISBN lookup failed');
 		}
 		return null;

@@ -172,3 +172,24 @@ test('importData dry run: essays of works not imported yet are reported, nothing
   assert.equal(report.assignments[0].action, 'create');
   assert.deepEqual(report.errors, []);
 });
+
+test('a failed lookup (502 lookupFailed) is retried; other errors are not', async () => {
+  let attempts = 0;
+  const { fetch, calls } = mockFetch([
+    ['GET', '/lookup', 200, () => (++attempts < 3 ? undefined : { identifier: '9780262046305', title: 'Found' })],
+  ]);
+  const flaky = async (url, init) => (attempts < 2 && new URL(url).pathname.endsWith('/lookup')
+    ? (attempts++, new Response(JSON.stringify({ error: 'lookupFailed', errorMessage: 'The ISBN lookup failed' }), { status: 502 }))
+    : fetch(url, init));
+  const result = await client(flaky, { retryDelays: [1, 1, 1] }).lookup({ isbn: '9780262046305' });
+  assert.equal(result.title, 'Found');
+  assert.equal(attempts, 3);
+
+  const notFound = mockFetch([['GET', '/lookup', 404, { error: 'isbnNotFound', errorMessage: 'not found' }]]);
+  await assert.rejects(client(notFound.fetch, { retryDelays: [1, 1] }).lookup({ isbn: '9780262046305' }), (error) => error.status === 404);
+  assert.equal(notFound.calls.length, 1, 'a 404 is not retried');
+
+  const down = mockFetch([['GET', '/lookup', 502, { error: 'lookupFailed', errorMessage: 'down' }]]);
+  await assert.rejects(client(down.fetch, { retryDelays: [1, 1] }).lookup({ isbn: '9780262046305' }), (error) => error.status === 502);
+  assert.equal(down.calls.length, 3, 'two retries, then the error');
+});

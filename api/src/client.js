@@ -65,9 +65,10 @@ export class ObjectsForReviewClient {
    * @param {boolean} [options.tokenInQuery] Send the token as ?apiToken= instead of the
    *   Authorization header (for servers that strip the header)
    * @param {number} [options.timeout] Request timeout in ms (default 60000; lookups query Crossref/Open Library)
+   * @param {number[]} [options.retryDelays] Waits in ms before retrying a 502 lookupFailed (default 3 s, 10 s, 30 s; [] for none)
    * @param {typeof fetch} [options.fetch] fetch implementation (default: global fetch)
    */
-  constructor({ url, token, tokenInQuery = false, timeout = 60000, fetch: fetchImpl } = {}) {
+  constructor({ url, token, tokenInQuery = false, timeout = 60000, retryDelays = [3000, 10000, 30000], fetch: fetchImpl } = {}) {
     if (!url) throw new Error('url is required (journal URL, e.g. https://example.org/index.php/journal)');
     if (!token) throw new Error('token is required (API key from the OJS user profile)');
     const base = url.replace(/\/+$/, '');
@@ -75,13 +76,31 @@ export class ObjectsForReviewClient {
     this.token = token;
     this.tokenInQuery = tokenInQuery;
     this.timeout = timeout;
+    this.retryDelays = retryDelays; // waits before retrying 502 lookupFailed; [] turns retries off
     this.fetch = fetchImpl ?? globalThis.fetch;
   }
 
   /**
    * Send a request; resolves to the parsed JSON body, rejects with OfrApiError.
    */
-  async request(method, path, { query, body } = {}) {
+  /**
+   * A request. 502 lookupFailed (Crossref or Open Library could not be queried, often rate
+   * limiting) is retried after the delays in retryDelays; a failed lookup saves nothing, so
+   * repeating the request is safe.
+   */
+  async request(method, path, options = {}) {
+    for (let attempt = 0; ; attempt++) {
+      try {
+        return await this.requestOnce(method, path, options);
+      } catch (error) {
+        const delay = this.retryDelays[attempt];
+        if (!(error instanceof OfrApiError) || error.status !== 502 || error.code !== 'lookupFailed' || delay === undefined) throw error;
+        await new Promise((resolve) => setTimeout(resolve, delay));
+      }
+    }
+  }
+
+  async requestOnce(method, path, { query, body } = {}) {
     const url = new URL(this.apiUrl + path);
     for (const [key, value] of Object.entries(query ?? {})) {
       if (value !== undefined && value !== null && value !== '') url.searchParams.set(key, String(value));
