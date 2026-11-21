@@ -1,0 +1,40 @@
+# Checks that need no OJS: PHP syntax, the API client's unit tests and the release package.
+# The PHP unit tests and the API end-to-end tests run against the dev container (tests/run.sh).
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: none
+
+      - name: PHP syntax
+        run: |
+          if ! git ls-files -z '*.php' | xargs -0 -n1 php -l > lint.txt 2>&1; then
+            grep -v '^No syntax errors' lint.txt
+            exit 1
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: API client unit tests
+        run: tests/unit/client/run.sh
+
+      - name: Release package
+        run: dev/package.sh --out dist

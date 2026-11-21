@@ -1,0 +1,15 @@
+	<plugin category="generic" product="bookReviewManager">
+		<name locale="en">Book Review Manager</name>
+		<name locale="en_US">Book Review Manager</name>
+		<homepage>https://github.com/cboulanger/ojs-book-review-manager</homepage>
+		<summary locale="en">Manages book reviews from the work offered for review to the published review: offers, reviewer selection and invitations, review agreements, review copies and publisher contacts.</summary>
+		<summary locale="en_US">Manages book reviews from the work offered for review to the published review: offers, reviewer selection and invitations, review agreements, review copies and publisher contacts.</summary>
+		<description locale="en"><![CDATA[@DESCRIPTION@]]></description>
+		<description locale="en_US"><![CDATA[@DESCRIPTION@]]></description>
+		<maintainer>
+			<name>Christian Boulanger</name>
+			<institution>Max Planck Institute for Legal History and Legal Theory</institution>
+			<email>info@bibliograph.org</email>
+		</maintainer>
+@RELEASES@
+	</plugin>

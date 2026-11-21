@@ -49,21 +49,17 @@ Changed or new in Book Review Manager:
 Requirements: OJS 3.5 and PHP 8.2 or later.
 
 1. Get the plugin, either by:
-   - cloning it into the OJS plugin folder:
+   - downloading `bookReviewManager-v….tar.gz` from the [latest release](https://github.com/cboulanger/ojs-book-review-manager/releases/latest) and uploading it under *Website Settings › Plugins › Upload a new plugin* (or unpacking it into `plugins/generic/`);
+   - or cloning it into the OJS plugin folder (this includes the development files):
 
      ```sh
      cd /path/to/ojs/plugins/generic
      git clone https://github.com/cboulanger/ojs-book-review-manager.git bookReviewManager
      ```
 
-     The folder must be called `bookReviewManager`;
-   - or building an archive and uploading it under *Website Settings › Plugins › Upload a new plugin*:
+     The folder must be called `bookReviewManager`.
 
-     ```sh
-     git archive --prefix=bookReviewManager/ -o bookReviewManager.tar.gz main
-     ```
-
-2. If you cloned the plugin, register it from the OJS folder:
+2. If you unpacked or cloned the plugin, register it from the OJS folder:
 
    ```sh
    php lib/pkp/tools/installPluginVersion.php plugins/generic/bookReviewManager/version.xml
@@ -72,7 +68,7 @@ Requirements: OJS 3.5 and PHP 8.2 or later.
 3. Enable *Book Review Manager* in each journal under *Website Settings › Plugins › Generic Plugins*. This creates the user groups "Book review editor" and "Publisher contact" and installs the email templates.
 4. Make sure OJS runs its scheduled tasks, because the reminders depend on them. See [Setting up the plugin](docs/setup.md#scheduled-tasks).
 
-To **update**, pull the new version (or upload the new archive). The plugin upgrades its database tables when it loads.
+To **update**, upload or unpack the new release (or pull the new version). The plugin upgrades its database tables when it loads.
 
 ## Switching over from Objects for Review
 
@@ -99,7 +95,7 @@ dev/ojs-dev.sh build   # rebuild the image after changing files in dev/
 
 The test journal has accounts for each role: admin, an author, a book review editor, a second reviewer and a publisher contact. Each password is `ojs` followed by the user name, for example `ojsbre`. [dev/README.md](dev/README.md) lists the accounts and explains how to run the daily task by hand and how to share a folder outside `/Users` with the Podman VM on macOS.
 
-Use `OJS_PORT` to run it on another port. Tests: `tests/run.sh` runs the PHP unit tests (PHPUnit in the container), the unit tests of the API client, and the API end-to-end tests against the container. See [tests/README.md](tests/README.md), which also explains how to add suites (e.g. browser tests).
+Use `OJS_PORT` to run it on another port. Releases: see [dev/README.md](dev/README.md#releases). Tests: `tests/run.sh` runs the PHP unit tests (PHPUnit in the container), the unit tests of the API client, and the API end-to-end tests against the container. See [tests/README.md](tests/README.md), which also explains how to add suites (e.g. browser tests).
 
 How the code is organised:
 

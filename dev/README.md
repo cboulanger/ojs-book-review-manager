@@ -60,3 +60,33 @@ podman machine start
 - `devSetup.php`: OJS CLI tool used by the scripts (install, journal, enable-plugin)
 - `entrypoint.sh`: container start; sets `base_url`/`allowed_hosts`, installs the plugin, runs Apache
 - `e2e-sketches/`: ad-hoc Playwright scripts from development, raw material for a future test suite (see its README)
+
+## Releases
+
+The release package contains only what OJS needs (a rule of the PKP Plugin Gallery). What is left out is marked `export-ignore` in [`.gitattributes`](../.gitattributes): `dev/`, `tests/`, `docs/`, `skills/`, the Node API client, and everything of tablesort except its script.
+
+1. Set `<release>` (four numbers) and `<date>` in `version.xml` and commit.
+2. Optional: check the package locally with `dev/package.sh` (writes `dist/`). It fails if the package lacks a runtime file or contains development files.
+3. Push an annotated tag matching the version (`1.0.1.0` → `v1.0.1`, `1.0.1.2` → `v1.0.1-2`). Its first line becomes the release description in the gallery:
+
+   ```sh
+   git tag -a v1.0.1 -m "What changed, in one line" && git push origin v1.0.1
+   ```
+
+4. The [Release workflow](../.github/workflows/release.yml) runs the checks, builds the package and creates a **draft** release with `bookReviewManager-v1.0.1.tar.gz`, its `.md5`, `gallery-release.xml` and `gallery-plugin.xml`. Drafts are only visible to the repository's maintainers: download the package with `gh release download v1.0.1 -p '*.tar.gz'`, test it, then publish the draft on GitHub.
+5. Plugin Gallery: open a pull request on [pkp/plugin-gallery](https://github.com/pkp/plugin-gallery) that adds `gallery-release.xml` to the plugin's entry in `plugins.xml` (the first time: `gallery-plugin.xml`, the whole entry). Disclose AI-assisted work in the pull request. A package in the gallery must never change (its md5 is checked), so fixes need a new version.
+
+### Updating a server from a release
+
+After the release is published, from the OJS folder (as a user who may write `plugins/generic/`):
+
+```sh
+TAG=v1.0.1; FILE=bookReviewManager-$TAG.tar.gz
+URL=https://github.com/cboulanger/ojs-book-review-manager/releases/download/$TAG
+curl -fsSLO "$URL/$FILE" && curl -fsSL "$URL/$FILE.md5" | md5sum -c -
+mv plugins/generic/bookReviewManager ~/bookReviewManager.previous   # if installed; keep it until the update works
+tar xzf "$FILE" -C plugins/generic/
+php lib/pkp/tools/installPluginVersion.php plugins/generic/bookReviewManager/version.xml   # as the web server user
+```
+
+Reload PHP-FPM (or Apache) afterwards, so OPcache does not mix old and new files. The plugin upgrades its tables on the first request.

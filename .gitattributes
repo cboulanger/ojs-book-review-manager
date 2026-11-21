@@ -1,0 +1,33 @@
+# Files left out of the release package (git archive, see dev/package.sh).
+# The package contains only what OJS needs to run the plugin (PKP Plugin Gallery rule).
+/.gitattributes export-ignore
+/.gitignore export-ignore
+/.github export-ignore
+/dev export-ignore
+/tests export-ignore
+/docs export-ignore
+/skills export-ignore
+
+# REST API: only the PHP controller; the Node client is for developers
+/api/bin export-ignore
+/api/src export-ignore
+/api/test export-ignore
+/api/examples export-ignore
+/api/package.json export-ignore
+
+# tablesort: only the script the public page loads, and its licence
+/js/tablesort/.editorconfig export-ignore
+/js/tablesort/.eslintrc export-ignore
+/js/tablesort/.gitignore export-ignore
+/js/tablesort/.travis.yml export-ignore
+/js/tablesort/GruntFile.js export-ignore
+/js/tablesort/README.md export-ignore
+/js/tablesort/_config.yml export-ignore
+/js/tablesort/bower.json export-ignore
+/js/tablesort/demo export-ignore
+/js/tablesort/dist export-ignore
+/js/tablesort/package-lock.json export-ignore
+/js/tablesort/package.json export-ignore
+/js/tablesort/src/sorts export-ignore
+/js/tablesort/tablesort.css export-ignore
+/js/tablesort/test export-ignore
