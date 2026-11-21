@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/generic/bookReviewManager/BookReviewManagerPlugin.inc.php
+ * @file plugins/generic/bookReviewManager/BookReviewManagerPlugin.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
@@ -218,7 +218,7 @@ class BookReviewManagerPlugin extends GenericPlugin implements HasTaskScheduler 
 			Hook::add('Mailer::Mailables', [$this, 'addMailable']);
 			Hook::add('Publication::publish', [$this, 'completeOnPublish']);
 
-			// REST API for imports: /index.php/{journal}/api/v1/bookReviewManager/... (see api/SKILL.md)
+			// REST API for imports: /index.php/{journal}/api/v1/bookReviewManager/... (see skills/book-review-manager-api/SKILL.md)
 			Hook::add('APIHandler::endpoints::plugin', [$this, 'registerApi']);
 
 
