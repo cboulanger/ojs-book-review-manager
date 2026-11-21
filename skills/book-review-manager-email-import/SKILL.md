@@ -26,6 +26,8 @@ You reconstruct the state of each review process from a folder tree of `.eml` fi
 
 **Without `--ner`, message bodies are never shown.** `show` prints only the masked header data (date, tokens for sender and recipients, subject, folder, attachment names), and `grep` searches only subjects. That gives much worse results, but by design the tool doesn't let private correspondence reach a commercial model with only header-based masking. ISBNs and DOIs found in bodies still go into the index, since they are bibliographic data, not personal data. If `--ner` can't run, tell the user and work from headers only. Don't look for a way around it.
 
+**How names are matched.** Correspondents (from mail headers) are masked in every form of their name, everywhere. Names found only by NER are masked as full names; their single words are not masked on their own if they are common words: words your mails use in lowercase ("ich", "dann", "field", computed locally) and a fixed list of function words and review vocabulary. After an honorific ("Herr", "Frau", "Dr.", "Lieber", "Dear", …) such a word is masked again. The remaining risk: a third party with a surname that is a common word, named by surname alone. Addresses that differ only in spelling (case, a trailing period, `mailto:`) belong to one person: the later token becomes an alias (`aliasOf`) of the earlier one, and both stay valid. When you see a name or address that slipped through, tell the user at once and mask it (`add-name`, then `index --reuse-ner`).
+
 NER is not perfect: it can miss inflected or unusual names (e.g. a genitive "Luhmanns"). Organizations are deliberately not masked. Missed names can be added to `private.json` by the user, e.g. `{"id": "P9001", "emails": [], "names": ["Jane Doe"]}`, followed by a re-index into the same work dir (tokens stay stable). Email domains are shown, to tell publishers from universities; `--hide-domains` turns that off.
 
 ## Workflow
@@ -51,6 +53,7 @@ NER is not perfect: it can miss inflected or unusual names (e.g. a genitive "Luh
    | `5 Archive/_Not realized/<case>` | Abandoned | skip |
    | `General/Publisher contacts` | Publisher contacts | `users` with role `publisherContact` |
 
+   Also ask: **do publishers want to be notified when the review is published?** If yes, every work needs a publisher contact. Find the person who handled review copies or offers for each publisher in the mails, list them under `users` with role `publisherContact`, and set `publisherContactEmail` and `notifyPublisher: true` on each of the publisher's works. Report the works whose publisher has no contact in the mails.
 4. **Read each case**: `show <work> <folder>` (one folder per case) or `show <work> <thread>`. Use `threads --folder X`, `grep <work> REGEX` and `people <work>` to find things. Thread grouping uses Message-ID references, plus the same subject with a shared correspondent. One thread can cover several books, and one book can span several threads.
    If a reviewer agreed to review several books in one text (one thread or folder about several books, one deadline), that is a **review essay**: one review of several works. Ask the user if unsure.
 5. **Write `<work>/cases.json`** in the import format (skill `book-review-manager-api`, section 4), with tokens for people and bookkeeping fields starting with `_`:
@@ -100,6 +103,8 @@ NER is not perfect: it can miss inflected or unusual names (e.g. a genitive "Luh
 | Command | |
 | --- | --- |
 | `index <mail dir> --out <work> --ner [--ner-threshold 0.5]` | Parse, deduplicate (same Message-ID in several folders), pseudonymize (headers + local NER), thread |
+| `add-name <work> <name>...` | Mask names NER missed (abbreviations, inflected forms); then `index … --reuse-ner` |
+| `index <mail dir> --out <work> --reuse-ner` | Re-mask with the stored NER results, without running the model again (after `add-name` or a code update) |
 | `folders <work>` | Folder tree with message counts |
 | `threads <work> [--folder X] [--match RE] [--json]` | One line per thread: dates, count, folders, subject, people, ISBNs/DOIs |
 | `show <work> <t…\|m…\|folder>… [--full] [--max N]` | Masked mail text; quoted replies cut unless `--full` |

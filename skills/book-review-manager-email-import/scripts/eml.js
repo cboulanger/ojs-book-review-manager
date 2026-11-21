@@ -11,7 +11,8 @@
 // headers only and grep searches subjects only. Private correspondence must not
 // reach a remote model with only the header-based masking.
 //
-//   eml.js index   <mail dir> --out <work dir> [--me a@x,b@y] [--hide-domains] [--ner [--ner-threshold 0.5]]
+//   eml.js index   <mail dir> --out <work dir> [--me a@x,b@y] [--hide-domains] [--ner [--ner-threshold 0.5] | --reuse-ner]
+//   eml.js add-name <work dir> <name>...      (mask these names too; then index again with --reuse-ner)
 //   eml.js folders <work dir>
 //   eml.js people  <work dir>
 //   eml.js threads <work dir> [--folder TEXT] [--match REGEX] [--json]
@@ -23,7 +24,7 @@ import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from 
 import { join, relative, resolve, dirname, sep } from 'node:path';
 import { parseEmlFile, stripQuoted } from './lib/eml.js';
 import { findDois, findIsbns } from './lib/identifiers.js';
-import { Pseudonymizer } from './lib/pseudonymize.js';
+import { Pseudonymizer, lowercaseWords } from './lib/pseudonymize.js';
 
 function parseArgs(argv) {
   const pos = [];
@@ -61,7 +62,7 @@ const indexPath = (work) => join(work, 'index.json');
 function loadWork(work) {
   if (!existsSync(indexPath(work))) throw new Error(`no index in ${work}; run "eml.js index <mail dir> --out ${work}"`);
   const priv = JSON.parse(readFileSync(privatePath(work), 'utf8'));
-  return { index: JSON.parse(readFileSync(indexPath(work), 'utf8')), priv, pseudo: new Pseudonymizer(priv.people, priv.literals ?? []) };
+  return { index: JSON.parse(readFileSync(indexPath(work), 'utf8')), priv, pseudo: new Pseudonymizer(priv.people, priv.literals ?? [], { commonWords: priv.commonWords ?? [] }) };
 }
 
 function savePrivate(work, priv, pseudo) {
@@ -97,11 +98,20 @@ async function buildIndex(root, work, opt) {
     parsed.set(key, { rel, folders: [folder], mail });
   }
 
+  // words used in lowercase in these mails are common words, not names (computed locally)
+  const commonWords = lowercaseWords([...parsed.values()].flatMap(({ mail }) => [mail.subject, mail.text]));
+  pseudo.setCommonWords(commonWords);
+
   // register every person from the headers first, so that their names are masked everywhere
   for (const { mail } of parsed.values()) {
     for (const a of [...mail.from, ...mail.to, ...mail.cc, ...mail.replyTo]) if (a.email) pseudo.person(a.email, a.name);
   }
-  if (opt.ner) await nerPass([...parsed.values()], pseudo, opt);
+  // --reuse-ner: the names and literals of an earlier NER run are in private.json already
+  const oldIndex = existsSync(indexPath(work)) ? JSON.parse(readFileSync(indexPath(work), 'utf8')) : {};
+  if (opt['reuse-ner']) {
+    if (!oldIndex.ner) throw new Error('--reuse-ner needs an earlier index built with --ner in the same work dir');
+    opt.ner = true;
+  } else if (opt.ner) await nerPass([...parsed.values()], pseudo, opt);
   const tokens = (list) => list.map((a) => (a.email ? pseudo.person(a.email, a.name) : pseudo.mask(a.name ?? 'unknown')));
 
   const messages = [...parsed.values()]
@@ -193,6 +203,7 @@ async function buildIndex(root, work, opt) {
     files,
     people: pseudo.people,
     literals: pseudo.literals,
+    commonWords,
   };
   const index = { generatedAt: new Date().toISOString(), ner: Boolean(opt.ner), me, failed, hideDomains: Boolean(opt['hide-domains']), messages, threads };
   return { index, priv };
@@ -299,6 +310,19 @@ switch (command) {
     );
     break;
   }
+  case 'add-name': {
+    // names NER missed (abbreviations, inflected forms): masked from the next index run on
+    const work = loadWork(dir);
+    let added = 0;
+    for (const name of args) {
+      const before = work.pseudo.people.length;
+      work.pseudo.addName(name.trim(), 'manual');
+      if (work.pseudo.people.length > before) added++;
+    }
+    savePrivate(dir, work.priv, work.pseudo);
+    console.error(`${added} name(s) added (${args.length - added} known already). Re-mask: eml.js index <mail dir> --out ${dir} --reuse-ner`);
+    break;
+  }
   case 'folders': {
     const { index } = loadWork(dir);
     const counts = new Map();
@@ -317,6 +341,7 @@ switch (command) {
       stats.set(p.person, s);
     }
     for (const p of pseudo.people) {
+      if (p.aliasOf) continue;
       const s = stats.get(p.id);
       if (!s) continue;
       const known = ['givenName', 'familyName', 'affiliation', 'mailingAddress'].filter((k) => p[k]).join(',');

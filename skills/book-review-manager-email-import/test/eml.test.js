@@ -195,3 +195,47 @@ test('cases-to-import: review essays resolve tokens and check works and copies',
     assert.match(bad.stderr, expected);
   }
 });
+
+test('pseudonymizer: common words are not masked on their own, full names still are', () => {
+  const p = new Pseudonymizer();
+  const id = p.addName('The Law');            // NER took a title for a name
+  const person = p.person('m@uni.example', 'Maria Buch');
+  const masked = p.mask('The Law of Society. The book by Maria Buch; Buch wrote it.');
+  assert.match(masked, new RegExp(`\\[${id}\\] of Society\\. The book by \\[${person}\\]; Buch wrote it\\.`));
+});
+
+test('pseudonymizer: corpus-common words are masked only after an honorific; addresses do not make names common', async () => {
+  const { lowercaseWords } = await import('../scripts/lib/pseudonymize.js');
+  const corpus = ['ich bin hier, ich komme, ich gehe', 'der wolf, ein wolf, kein wolf', 'mail anna.berg@uni.example, anna.berg@x.example, see www.berg.de anna.berg@y.example'];
+  const common = lowercaseWords(corpus);
+  assert.ok(common.includes('ich') && common.includes('wolf'));
+  assert.ok(!common.includes('anna') && !common.includes('berg'), 'words from addresses must not count');
+  const p = new Pseudonymizer([], [], { commonWords: common });
+  const ich = p.addName('Ich');                 // NER mistake at a sentence start
+  const wolf = p.person('w@uni.example', 'Peter Wolf');
+  const berg = p.person('anna.berg@uni.example', 'Anna Berg');
+  const masked = p.mask('Ich danke Peter Wolf. Lieber Herr Wolf, ich schreibe. Wolf antwortete. Berg auch.');
+  assert.equal(masked, `Ich danke [${wolf}]. Lieber Herr [${wolf}], ich schreibe. [${wolf}] antwortete. [${berg}] auch.`);
+  // a name found only by NER whose surname is a common word: masked after an honorific, not alone
+  const q = new Pseudonymizer([], [], { commonWords: common });
+  const nerWolf = q.addName('Petra Wolf');
+  assert.equal(q.mask('Petra Wolf kam. Frau Wolf sprach. Wolf ging.'), `[${nerWolf}] kam. Frau [${nerWolf}] sprach. Wolf ging.`);
+  assert.ok(ich);
+});
+
+test('pseudonymizer: UK and US address lines are masked, line by line', () => {
+  const masked = new Pseudonymizer().mask('Centre for Socio-Legal Studies\nManor Road\n OX1 3UQ\nSpringfield, IL 62704\nThe book on law is good.\nbis 15. August 2026');
+  assert.equal(masked, '[address line]\n[address line]\n[address line]\n[address line]\nThe book on law is good.\nbis 15. August 2026');
+});
+
+test('pseudonymizer: the same address spelt differently is one person; old tokens become aliases', () => {
+  const p = new Pseudonymizer([
+    { id: 'P0001', emails: ['a.b@uni.example'], names: ['Anna B'] },
+    { id: 'P0002', emails: ['A.B@uni.example.'], names: ['Anna Berg'], mailingAddress: 'Uni\nStreet 1' },
+  ]);
+  assert.equal(p.person('mailto:a.b@UNI.example.'), 'P0001');
+  assert.equal(p.get('P0002').id, 'P0001');
+  assert.equal(p.get('P0001').mailingAddress, 'Uni\nStreet 1', 'fields added by hand are kept');
+  assert.equal(p.people[1].aliasOf, 'P0001');
+  assert.equal(p.mask('Anna Berg <a.b@uni.example.>'), '[P0001] <<P0001>.>');
+});

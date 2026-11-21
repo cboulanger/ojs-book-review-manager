@@ -43,8 +43,14 @@ const TOKEN = /^P\d{4,}$/;
 const people = new Map(
   work ? JSON.parse(readFileSync(join(work, 'private.json'), 'utf8')).people.map((p) => [p.id, p]) : [],
 );
+// a token can be an alias of another (the same address spelt differently): follow it
+const canonical = (token) => {
+  let p = people.get(token);
+  while (p?.aliasOf) p = people.get(p.aliasOf);
+  return p;
+};
 const personOf = (token, where) => {
-  const p = people.get(token);
+  const p = canonical(token);
   if (!p) errors.push(`${where}: unknown person ${token}${work ? '' : ' (pass --work)'}`);
   return p;
 };
@@ -70,7 +76,7 @@ for (const o of [...(doc.objects ?? []), ...(doc.essays ?? [])]) {
   for (const k of ['publisherContactEmail', 'responsibleEditorEmail']) if (TOKEN.test(o[k] ?? '')) personOf(o[k], k);
   for (const a of o.assignments ?? []) resolveAssignment(a);
 }
-const realEmail = (v) => (TOKEN.test(v ?? '') ? people.get(v)?.emails[0] ?? v : v);
+const realEmail = (v) => (TOKEN.test(v ?? '') ? canonical(v)?.emails[0] ?? v : v);
 
 const strip = (value) => {
   if (Array.isArray(value)) return value.filter((v) => !v?._skip).map(strip);
