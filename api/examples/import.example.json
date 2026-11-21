@@ -7,14 +7,18 @@
       "affiliation": "Example Press",
       "mailingAddress": "Example Press\nReview Copies\nVerlagsstr. 1\n10115 Berlin",
       "country": "DE",
-      "roles": ["publisherContact"]
+      "roles": [
+        "publisherContact"
+      ]
     },
     {
       "email": "a.reviewer@example.edu",
       "givenName": "Alex",
       "familyName": "Reviewer",
       "affiliation": "Example University",
-      "roles": ["author"]
+      "roles": [
+        "author"
+      ]
     }
   ],
   "objects": [
@@ -62,6 +66,45 @@
           "email": "a.reviewer@example.edu",
           "status": "submitted",
           "submissionId": 42
+        }
+      ]
+    },
+    {
+      "isbn": "978-1-5099-5510-7",
+      "publisherContactEmail": "review-copies@example-press.org",
+      "returnRequired": false
+    },
+    {
+      "doi": "10.1000/example-book-two",
+      "returnRequired": false
+    }
+  ],
+  "essays": [
+    {
+      "title": "New books on legal pluralism",
+      "works": [
+        "978-1-5099-5510-7",
+        "10.1000/example-book-two"
+      ],
+      "assignments": [
+        {
+          "email": "a.reviewer@example.edu",
+          "status": "accepted",
+          "dateCreated": "2026-09-15",
+          "dueDate": "2027-03-31",
+          "copies": [
+            {
+              "work": "978-1-5099-5510-7",
+              "copyPreference": "physical",
+              "copyStatus": "received",
+              "copyStatusDate": "2026-10-02"
+            },
+            {
+              "work": "10.1000/example-book-two",
+              "copyPreference": "electronic",
+              "copyStatus": "sent"
+            }
+          ]
         }
       ]
     }

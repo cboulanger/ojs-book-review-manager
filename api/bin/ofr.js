@@ -52,6 +52,7 @@ Review essays (one review of several works):
                                                   Add a work (--copy: the reviewer's copy, if there is one)
   bundle remove <essayId> <objectId>              Take a work out of a review essay
   To import the reviewer of an essay: add-assignment <essayId> with "copies": [{ objectId, copyPreference, copyStatus }]
+  Or list essays in an import document: "essays": [{ title, works: [isbn|doi, ...], assignments: [...] }]
 
 Bulk import:
   import <file.json> [--dry-run] [--on-duplicate skip|error|update] [--include-existing]
@@ -264,7 +265,7 @@ function finishImport(report) {
   const tally = (list) => Object.entries(list.reduce((counts, entry) => ({ ...counts, [entry.action]: (counts[entry.action] ?? 0) + 1 }), {}))
     .map(([action, n]) => `${n} ${action}`).join(', ') || 'none';
   process.stderr.write(`\nusers: ${tally(report.users)}; objects: ${tally(report.objects)}; `
-    + `assignments: ${tally(report.assignments)}; errors: ${report.errors.length}\n`);
+    + `essays: ${tally(report.essays ?? [])}; assignments: ${tally(report.assignments)}; errors: ${report.errors.length}\n`);
   if (report.errors.length) process.exitCode = 1;
 }
 

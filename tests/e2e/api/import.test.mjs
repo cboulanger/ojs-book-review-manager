@@ -124,3 +124,45 @@ test('the CLI imports a file and exits with 1 if records failed', async () => {
     await rm(dir, { recursive: true, force: true });
   }
 });
+
+test('import with essays: works first, then the essay with its reviewer and one copy per work; a re-run skips it', async () => {
+  const reviewer = email('essay-reviewer');
+  const [first, second] = [isbn13(), doi()];
+  const doc = {
+    users: [{ email: reviewer, givenName: 'Erik', familyName: 'Essayist' }],
+    objects: [
+      { isbn: first, lookup: false, title: 'Essay book one', hidden: true, returnRequired: false },
+      { doi: second, lookup: false, title: 'Essay book two', hidden: true, returnRequired: false },
+    ],
+    essays: [{
+      title: 'E2E imported review essay', hidden: true, works: [first, second],
+      assignments: [{
+        email: reviewer, status: 'accepted', dueDate: date(90), dateCreated: '2026-09-01',
+        copies: [
+          { work: first, copyPreference: 'physical', copyStatus: 'received', copyStatusDate: '2026-09-15' },
+          { work: { doi: second.toUpperCase() }, copyPreference: 'electronic', copyStatus: 'sent' },
+        ],
+      }],
+    }],
+  };
+  const report = await admin().importData(doc);
+  assert.deepEqual(report.errors, []);
+  assert.deepEqual(report.essays.map((e) => e.action), ['created']);
+  const [essay] = report.essays;
+  assert.deepEqual(report.assignments.map((a) => [a.essayId ?? a.objectId, a.action]), [[essay.id, 'created']]);
+
+  const container = await admin().getObject(essay.id);
+  assert.equal(container.isReviewEssay, true);
+  assert.deepEqual(container.members.map((m) => m.id), essay.works);
+  const expected = [['physical', 'received'], ['electronic', 'sent']];
+  container.members.forEach((member, i) => {
+    assert.equal(member.assignments.length, 1, `one copy record on work ${member.id}`);
+    assert.deepEqual([member.assignments[0].copyPreference, member.assignments[0].copyStatus], expected[i]);
+  });
+
+  const again = await admin().importData(doc);
+  assert.deepEqual(again.errors, []);
+  assert.deepEqual(again.essays.map((e) => [e.id, e.action]), [[essay.id, 'exists']]);
+  assert.deepEqual(again.assignments.map((a) => a.action), ['skipped (essay existed)']);
+  assert.equal((await admin().getObject(essay.id)).assignments.length, 1, 'nothing imported twice');
+});

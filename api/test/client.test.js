@@ -129,3 +129,46 @@ test('importData dry run changes nothing', async () => {
   assert.equal(report.objects[0].title, 'Found');
   assert.equal(report.assignments[0].action, 'create');
 });
+
+test('importData: review essays combine imported works and get their reviewer with copies', async () => {
+  const works = { '9780262046305': { id: 12, bundleId: null }, '10.1/b': { id: 13, bundleId: null },
+    '9781509955107': { id: 14, bundleId: 30 }, '10.1/c': { id: 15, bundleId: 30 } };
+  const { fetch, calls } = mockFetch([
+    ['GET', '/objects', 200, ({ query }) => ({ items: works[query.identifier.replace(/-/g, '')] || works[query.identifier] ? [works[query.identifier.replace(/-/g, '')] ?? works[query.identifier]] : [] })],
+    ['POST', '/bundles', 201, ({ body }) => ({ id: 20, isReviewEssay: true, members: body.objectIds.map((id) => ({ id })) })],
+    ['POST', /^\/objects\/\d+\/assignments$/, 200, ({ body }) => ({ id: 100, userId: 7, status: body.status })],
+  ]);
+  const report = await client(fetch).importData({
+    essays: [
+      { title: 'New books', works: ['978-0-262-04630-5', { doi: '10.1/b' }], hidden: true, assignments: [{
+        email: 'r@x.org', status: 'accepted', dueDate: '2027-01-31',
+        copies: [{ work: '9780262046305', copyPreference: 'physical', copyStatus: 'received' }, { work: { doi: '10.1/B' }, copyPreference: 'electronic' }],
+      }] },
+      { title: 'Exists', works: ['9781509955107', '10.1/c'], assignments: [{ email: 'r@x.org', status: 'accepted', dueDate: '2027-01-31' }] },
+      { title: 'Missing work', works: ['10.1/none'], assignments: [{ email: 'r@x.org', status: 'accepted', dueDate: '2027-01-31' }] },
+    ],
+  });
+  const created = calls.find((c) => c.method === 'POST' && c.path === '/bundles');
+  assert.deepEqual(created.body, { title: 'New books', hidden: true, objectIds: [12, 13] });
+  const assignment = calls.find((c) => c.path === '/objects/20/assignments');
+  assert.deepEqual(assignment.body.copies, [
+    { objectId: 12, copyPreference: 'physical', copyStatus: 'received' },
+    { objectId: 13, copyPreference: 'electronic' },
+  ]);
+  assert.deepEqual(report.essays.map((e) => [e.title, e.id, e.action]), [['New books', 20, 'created'], ['Exists', 30, 'exists']]);
+  assert.deepEqual(report.assignments.map((a) => [a.essayId, a.action]), [[20, 'created'], [30, 'skipped (essay existed)']]);
+  assert.deepEqual(report.errors.map((e) => [e.kind, e.code]), [['essay', 'objectNotFound'], ['assignment', null]]);
+  assert.equal(calls.filter((c) => c.path === '/bundles').length, 1);
+});
+
+test('importData dry run: essays of works not imported yet are reported, nothing is created', async () => {
+  const { fetch, calls } = mockFetch([['GET', '/objects', 200, { items: [] }]]);
+  const report = await client(fetch).importData({
+    essays: [{ title: 'E', works: ['9780262046305', '10.1/b'], assignments: [{ email: 'r@x.org', status: 'accepted', dueDate: '2027-01-31',
+      copies: [{ work: '10.1/b', copyPreference: 'physical' }] }] }],
+  }, { dryRun: true });
+  assert.ok(calls.every((call) => call.method === 'GET'));
+  assert.deepEqual(report.essays, [{ title: 'E', id: null, works: [null, null], action: 'create' }]);
+  assert.equal(report.assignments[0].action, 'create');
+  assert.deepEqual(report.errors, []);
+});

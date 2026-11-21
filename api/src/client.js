@@ -279,13 +279,18 @@ export class ObjectsForReviewClient {
    * Import people, works and review processes from one document (see examples/import.example.json):
    *
    *   { "users": [ { email, givenName, ..., roles } ],
-   *     "objects": [ { doi | isbn | identifier..., ..., "assignments": [ { email, status, ... } ] } ] }
+   *     "objects": [ { doi | isbn | identifier..., ..., "assignments": [ { email, status, ... } ] } ],
+   *     "essays": [ { title, works: [ "<isbn or doi>" | { doi | isbn | identifier, identifierType } ],
+   *                   description?, hidden?, assignmentMode?, bidDeadline?, responsibleEditorEmail?,
+   *                   "assignments": [ { email, status, ..., copies: [ { work, copyPreference, copyStatus?, copyStatusDate? } ] } ] } ] }
    *
-   * Users come first, so works can refer to publisher contacts and editors by email.
+   * Users come first, so works can refer to publisher contacts and editors by email; then the
+   * works; then the review essays, which combine works (usually imported in the same document)
+   * with createBundle() and import their reviewer on the essay. In an essay's copies, work names
+   * a work as in its works list (or objectId gives its id).
    * Each record is imported on its own: failures are reported and the rest continues.
-   * Assignments of a work that was there already are skipped unless importAssignmentsOfExisting is set.
-   * Review essays are not part of the document: create them afterwards from the imported
-   * works with createBundle(), then import their reviewer with addAssignment() on the essay.
+   * Assignments of a work or essay that was there already are skipped unless
+   * importAssignmentsOfExisting is set. An essay exists if all its works are in the same essay.
    *
    * @param {object} doc
    * @param {object} [options]
@@ -293,10 +298,10 @@ export class ObjectsForReviewClient {
    * @param {boolean} [options.importAssignmentsOfExisting=false]
    * @param {boolean} [options.dryRun=false] Only look up identifiers and existing records; change nothing
    * @param {(event: object) => void} [options.onProgress]
-   * @returns {Promise<{users: object[], objects: object[], assignments: object[], errors: object[]}>}
+   * @returns {Promise<{users: object[], objects: object[], essays: object[], assignments: object[], errors: object[]}>}
    */
   async importData(doc, { onDuplicate = 'skip', importAssignmentsOfExisting = false, dryRun = false, onProgress = () => {} } = {}) {
-    const report = { users: [], objects: [], assignments: [], errors: [] };
+    const report = { users: [], objects: [], essays: [], assignments: [], errors: [] };
     const fail = (kind, record, error) => {
       const entry = { kind, record: summarize(record), status: error.status ?? null, code: error.code ?? null, message: error.message };
       report.errors.push(entry);
@@ -373,8 +378,91 @@ export class ObjectsForReviewClient {
         }
       }
     }
+
+    for (const essay of doc.essays ?? []) {
+      const { works = [], assignments = [], ...bundleData } = essay;
+      const label = { title: essay.title ?? null };
+      let essayId = null;
+      let existed = false;
+      const ids = new Map(); // work reference -> object id
+      try {
+        if (!works.length) throw Object.assign(new Error('an essay needs works'), { code: 'worksRequired' });
+        const found = [];
+        for (const work of works) {
+          const object = await this.findObject(workQuery(work));
+          if (!object && !dryRun) throw Object.assign(new Error(`work not found: ${workKey(work)}`), { status: 404, code: 'objectNotFound' });
+          found.push(object);
+          if (object) ids.set(workKey(work), object.id);
+        }
+        const bundleIds = new Set(found.map((object) => object?.bundleId ?? null));
+        existed = bundleIds.size === 1 && !bundleIds.has(null);
+        let result;
+        if (existed) {
+          essayId = [...bundleIds][0];
+          result = { ...label, id: essayId, works: found.map((o) => o.id), action: 'exists' };
+        } else if (dryRun) {
+          result = { ...label, id: null, works: found.map((o) => o?.id ?? null), action: 'create' };
+        } else {
+          const saved = await this.createBundle({ ...bundleData, objectIds: found.map((o) => o.id) });
+          essayId = saved.id;
+          result = { ...label, id: essayId, works: found.map((o) => o.id), action: 'created' };
+        }
+        report.essays.push(result);
+        onProgress({ type: 'essay', ...result });
+      } catch (error) {
+        fail('essay', label, error);
+        for (const assignment of assignments) {
+          fail('assignment', assignment, { message: 'skipped: its review essay could not be created' });
+        }
+        continue;
+      }
+
+      for (const assignment of assignments) {
+        const aLabel = { essayId, email: assignment.email ?? null, userId: assignment.userId ?? null, status: assignment.status };
+        if (existed && !importAssignmentsOfExisting) {
+          report.assignments.push({ ...aLabel, action: 'skipped (essay existed)' });
+          onProgress({ type: 'assignment', ...aLabel, action: 'skipped (essay existed)' });
+          continue;
+        }
+        try {
+          const copies = (assignment.copies ?? []).map(({ work, ...copy }) => {
+            if (copy.objectId !== undefined || work === undefined) return copy;
+            const objectId = ids.get(workKey(work));
+            if (objectId === undefined && !dryRun) {
+              throw Object.assign(new Error(`copies: ${workKey(work)} is not one of the essay's works`), { status: 400, code: 'invalidCopies' });
+            }
+            return { objectId: objectId ?? null, ...copy };
+          });
+          if (dryRun) {
+            report.assignments.push({ ...aLabel, action: 'create' });
+            onProgress({ type: 'assignment', ...aLabel, action: 'create' });
+            continue;
+          }
+          const data = assignment.copies ? { ...assignment, copies } : assignment;
+          const saved = await this.addAssignment(essayId, data);
+          const result = { ...aLabel, id: saved.id, userId: saved.userId, action: 'created' };
+          report.assignments.push(result);
+          onProgress({ type: 'assignment', ...result });
+        } catch (error) {
+          fail('assignment', { objectId: essayId, ...assignment }, error);
+        }
+      }
+    }
     return report;
   }
+}
+
+/** A work in an essay's works list: "<isbn or doi>" or { doi | isbn | identifier, identifierType }. */
+function workQuery(work) {
+  if (typeof work !== 'string') return work;
+  return /^(https?:\/\/(dx\.)?doi\.org\/|doi:)?10\./i.test(work.trim()) ? { doi: work.trim() } : { isbn: work.trim() };
+}
+
+/** The same work named the same way gives the same key (ISBN hyphens and case don't matter). */
+function workKey(work) {
+  const q = workQuery(work);
+  const value = String(q.doi ?? q.isbn ?? q.identifier ?? '').trim();
+  return q.isbn ? value.replace(/[^\dXx]/g, '').toUpperCase() : value.toLowerCase();
 }
 
 /** A short label for a record in error reports (no addresses or phone numbers). */
