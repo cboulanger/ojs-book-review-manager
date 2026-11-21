@@ -1,5 +1,7 @@
 # Follow-up: documentation for review essays (apply after merging)
 
+> **Applied on 2026-11-21**, with one change: review essays became part of the import document (`essays`, imported by `importData` / `ofr import` after the works). So step 9 of section 3.3 and the manual `essay-<n>.json` were dropped from the email-import skill; `cases-to-import.js` resolves and checks `essays` like the rest.
+
 These texts are not in the branch `worktree-review-essays`, so that they don't conflict with the uncommitted move of `api/SKILL.md` to `skills/objects-for-review-api/SKILL.md` and with the uncommitted `skills/objects-for-review-email-import/SKILL.md` in the main checkout. Apply them after the merge.
 
 ## 1. `README.md`

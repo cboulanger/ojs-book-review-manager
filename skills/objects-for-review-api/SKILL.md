@@ -1,18 +1,20 @@
 ---
 name: objects-for-review-api
-description: Import data into the OJS "Objects for Review" plugin with an API key — works offered for review (looked up by DOI or ISBN), reviewers and publisher contacts, and review processes already under way (bids, contract offers, accepted reservations, submitted or published reviews). Use when asked to add books to a journal's review list, bulk-import review copies or reviewers, migrate book review bookkeeping (spreadsheets, another system) into OJS, or script the Objects for Review plugin.
+description: Import data into the OJS "Objects for Review" plugin with an API key — works offered for review (looked up by DOI or ISBN), reviewers and publisher contacts, and review processes already under way (bids, contract offers, accepted reservations, submitted or published reviews), and review essays (one review of several works). Use when asked to add books to a journal's review list, bulk-import review copies or reviewers, migrate book review bookkeeping (spreadsheets, another system) into OJS, or script the Objects for Review plugin.
 ---
 
 # Objects for Review API client
 
-The plugin serves a REST API at `<journal URL>/api/v1/objectsForReview/`. This folder has:
+The plugin serves a REST API at `<journal URL>/api/v1/objectsForReview/`. The client code lives in the plugin's `api/` folder (paths below are relative to the plugin root):
 
 | Path | Contents |
 | --- | --- |
-| `bin/ofr.js` | Command line client (`ofr`); JSON on stdout, progress and errors on stderr |
-| `src/client.js` | `ObjectsForReviewClient` for Node scripts (no dependencies, Node 18+) |
-| `examples/import.example.json` | Template for bulk imports |
-| `ObjectsForReviewController.php` | The server side (part of the plugin) |
+| `api/bin/ofr.js` | Command line client (`ofr`); JSON on stdout, progress and errors on stderr |
+| `api/src/client.js` | `ObjectsForReviewClient` for Node scripts (no dependencies, Node 18+) |
+| `api/examples/import.example.json` | Template for bulk imports |
+| `api/ObjectsForReviewController.php` | The server side (part of the plugin) |
+
+To migrate review processes that only exist as email correspondence, use the `objects-for-review-email-import` skill (`skills/objects-for-review-email-import/`), which produces the import file described here.
 
 **Imports never send emails** and create no one-click links. Every imported reviewer or bidder gets an entry ("Imported through the API") in the work's history.
 
@@ -31,13 +33,13 @@ For the user who runs the imports:
 On the machine that runs the client:
 
 ```sh
-cd plugins/generic/objectsForReview/api    # or a copy of this folder anywhere
+cd plugins/generic/objectsForReview/api    # or a copy of the api/ folder anywhere
 export OFR_URL=https://example.org/index.php/journalpath
 export OFR_TOKEN_FILE=~/.ofr-token          # or OFR_TOKEN=<key>
 node bin/ofr.js users --role bookReviewEditor   # connection test
 ```
 
-`npm link` (in this folder) installs the `ofr` command. Without it, use `node bin/ofr.js`.
+`npm link` (in `api/`) installs the `ofr` command. Without it, use `node bin/ofr.js`.
 
 **HTTP 401 with a valid key:** many Apache/PHP setups drop the `Authorization` header. Either set `OFR_TOKEN_IN_QUERY=1` (or `--token-in-query`; the key then travels in the URL and ends up in access logs), or fix the server with `SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1` in the Apache configuration. A 401 that says "The current role does not have access" means the user lacks a role, not that the key is wrong.
 
@@ -72,21 +74,29 @@ ofr users --role publisherContact        # roles: author | publisherContact | bo
 ofr add-assignment 12 --data '{"email":"a.reviewer@uni.example","status":"accepted","dueDate":"2027-03-31"}'
 ofr assignments 12
 
+ofr bundle create --title "New books on legal pluralism" --works 12,13,14 [--description <text>] [--hidden] \
+    [--mode direct|bidding] [--editor <email>]  # combine works into a review essay; prints the essay
+ofr bundle add 20 15 [--copy have|physical|electronic|other]   # add work 15 to essay 20 (--copy: the reviewer's access, if the essay has one)
+ofr bundle remove 20 15                  # take work 15 out of essay 20; it is offered on its own again, hidden
+
 ofr import data.json [--dry-run] [--on-duplicate skip|error|update] [--include-existing]
 ```
 
 `add-book` options that override the lookup: `--title --authors --publisher --year --description --resource-type` (`book`, `bookPart`, `journalArticle`, ... or a COAR URI). `--no-lookup` stores the identifier without querying Crossref or Open Library; `--title` is then required.
+
+**Review essays** (one review of several works). The essay is an object of its own (`isReviewEssay: true`) with its works in `members`; each work has `bundleId`. The essay holds the offer, the bids, invitations and the reviewer. Each work keeps its publisher contact and copy settings, and has its own copy record (a *mirror* assignment, with `bundleAssignmentId`) for the review copy steps and the publisher notification. `bundle create` takes the offer settings not given from the first work. If one of the works already has an accepted reviewer, that reviewer becomes the essay's reviewer (no email is sent through the API); give their access to the other works with `copyPreferences` in the HTTP call (`{"<objectId>": "physical", ...}`; `ofr bundle create` has no option for it, the default is `have`). A work in an essay can't get an assignment of its own: import the reviewer on the essay (see `copies` in section 4).
 
 ## 4. Import format
 
 ```json
 {
   "users":   [ { "email": "...", "givenName": "...", "roles": ["publisherContact"], ... } ],
-  "objects": [ { "isbn": "...", ..., "assignments": [ { "email": "...", "status": "accepted", ... } ] } ]
+  "objects": [ { "isbn": "...", ..., "assignments": [ { "email": "...", "status": "accepted", ... } ] } ],
+  "essays":  [ { "title": "...", "works": ["<isbn>", "<doi>"], "assignments": [ { ..., "copies": [ { "work": "<isbn>", ... } ] } ] } ]
 }
 ```
 
-See `examples/import.example.json` for a complete example.
+See `api/examples/import.example.json` for a complete example.
 
 ### users
 
@@ -108,7 +118,7 @@ See `examples/import.example.json` for a complete example.
 | `identifier` + `identifierType` | Instead of doi/isbn: `doi issn isbn uri urn pmid pmcid purl arxiv ark handle uuid ecli accession other` |
 | `lookup` | `false`: don't look up the DOI/ISBN (then `title` is required) |
 | `title`, `authors` (`"Family, Given; Family, Given"`), `publisher`, `year`, `description` (HTML allowed) | Metadata |
-| `resourceType` | COAR URI; default book. See `RESOURCE_TYPES` in `src/client.js` |
+| `resourceType` | COAR URI; default book. See `RESOURCE_TYPES` in `api/src/client.js` |
 | `assignmentMode` | `direct` (first come, first served) or `bidding`; default from the plugin settings |
 | `bidDeadline` | `Y-m-d`, bidding only |
 | `responsibleEditorEmail` / `responsibleEditorId` | A book review editor; default: the plugin setting, or the importing user if they are a book review editor |
@@ -149,6 +159,29 @@ Review copy (`accepted`, and optionally `submitted`/`completed`):
 | `returnTarget` | `journal` or `publisher` (for return statuses) |
 | `copyStatusDate` | Date of the current copy status |
 
+Review essays: import the reviewer on the essay (`ofr add-assignment <essayId> ...`), not on its works. Instead of `copyPreference`, `copyStatus` and `copyStatusDate`, give one entry per work in `copies`:
+
+| Field | |
+| --- | --- |
+| `copies` | `[{ "objectId": 12, "copyPreference": "physical", "copyStatus": "received", "copyStatusDate": "2025-02-03" }, ...]`. Only works of the essay, each at most once; works not named get `have`. `copyPreference` and `copyStatus` take the values above |
+| `shippingAddress`, `phone` | Once for the essay. Required if a work's printed copy is still `pending` or `requested` |
+| `dueDate`, `status`, `dateCreated`, `dateStatus`, `copyNote`, `submissionId` | As for a single work, once for the essay |
+
+The works get the reviewer's status from the essay, and each work's copy record gets its copy status.
+
+### essays (review essays: one review of several works)
+
+Imported after `users` and `objects`, so they can combine works from the same document.
+
+| Field | |
+| --- | --- |
+| `title` | Required |
+| `works` | Required. The works in their order in the essay: `"<isbn or doi>"` or `{ "doi" \| "isbn" \| "identifier", "identifierType" }`. They must exist (or be in `objects`) and must not be in another essay |
+| `description`, `hidden`, `assignmentMode`, `bidDeadline`, `responsibleEditorEmail` / `responsibleEditorId` | Offer settings; not given, they come from the first work |
+| `assignments` | The essay's reviewer (or bidders), as above, with `copies`. In `copies`, `work` names a work as in `works` (ISBN hyphens and case don't matter), or `objectId` gives its id |
+
+If all `works` are already in the same essay, the essay counts as existing: it is not created again, and its assignments are skipped unless `--include-existing` is given. The import report lists the essays under `essays`. With `--dry-run`, works that the same document would create have no id yet (`works: [null, ...]`).
+
 After the import, the plugin's daily task treats imported processes like any others, so check the dates before importing:
 
 - reviewers get a reminder when `dueDate` is close;
@@ -158,7 +191,7 @@ After the import, the plugin's daily task treats imported processes like any oth
 ## 5. Use from a Node script
 
 ```js
-import { ObjectsForReviewClient, OfrApiError } from './src/client.js';
+import { ObjectsForReviewClient, OfrApiError } from './api/src/client.js';
 
 const ofr = new ObjectsForReviewClient({ url: process.env.OFR_URL, token: process.env.OFR_TOKEN });
 
@@ -173,7 +206,7 @@ try {
 const report = await ofr.importData(doc, { dryRun: true, onProgress: console.error });
 ```
 
-Methods: `lookup({doi|isbn})`, `listObjects()`, `findObject({doi|isbn|identifier, identifierType})`, `getObject(id)`, `addObject(data)`, `addBook(doiOrIsbn, extra)`, `updateObject(id, data)`, `listAssignments(id)`, `addAssignment(id, data)`, `listUsers({role, email})`, `findUserByEmail(email)`, `addUser(data)`, `addAuthor(data)`, `addPublisherContact(data)`, `importData(doc, options)`.
+Methods: `lookup({doi|isbn})`, `listObjects()`, `findObject({doi|isbn|identifier, identifierType})`, `getObject(id)`, `addObject(data)`, `addBook(doiOrIsbn, extra)`, `updateObject(id, data)`, `listAssignments(id)`, `addAssignment(id, data)`, `listUsers({role, email})`, `findUserByEmail(email)`, `addUser(data)`, `addAuthor(data)`, `addPublisherContact(data)`, `createBundle(data)`, `addBundleMember(bundleId, objectId, copyPreference)`, `removeBundleMember(bundleId, objectId)`, `importData(doc, options)`.
 
 ## 6. HTTP API reference
 
@@ -187,10 +220,28 @@ Base: `<journal URL>/api/v1/objectsForReview`, header `Authorization: Bearer <ke
 | `GET objects/{id}` | Work with `assignments` |
 | `PUT objects/{id}` | Change the fields given |
 | `GET objects/{id}/assignments` · `POST objects/{id}/assignments` | List · import |
+| `POST bundles` | Create a review essay: `{title, description?, objectIds[], copyPreferences?, assignmentMode?, bidDeadline?, responsibleEditorId? / responsibleEditorEmail?, hidden?}`. Returns the essay with `members` (201) |
+| `POST bundles/{id}/members` | Add a work: `{objectId, copyPreference?}`. Returns the essay |
+| `DELETE bundles/{id}/members/{objectId}` | Remove a work (offered on its own again, hidden). Returns the essay |
 | `GET users[?role=…][&email=…]` · `POST users` | List · find or create; result has `_created`, `_rolesAdded` |
+
+`GET objects/{id}` includes `isReviewEssay` and `bundleId`, and for an essay `members[]` (each with its copy record in `assignments`). `POST objects/{id}/assignments` on an essay accepts `copies` (section 4).
 
 Errors are `{"error": "<code>", "errorMessage": "<text>"}` with status 400 (invalid input), 403 (not allowed), 404, 409 (duplicate: `duplicateIdentifier` with `objectId`, `duplicateAssignment` with `assignmentId`, `reviewerExists`, `offerExists`, `submissionExists`) or 502 (lookup service failed; retry later).
 
+Review essays add:
+
+- 400 `titleRequired`, `worksRequired`, `invalidCopies` (`copies` or `copyPreferences` name a work outside the essay, or one twice; or `copies` is given for an assignment of a work that is not a review essay), `invalidCopyPreference`, `invalidCopyStatus`, `shippingAddressRequired`, `invalidResourceType` (`PUT objects/{id}` with `resourceType: reviewEssay`: an essay is created with `POST bundles`);
+- 404 `bundleNotFound` (no review essay with this id), `objectNotFound`;
+- 409 `cannot_combine` (`POST bundles`) and `review_essay_rule` (adding or removing a work, or changing the `resourceType` of an essay), each with `reason`, one of:
+  - `plugins.generic.objectsForReview.reviewEssay.error.notAvailable` (a work is already in an essay, attached to a submission, closed, or an essay itself; or the id is unknown),
+  - `...error.twoReviewers` (more than one work has a reviewer, or the work to add has one),
+  - `...error.pending` (a contract offer or an invitation round is pending for a work),
+  - `...error.lastMember` (the last work can't be removed),
+  - `...error.submitted` (the essay is submitted),
+  - `...error.resourceType` (`PUT objects/{id}` would change the resource type of an essay);
+- 409 `member_of_review_essay` with `bundleId`: an assignment was imported on a work of an essay; import it on the essay.
+
 ## Local test journal
 
-`dev/ojs-dev.sh up` starts OJS with the plugin at `http://localhost:8080/index.php/test`. Images built after this API was added have `api_key_secret` set and pass the Authorization header through; for an older image run `dev/ojs-dev.sh build` and `dev/ojs-dev.sh reset`. Log in as `admin` / `ojsadmin`, generate a key under *Profile › API Key*, and set `OFR_URL=http://localhost:8080/index.php/test`. Offline tests of the client: `npm test` (in this folder). The API's end-to-end tests: `tests/run.sh e2e/api` in the plugin (see `tests/README.md`).
+`dev/ojs-dev.sh up` starts OJS with the plugin at `http://localhost:8080/index.php/test`. Images built after this API was added have `api_key_secret` set and pass the Authorization header through; for an older image run `dev/ojs-dev.sh build` and `dev/ojs-dev.sh reset`. Log in as `admin` / `ojsadmin`, generate a key under *Profile › API Key*, and set `OFR_URL=http://localhost:8080/index.php/test`. Offline tests of the client: `npm test` (in `api/`). The API's end-to-end tests: `tests/run.sh e2e/api` in the plugin (see `tests/README.md`).

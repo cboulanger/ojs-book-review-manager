@@ -30,11 +30,12 @@ Changed or new in this fork:
   - or everyone at once (bidding).
 
   Invitees reserve, apply or decline with a one-click link.
+- **Review essays.** Several works can be offered as one review essay, created upfront or by combining works already offered (taking over a reviewer one of them already has). The process with the reviewer (offer, invitations, agreement, due date, submission, publication) runs once for the essay; the review copy and the publisher notification stay with each work. See [the manual](docs/workflow.md#9-review-essays-one-review-of-several-works).
 - **Reservation management.** Editors can email reviewers, cancel reservations and see overdue reviews. A daily task sends reminders to reviewers, selected bidders and publishers.
 - **Audit trail.** Every step and every email is recorded in the offer's history.
 - **Privacy.** Delivery addresses and phone numbers are deleted once the copy has arrived, and bid statements once the review is published. Copies are never forwarded from one reviewer to the next.
 - **Editable emails.** All emails are templates under Settings › Emails, in English, German and Finnish.
-- **API for imports.** Works (by DOI or ISBN), reviewers, publisher contacts and review processes already under way can be imported with an OJS API key, with a Node command line client. See [api/SKILL.md](api/SKILL.md).
+- **API for imports.** Works (by DOI or ISBN), reviewers, publisher contacts and review processes already under way can be imported with an OJS API key, with a Node command line client. See [skills/objects-for-review-api/SKILL.md](skills/objects-for-review-api/SKILL.md). Review processes kept only in email can be migrated with [skills/objects-for-review-email-import](skills/objects-for-review-email-import/SKILL.md).
 
 ## Documentation
 
@@ -101,7 +102,8 @@ How the code is organised:
 | `classes/ReservationReminder.php` | Daily task |
 | `pages/` | Public page, one-click link pages, backend pages (To-do, Reviewers & bidders, ...) |
 | `controllers/` | Grids and modal forms |
-| `api/` | REST API controller (`/api/v1/objectsForReview`) and the Node client `ofr` (see `api/SKILL.md`) |
+| `api/` | REST API controller (`/api/v1/objectsForReview`) and the Node client `ofr` (see `skills/objects-for-review-api/SKILL.md`) |
+| `skills/` | Agent skills: using the API, and migrating review processes from exported emails |
 | `tests/` | Test suites and their runner (`tests/run.sh`) |
 | `ObjectsForReviewSchemaMigration.php` | Tables. Idempotent; raise `SCHEMA_VERSION` when changing it |
 
