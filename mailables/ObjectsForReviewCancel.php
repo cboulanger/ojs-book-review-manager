@@ -14,7 +14,7 @@
  * @brief Email is sent automatically to notify journal manager about new payment that needs to be processed
  */
 
-namespace APP\plugins\generic\objectsForReview\mailables;
+namespace APP\plugins\generic\bookReviewManager\mailables;
 
 use APP\journal\Journal;
 use PKP\mail\Mailable;
@@ -28,9 +28,9 @@ class ObjectsForReviewCancel extends Mailable
     use Configurable;
     use Sender;
 
-    protected static ?string $name = 'emails.ofrCancelReservation.name';
-    protected static ?string $description = 'emails.ofrCancelReservation.description';
-    protected static ?string $emailTemplateKey = 'OFR_CANCEL_RESERVATION';
+    protected static ?string $name = 'emails.brmCancelReservation.name';
+    protected static ?string $description = 'emails.brmCancelReservation.description';
+    protected static ?string $emailTemplateKey = 'BRM_CANCEL_RESERVATION';
     protected static array $toRoleIds = [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR];
 
     public function __construct(Journal $context, array $emailParams)

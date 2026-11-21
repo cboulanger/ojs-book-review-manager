@@ -1,5 +1,5 @@
 {**
- * plugins/generic/objectsForReview/templates/managementObjectCell.tpl
+ * plugins/generic/bookReviewManager/templates/managementObjectCell.tpl
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
@@ -8,8 +8,8 @@
  * $row: objectId, description, identifierType, identifier, identifierUrl, hidden, essayTitle
  *}
 {$row.description|strip_unsafe_html}
-{if $row.hidden} <span class="ofrBadge">{translate key="plugins.generic.objectsForReview.hidden"}</span>{/if}
-{if $row.essayTitle} <span class="ofrDetail">{translate key="plugins.generic.objectsForReview.reviewEssay.memberOf" title=$row.essayTitle|escape}</span>{/if}
+{if $row.hidden} <span class="ofrBadge">{translate key="plugins.generic.bookReviewManager.hidden"}</span>{/if}
+{if $row.essayTitle} <span class="ofrDetail">{translate key="plugins.generic.bookReviewManager.reviewEssay.memberOf" title=$row.essayTitle|escape}</span>{/if}
 <div class="ofrIdentifier">
 	{$row.identifierType|escape}:
 	{if $row.identifierUrl}

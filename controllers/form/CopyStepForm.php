@@ -1,29 +1,29 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/controllers/form/CopyStepForm.php
+ * @file plugins/generic/bookReviewManager/controllers/form/CopyStepForm.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class CopyStepForm
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief A review copy step recorded by the book review editor (see
  *  CopyWorkflow::STEPS), or the notification of the publisher after
  *  publication, with a prefilled, editable email where the step has one.
  */
 
-namespace APP\plugins\generic\objectsForReview\controllers\form;
+namespace APP\plugins\generic\bookReviewManager\controllers\form;
 
 use APP\core\Application;
 use APP\facades\Repo;
-use APP\plugins\generic\objectsForReview\classes\Assignment;
-use APP\plugins\generic\objectsForReview\classes\CopyWorkflow;
-use APP\plugins\generic\objectsForReview\classes\ObjectForReviewDAO;
-use APP\plugins\generic\objectsForReview\classes\ReservationEmailEventType;
-use APP\plugins\generic\objectsForReview\classes\ReservationLog;
-use APP\plugins\generic\objectsForReview\classes\ReservationMailer;
-use APP\plugins\generic\objectsForReview\controllers\ReservationActionsHandler;
+use APP\plugins\generic\bookReviewManager\classes\Assignment;
+use APP\plugins\generic\bookReviewManager\classes\CopyWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\ObjectForReviewDAO;
+use APP\plugins\generic\bookReviewManager\classes\ReservationEmailEventType;
+use APP\plugins\generic\bookReviewManager\classes\ReservationLog;
+use APP\plugins\generic\bookReviewManager\classes\ReservationMailer;
+use APP\plugins\generic\bookReviewManager\controllers\ReservationActionsHandler;
 use APP\template\TemplateManager;
 use PKP\core\Core;
 use PKP\form\validation\FormValidatorCSRF;
@@ -77,15 +77,15 @@ class CopyStepForm extends \PKP\form\Form {
 			}
 			if ($step === 'requestReturn') {
 				$this->returnTargets = array_filter(CopyWorkflow::getReturnTargets($plugin, $object));
-				$this->addCheck(new FormValidatorCustom($this, 'returnTarget', 'required', 'plugins.generic.objectsForReview.copy.returnTargetRequired',
+				$this->addCheck(new FormValidatorCustom($this, 'returnTarget', 'required', 'plugins.generic.bookReviewManager.copy.returnTargetRequired',
 					fn ($target) => isset($this->returnTargets[$target])));
 			}
 		}
 
 		$needsEmail = fn () => $this->emailType && ($this->emailRequired || $this->getData('sendEmail'));
-		$this->addCheck(new FormValidatorCustom($this, 'subject', 'required', 'plugins.generic.objectsForReview.reservations.subjectRequired',
+		$this->addCheck(new FormValidatorCustom($this, 'subject', 'required', 'plugins.generic.bookReviewManager.reservations.subjectRequired',
 			fn ($subject) => !$needsEmail() || trim((string) $subject) !== ''));
-		$this->addCheck(new FormValidatorCustom($this, 'body', 'required', 'plugins.generic.objectsForReview.reservations.bodyRequired',
+		$this->addCheck(new FormValidatorCustom($this, 'body', 'required', 'plugins.generic.bookReviewManager.reservations.bodyRequired',
 			fn ($body) => !$needsEmail() || trim(strip_tags((string) $body)) !== ''));
 		$this->addCheck(new FormValidatorPost($this));
 		$this->addCheck(new FormValidatorCSRF($this));
@@ -145,7 +145,7 @@ class CopyStepForm extends \PKP\form\Form {
 			'objectId' => $this->object->getId(),
 			'assignmentIds' => [$this->assignment->getId()],
 			'objectDescription' => $this->object->getCitation(),
-			'stepDescription' => __('plugins.generic.objectsForReview.copy.step.' . $this->step . '.description', [
+			'stepDescription' => __('plugins.generic.bookReviewManager.copy.step.' . $this->step . '.description', [
 				'reviewer' => $this->reviewer?->getFullName() ?? '',
 				'publisher' => CopyWorkflow::getPublisherContact($this->object)?->getFullName() ?? '',
 			]),
@@ -154,8 +154,8 @@ class CopyStepForm extends \PKP\form\Form {
 			'optionalEmail' => $this->emailType && !$this->emailRequired,
 			'returnTargets' => $this->returnTargets,
 			'returnTarget' => $this->getData('returnTarget'),
-			'bodyHint' => $this->step === 'requestReturn' ? __('plugins.generic.objectsForReview.copy.returnAddressHint') : null,
-			'submitKey' => 'plugins.generic.objectsForReview.copy.step.' . $this->step,
+			'bodyHint' => $this->step === 'requestReturn' ? __('plugins.generic.bookReviewManager.copy.returnAddressHint') : null,
+			'submitKey' => 'plugins.generic.bookReviewManager.copy.step.' . $this->step,
 			'actionUrl' => $request->getDispatcher()->url($request, Application::ROUTE_COMPONENT, null,
 				ReservationActionsHandler::COMPONENT, 'copyStep'),
 		]);

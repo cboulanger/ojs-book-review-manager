@@ -1,18 +1,20 @@
-# Objects for Review plugin for OJS 3.5
+# Book Review Manager for OJS 3.5
 
 An OJS plugin for journals that publish book reviews. It manages the whole path from a work offered for review to the published review: the public list of offers, choosing a reviewer, the review agreement, the review copy and its return, and the link between the reviewed work and the review article.
 
-> **This is a fork.** It started from [ajnyga/objectsForReview](https://github.com/ajnyga/objectsForReview) by Antti-Jussi Nygård, which lets authors attach the metadata of reviewed works to their submissions and lets readers reserve works from a public list. This fork is an almost complete rewrite. The original data and the author-side features are kept, but the behaviour has changed substantially and most of the functionality is new. Existing installations are upgraded automatically. The concept and its discussion are in [issue #1](https://github.com/cboulanger/objectsForReview/issues/1).
+> **Origin.** Book Review Manager started as a fork of the [Objects for Review plugin](https://github.com/ajnyga/objectsForReview) by Antti-Jussi Nygård, which lets authors attach the metadata of reviewed works to their submissions and lets readers reserve works from a public list. The fork became an almost complete rewrite, so, as agreed with the maintainer of Objects for Review, it continues as a separate plugin. The author-side features are kept, but the behaviour has changed substantially and most of the functionality is new. The concept and its discussion are in [issue #1 of the fork](https://github.com/cboulanger/objectsForReview/issues/1).
+>
+> Both plugins can be installed in the same OJS, and the data of Objects for Review can be imported, see [Switching over from Objects for Review](#switching-over-from-objects-for-review).
 
 ## What the plugin does
 
-Carried over from the original plugin:
+Carried over from Objects for Review:
 
 - Authors enter the metadata of the reviewed work (title, authors, publisher, year, identifier) in the submission wizard, or pick a work they reserved.
 - Readers see the reviewed work on the article page.
 - A public page lists the works offered for review.
 
-Changed or new in this fork:
+Changed or new in Book Review Manager:
 
 - **OJS 3.5 support.** The backend has its own menu section with an overview of the work to be done.
 - **DOI and ISBN lookup.** Editors fill in the metadata from Crossref or from the ISBN. DOIs and ISBNs are linked on the public page and on the article page.
@@ -35,7 +37,7 @@ Changed or new in this fork:
 - **Audit trail.** Every step and every email is recorded in the offer's history.
 - **Privacy.** Delivery addresses and phone numbers are deleted once the copy has arrived, and bid statements once the review is published. Copies are never forwarded from one reviewer to the next.
 - **Editable emails.** All emails are templates under Settings › Emails, in English, German and Finnish.
-- **API for imports.** Works (by DOI or ISBN), reviewers, publisher contacts and review processes already under way can be imported with an OJS API key, with a Node command line client. See [skills/objects-for-review-api/SKILL.md](skills/objects-for-review-api/SKILL.md). Review processes kept only in email can be migrated with [skills/objects-for-review-email-import](skills/objects-for-review-email-import/SKILL.md).
+- **API for imports.** Works (by DOI or ISBN), reviewers, publisher contacts and review processes already under way can be imported with an OJS API key, with a Node command line client. See [skills/book-review-manager-api/SKILL.md](skills/book-review-manager-api/SKILL.md). Review processes kept only in email can be migrated with [skills/book-review-manager-email-import](skills/book-review-manager-email-import/SKILL.md).
 
 ## Documentation
 
@@ -51,28 +53,37 @@ Requirements: OJS 3.5 and PHP 8.2 or later.
 
      ```sh
      cd /path/to/ojs/plugins/generic
-     git clone https://github.com/cboulanger/objectsForReview.git objectsForReview
+     git clone https://github.com/cboulanger/ojs-book-review-manager.git bookReviewManager
      ```
 
-     The folder must be called `objectsForReview`;
+     The folder must be called `bookReviewManager`;
    - or building an archive and uploading it under *Website Settings › Plugins › Upload a new plugin*:
 
      ```sh
-     git archive --prefix=objectsForReview/ -o objectsForReview.tar.gz main
+     git archive --prefix=bookReviewManager/ -o bookReviewManager.tar.gz main
      ```
 
 2. If you cloned the plugin, register it from the OJS folder:
 
    ```sh
-   php lib/pkp/tools/installPluginVersion.php plugins/generic/objectsForReview/version.xml
+   php lib/pkp/tools/installPluginVersion.php plugins/generic/bookReviewManager/version.xml
    ```
 
-3. Enable *Objects for Review* in each journal under *Website Settings › Plugins › Generic Plugins*. This creates the user groups "Book review editor" and "Publisher contact" and installs the email templates.
+3. Enable *Book Review Manager* in each journal under *Website Settings › Plugins › Generic Plugins*. This creates the user groups "Book review editor" and "Publisher contact" and installs the email templates.
 4. Make sure OJS runs its scheduled tasks, because the reminders depend on them. See [Setting up the plugin](docs/setup.md#scheduled-tasks).
 
 To **update**, pull the new version (or upload the new archive). The plugin upgrades its database tables when it loads.
 
-**Upgrading from the original plugin:** existing works, reservations and settings are kept. Reservations become assignments of the reviewer, and works attached to a submission become submitted reviews.
+## Switching over from Objects for Review
+
+Install Book Review Manager, then copy the data from the OJS folder:
+
+```sh
+php plugins/generic/bookReviewManager/tools/importObjectsForReview.php --dry-run   # show what would be copied
+php plugins/generic/bookReviewManager/tools/importObjectsForReview.php [journalPath ...]
+```
+
+This copies the works, journal settings and customised email templates. Reservations become assignments of the reviewer, and works attached to a submission become submitted reviews. The data of Objects for Review is left unchanged, so both plugins can run side by side during the transition, and the import can be repeated (works imported before are skipped). While Objects for Review is enabled in a journal, its public page keeps the address `for-review`.
 
 ## For developers
 
@@ -88,7 +99,7 @@ dev/ojs-dev.sh build   # rebuild the image after changing files in dev/
 
 The test journal has accounts for each role: admin, an author, a book review editor, a second reviewer and a publisher contact. Each password is `ojs` followed by the user name, for example `ojsbre`. [dev/README.md](dev/README.md) lists the accounts and explains how to run the daily task by hand and how to share a folder outside `/Users` with the Podman VM on macOS.
 
-Tests: `tests/run.sh` runs the PHP unit tests (PHPUnit in the container), the unit tests of the API client, and the API end-to-end tests against the container. See [tests/README.md](tests/README.md), which also explains how to add suites (e.g. browser tests).
+Use `OJS_PORT` to run it on another port. Tests: `tests/run.sh` runs the PHP unit tests (PHPUnit in the container), the unit tests of the API client, and the API end-to-end tests against the container. See [tests/README.md](tests/README.md), which also explains how to add suites (e.g. browser tests).
 
 How the code is organised:
 
@@ -102,10 +113,11 @@ How the code is organised:
 | `classes/ReservationReminder.php` | Daily task |
 | `pages/` | Public page, one-click link pages, backend pages (To-do, Reviewers & bidders, ...) |
 | `controllers/` | Grids and modal forms |
-| `api/` | REST API controller (`/api/v1/objectsForReview`) and the Node client `ofr` (see `skills/objects-for-review-api/SKILL.md`) |
+| `api/` | REST API controller (`/api/v1/bookReviewManager`) and the Node client `ofr` (see `skills/book-review-manager-api/SKILL.md`) |
 | `skills/` | Agent skills: using the API, and migrating review processes from exported emails |
 | `tests/` | Test suites and their runner (`tests/run.sh`) |
-| `ObjectsForReviewSchemaMigration.php` | Tables. Idempotent; raise `SCHEMA_VERSION` when changing it |
+| `ObjectsForReviewSchemaMigration.php` | Tables. Raise `SCHEMA_VERSION` when changing it |
+| `classes/UpstreamImport.php`, `tools/` | Import from Objects for Review |
 
 Strings live in `locale/{en,de,fi}/locale.po`, and email templates in `emailTemplates.xml` and `locale/*/emails.po`.
 

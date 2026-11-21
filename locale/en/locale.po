@@ -11,1793 +11,1793 @@ msgstr ""
 "PO-Revision-Date: 2021-02-21T14:12:01+02:00\n"
 "Language: \n"
 
-msgid "plugins.generic.objectsForReview.displayName"
-msgstr "Objects for review"
+msgid "plugins.generic.bookReviewManager.displayName"
+msgstr "Book Review Manager"
 
-msgid "plugins.generic.objectsForReview.description"
-msgstr "Record reviewed objects with submissions."
+msgid "plugins.generic.bookReviewManager.description"
+msgstr "Manage books for review: offers, reservations and invitations, review copies, contracts and the published reviews."
 
-msgid "plugins.generic.objectsForReview.tabTitle"
+msgid "plugins.generic.bookReviewManager.tabTitle"
 msgstr "Book Reviews"
 
-msgid "plugins.generic.objectsForReview.managementLink"
+msgid "plugins.generic.bookReviewManager.managementLink"
 msgstr "Book Reviews"
 
-msgid "plugins.generic.objectsForReview.management.gridTitle"
+msgid "plugins.generic.bookReviewManager.management.gridTitle"
 msgstr "Offered works"
 
-msgid "plugins.generic.objectsForReview.addAvailableObjectForReview"
+msgid "plugins.generic.bookReviewManager.addAvailableObjectForReview"
 msgstr "Add work"
 
-msgid "plugins.generic.objectsForReview.userName"
+msgid "plugins.generic.bookReviewManager.userName"
 msgstr "Reserved for user"
 
-msgid "plugins.generic.objectsForReview.settings.displayInToc.display"
+msgid "plugins.generic.bookReviewManager.settings.displayInToc.display"
 msgstr "Display reviewed works in the table of contents."
 
-msgid "plugins.generic.objectsForReview.settings.displayOptions"
+msgid "plugins.generic.bookReviewManager.settings.displayOptions"
 msgstr "Display options"
 
-msgid "plugins.generic.objectsForReview.settings.displayAsSubtitle"
+msgid "plugins.generic.bookReviewManager.settings.displayAsSubtitle"
 msgstr "Display reviewed works in the article subtitle field"
 
-msgid "plugins.generic.objectsForReview.settings.displayAsList"
+msgid "plugins.generic.bookReviewManager.settings.displayAsList"
 msgstr "Display a list of reviewed works under the abstract"
 
-msgid "plugins.generic.objectsForReview.settings.onlyReserved"
+msgid "plugins.generic.bookReviewManager.settings.onlyReserved"
 msgstr "Only allow works entered by the editors"
 
-msgid "plugins.generic.objectsForReview.settings.notifyEmail"
+msgid "plugins.generic.bookReviewManager.settings.notifyEmail"
 msgstr "Email for notifying reservations and cancellations"
 
-msgid "plugins.generic.objectsForReview.settings.notifyEmail.description"
+msgid "plugins.generic.bookReviewManager.settings.notifyEmail.description"
 msgstr "If no email is given here, the primary contact email is used instead"
 
-msgid "plugins.generic.objectsForReview.settings.instructions"
+msgid "plugins.generic.bookReviewManager.settings.instructions"
 msgstr "Public instructions"
 
-msgid "plugins.generic.objectsForReview.settings.instructions.description"
+msgid "plugins.generic.bookReviewManager.settings.instructions.description"
 msgstr "These instructions are visible in the public OFR page"
 
-msgid "plugins.generic.objectsForReview.navMenuItem.description"
+msgid "plugins.generic.bookReviewManager.navMenuItem.description"
 msgstr "Link to the public list of works offered for review"
 
-msgid "plugins.generic.objectsForReview.navMenuItem"
+msgid "plugins.generic.bookReviewManager.navMenuItem"
 msgstr "Works for review"
 
-msgid "plugins.generic.objectsForReview.objectsForReviewTitle"
+msgid "plugins.generic.bookReviewManager.bookReviewManagerTitle"
 msgstr "Works reviewed in this submission"
 
-msgid "plugins.generic.objectsForReview.addObjectForReview"
+msgid "plugins.generic.bookReviewManager.addObjectForReview"
 msgstr "Add reviewed work"
 
-msgid "plugins.generic.objectsForReview.noReservedObjects"
+msgid "plugins.generic.bookReviewManager.noReservedObjects"
 msgstr "No works reserved for you"
 
-msgid "plugins.generic.objectsForReview.submissionWizard.name"
+msgid "plugins.generic.bookReviewManager.submissionWizard.name"
 msgstr "Reviewed works"
 
-msgid "plugins.generic.objectsForReview.itemIdentifierType"
+msgid "plugins.generic.bookReviewManager.itemIdentifierType"
 msgstr "Identifier type"
 
-msgid "plugins.generic.objectsForReview.resourceType"
+msgid "plugins.generic.bookReviewManager.resourceType"
 msgstr "Resource type"
 
-msgid "plugins.generic.objectsForReview.itemIdentifier"
+msgid "plugins.generic.bookReviewManager.itemIdentifier"
 msgstr "Identifier"
 
-msgid "plugins.generic.objectsForReview.itemDescription"
+msgid "plugins.generic.bookReviewManager.itemDescription"
 msgstr "Description"
 
-msgid "plugins.generic.objectsForReview.itemAuthors"
+msgid "plugins.generic.bookReviewManager.itemAuthors"
 msgstr "Authors"
 
-msgid "plugins.generic.objectsForReview.itemTitle"
+msgid "plugins.generic.bookReviewManager.itemTitle"
 msgstr "Title"
 
-msgid "plugins.generic.objectsForReview.itemDescription.description"
+msgid "plugins.generic.bookReviewManager.itemDescription.description"
 msgstr "Optional. Shown below the title in the list of works offered for review."
 
-msgid "plugins.generic.objectsForReview.itemPublisher"
+msgid "plugins.generic.bookReviewManager.itemPublisher"
 msgstr "Publisher"
 
-msgid "plugins.generic.objectsForReview.itemYear"
+msgid "plugins.generic.bookReviewManager.itemYear"
 msgstr "Publishing year"
 
-msgid "plugins.generic.objectsForReview.noneCreated"
+msgid "plugins.generic.bookReviewManager.noneCreated"
 msgstr "No reviewed work in this submission."
 
-msgid "plugins.generic.objectsForReview.objectsForReviewData.addReservedObject"
+msgid "plugins.generic.bookReviewManager.bookReviewManagerData.addReservedObject"
 msgstr "Select this item"
 
-msgid "plugins.generic.objectsForReview.notifyDefaultName"
+msgid "plugins.generic.bookReviewManager.notifyDefaultName"
 msgstr "OFR contact"
 
-msgid "plugins.generic.objectsForReview.objectsForReviewData.singular"
+msgid "plugins.generic.bookReviewManager.bookReviewManagerData.singular"
 msgstr "Reviewed publication"
 
-msgid "plugins.generic.objectsForReview.objectsForReviewData.plural"
+msgid "plugins.generic.bookReviewManager.bookReviewManagerData.plural"
 msgstr "Reviewed publications"
 
-msgid "plugins.generic.objectsForReview.frontendTitle"
+msgid "plugins.generic.bookReviewManager.frontendTitle"
 msgstr "For review"
 
-msgid "plugins.generic.objectsForReview.reserve"
+msgid "plugins.generic.bookReviewManager.reserve"
 msgstr "Offer to review"
 
-msgid "plugins.generic.objectsForReview.cancel"
+msgid "plugins.generic.bookReviewManager.cancel"
 msgstr "Cancel your offer to review"
 
-msgid "plugins.generic.objectsForReview.reserve.confirm"
+msgid "plugins.generic.bookReviewManager.reserve.confirm"
 msgstr "The selected item will be reserved for you and once you are ready, you can submit your review article."
 
-msgid "plugins.generic.objectsForReview.cancel.confirm"
+msgid "plugins.generic.bookReviewManager.cancel.confirm"
 msgstr "Are you sure you want to cancel your review for this item?"
 
-msgid "plugins.generic.objectsForReview.objectAvailable"
+msgid "plugins.generic.bookReviewManager.objectAvailable"
 msgstr "Available for review"
 
-msgid "plugins.generic.objectsForReview.objectReserved"
+msgid "plugins.generic.bookReviewManager.objectReserved"
 msgstr "Reserved for review"
 
-msgid "plugins.generic.objectsForReview.logInToReserve"
+msgid "plugins.generic.bookReviewManager.logInToReserve"
 msgstr "To reserve an item for review, please login."
 
-msgid "plugins.generic.objectsForReview.COAR.book"
+msgid "plugins.generic.bookReviewManager.COAR.book"
 msgstr "book"
 
-msgid "plugins.generic.objectsForReview.COAR.bookPart"
+msgid "plugins.generic.bookReviewManager.COAR.bookPart"
 msgstr "book part"
 
-msgid "plugins.generic.objectsForReview.COAR.journalArticle"
+msgid "plugins.generic.bookReviewManager.COAR.journalArticle"
 msgstr "journal article"
 
-msgid "plugins.generic.objectsForReview.COAR.conferencePaper"
+msgid "plugins.generic.bookReviewManager.COAR.conferencePaper"
 msgstr "conference paper"
 
-msgid "plugins.generic.objectsForReview.COAR.thesis"
+msgid "plugins.generic.bookReviewManager.COAR.thesis"
 msgstr "thesis"
 
-msgid "plugins.generic.objectsForReview.COAR.preprint"
+msgid "plugins.generic.bookReviewManager.COAR.preprint"
 msgstr "preprint"
 
-msgid "plugins.generic.objectsForReview.COAR.website"
+msgid "plugins.generic.bookReviewManager.COAR.website"
 msgstr "website"
 
-msgid "plugins.generic.objectsForReview.COAR.dataset"
+msgid "plugins.generic.bookReviewManager.COAR.dataset"
 msgstr "dataset"
 
-msgid "plugins.generic.objectsForReview.COAR.software"
+msgid "plugins.generic.bookReviewManager.COAR.software"
 msgstr "software"
 
-msgid "plugins.generic.objectsForReview.COAR.cartographicMaterial"
+msgid "plugins.generic.bookReviewManager.COAR.cartographicMaterial"
 msgstr "cartographic material"
 
-msgid "plugins.generic.objectsForReview.COAR.sound"
+msgid "plugins.generic.bookReviewManager.COAR.sound"
 msgstr "sound"
 
-msgid "plugins.generic.objectsForReview.doiLookup.button"
+msgid "plugins.generic.bookReviewManager.doiLookup.button"
 msgstr "Look up DOI"
 
-msgid "plugins.generic.objectsForReview.doiLookup.loading"
+msgid "plugins.generic.bookReviewManager.doiLookup.loading"
 msgstr "Looking up metadata at Crossref…"
 
-msgid "plugins.generic.objectsForReview.doiLookup.done"
+msgid "plugins.generic.bookReviewManager.doiLookup.done"
 msgstr "Metadata filled in from Crossref. Please check the fields before saving."
 
-msgid "plugins.generic.objectsForReview.doiLookup.failed"
+msgid "plugins.generic.bookReviewManager.doiLookup.failed"
 msgstr "The Crossref lookup failed. Please try again later or enter the metadata manually."
 
-msgid "plugins.generic.objectsForReview.doiLookup.notFound"
+msgid "plugins.generic.bookReviewManager.doiLookup.notFound"
 msgstr "This DOI was not found at Crossref. It may be registered with another agency (e.g. DataCite); please enter the metadata manually."
 
-msgid "plugins.generic.objectsForReview.doiLookup.invalid"
+msgid "plugins.generic.bookReviewManager.doiLookup.invalid"
 msgstr "Please enter a valid DOI, e.g. 10.1000/xyz123."
 
-msgid "plugins.generic.objectsForReview.doiLookup.editorSuffix"
+msgid "plugins.generic.bookReviewManager.doiLookup.editorSuffix"
 msgstr "Ed."
 
-msgid "plugins.generic.objectsForReview.itemYearShort"
+msgid "plugins.generic.bookReviewManager.itemYearShort"
 msgstr "Year"
 
-msgid "plugins.generic.objectsForReview.menu.available"
+msgid "plugins.generic.bookReviewManager.menu.available"
 msgstr "Offered works"
 
-msgid "plugins.generic.objectsForReview.menu.reservations"
+msgid "plugins.generic.bookReviewManager.menu.reservations"
 msgstr "Reservations"
 
-msgid "plugins.generic.objectsForReview.menu.reviewedWorks"
+msgid "plugins.generic.bookReviewManager.menu.reviewedWorks"
 msgstr "Reviewed works"
 
-msgid "plugins.generic.objectsForReview.menu.settings"
+msgid "plugins.generic.bookReviewManager.menu.settings"
 msgstr "Settings"
 
-msgid "plugins.generic.objectsForReview.menu.publicPage"
+msgid "plugins.generic.bookReviewManager.menu.publicPage"
 msgstr "Public page"
 
-msgid "plugins.generic.objectsForReview.column.object"
+msgid "plugins.generic.bookReviewManager.column.object"
 msgstr "Work"
 
-msgid "plugins.generic.objectsForReview.column.reservedBy"
+msgid "plugins.generic.bookReviewManager.column.reservedBy"
 msgstr "Reserved by"
 
-msgid "plugins.generic.objectsForReview.column.submission"
+msgid "plugins.generic.bookReviewManager.column.submission"
 msgstr "Submission"
 
-msgid "plugins.generic.objectsForReview.filter.allUsers"
+msgid "plugins.generic.bookReviewManager.filter.allUsers"
 msgstr "All users"
 
-msgid "plugins.generic.objectsForReview.filter.apply"
+msgid "plugins.generic.bookReviewManager.filter.apply"
 msgstr "Filter"
 
-msgid "plugins.generic.objectsForReview.reservations.none"
+msgid "plugins.generic.bookReviewManager.reservations.none"
 msgstr "No works are currently reserved."
 
-msgid "plugins.generic.objectsForReview.reviewedWorks.none"
+msgid "plugins.generic.bookReviewManager.reviewedWorks.none"
 msgstr "No works have been attached to submissions yet."
 
-msgid "plugins.generic.objectsForReview.reserve.title"
+msgid "plugins.generic.bookReviewManager.reserve.title"
 msgstr "Reserve for review"
 
-msgid "plugins.generic.objectsForReview.reserve.contract"
+msgid "plugins.generic.bookReviewManager.reserve.contract"
 msgstr "Terms of reservation"
 
-msgid "plugins.generic.objectsForReview.reserve.acceptTerms"
+msgid "plugins.generic.bookReviewManager.reserve.acceptTerms"
 msgstr "I have read the terms and agree to them."
 
-msgid "plugins.generic.objectsForReview.reserve.dueDate"
+msgid "plugins.generic.bookReviewManager.reserve.dueDate"
 msgstr "Review due date"
 
-msgid "plugins.generic.objectsForReview.reserve.dueDate.hint"
+msgid "plugins.generic.bookReviewManager.reserve.dueDate.hint"
 msgstr "You commit to delivering your review by this date (at the latest {$maxDate})."
 
-msgid "plugins.generic.objectsForReview.reserve.copy"
+msgid "plugins.generic.bookReviewManager.reserve.copy"
 msgstr "Access to the work"
 
-msgid "plugins.generic.objectsForReview.reserve.copyPerWork"
+msgid "plugins.generic.bookReviewManager.reserve.copyPerWork"
 msgstr "Access to the works of the review essay (one choice per work)"
 
-msgid "plugins.generic.objectsForReview.reserve.copy.have"
+msgid "plugins.generic.bookReviewManager.reserve.copy.have"
 msgstr "I already have the work"
 
-msgid "plugins.generic.objectsForReview.reserve.copy.physical"
+msgid "plugins.generic.bookReviewManager.reserve.copy.physical"
 msgstr "I prefer a physical copy"
 
-msgid "plugins.generic.objectsForReview.reserve.copy.electronic"
+msgid "plugins.generic.bookReviewManager.reserve.copy.electronic"
 msgstr "I prefer an electronic copy"
 
-msgid "plugins.generic.objectsForReview.reserve.copy.other"
+msgid "plugins.generic.bookReviewManager.reserve.copy.other"
 msgstr "Other"
 
-msgid "plugins.generic.objectsForReview.reserve.shippingAddress"
+msgid "plugins.generic.bookReviewManager.reserve.shippingAddress"
 msgstr "Shipping address"
 
-msgid "plugins.generic.objectsForReview.reserve.phone"
+msgid "plugins.generic.bookReviewManager.reserve.phone"
 msgstr "Phone number"
 
-msgid "plugins.generic.objectsForReview.reserve.phone.hint"
+msgid "plugins.generic.bookReviewManager.reserve.phone.hint"
 msgstr "Required by the delivery service."
 
-msgid "plugins.generic.objectsForReview.reserve.copyNote"
+msgid "plugins.generic.bookReviewManager.reserve.copyNote"
 msgstr "Please explain"
 
-msgid "plugins.generic.objectsForReview.reserve.submit"
+msgid "plugins.generic.bookReviewManager.reserve.submit"
 msgstr "Reserve"
 
-msgid "plugins.generic.objectsForReview.reserve.yourDueDate"
+msgid "plugins.generic.bookReviewManager.reserve.yourDueDate"
 msgstr "Your review is due on {$dueDate}."
 
-msgid "plugins.generic.objectsForReview.reserve.error.summary"
+msgid "plugins.generic.bookReviewManager.reserve.error.summary"
 msgstr "Please correct the following:"
 
-msgid "plugins.generic.objectsForReview.reserve.error.acceptTerms"
+msgid "plugins.generic.bookReviewManager.reserve.error.acceptTerms"
 msgstr "You must accept the terms of reservation."
 
-msgid "plugins.generic.objectsForReview.reserve.error.dueDate"
+msgid "plugins.generic.bookReviewManager.reserve.error.dueDate"
 msgstr "Please enter a valid due date."
 
-msgid "plugins.generic.objectsForReview.reserve.error.dueDateRange"
+msgid "plugins.generic.bookReviewManager.reserve.error.dueDateRange"
 msgstr "The due date must be in the future and within the allowed period."
 
-msgid "plugins.generic.objectsForReview.reserve.error.copyPreference"
+msgid "plugins.generic.bookReviewManager.reserve.error.copyPreference"
 msgstr "Please choose how you will get the work."
 
-msgid "plugins.generic.objectsForReview.reserve.error.shippingAddress"
+msgid "plugins.generic.bookReviewManager.reserve.error.shippingAddress"
 msgstr "Please enter a shipping address."
 
-msgid "plugins.generic.objectsForReview.reserve.error.phone"
+msgid "plugins.generic.bookReviewManager.reserve.error.phone"
 msgstr "Please enter a valid phone number."
 
-msgid "plugins.generic.objectsForReview.reserve.error.copyNote"
+msgid "plugins.generic.bookReviewManager.reserve.error.copyNote"
 msgstr "Please explain how you will get the work."
 
-msgid "plugins.generic.objectsForReview.column.dates"
+msgid "plugins.generic.bookReviewManager.column.dates"
 msgstr "Dates"
 
-msgid "plugins.generic.objectsForReview.column.reservedOn"
+msgid "plugins.generic.bookReviewManager.column.reservedOn"
 msgstr "Reserved"
 
-msgid "plugins.generic.objectsForReview.settings.contract"
+msgid "plugins.generic.bookReviewManager.settings.contract"
 msgstr "Terms of reservation"
 
-msgid "plugins.generic.objectsForReview.settings.contract.description"
+msgid "plugins.generic.bookReviewManager.settings.contract.description"
 msgstr "Shown in the reservation dialog; reviewers must accept these terms."
 
-msgid "plugins.generic.objectsForReview.settings.dueMonths"
+msgid "plugins.generic.bookReviewManager.settings.dueMonths"
 msgstr "Review due date"
 
-msgid "plugins.generic.objectsForReview.settings.dueMonths.description"
+msgid "plugins.generic.bookReviewManager.settings.dueMonths.description"
 msgstr "Months after the reservation"
 
-msgid "plugins.generic.objectsForReview.settings.dueMonthsDefault"
+msgid "plugins.generic.bookReviewManager.settings.dueMonthsDefault"
 msgstr "Default"
 
-msgid "plugins.generic.objectsForReview.settings.dueMonthsMax"
+msgid "plugins.generic.bookReviewManager.settings.dueMonthsMax"
 msgstr "Maximum"
 
-msgid "plugins.generic.objectsForReview.settings.dueMonths.invalid"
+msgid "plugins.generic.bookReviewManager.settings.dueMonths.invalid"
 msgstr "Please enter whole numbers of months (at most 24); the default must not exceed the maximum."
 
-msgid "plugins.generic.objectsForReview.contract.default"
+msgid "plugins.generic.bookReviewManager.contract.default"
 msgstr "<p>By reserving this work you agree to the following terms:</p><ul><li>You will write a review of the work and submit it to the journal by the due date you choose.</li><li>If you cannot deliver the review on time, you will inform the editors as early as possible.</li><li>If you cancel the reservation or do not deliver the review, the editors may ask you to return a review copy you received.</li><li>Your review goes through the journal's usual editorial process; submitting it does not guarantee publication.</li></ul>"
 
-msgid "plugins.generic.objectsForReview.isbnLookup.button"
+msgid "plugins.generic.bookReviewManager.isbnLookup.button"
 msgstr "Look up ISBN"
 
-msgid "plugins.generic.objectsForReview.isbnLookup.loading"
+msgid "plugins.generic.bookReviewManager.isbnLookup.loading"
 msgstr "Looking up metadata (Crossref, Open Library)…"
 
-msgid "plugins.generic.objectsForReview.isbnLookup.done"
+msgid "plugins.generic.bookReviewManager.isbnLookup.done"
 msgstr "Metadata filled in from {$source}. Please check the fields before saving."
 
-msgid "plugins.generic.objectsForReview.isbnLookup.failed"
+msgid "plugins.generic.bookReviewManager.isbnLookup.failed"
 msgstr "The lookup failed. Please try again later or enter the metadata manually."
 
-msgid "plugins.generic.objectsForReview.isbnLookup.notFound"
+msgid "plugins.generic.bookReviewManager.isbnLookup.notFound"
 msgstr "No metadata found for this ISBN (searched Crossref and Open Library). Please enter the metadata manually."
 
-msgid "plugins.generic.objectsForReview.isbnLookup.invalid"
+msgid "plugins.generic.bookReviewManager.isbnLookup.invalid"
 msgstr "Please enter a valid ISBN-10 or ISBN-13, e.g. 978-3-658-45780-8."
 
-msgid "plugins.generic.objectsForReview.history"
+msgid "plugins.generic.bookReviewManager.history"
 msgstr "History"
 
-msgid "plugins.generic.objectsForReview.history.empty"
+msgid "plugins.generic.bookReviewManager.history.empty"
 msgstr "No entries yet."
 
-msgid "plugins.generic.objectsForReview.history.system"
+msgid "plugins.generic.bookReviewManager.history.system"
 msgstr "automatically"
 
-msgid "plugins.generic.objectsForReview.history.email"
+msgid "plugins.generic.bookReviewManager.history.email"
 msgstr "Email"
 
-msgid "plugins.generic.objectsForReview.history.email.message"
+msgid "plugins.generic.bookReviewManager.history.email.message"
 msgstr "Email to the reviewer"
 
-msgid "plugins.generic.objectsForReview.history.email.cancelledByEditor"
+msgid "plugins.generic.bookReviewManager.history.email.cancelledByEditor"
 msgstr "Cancellation notice sent"
 
-msgid "plugins.generic.objectsForReview.history.email.reminder"
+msgid "plugins.generic.bookReviewManager.history.email.reminder"
 msgstr "Reminder sent"
 
-msgid "plugins.generic.objectsForReview.history.event.reserved"
+msgid "plugins.generic.bookReviewManager.history.event.reserved"
 msgstr "Reserved by {$recipientName}, due {$reviewDueDate}"
 
-msgid "plugins.generic.objectsForReview.history.event.cancelledByReviewer"
+msgid "plugins.generic.bookReviewManager.history.event.cancelledByReviewer"
 msgstr "Reservation cancelled by {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.cancelledByEditor"
+msgid "plugins.generic.bookReviewManager.history.event.cancelledByEditor"
 msgstr "Reservation of {$recipientName} cancelled by the editors"
 
-msgid "plugins.generic.objectsForReview.history.event.attached"
+msgid "plugins.generic.bookReviewManager.history.event.attached"
 msgstr "Attached to submission #{$submissionId} by {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.reservations.email"
+msgid "plugins.generic.bookReviewManager.reservations.email"
 msgstr "Send email"
 
-msgid "plugins.generic.objectsForReview.reservations.email.submit"
+msgid "plugins.generic.bookReviewManager.reservations.email.submit"
 msgstr "Send"
 
-msgid "plugins.generic.objectsForReview.reservations.cancel"
+msgid "plugins.generic.bookReviewManager.reservations.cancel"
 msgstr "Cancel reservation"
 
-msgid "plugins.generic.objectsForReview.reservations.cancel.description"
+msgid "plugins.generic.bookReviewManager.reservations.cancel.description"
 msgstr "Cancel the reservation of {$reviewer}? The work will be offered for review again."
 
-msgid "plugins.generic.objectsForReview.reservations.cancel.sendEmail"
+msgid "plugins.generic.bookReviewManager.reservations.cancel.sendEmail"
 msgstr "Notify the reviewer by email"
 
-msgid "plugins.generic.objectsForReview.reservations.cancel.submit"
+msgid "plugins.generic.bookReviewManager.reservations.cancel.submit"
 msgstr "Cancel reservation"
 
-msgid "plugins.generic.objectsForReview.reservations.notReserved"
+msgid "plugins.generic.bookReviewManager.reservations.notReserved"
 msgstr "This work is not reserved (any more)."
 
-msgid "plugins.generic.objectsForReview.reservations.subjectRequired"
+msgid "plugins.generic.bookReviewManager.reservations.subjectRequired"
 msgstr "Please enter a subject."
 
-msgid "plugins.generic.objectsForReview.reservations.bodyRequired"
+msgid "plugins.generic.bookReviewManager.reservations.bodyRequired"
 msgstr "Please enter a message."
 
-msgid "plugins.generic.objectsForReview.column.reminderSent"
+msgid "plugins.generic.bookReviewManager.column.reminderSent"
 msgstr "Reminder sent"
 
-msgid "plugins.generic.objectsForReview.settings.reminderDays"
+msgid "plugins.generic.bookReviewManager.settings.reminderDays"
 msgstr "Reminder"
 
-msgid "plugins.generic.objectsForReview.settings.reminderDays.description"
+msgid "plugins.generic.bookReviewManager.settings.reminderDays.description"
 msgstr "Days before the due date on which reviewers are reminded automatically (0: no reminder)"
 
-msgid "plugins.generic.objectsForReview.settings.reminderDays.invalid"
+msgid "plugins.generic.bookReviewManager.settings.reminderDays.invalid"
 msgstr "Please enter a whole number of days between 0 and 90."
 
-msgid "plugins.generic.objectsForReview.reminder.taskName"
+msgid "plugins.generic.bookReviewManager.reminder.taskName"
 msgstr "Book reviews: daily reminders"
 
-msgid "plugins.generic.objectsForReview.reminder.sent"
+msgid "plugins.generic.bookReviewManager.reminder.sent"
 msgstr "For {$context}: {$reminders} due date reminder(s), {$contractReminders} contract offer reminder(s), {$expired} expired contract offer(s), {$publisherReminders} publisher reminder(s), {$expiredInvitations} expired invitation(s), {$invitationReminders} invitation reminder(s)."
 
-msgid "plugins.generic.objectsForReview.identifierTypeRequired"
+msgid "plugins.generic.bookReviewManager.identifierTypeRequired"
 msgstr "Please select an identifier type."
 
-msgid "plugins.generic.objectsForReview.resourceTypeRequired"
+msgid "plugins.generic.bookReviewManager.resourceTypeRequired"
 msgstr "Please select a resource type."
 
-msgid "plugins.generic.objectsForReview.titleRequired"
+msgid "plugins.generic.bookReviewManager.titleRequired"
 msgstr "Please enter a title."
 
-msgid "plugins.generic.objectsForReview.identifierRequired"
+msgid "plugins.generic.bookReviewManager.identifierRequired"
 msgstr "Please enter an identifier."
 
-msgid "plugins.generic.objectsForReview.role.bookReviewEditor"
+msgid "plugins.generic.bookReviewManager.role.bookReviewEditor"
 msgstr "Book review editor"
 
-msgid "plugins.generic.objectsForReview.role.bookReviewEditor.abbrev"
+msgid "plugins.generic.bookReviewManager.role.bookReviewEditor.abbrev"
 msgstr "BRE"
 
-msgid "plugins.generic.objectsForReview.role.publisherContact"
+msgid "plugins.generic.bookReviewManager.role.publisherContact"
 msgstr "Publisher contact"
 
-msgid "plugins.generic.objectsForReview.role.publisherContact.abbrev"
+msgid "plugins.generic.bookReviewManager.role.publisherContact.abbrev"
 msgstr "PC"
 
-msgid "plugins.generic.objectsForReview.menu.desk"
+msgid "plugins.generic.bookReviewManager.menu.desk"
 msgstr "To-do"
 
-msgid "plugins.generic.objectsForReview.menu.assignments"
+msgid "plugins.generic.bookReviewManager.menu.assignments"
 msgstr "Reviewers & bidders"
 
-msgid "plugins.generic.objectsForReview.assignments.none"
+msgid "plugins.generic.bookReviewManager.assignments.none"
 msgstr "No entries with this status."
 
-msgid "plugins.generic.objectsForReview.status.active"
+msgid "plugins.generic.bookReviewManager.status.active"
 msgstr "Current (offered or reserved)"
 
-msgid "plugins.generic.objectsForReview.status.all"
+msgid "plugins.generic.bookReviewManager.status.all"
 msgstr "All"
 
-msgid "plugins.generic.objectsForReview.status.bid"
+msgid "plugins.generic.bookReviewManager.status.bid"
 msgstr "Bid"
 
-msgid "plugins.generic.objectsForReview.status.unsuccessful"
+msgid "plugins.generic.bookReviewManager.status.unsuccessful"
 msgstr "Not selected (on the list)"
 
-msgid "plugins.generic.objectsForReview.status.offered"
+msgid "plugins.generic.bookReviewManager.status.offered"
 msgstr "Contract offered"
 
-msgid "plugins.generic.objectsForReview.status.accepted"
+msgid "plugins.generic.bookReviewManager.status.accepted"
 msgstr "Reserved"
 
-msgid "plugins.generic.objectsForReview.status.submitted"
+msgid "plugins.generic.bookReviewManager.status.submitted"
 msgstr "Review submitted"
 
-msgid "plugins.generic.objectsForReview.status.completed"
+msgid "plugins.generic.bookReviewManager.status.completed"
 msgstr "Review published"
 
-msgid "plugins.generic.objectsForReview.status.withdrawn"
+msgid "plugins.generic.bookReviewManager.status.withdrawn"
 msgstr "Bid withdrawn"
 
-msgid "plugins.generic.objectsForReview.status.declined"
+msgid "plugins.generic.bookReviewManager.status.declined"
 msgstr "Contract declined"
 
-msgid "plugins.generic.objectsForReview.status.expired"
+msgid "plugins.generic.bookReviewManager.status.expired"
 msgstr "Contract offer expired"
 
-msgid "plugins.generic.objectsForReview.status.retracted"
+msgid "plugins.generic.bookReviewManager.status.retracted"
 msgstr "Cancelled by the reviewer"
 
-msgid "plugins.generic.objectsForReview.status.cancelled"
+msgid "plugins.generic.bookReviewManager.status.cancelled"
 msgstr "Cancelled by the editors"
 
-msgid "plugins.generic.objectsForReview.status.discarded"
+msgid "plugins.generic.bookReviewManager.status.discarded"
 msgstr "List closed"
 
-msgid "plugins.generic.objectsForReview.offerState.open"
+msgid "plugins.generic.bookReviewManager.offerState.open"
 msgstr "Open"
 
-msgid "plugins.generic.objectsForReview.offerState.selection"
+msgid "plugins.generic.bookReviewManager.offerState.selection"
 msgstr "Selection pending"
 
-msgid "plugins.generic.objectsForReview.offerState.contractOffered"
+msgid "plugins.generic.bookReviewManager.offerState.contractOffered"
 msgstr "Contract offered"
 
-msgid "plugins.generic.objectsForReview.offerState.assigned"
+msgid "plugins.generic.bookReviewManager.offerState.assigned"
 msgstr "Reserved"
 
-msgid "plugins.generic.objectsForReview.offerState.submitted"
+msgid "plugins.generic.bookReviewManager.offerState.submitted"
 msgstr "Review submitted"
 
-msgid "plugins.generic.objectsForReview.offerState.closed"
+msgid "plugins.generic.bookReviewManager.offerState.closed"
 msgstr "Closed"
 
-msgid "plugins.generic.objectsForReview.offerState.bidCount"
+msgid "plugins.generic.bookReviewManager.offerState.bidCount"
 msgstr "{$number} bids"
 
-msgid "plugins.generic.objectsForReview.offer.title"
+msgid "plugins.generic.bookReviewManager.offer.title"
 msgstr "Offer"
 
-msgid "plugins.generic.objectsForReview.offer.mode"
+msgid "plugins.generic.bookReviewManager.offer.mode"
 msgstr "Assignment"
 
-msgid "plugins.generic.objectsForReview.offer.mode.description"
+msgid "plugins.generic.bookReviewManager.offer.mode.description"
 msgstr "Direct reservation: the first person to accept the terms gets the review. Bidding: reviewers apply, and the book review editor chooses."
 
-msgid "plugins.generic.objectsForReview.offer.mode.direct"
+msgid "plugins.generic.bookReviewManager.offer.mode.direct"
 msgstr "Direct reservation"
 
-msgid "plugins.generic.objectsForReview.offer.mode.bidding"
+msgid "plugins.generic.bookReviewManager.offer.mode.bidding"
 msgstr "Bidding"
 
-msgid "plugins.generic.objectsForReview.offer.modeRequired"
+msgid "plugins.generic.bookReviewManager.offer.modeRequired"
 msgstr "Please choose how the review is assigned."
 
-msgid "plugins.generic.objectsForReview.offer.bidDeadline"
+msgid "plugins.generic.bookReviewManager.offer.bidDeadline"
 msgstr "Bid deadline"
 
-msgid "plugins.generic.objectsForReview.offer.bidDeadline.description"
+msgid "plugins.generic.bookReviewManager.offer.bidDeadline.description"
 msgstr "Optional. Bids are accepted until the end of this day."
 
-msgid "plugins.generic.objectsForReview.offer.bidDeadlineInvalid"
+msgid "plugins.generic.bookReviewManager.offer.bidDeadlineInvalid"
 msgstr "Please enter a valid date."
 
-msgid "plugins.generic.objectsForReview.offer.responsibleEditor"
+msgid "plugins.generic.bookReviewManager.offer.responsibleEditor"
 msgstr "Responsible book review editor"
 
-msgid "plugins.generic.objectsForReview.offer.responsibleEditor.description"
+msgid "plugins.generic.bookReviewManager.offer.responsibleEditor.description"
 msgstr "Receives the notifications about this offer. Book review editors are users in the group \"Book review editor\" (Users & Roles)."
 
-msgid "plugins.generic.objectsForReview.offer.noEditor"
+msgid "plugins.generic.bookReviewManager.offer.noEditor"
 msgstr "— none (notification address from the settings) —"
 
-msgid "plugins.generic.objectsForReview.offer.editorInvalid"
+msgid "plugins.generic.bookReviewManager.offer.editorInvalid"
 msgstr "Please choose a book review editor."
 
-msgid "plugins.generic.objectsForReview.bid"
+msgid "plugins.generic.bookReviewManager.bid"
 msgstr "Apply"
 
-msgid "plugins.generic.objectsForReview.bid.title"
+msgid "plugins.generic.bookReviewManager.bid.title"
 msgstr "Apply to review this work"
 
-msgid "plugins.generic.objectsForReview.bid.description"
+msgid "plugins.generic.bookReviewManager.bid.description"
 msgstr "The book review editor will choose among the applicants. If you are selected, you will receive an email with a link to the review agreement."
 
-msgid "plugins.generic.objectsForReview.bid.statement"
+msgid "plugins.generic.bookReviewManager.bid.statement"
 msgstr "Statement"
 
-msgid "plugins.generic.objectsForReview.bid.statement.hint"
+msgid "plugins.generic.bookReviewManager.bid.statement.hint"
 msgstr "Optional: why you would like to review this work, and your expertise."
 
-msgid "plugins.generic.objectsForReview.bid.submit"
+msgid "plugins.generic.bookReviewManager.bid.submit"
 msgstr "Submit application"
 
-msgid "plugins.generic.objectsForReview.bid.open"
+msgid "plugins.generic.bookReviewManager.bid.open"
 msgstr "Open for applications"
 
-msgid "plugins.generic.objectsForReview.bid.closed"
+msgid "plugins.generic.bookReviewManager.bid.closed"
 msgstr "Selection in progress"
 
-msgid "plugins.generic.objectsForReview.bid.deadline"
+msgid "plugins.generic.bookReviewManager.bid.deadline"
 msgstr "Apply by {$deadline}"
 
-msgid "plugins.generic.objectsForReview.bid.yours"
+msgid "plugins.generic.bookReviewManager.bid.yours"
 msgstr "You applied on {$date}."
 
-msgid "plugins.generic.objectsForReview.bid.unsuccessful"
+msgid "plugins.generic.bookReviewManager.bid.unsuccessful"
 msgstr "Someone else is reviewing this work. You remain on the list in case the review does not materialise."
 
-msgid "plugins.generic.objectsForReview.bid.withdraw"
+msgid "plugins.generic.bookReviewManager.bid.withdraw"
 msgstr "Withdraw application"
 
-msgid "plugins.generic.objectsForReview.bid.withdraw.confirm"
+msgid "plugins.generic.bookReviewManager.bid.withdraw.confirm"
 msgstr "Do you want to withdraw your application?"
 
-msgid "plugins.generic.objectsForReview.bid.selected"
+msgid "plugins.generic.bookReviewManager.bid.selected"
 msgstr "You have been selected. Please respond by {$deadline}."
 
-msgid "plugins.generic.objectsForReview.bid.respond"
+msgid "plugins.generic.bookReviewManager.bid.respond"
 msgstr "Respond to the offer"
 
-msgid "plugins.generic.objectsForReview.backToList"
+msgid "plugins.generic.bookReviewManager.backToList"
 msgstr "Back to the list of works for review"
 
-msgid "plugins.generic.objectsForReview.contract.title"
+msgid "plugins.generic.bookReviewManager.contract.title"
 msgstr "Review agreement"
 
-msgid "plugins.generic.objectsForReview.contract.intro"
+msgid "plugins.generic.bookReviewManager.contract.intro"
 msgstr "Dear {$name}, you have been selected to review this work. Please accept the agreement by {$deadline}, or let us know if you cannot write the review."
 
-msgid "plugins.generic.objectsForReview.contract.accept"
+msgid "plugins.generic.bookReviewManager.contract.accept"
 msgstr "Accept the agreement"
 
-msgid "plugins.generic.objectsForReview.contract.decline"
+msgid "plugins.generic.bookReviewManager.contract.decline"
 msgstr "I cannot write this review"
 
-msgid "plugins.generic.objectsForReview.contract.declineReason"
+msgid "plugins.generic.bookReviewManager.contract.declineReason"
 msgstr "Reason (optional)"
 
-msgid "plugins.generic.objectsForReview.contract.decline.submit"
+msgid "plugins.generic.bookReviewManager.contract.decline.submit"
 msgstr "Decline the offer"
 
-msgid "plugins.generic.objectsForReview.contract.declined.noReason"
+msgid "plugins.generic.bookReviewManager.contract.declined.noReason"
 msgstr "No reason given."
 
-msgid "plugins.generic.objectsForReview.contract.expired"
+msgid "plugins.generic.bookReviewManager.contract.expired"
 msgstr "The offer was not answered by the deadline."
 
-msgid "plugins.generic.objectsForReview.leave.title"
+msgid "plugins.generic.bookReviewManager.leave.title"
 msgstr "Leave the list"
 
-msgid "plugins.generic.objectsForReview.leave.description"
+msgid "plugins.generic.bookReviewManager.leave.description"
 msgstr "Dear {$name}, do you want to be removed from the list of applicants for this work? You will not be contacted about it again."
 
-msgid "plugins.generic.objectsForReview.leave.submit"
+msgid "plugins.generic.bookReviewManager.leave.submit"
 msgstr "Remove me from the list"
 
-msgid "plugins.generic.objectsForReview.link.invalid.title"
+msgid "plugins.generic.bookReviewManager.link.invalid.title"
 msgstr "Link no longer valid"
 
-msgid "plugins.generic.objectsForReview.link.invalid"
+msgid "plugins.generic.bookReviewManager.link.invalid"
 msgstr "This link has expired or has already been used. Please contact the editors if you have any questions."
 
-msgid "plugins.generic.objectsForReview.response.accepted.title"
+msgid "plugins.generic.bookReviewManager.response.accepted.title"
 msgstr "Thank you!"
 
-msgid "plugins.generic.objectsForReview.response.accepted"
+msgid "plugins.generic.bookReviewManager.response.accepted"
 msgstr "You have accepted the review agreement. Your review is due on {$dueDate}."
 
-msgid "plugins.generic.objectsForReview.response.declined.title"
+msgid "plugins.generic.bookReviewManager.response.declined.title"
 msgstr "Offer declined"
 
-msgid "plugins.generic.objectsForReview.response.declined"
+msgid "plugins.generic.bookReviewManager.response.declined"
 msgstr "Thank you for letting us know. The editors have been informed."
 
-msgid "plugins.generic.objectsForReview.response.left.title"
+msgid "plugins.generic.bookReviewManager.response.left.title"
 msgstr "Removed from the list"
 
-msgid "plugins.generic.objectsForReview.response.left"
+msgid "plugins.generic.bookReviewManager.response.left"
 msgstr "You have been removed from the list of applicants for this work."
 
-msgid "plugins.generic.objectsForReview.desk.empty"
+msgid "plugins.generic.bookReviewManager.desk.empty"
 msgstr "Nothing to do at the moment."
 
-msgid "plugins.generic.objectsForReview.desk.selection"
+msgid "plugins.generic.bookReviewManager.desk.selection"
 msgstr "Choose a reviewer"
 
-msgid "plugins.generic.objectsForReview.desk.biddingOpen"
+msgid "plugins.generic.bookReviewManager.desk.biddingOpen"
 msgstr "Bidding is open."
 
-msgid "plugins.generic.objectsForReview.desk.biddingClosed"
+msgid "plugins.generic.bookReviewManager.desk.biddingClosed"
 msgstr "Bidding is closed."
 
-msgid "plugins.generic.objectsForReview.desk.deadlinePassed"
+msgid "plugins.generic.bookReviewManager.desk.deadlinePassed"
 msgstr "The bid deadline ({$deadline}) has passed."
 
-msgid "plugins.generic.objectsForReview.desk.dropout.declined"
+msgid "plugins.generic.bookReviewManager.desk.dropout.declined"
 msgstr "{$name} declined the contract on {$date}."
 
-msgid "plugins.generic.objectsForReview.desk.dropout.expired"
+msgid "plugins.generic.bookReviewManager.desk.dropout.expired"
 msgstr "The contract offer to {$name} expired on {$date}."
 
-msgid "plugins.generic.objectsForReview.desk.dropout.retracted"
+msgid "plugins.generic.bookReviewManager.desk.dropout.retracted"
 msgstr "{$name} cancelled the reservation on {$date}."
 
-msgid "plugins.generic.objectsForReview.desk.dropout.cancelled"
+msgid "plugins.generic.bookReviewManager.desk.dropout.cancelled"
 msgstr "The editors cancelled the assignment of {$name} on {$date}."
 
-msgid "plugins.generic.objectsForReview.desk.noBidders"
+msgid "plugins.generic.bookReviewManager.desk.noBidders"
 msgstr "There are no bidders left on the list."
 
-msgid "plugins.generic.objectsForReview.desk.reviewCount"
+msgid "plugins.generic.bookReviewManager.desk.reviewCount"
 msgstr "Reviews for this journal: {$number}"
 
-msgid "plugins.generic.objectsForReview.desk.onList"
+msgid "plugins.generic.bookReviewManager.desk.onList"
 msgstr "On the list (already told someone else was chosen)"
 
-msgid "plugins.generic.objectsForReview.desk.select"
+msgid "plugins.generic.bookReviewManager.desk.select"
 msgstr "Select and send contract"
 
-msgid "plugins.generic.objectsForReview.desk.offers"
+msgid "plugins.generic.bookReviewManager.desk.offers"
 msgstr "Waiting for an answer to the contract offer"
 
-msgid "plugins.generic.objectsForReview.desk.unsuccessful"
+msgid "plugins.generic.bookReviewManager.desk.unsuccessful"
 msgstr "Notify bidders who were not selected"
 
-msgid "plugins.generic.objectsForReview.desk.closed"
+msgid "plugins.generic.bookReviewManager.desk.closed"
 msgstr "Closed offers"
 
-msgid "plugins.generic.objectsForReview.desk.notPossible"
+msgid "plugins.generic.bookReviewManager.desk.notPossible"
 msgstr "This step is not possible in the current state of the offer."
 
-msgid "plugins.generic.objectsForReview.desk.reopenBidding"
+msgid "plugins.generic.bookReviewManager.desk.reopenBidding"
 msgstr "Reopen bidding"
 
-msgid "plugins.generic.objectsForReview.desk.reopenBidding.confirm"
+msgid "plugins.generic.bookReviewManager.desk.reopenBidding.confirm"
 msgstr "Reopen bidding for this work? Bidders already on the list stay on it."
 
-msgid "plugins.generic.objectsForReview.desk.switchToDirect"
+msgid "plugins.generic.bookReviewManager.desk.switchToDirect"
 msgstr "Switch to direct reservation"
 
-msgid "plugins.generic.objectsForReview.desk.switchToDirect.confirm"
+msgid "plugins.generic.bookReviewManager.desk.switchToDirect.confirm"
 msgstr "Switch this offer to direct reservation? The first person to accept the terms on the public page gets the review."
 
-msgid "plugins.generic.objectsForReview.desk.closeOffer"
+msgid "plugins.generic.bookReviewManager.desk.closeOffer"
 msgstr "Close offer"
 
-msgid "plugins.generic.objectsForReview.desk.closeOffer.confirm"
+msgid "plugins.generic.bookReviewManager.desk.closeOffer.confirm"
 msgstr "Close this offer? It is removed from the public page and the list of bidders is discarded."
 
-msgid "plugins.generic.objectsForReview.desk.reopenOffer"
+msgid "plugins.generic.bookReviewManager.desk.reopenOffer"
 msgstr "Reopen offer"
 
-msgid "plugins.generic.objectsForReview.desk.reopenOffer.confirm"
+msgid "plugins.generic.bookReviewManager.desk.reopenOffer.confirm"
 msgstr "Offer this work for review again?"
 
-msgid "plugins.generic.objectsForReview.column.bidder"
+msgid "plugins.generic.bookReviewManager.column.bidder"
 msgstr "Bidder"
 
-msgid "plugins.generic.objectsForReview.column.bidDate"
+msgid "plugins.generic.bookReviewManager.column.bidDate"
 msgstr "Applied on"
 
-msgid "plugins.generic.objectsForReview.column.selectedBidder"
+msgid "plugins.generic.bookReviewManager.column.selectedBidder"
 msgstr "Selected bidder"
 
-msgid "plugins.generic.objectsForReview.column.offeredOn"
+msgid "plugins.generic.bookReviewManager.column.offeredOn"
 msgstr "Offered on"
 
-msgid "plugins.generic.objectsForReview.column.answerBy"
+msgid "plugins.generic.bookReviewManager.column.answerBy"
 msgstr "Answer by"
 
-msgid "plugins.generic.objectsForReview.column.remainingBidders"
+msgid "plugins.generic.bookReviewManager.column.remainingBidders"
 msgstr "Remaining bidders"
 
-msgid "plugins.generic.objectsForReview.column.person"
+msgid "plugins.generic.bookReviewManager.column.person"
 msgstr "Person"
 
-msgid "plugins.generic.objectsForReview.contractOffer.description"
+msgid "plugins.generic.bookReviewManager.contractOffer.description"
 msgstr "Select {$reviewer} to review this work. Bidding closes, and {$reviewer} receives the email below with a link to the review agreement."
 
-msgid "plugins.generic.objectsForReview.contractOffer.linkHint"
+msgid "plugins.generic.bookReviewManager.contractOffer.linkHint"
 msgstr "{$contractUrl} is replaced with the personal link to the agreement when the email is sent."
 
-msgid "plugins.generic.objectsForReview.contractOffer.linkRequired"
+msgid "plugins.generic.bookReviewManager.contractOffer.linkRequired"
 msgstr "The email must contain {$contractUrl}, the link to the agreement."
 
-msgid "plugins.generic.objectsForReview.contractOffer.submit"
+msgid "plugins.generic.bookReviewManager.contractOffer.submit"
 msgstr "Select and send"
 
-msgid "plugins.generic.objectsForReview.contractOffer.cancel"
+msgid "plugins.generic.bookReviewManager.contractOffer.cancel"
 msgstr "Withdraw offer"
 
-msgid "plugins.generic.objectsForReview.contractOffer.cancel.description"
+msgid "plugins.generic.bookReviewManager.contractOffer.cancel.description"
 msgstr "Withdraw the contract offer to {$reviewer}? You can then choose another bidder."
 
-msgid "plugins.generic.objectsForReview.unsuccessful.action"
+msgid "plugins.generic.bookReviewManager.unsuccessful.action"
 msgstr "Notify bidders"
 
-msgid "plugins.generic.objectsForReview.unsuccessful.description"
+msgid "plugins.generic.bookReviewManager.unsuccessful.description"
 msgstr "Tell these bidders that someone else is reviewing the work. They stay on the list in case the review does not materialise."
 
-msgid "plugins.generic.objectsForReview.unsuccessful.linkHint"
+msgid "plugins.generic.bookReviewManager.unsuccessful.linkHint"
 msgstr "Each bidder gets a personal email: {$recipientName} and {$removeUrl} (link to leave the list) are filled in when it is sent."
 
-msgid "plugins.generic.objectsForReview.unsuccessful.submit"
+msgid "plugins.generic.bookReviewManager.unsuccessful.submit"
 msgstr "Notify"
 
-msgid "plugins.generic.objectsForReview.history.email.contractOffer"
+msgid "plugins.generic.bookReviewManager.history.email.contractOffer"
 msgstr "Contract offer sent"
 
-msgid "plugins.generic.objectsForReview.history.email.contractOfferAgain"
+msgid "plugins.generic.bookReviewManager.history.email.contractOfferAgain"
 msgstr "Contract offer sent (after a dropout)"
 
-msgid "plugins.generic.objectsForReview.history.email.contractReminder"
+msgid "plugins.generic.bookReviewManager.history.email.contractReminder"
 msgstr "Reminder about the contract offer sent"
 
-msgid "plugins.generic.objectsForReview.history.email.bidUnsuccessful"
+msgid "plugins.generic.bookReviewManager.history.email.bidUnsuccessful"
 msgstr "Bidder notified: not selected"
 
-msgid "plugins.generic.objectsForReview.history.email.bidNew"
+msgid "plugins.generic.bookReviewManager.history.email.bidNew"
 msgstr "Editor notified of a new bid"
 
-msgid "plugins.generic.objectsForReview.history.email.contractDeclined"
+msgid "plugins.generic.bookReviewManager.history.email.contractDeclined"
 msgstr "Editor notified: contract declined or expired"
 
-msgid "plugins.generic.objectsForReview.history.event.bid"
+msgid "plugins.generic.bookReviewManager.history.event.bid"
 msgstr "{$recipientName} applied"
 
-msgid "plugins.generic.objectsForReview.history.event.bidWithdrawn"
+msgid "plugins.generic.bookReviewManager.history.event.bidWithdrawn"
 msgstr "{$recipientName} withdrew the application"
 
-msgid "plugins.generic.objectsForReview.history.event.contractOffered"
+msgid "plugins.generic.bookReviewManager.history.event.contractOffered"
 msgstr "Contract offered to {$recipientName}; bidding closed"
 
-msgid "plugins.generic.objectsForReview.history.event.contractAccepted"
+msgid "plugins.generic.bookReviewManager.history.event.contractAccepted"
 msgstr "Contract accepted by {$recipientName}, due {$reviewDueDate}"
 
-msgid "plugins.generic.objectsForReview.history.event.contractDeclined"
+msgid "plugins.generic.bookReviewManager.history.event.contractDeclined"
 msgstr "Contract declined by {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.contractExpired"
+msgid "plugins.generic.bookReviewManager.history.event.contractExpired"
 msgstr "Contract offer to {$recipientName} expired"
 
-msgid "plugins.generic.objectsForReview.history.event.contractWithdrawn"
+msgid "plugins.generic.bookReviewManager.history.event.contractWithdrawn"
 msgstr "Contract offer to {$recipientName} withdrawn by the editors"
 
-msgid "plugins.generic.objectsForReview.history.event.bidderUnsuccessful"
+msgid "plugins.generic.bookReviewManager.history.event.bidderUnsuccessful"
 msgstr "{$recipientName} notified: not selected (stays on the list)"
 
-msgid "plugins.generic.objectsForReview.history.event.biddingReopened"
+msgid "plugins.generic.bookReviewManager.history.event.biddingReopened"
 msgstr "Bidding reopened"
 
-msgid "plugins.generic.objectsForReview.history.event.modeDirect"
+msgid "plugins.generic.bookReviewManager.history.event.modeDirect"
 msgstr "Switched to direct reservation"
 
-msgid "plugins.generic.objectsForReview.history.event.offerClosed"
+msgid "plugins.generic.bookReviewManager.history.event.offerClosed"
 msgstr "Offer closed"
 
-msgid "plugins.generic.objectsForReview.history.event.offerReopened"
+msgid "plugins.generic.bookReviewManager.history.event.offerReopened"
 msgstr "Offer reopened"
 
-msgid "plugins.generic.objectsForReview.history.event.listDiscarded"
+msgid "plugins.generic.bookReviewManager.history.event.listDiscarded"
 msgstr "List of bidders discarded ({$recipientCount})"
 
-msgid "plugins.generic.objectsForReview.history.event.completed"
+msgid "plugins.generic.bookReviewManager.history.event.completed"
 msgstr "Review by {$recipientName} published"
 
-msgid "plugins.generic.objectsForReview.history.event.imported"
+msgid "plugins.generic.bookReviewManager.history.event.imported"
 msgstr "Imported through the API: {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.essayMirrored"
+msgid "plugins.generic.bookReviewManager.history.event.essayMirrored"
 msgstr "Review essay: {$recipientName} — the reviewer's agreement covers this work"
 
-msgid "plugins.generic.objectsForReview.history.event.essayStatus"
+msgid "plugins.generic.bookReviewManager.history.event.essayStatus"
 msgstr "Review essay: {$recipientName} — status changed"
 
-msgid "plugins.generic.objectsForReview.history.event.essayStatus.accepted"
+msgid "plugins.generic.bookReviewManager.history.event.essayStatus.accepted"
 msgstr "Review essay: {$recipientName} — status changed to Reserved"
 
-msgid "plugins.generic.objectsForReview.history.event.essayStatus.submitted"
+msgid "plugins.generic.bookReviewManager.history.event.essayStatus.submitted"
 msgstr "Review essay: {$recipientName} — status changed to Review submitted"
 
-msgid "plugins.generic.objectsForReview.history.event.essayStatus.completed"
+msgid "plugins.generic.bookReviewManager.history.event.essayStatus.completed"
 msgstr "Review essay: {$recipientName} — status changed to Review published"
 
-msgid "plugins.generic.objectsForReview.history.event.essayStatus.retracted"
+msgid "plugins.generic.bookReviewManager.history.event.essayStatus.retracted"
 msgstr "Review essay: {$recipientName} — status changed to Cancelled by the reviewer"
 
-msgid "plugins.generic.objectsForReview.history.event.essayStatus.cancelled"
+msgid "plugins.generic.bookReviewManager.history.event.essayStatus.cancelled"
 msgstr "Review essay: {$recipientName} — status changed to Cancelled by the editors"
 
-msgid "plugins.generic.objectsForReview.history.event.essayCreated"
+msgid "plugins.generic.bookReviewManager.history.event.essayCreated"
 msgstr "Review essay created: {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.essayMemberAdded"
+msgid "plugins.generic.bookReviewManager.history.event.essayMemberAdded"
 msgstr "Review essay: {$recipientName} — work added to the essay"
 
-msgid "plugins.generic.objectsForReview.history.event.essayMemberAdded.container"
+msgid "plugins.generic.bookReviewManager.history.event.essayMemberAdded.container"
 msgstr "Work added to the review essay: {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.essayMemberRemoved"
+msgid "plugins.generic.bookReviewManager.history.event.essayMemberRemoved"
 msgstr "Review essay: {$recipientName} — work removed from the essay"
 
-msgid "plugins.generic.objectsForReview.history.event.essayMemberRemoved.container"
+msgid "plugins.generic.bookReviewManager.history.event.essayMemberRemoved.container"
 msgstr "Work removed from the review essay: {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.essayDissolved"
+msgid "plugins.generic.bookReviewManager.history.event.essayDissolved"
 msgstr "Review essay: {$recipientName} — essay dissolved, the work is offered on its own again"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.notAvailable"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.notAvailable"
 msgstr "This work cannot be part of a review essay: it is already in a review essay, attached to a submission, or its offer is closed."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.twoReviewers"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.twoReviewers"
 msgstr "Only one of the works may have a reviewer: a review essay has one reviewer."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.pending"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.pending"
 msgstr "A contract offer or an invitation round is pending for one of the works. Wait for it to end, or withdraw it first."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.lastMember"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.lastMember"
 msgstr "The last work of a review essay cannot be removed. Dissolve the review essay instead."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.hasReviewer"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.hasReviewer"
 msgstr "A review essay with a reviewer cannot be dissolved."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.submitted"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.submitted"
 msgstr "The review essay has been submitted: its works can no longer be changed."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.pendingEssay"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.pendingEssay"
 msgstr "This review essay has a pending contract offer."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.resourceType"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.resourceType"
 msgstr "The resource type of a review essay cannot be changed. Dissolve the review essay instead."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.api.notFound"
+msgid "plugins.generic.bookReviewManager.reviewEssay.api.notFound"
 msgstr "No review essay with this id."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.api.workNotFound"
+msgid "plugins.generic.bookReviewManager.reviewEssay.api.workNotFound"
 msgstr "No work with this id."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.api.memberOfReviewEssay"
+msgid "plugins.generic.bookReviewManager.reviewEssay.api.memberOfReviewEssay"
 msgstr "This work is part of the review essay {$bundleId}: import the reviewer for the review essay instead."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.api.invalidCopies"
+msgid "plugins.generic.bookReviewManager.reviewEssay.api.invalidCopies"
 msgstr "copies (a list of entries with an objectId) and copyPreferences (by work id) may only name works of the review essay, each work at most once."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.api.invalidCopyPreference"
+msgid "plugins.generic.bookReviewManager.reviewEssay.api.invalidCopyPreference"
 msgstr "copyPreference must be one of: {$values}."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.api.invalidCopyStatus"
+msgid "plugins.generic.bookReviewManager.reviewEssay.api.invalidCopyStatus"
 msgstr "copyStatus must be one of: {$values}."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.api.shippingAddressRequired"
+msgid "plugins.generic.bookReviewManager.reviewEssay.api.shippingAddressRequired"
 msgstr "shippingAddress is required if a physical copy of a work has not been sent yet."
 
-msgid "plugins.generic.objectsForReview.history.email.essayChanged"
+msgid "plugins.generic.bookReviewManager.history.email.essayChanged"
 msgstr "Reviewer informed: the works of the review essay have changed"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.create"
+msgid "plugins.generic.bookReviewManager.reviewEssay.create"
 msgstr "Create review essay"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.label"
+msgid "plugins.generic.bookReviewManager.reviewEssay.label"
 msgstr "Review essay:"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.memberOf"
+msgid "plugins.generic.bookReviewManager.reviewEssay.memberOf"
 msgstr "(review essay: {$title})"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.title"
+msgid "plugins.generic.bookReviewManager.reviewEssay.title"
 msgstr "Title of the review essay"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.titleRequired"
+msgid "plugins.generic.bookReviewManager.reviewEssay.titleRequired"
 msgstr "Please enter a title for the review essay."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.works"
+msgid "plugins.generic.bookReviewManager.reviewEssay.works"
 msgstr "Works"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.works.description"
+msgid "plugins.generic.bookReviewManager.reviewEssay.works.description"
 msgstr "Works that are already in a review essay, attached to a submission, or have a pending contract offer or invitation round are not listed. At most one of the selected works may have a reviewer: that reviewer then writes the review essay."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.worksRequired"
+msgid "plugins.generic.bookReviewManager.reviewEssay.worksRequired"
 msgstr "Please select at least one work."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.noWorks"
+msgid "plugins.generic.bookReviewManager.reviewEssay.noWorks"
 msgstr "There are no works that can be combined into a review essay."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.workHasReviewer"
+msgid "plugins.generic.bookReviewManager.reviewEssay.workHasReviewer"
 msgstr "has a reviewer"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.copyPreference"
+msgid "plugins.generic.bookReviewManager.reviewEssay.copyPreference"
 msgstr "Reviewer's access to this work"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.copyPreference.description"
+msgid "plugins.generic.bookReviewManager.reviewEssay.copyPreference.description"
 msgstr "The review essay has a reviewer. Choose how they get access to the added work."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.copyPreferences.description"
+msgid "plugins.generic.bookReviewManager.reviewEssay.copyPreferences.description"
 msgstr "The reviewer of the selected work marked \"has a reviewer\" becomes the reviewer of the review essay. Choose how they get access to each of the other works."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.hidden"
+msgid "plugins.generic.bookReviewManager.reviewEssay.hidden"
 msgstr "Hide the review essay from the public list for now"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.emailNotice"
+msgid "plugins.generic.bookReviewManager.reviewEssay.emailNotice"
 msgstr "If the review essay has a reviewer, they are informed with the email \"Review essay changed\" (the template text, sent without editing)."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.endsBidsNotice"
+msgid "plugins.generic.bookReviewManager.reviewEssay.endsBidsNotice"
 msgstr "Open bids and invitations on the selected works are ended when the review essay is created. The bidders and invited people are not emailed, and their links stop working."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.membersHint"
+msgid "plugins.generic.bookReviewManager.reviewEssay.membersHint"
 msgstr "Works are added to the review essay and removed from it with the actions in the list."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.created"
+msgid "plugins.generic.bookReviewManager.reviewEssay.created"
 msgstr "The review essay was created."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.saved"
+msgid "plugins.generic.bookReviewManager.reviewEssay.saved"
 msgstr "The review essay was saved."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.workAdded"
+msgid "plugins.generic.bookReviewManager.reviewEssay.workAdded"
 msgstr "The work was added to the review essay."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.workRemoved"
+msgid "plugins.generic.bookReviewManager.reviewEssay.workRemoved"
 msgstr "The work was removed from the review essay. It is offered on its own again, hidden at first."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.reviewerEmailed"
+msgid "plugins.generic.bookReviewManager.reviewEssay.reviewerEmailed"
 msgstr "The reviewer was informed by email (the template text, unedited)."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.selectRequired"
+msgid "plugins.generic.bookReviewManager.reviewEssay.selectRequired"
 msgstr "Please make a valid selection."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.essay"
+msgid "plugins.generic.bookReviewManager.reviewEssay.essay"
 msgstr "Review essay"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.work"
+msgid "plugins.generic.bookReviewManager.reviewEssay.work"
 msgstr "Work"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.noWorksToAdd"
+msgid "plugins.generic.bookReviewManager.reviewEssay.noWorksToAdd"
 msgstr "There are no works that can be added to the review essay."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.noEssays"
+msgid "plugins.generic.bookReviewManager.reviewEssay.noEssays"
 msgstr "There is no review essay to which this work can be added."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.addWork"
+msgid "plugins.generic.bookReviewManager.reviewEssay.addWork"
 msgstr "Add work"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.addToEssay"
+msgid "plugins.generic.bookReviewManager.reviewEssay.addToEssay"
 msgstr "Add to review essay…"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.dissolve"
+msgid "plugins.generic.bookReviewManager.reviewEssay.dissolve"
 msgstr "Dissolve"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.dissolve.confirm"
+msgid "plugins.generic.bookReviewManager.reviewEssay.dissolve.confirm"
 msgstr "Dissolve this review essay? Its works are offered on their own again, hidden at first."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.remove"
+msgid "plugins.generic.bookReviewManager.reviewEssay.remove"
 msgstr "Remove from review essay"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.remove.confirm"
+msgid "plugins.generic.bookReviewManager.reviewEssay.remove.confirm"
 msgstr "Remove this work from the review essay? It is offered on its own again, hidden at first. If the review essay has a reviewer, they are informed with the email \"Review essay changed\" (the template text, sent without editing)."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.delete.confirmEssay"
+msgid "plugins.generic.bookReviewManager.reviewEssay.delete.confirmEssay"
 msgstr "Delete this review essay? It is dissolved first: its works stay in the list and are offered on their own again, hidden at first. A review essay with a reviewer cannot be deleted."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.delete.confirmWork"
+msgid "plugins.generic.bookReviewManager.reviewEssay.delete.confirmWork"
 msgstr "Delete this work? It is removed from its review essay first (the reviewer of the essay, if any, is informed by email). The last work of a review essay cannot be deleted."
 
-msgid "plugins.generic.objectsForReview.settings.defaultMode"
+msgid "plugins.generic.bookReviewManager.settings.defaultMode"
 msgstr "Default assignment for new offers"
 
-msgid "plugins.generic.objectsForReview.settings.defaultMode.description"
+msgid "plugins.generic.bookReviewManager.settings.defaultMode.description"
 msgstr "Can be changed for each offer."
 
-msgid "plugins.generic.objectsForReview.settings.defaultEditor"
+msgid "plugins.generic.bookReviewManager.settings.defaultEditor"
 msgstr "Default responsible book review editor"
 
-msgid "plugins.generic.objectsForReview.settings.defaultEditor.description"
+msgid "plugins.generic.bookReviewManager.settings.defaultEditor.description"
 msgstr "For new offers. If none is set, a book review editor who creates an offer becomes responsible for it."
 
-msgid "plugins.generic.objectsForReview.settings.defaultEditor.none"
+msgid "plugins.generic.bookReviewManager.settings.defaultEditor.none"
 msgstr "— none —"
 
-msgid "plugins.generic.objectsForReview.settings.contractDays"
+msgid "plugins.generic.bookReviewManager.settings.contractDays"
 msgstr "Contract offers"
 
-msgid "plugins.generic.objectsForReview.settings.contractDays.description"
+msgid "plugins.generic.bookReviewManager.settings.contractDays.description"
 msgstr "Days a selected bidder has to accept the agreement, and after how many days a reminder is sent (0: no reminder)."
 
-msgid "plugins.generic.objectsForReview.settings.contractDays.deadline"
+msgid "plugins.generic.bookReviewManager.settings.contractDays.deadline"
 msgstr "Days to answer"
 
-msgid "plugins.generic.objectsForReview.settings.contractDays.reminder"
+msgid "plugins.generic.bookReviewManager.settings.contractDays.reminder"
 msgstr "Reminder after (days)"
 
-msgid "plugins.generic.objectsForReview.settings.contractDays.invalid"
+msgid "plugins.generic.bookReviewManager.settings.contractDays.invalid"
 msgstr "Please enter the number of days to answer (1–90) and a reminder before the deadline."
 
-msgid "plugins.generic.objectsForReview.desk.declineReason"
+msgid "plugins.generic.bookReviewManager.desk.declineReason"
 msgstr "Reason"
 
-msgid "plugins.generic.objectsForReview.copy.status.notNeeded"
+msgid "plugins.generic.bookReviewManager.copy.status.notNeeded"
 msgstr "No copy needed"
 
-msgid "plugins.generic.objectsForReview.copy.status.pending"
+msgid "plugins.generic.bookReviewManager.copy.status.pending"
 msgstr "Copy to arrange"
 
-msgid "plugins.generic.objectsForReview.copy.status.requested"
+msgid "plugins.generic.bookReviewManager.copy.status.requested"
 msgstr "Requested from the publisher"
 
-msgid "plugins.generic.objectsForReview.copy.status.sent"
+msgid "plugins.generic.bookReviewManager.copy.status.sent"
 msgstr "Sent"
 
-msgid "plugins.generic.objectsForReview.copy.status.received"
+msgid "plugins.generic.bookReviewManager.copy.status.received"
 msgstr "Received by the reviewer"
 
-msgid "plugins.generic.objectsForReview.copy.status.returnRequested"
+msgid "plugins.generic.bookReviewManager.copy.status.returnRequested"
 msgstr "Return requested"
 
-msgid "plugins.generic.objectsForReview.copy.status.returnSent"
+msgid "plugins.generic.bookReviewManager.copy.status.returnSent"
 msgstr "Sent back"
 
-msgid "plugins.generic.objectsForReview.copy.status.returned"
+msgid "plugins.generic.bookReviewManager.copy.status.returned"
 msgstr "Returned"
 
-msgid "plugins.generic.objectsForReview.copy.by.journal"
+msgid "plugins.generic.bookReviewManager.copy.by.journal"
 msgstr "by the journal"
 
-msgid "plugins.generic.objectsForReview.copy.by.publisher"
+msgid "plugins.generic.bookReviewManager.copy.by.publisher"
 msgstr "by the publisher"
 
-msgid "plugins.generic.objectsForReview.copy.to.journal"
+msgid "plugins.generic.bookReviewManager.copy.to.journal"
 msgstr "to the journal"
 
-msgid "plugins.generic.objectsForReview.copy.to.publisher"
+msgid "plugins.generic.bookReviewManager.copy.to.publisher"
 msgstr "to the publisher"
 
-msgid "plugins.generic.objectsForReview.copy.type.physical"
+msgid "plugins.generic.bookReviewManager.copy.type.physical"
 msgstr "printed copy"
 
-msgid "plugins.generic.objectsForReview.copy.type.electronic"
+msgid "plugins.generic.bookReviewManager.copy.type.electronic"
 msgstr "electronic copy"
 
-msgid "plugins.generic.objectsForReview.copy.type.have"
+msgid "plugins.generic.bookReviewManager.copy.type.have"
 msgstr "no copy needed"
 
-msgid "plugins.generic.objectsForReview.copy.type.other"
+msgid "plugins.generic.bookReviewManager.copy.type.other"
 msgstr "see note"
 
-msgid "plugins.generic.objectsForReview.copy.source.journal"
+msgid "plugins.generic.bookReviewManager.copy.source.journal"
 msgstr "by the journal"
 
-msgid "plugins.generic.objectsForReview.copy.source.publisher"
+msgid "plugins.generic.bookReviewManager.copy.source.publisher"
 msgstr "by the publisher"
 
-msgid "plugins.generic.objectsForReview.copy.delivery.physical"
+msgid "plugins.generic.bookReviewManager.copy.delivery.physical"
 msgstr "Please send a printed copy to:"
 
-msgid "plugins.generic.objectsForReview.copy.delivery.electronic"
+msgid "plugins.generic.bookReviewManager.copy.delivery.electronic"
 msgstr "Please send an electronic copy to:"
 
-msgid "plugins.generic.objectsForReview.copy.step.requestCopy"
+msgid "plugins.generic.bookReviewManager.copy.step.requestCopy"
 msgstr "Request copy from publisher"
 
-msgid "plugins.generic.objectsForReview.copy.step.requestCopy.description"
+msgid "plugins.generic.bookReviewManager.copy.step.requestCopy.description"
 msgstr "Ask {$publisher} for a copy for {$reviewer}. The email contains the delivery details."
 
-msgid "plugins.generic.objectsForReview.copy.step.sendFromStock"
+msgid "plugins.generic.bookReviewManager.copy.step.sendFromStock"
 msgstr "Send copy from journal stock"
 
-msgid "plugins.generic.objectsForReview.copy.step.sendFromStock.description"
+msgid "plugins.generic.bookReviewManager.copy.step.sendFromStock.description"
 msgstr "Record that the journal has sent its copy to {$reviewer}."
 
-msgid "plugins.generic.objectsForReview.copy.step.publisherSent"
+msgid "plugins.generic.bookReviewManager.copy.step.publisherSent"
 msgstr "Publisher has sent the copy"
 
-msgid "plugins.generic.objectsForReview.copy.step.publisherSent.description"
+msgid "plugins.generic.bookReviewManager.copy.step.publisherSent.description"
 msgstr "Record that the publisher has sent the copy to {$reviewer}."
 
-msgid "plugins.generic.objectsForReview.copy.step.markReceived"
+msgid "plugins.generic.bookReviewManager.copy.step.markReceived"
 msgstr "Mark as received"
 
-msgid "plugins.generic.objectsForReview.copy.step.markReceived.description"
+msgid "plugins.generic.bookReviewManager.copy.step.markReceived.description"
 msgstr "Record that {$reviewer} has received the copy. The delivery address and phone number are deleted."
 
-msgid "plugins.generic.objectsForReview.copy.step.withdrawRequest"
+msgid "plugins.generic.bookReviewManager.copy.step.withdrawRequest"
 msgstr "Withdraw copy request"
 
-msgid "plugins.generic.objectsForReview.copy.step.withdrawRequest.description"
+msgid "plugins.generic.bookReviewManager.copy.step.withdrawRequest.description"
 msgstr "Record that the copy is no longer needed. Please let {$publisher} know."
 
-msgid "plugins.generic.objectsForReview.copy.step.requestReturn"
+msgid "plugins.generic.bookReviewManager.copy.step.requestReturn"
 msgstr "Request return"
 
-msgid "plugins.generic.objectsForReview.copy.step.requestReturn.description"
+msgid "plugins.generic.bookReviewManager.copy.step.requestReturn.description"
 msgstr "No review will come from {$reviewer}: ask for the printed copy to be returned. A current reservation is cancelled."
 
-msgid "plugins.generic.objectsForReview.copy.step.returnSent"
+msgid "plugins.generic.bookReviewManager.copy.step.returnSent"
 msgstr "Copy has been sent back"
 
-msgid "plugins.generic.objectsForReview.copy.step.returnSent.description"
+msgid "plugins.generic.bookReviewManager.copy.step.returnSent.description"
 msgstr "Record that {$reviewer} has sent the copy back."
 
-msgid "plugins.generic.objectsForReview.copy.step.returned"
+msgid "plugins.generic.bookReviewManager.copy.step.returned"
 msgstr "Copy has arrived back"
 
-msgid "plugins.generic.objectsForReview.copy.step.returned.description"
+msgid "plugins.generic.bookReviewManager.copy.step.returned.description"
 msgstr "Record that the copy has been returned. A copy returned to the journal is available for the next reviewer."
 
-msgid "plugins.generic.objectsForReview.copy.step.notifyPublisher"
+msgid "plugins.generic.bookReviewManager.copy.step.notifyPublisher"
 msgstr "Notify publisher"
 
-msgid "plugins.generic.objectsForReview.copy.step.notifyPublisher.description"
+msgid "plugins.generic.bookReviewManager.copy.step.notifyPublisher.description"
 msgstr "Tell {$publisher} that the review by {$reviewer} has been published."
 
-msgid "plugins.generic.objectsForReview.copy.returnTarget"
+msgid "plugins.generic.bookReviewManager.copy.returnTarget"
 msgstr "Return to"
 
-msgid "plugins.generic.objectsForReview.copy.returnTargetRequired"
+msgid "plugins.generic.bookReviewManager.copy.returnTargetRequired"
 msgstr "Please choose where the copy goes back to."
 
-msgid "plugins.generic.objectsForReview.copy.returnAddressHint"
+msgid "plugins.generic.bookReviewManager.copy.returnAddressHint"
 msgstr "{$returnAddress} is replaced with the address chosen above when the email is sent."
 
-msgid "plugins.generic.objectsForReview.copy.journalHoldsCopy"
+msgid "plugins.generic.bookReviewManager.copy.journalHoldsCopy"
 msgstr "Journal holds a copy"
 
-msgid "plugins.generic.objectsForReview.copy.noSource"
+msgid "plugins.generic.bookReviewManager.copy.noSource"
 msgstr "No publisher contact or journal copy: edit the offer"
 
-msgid "plugins.generic.objectsForReview.copy.reviewerStatus.pending"
+msgid "plugins.generic.bookReviewManager.copy.reviewerStatus.pending"
 msgstr "The editors will arrange a copy for you."
 
-msgid "plugins.generic.objectsForReview.copy.reviewerStatus.requested"
+msgid "plugins.generic.bookReviewManager.copy.reviewerStatus.requested"
 msgstr "A copy has been requested from the publisher."
 
-msgid "plugins.generic.objectsForReview.copy.reviewerStatus.sent"
+msgid "plugins.generic.bookReviewManager.copy.reviewerStatus.sent"
 msgstr "A copy has been sent to you."
 
-msgid "plugins.generic.objectsForReview.copy.reviewerStatus.returnRequested"
+msgid "plugins.generic.bookReviewManager.copy.reviewerStatus.returnRequested"
 msgstr "Please return the copy."
 
-msgid "plugins.generic.objectsForReview.copy.reviewerStatus.returnSent"
+msgid "plugins.generic.bookReviewManager.copy.reviewerStatus.returnSent"
 msgstr "Copy sent back."
 
-msgid "plugins.generic.objectsForReview.copy.reviewerStatus.returned"
+msgid "plugins.generic.bookReviewManager.copy.reviewerStatus.returned"
 msgstr "Copy returned."
 
-msgid "plugins.generic.objectsForReview.copy.confirmReceipt"
+msgid "plugins.generic.bookReviewManager.copy.confirmReceipt"
 msgstr "I have received the copy"
 
-msgid "plugins.generic.objectsForReview.desk.copies"
+msgid "plugins.generic.bookReviewManager.desk.copies"
 msgstr "Review copies"
 
-msgid "plugins.generic.objectsForReview.desk.notifications"
+msgid "plugins.generic.bookReviewManager.desk.notifications"
 msgstr "Notify publishers of published reviews"
 
-msgid "plugins.generic.objectsForReview.column.copy"
+msgid "plugins.generic.bookReviewManager.column.copy"
 msgstr "Copy"
 
-msgid "plugins.generic.objectsForReview.column.copySource"
+msgid "plugins.generic.bookReviewManager.column.copySource"
 msgstr "Source"
 
-msgid "plugins.generic.objectsForReview.column.reviewer"
+msgid "plugins.generic.bookReviewManager.column.reviewer"
 msgstr "Reviewer"
 
-msgid "plugins.generic.objectsForReview.offer.copyTitle"
+msgid "plugins.generic.bookReviewManager.offer.copyTitle"
 msgstr "Review copy"
 
-msgid "plugins.generic.objectsForReview.offer.publisherContact"
+msgid "plugins.generic.bookReviewManager.offer.publisherContact"
 msgstr "Publisher contact"
 
-msgid "plugins.generic.objectsForReview.offer.publisherContact.description"
+msgid "plugins.generic.bookReviewManager.offer.publisherContact.description"
 msgstr "The person at the publisher who provides review copies. Publisher contacts are users in the group \"Publisher contact\" (Users & Roles); they do not need to log in."
 
-msgid "plugins.generic.objectsForReview.offer.noPublisherContact"
+msgid "plugins.generic.bookReviewManager.offer.noPublisherContact"
 msgstr "— none —"
 
-msgid "plugins.generic.objectsForReview.offer.noPublisherContacts"
+msgid "plugins.generic.bookReviewManager.offer.noPublisherContacts"
 msgstr "No publisher contacts yet. Add them under Users & Roles, in the group \"Publisher contact\", with their mailing address."
 
-msgid "plugins.generic.objectsForReview.offer.journalHoldsCopy"
+msgid "plugins.generic.bookReviewManager.offer.journalHoldsCopy"
 msgstr "The journal holds a copy of this work"
 
-msgid "plugins.generic.objectsForReview.offer.returnRequired"
+msgid "plugins.generic.bookReviewManager.offer.returnRequired"
 msgstr "Printed copies must be returned if no review materialises"
 
-msgid "plugins.generic.objectsForReview.offer.notifyPublisher"
+msgid "plugins.generic.bookReviewManager.offer.notifyPublisher"
 msgstr "The publisher wants to be notified when the review is published"
 
-msgid "plugins.generic.objectsForReview.offer.publisherContactInvalid"
+msgid "plugins.generic.bookReviewManager.offer.publisherContactInvalid"
 msgstr "Please choose a publisher contact."
 
-msgid "plugins.generic.objectsForReview.offer.editorAddressRequired"
+msgid "plugins.generic.bookReviewManager.offer.editorAddressRequired"
 msgstr "Copies from the journal's stock are returned to the responsible book review editor: please choose one who has entered a mailing address in their profile."
 
-msgid "plugins.generic.objectsForReview.offer.publisherAddressRequired"
+msgid "plugins.generic.bookReviewManager.offer.publisherAddressRequired"
 msgstr "Copies may be returned to the publisher contact: their mailing address must be entered in their profile."
 
-msgid "plugins.generic.objectsForReview.offer.notifyNeedsContact"
+msgid "plugins.generic.bookReviewManager.offer.notifyNeedsContact"
 msgstr "Please choose the publisher contact who is to be notified."
 
-msgid "plugins.generic.objectsForReview.history.email.copyRequest"
+msgid "plugins.generic.bookReviewManager.history.email.copyRequest"
 msgstr "Copy requested from the publisher"
 
-msgid "plugins.generic.objectsForReview.history.email.copySent"
+msgid "plugins.generic.bookReviewManager.history.email.copySent"
 msgstr "Reviewer told that the copy was sent"
 
-msgid "plugins.generic.objectsForReview.history.email.returnRequest"
+msgid "plugins.generic.bookReviewManager.history.email.returnRequest"
 msgstr "Return of the copy requested"
 
-msgid "plugins.generic.objectsForReview.history.email.returnSent"
+msgid "plugins.generic.bookReviewManager.history.email.returnSent"
 msgstr "Publisher told that the copy is on its way back"
 
-msgid "plugins.generic.objectsForReview.history.email.publisherNotification"
+msgid "plugins.generic.bookReviewManager.history.email.publisherNotification"
 msgstr "Publisher notified of the published review"
 
-msgid "plugins.generic.objectsForReview.history.event.copyRequested"
+msgid "plugins.generic.bookReviewManager.history.event.copyRequested"
 msgstr "Copy for {$recipientName} requested from the publisher"
 
-msgid "plugins.generic.objectsForReview.history.event.copySentJournal"
+msgid "plugins.generic.bookReviewManager.history.event.copySentJournal"
 msgstr "Copy sent to {$recipientName} by the journal"
 
-msgid "plugins.generic.objectsForReview.history.event.copySentPublisher"
+msgid "plugins.generic.bookReviewManager.history.event.copySentPublisher"
 msgstr "Copy sent to {$recipientName} by the publisher"
 
-msgid "plugins.generic.objectsForReview.history.event.copyReceived"
+msgid "plugins.generic.bookReviewManager.history.event.copyReceived"
 msgstr "Copy received by {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.copyRequestWithdrawn"
+msgid "plugins.generic.bookReviewManager.history.event.copyRequestWithdrawn"
 msgstr "Copy request for {$recipientName} withdrawn"
 
-msgid "plugins.generic.objectsForReview.history.event.returnRequestedJournal"
+msgid "plugins.generic.bookReviewManager.history.event.returnRequestedJournal"
 msgstr "Return of the copy to the journal requested from {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.returnRequestedPublisher"
+msgid "plugins.generic.bookReviewManager.history.event.returnRequestedPublisher"
 msgstr "Return of the copy to the publisher requested from {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.returnSent"
+msgid "plugins.generic.bookReviewManager.history.event.returnSent"
 msgstr "Copy sent back by {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.returnedJournal"
+msgid "plugins.generic.bookReviewManager.history.event.returnedJournal"
 msgstr "Copy back at the journal (from {$recipientName})"
 
-msgid "plugins.generic.objectsForReview.history.event.returnedPublisher"
+msgid "plugins.generic.bookReviewManager.history.event.returnedPublisher"
 msgstr "Copy back at the publisher (from {$recipientName})"
 
-msgid "plugins.generic.objectsForReview.history.event.publisherNotified"
+msgid "plugins.generic.bookReviewManager.history.event.publisherNotified"
 msgstr "Publisher notified of the review by {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.link.copySent"
+msgid "plugins.generic.bookReviewManager.link.copySent"
 msgstr "I have sent the copy"
 
-msgid "plugins.generic.objectsForReview.link.copySent.title"
+msgid "plugins.generic.bookReviewManager.link.copySent.title"
 msgstr "Review copy sent"
 
-msgid "plugins.generic.objectsForReview.link.copySent.description"
+msgid "plugins.generic.bookReviewManager.link.copySent.description"
 msgstr "Please confirm that you have sent the review copy to {$reviewer}. {$reviewer} will be informed."
 
-msgid "plugins.generic.objectsForReview.link.copySent.submit"
+msgid "plugins.generic.bookReviewManager.link.copySent.submit"
 msgstr "Confirm: copy sent"
 
-msgid "plugins.generic.objectsForReview.link.copySent.done"
+msgid "plugins.generic.bookReviewManager.link.copySent.done"
 msgstr "Thank you! We have recorded that the copy is on its way."
 
-msgid "plugins.generic.objectsForReview.link.received"
+msgid "plugins.generic.bookReviewManager.link.received"
 msgstr "I have received the copy"
 
-msgid "plugins.generic.objectsForReview.link.received.title"
+msgid "plugins.generic.bookReviewManager.link.received.title"
 msgstr "Review copy received"
 
-msgid "plugins.generic.objectsForReview.link.received.description"
+msgid "plugins.generic.bookReviewManager.link.received.description"
 msgstr "Please confirm that the review copy has arrived. Your delivery address and phone number will then be deleted."
 
-msgid "plugins.generic.objectsForReview.link.received.submit"
+msgid "plugins.generic.bookReviewManager.link.received.submit"
 msgstr "Confirm receipt"
 
-msgid "plugins.generic.objectsForReview.link.received.done"
+msgid "plugins.generic.bookReviewManager.link.received.done"
 msgstr "Thank you! We have recorded that you received the copy."
 
-msgid "plugins.generic.objectsForReview.link.returnSent"
+msgid "plugins.generic.bookReviewManager.link.returnSent"
 msgstr "I have sent the copy back"
 
-msgid "plugins.generic.objectsForReview.link.returnSent.title"
+msgid "plugins.generic.bookReviewManager.link.returnSent.title"
 msgstr "Review copy sent back"
 
-msgid "plugins.generic.objectsForReview.link.returnSent.description"
+msgid "plugins.generic.bookReviewManager.link.returnSent.description"
 msgstr "Please confirm that you have sent the review copy back."
 
-msgid "plugins.generic.objectsForReview.link.returnSent.submit"
+msgid "plugins.generic.bookReviewManager.link.returnSent.submit"
 msgstr "Confirm: copy sent back"
 
-msgid "plugins.generic.objectsForReview.link.returnSent.done"
+msgid "plugins.generic.bookReviewManager.link.returnSent.done"
 msgstr "Thank you! We have recorded that the copy is on its way back."
 
-msgid "plugins.generic.objectsForReview.link.returnReceived"
+msgid "plugins.generic.bookReviewManager.link.returnReceived"
 msgstr "The returned copy has arrived"
 
-msgid "plugins.generic.objectsForReview.link.returnReceived.title"
+msgid "plugins.generic.bookReviewManager.link.returnReceived.title"
 msgstr "Returned copy received"
 
-msgid "plugins.generic.objectsForReview.link.returnReceived.description"
+msgid "plugins.generic.bookReviewManager.link.returnReceived.description"
 msgstr "Please confirm that the review copy returned by {$reviewer} has arrived."
 
-msgid "plugins.generic.objectsForReview.link.returnReceived.submit"
+msgid "plugins.generic.bookReviewManager.link.returnReceived.submit"
 msgstr "Confirm receipt"
 
-msgid "plugins.generic.objectsForReview.link.returnReceived.done"
+msgid "plugins.generic.bookReviewManager.link.returnReceived.done"
 msgstr "Thank you! We have recorded that the copy is back with you."
 
-msgid "plugins.generic.objectsForReview.link.retract"
+msgid "plugins.generic.bookReviewManager.link.retract"
 msgstr "I cannot write this review"
 
-msgid "plugins.generic.objectsForReview.link.retract.title"
+msgid "plugins.generic.bookReviewManager.link.retract.title"
 msgstr "Withdraw from the review"
 
-msgid "plugins.generic.objectsForReview.link.retract.description"
+msgid "plugins.generic.bookReviewManager.link.retract.description"
 msgstr "Dear {$reviewer}, do you want to withdraw from reviewing this work? The editors will be informed. If you have received a printed copy, they may ask you to return it."
 
-msgid "plugins.generic.objectsForReview.link.retract.submit"
+msgid "plugins.generic.bookReviewManager.link.retract.submit"
 msgstr "Withdraw from the review"
 
-msgid "plugins.generic.objectsForReview.link.retract.done"
+msgid "plugins.generic.bookReviewManager.link.retract.done"
 msgstr "You have withdrawn from the review. The editors have been informed."
 
-msgid "plugins.generic.objectsForReview.response.done.title"
+msgid "plugins.generic.bookReviewManager.response.done.title"
 msgstr "Thank you!"
 
-msgid "plugins.generic.objectsForReview.history.viaLink"
+msgid "plugins.generic.bookReviewManager.history.viaLink"
 msgstr "via email link"
 
-msgid "plugins.generic.objectsForReview.history.email.copyRequestReminder"
+msgid "plugins.generic.bookReviewManager.history.email.copyRequestReminder"
 msgstr "Publisher reminded of the copy request"
 
-msgid "plugins.generic.objectsForReview.history.email.confirmation"
+msgid "plugins.generic.bookReviewManager.history.email.confirmation"
 msgstr "Confirmation sent to the reviewer"
 
-msgid "plugins.generic.objectsForReview.desk.overdue"
+msgid "plugins.generic.bookReviewManager.desk.overdue"
 msgstr "Overdue reviews"
 
-msgid "plugins.generic.objectsForReview.copy.reminders"
+msgid "plugins.generic.bookReviewManager.copy.reminders"
 msgstr "{$number} reminder(s) to the publisher, last on {$date}"
 
-msgid "plugins.generic.objectsForReview.settings.publisherReminderDays"
+msgid "plugins.generic.bookReviewManager.settings.publisherReminderDays"
 msgstr "Reminders to publishers"
 
-msgid "plugins.generic.objectsForReview.settings.publisherReminderDays.description"
+msgid "plugins.generic.bookReviewManager.settings.publisherReminderDays.description"
 msgstr "Days after which an unanswered copy request is repeated to the publisher contact, and the interval between reminders (0: no reminders)."
 
-msgid "plugins.generic.objectsForReview.settings.publisherReminderDays.invalid"
+msgid "plugins.generic.bookReviewManager.settings.publisherReminderDays.invalid"
 msgstr "Please enter a number of days between 0 and 90."
 
-msgid "plugins.generic.objectsForReview.hide"
+msgid "plugins.generic.bookReviewManager.hide"
 msgstr "Hide"
 
-msgid "plugins.generic.objectsForReview.show"
+msgid "plugins.generic.bookReviewManager.show"
 msgstr "Show"
 
-msgid "plugins.generic.objectsForReview.hidden"
+msgid "plugins.generic.bookReviewManager.hidden"
 msgstr "Hidden"
 
-msgid "plugins.generic.objectsForReview.history.event.offerHidden"
+msgid "plugins.generic.bookReviewManager.history.event.offerHidden"
 msgstr "Hidden from the public list"
 
-msgid "plugins.generic.objectsForReview.history.event.offerShown"
+msgid "plugins.generic.bookReviewManager.history.event.offerShown"
 msgstr "Shown on the public list again"
 
-msgid "plugins.generic.objectsForReview.status.listed"
+msgid "plugins.generic.bookReviewManager.status.listed"
 msgstr "On the invitation list"
 
-msgid "plugins.generic.objectsForReview.status.invited"
+msgid "plugins.generic.bookReviewManager.status.invited"
 msgstr "Invited"
 
-msgid "plugins.generic.objectsForReview.status.invitationDeclined"
+msgid "plugins.generic.bookReviewManager.status.invitationDeclined"
 msgstr "Invitation declined"
 
-msgid "plugins.generic.objectsForReview.status.invitationExpired"
+msgid "plugins.generic.bookReviewManager.status.invitationExpired"
 msgstr "Invitation not answered"
 
-msgid "plugins.generic.objectsForReview.history.email.invitationReserve"
+msgid "plugins.generic.bookReviewManager.history.email.invitationReserve"
 msgstr "Invitation to review"
 
-msgid "plugins.generic.objectsForReview.history.email.invitationBid"
+msgid "plugins.generic.bookReviewManager.history.email.invitationBid"
 msgstr "Invitation to apply"
 
-msgid "plugins.generic.objectsForReview.history.email.invitationDeclined"
+msgid "plugins.generic.bookReviewManager.history.email.invitationDeclined"
 msgstr "Editor notified: invitation declined or not answered"
 
-msgid "plugins.generic.objectsForReview.history.event.inviteeAdded"
+msgid "plugins.generic.bookReviewManager.history.event.inviteeAdded"
 msgstr "{$recipientName} added to the invitation list"
 
-msgid "plugins.generic.objectsForReview.history.event.inviteeCreated"
+msgid "plugins.generic.bookReviewManager.history.event.inviteeCreated"
 msgstr "Account created for {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.inviteeRemoved"
+msgid "plugins.generic.bookReviewManager.history.event.inviteeRemoved"
 msgstr "{$recipientName} removed from the invitation list"
 
-msgid "plugins.generic.objectsForReview.history.event.invitationListReordered"
+msgid "plugins.generic.bookReviewManager.history.event.invitationListReordered"
 msgstr "Invitation list reordered"
 
-msgid "plugins.generic.objectsForReview.history.event.invitationSent"
+msgid "plugins.generic.bookReviewManager.history.event.invitationSent"
 msgstr "Invitation sent to {$recipientName} (answer by {$reviewDueDate})"
 
-msgid "plugins.generic.objectsForReview.history.event.invitationDeclined"
+msgid "plugins.generic.bookReviewManager.history.event.invitationDeclined"
 msgstr "{$recipientName} declined the invitation"
 
-msgid "plugins.generic.objectsForReview.history.event.invitationExpired"
+msgid "plugins.generic.bookReviewManager.history.event.invitationExpired"
 msgstr "{$recipientName} did not answer the invitation in time"
 
-msgid "plugins.generic.objectsForReview.history.event.reservedViaInvitation"
+msgid "plugins.generic.bookReviewManager.history.event.reservedViaInvitation"
 msgstr "Reserved by {$recipientName} (invitation), due {$reviewDueDate}"
 
-msgid "plugins.generic.objectsForReview.history.event.bidViaInvitation"
+msgid "plugins.generic.bookReviewManager.history.event.bidViaInvitation"
 msgstr "Application by {$recipientName} (invitation)"
 
-msgid "plugins.generic.objectsForReview.history.event.invitationsEnded"
+msgid "plugins.generic.bookReviewManager.history.event.invitationsEnded"
 msgstr "{$recipientCount} open invitation(s) ended"
 
-msgid "plugins.generic.objectsForReview.invitation.expired"
+msgid "plugins.generic.bookReviewManager.invitation.expired"
 msgstr "The invitation was not answered by the deadline."
 
-msgid "plugins.generic.objectsForReview.invitation.linkRequired"
+msgid "plugins.generic.bookReviewManager.invitation.linkRequired"
 msgstr "The email must contain the placeholder {$invitationUrl} for the invitation link."
 
-msgid "plugins.generic.objectsForReview.invitation.linkHint"
+msgid "plugins.generic.bookReviewManager.invitation.linkHint"
 msgstr "{$invitationUrl} is replaced by the personal invitation link when the email is sent."
 
-msgid "plugins.generic.objectsForReview.invitation.send"
+msgid "plugins.generic.bookReviewManager.invitation.send"
 msgstr "Send invitation"
 
-msgid "plugins.generic.objectsForReview.invitation.sendAgain"
+msgid "plugins.generic.bookReviewManager.invitation.sendAgain"
 msgstr "Invite again"
 
-msgid "plugins.generic.objectsForReview.invitation.send.description.reserve"
+msgid "plugins.generic.bookReviewManager.invitation.send.description.reserve"
 msgstr "Invite {$name} to review this work. They can reserve it, or decline, until {$deadline}."
 
-msgid "plugins.generic.objectsForReview.invitation.send.description.bid"
+msgid "plugins.generic.bookReviewManager.invitation.send.description.bid"
 msgstr "Invite {$name} to apply for this review. They can apply, or decline, until {$deadline}."
 
-msgid "plugins.generic.objectsForReview.invitation.title"
+msgid "plugins.generic.bookReviewManager.invitation.title"
 msgstr "Invite reviewers"
 
-msgid "plugins.generic.objectsForReview.invitation.inviteReviewers"
+msgid "plugins.generic.bookReviewManager.invitation.inviteReviewers"
 msgstr "Invite reviewers"
 
-msgid "plugins.generic.objectsForReview.invitation.kind.reserve"
+msgid "plugins.generic.bookReviewManager.invitation.kind.reserve"
 msgstr "Invitees can reserve the work (first come, first served)"
 
-msgid "plugins.generic.objectsForReview.invitation.kind.bid"
+msgid "plugins.generic.bookReviewManager.invitation.kind.bid"
 msgstr "Invitees can apply; you choose among the applicants on To-do"
 
-msgid "plugins.generic.objectsForReview.invitation.manualNote"
+msgid "plugins.generic.bookReviewManager.invitation.manualNote"
 msgstr "Send each invitation individually with \"Send invitation\". Invitations sent today can be answered until {$deadline}."
 
-msgid "plugins.generic.objectsForReview.invitation.notPossible"
+msgid "plugins.generic.bookReviewManager.invitation.notPossible"
 msgstr "Invitations can't be sent in the current state of the offer: it must be open for reservation or applications."
 
-msgid "plugins.generic.objectsForReview.invitation.list"
+msgid "plugins.generic.bookReviewManager.invitation.list"
 msgstr "Invitation list"
 
-msgid "plugins.generic.objectsForReview.invitation.person"
+msgid "plugins.generic.bookReviewManager.invitation.person"
 msgstr "Person"
 
-msgid "plugins.generic.objectsForReview.invitation.drag"
+msgid "plugins.generic.bookReviewManager.invitation.drag"
 msgstr "Drag to reorder"
 
-msgid "plugins.generic.objectsForReview.invitation.reservationCount"
+msgid "plugins.generic.bookReviewManager.invitation.reservationCount"
 msgstr "Current reservations: {$number}"
 
-msgid "plugins.generic.objectsForReview.invitation.sentOn"
+msgid "plugins.generic.bookReviewManager.invitation.sentOn"
 msgstr "Invited on {$date}"
 
-msgid "plugins.generic.objectsForReview.invitation.up"
+msgid "plugins.generic.bookReviewManager.invitation.up"
 msgstr "Move up"
 
-msgid "plugins.generic.objectsForReview.invitation.down"
+msgid "plugins.generic.bookReviewManager.invitation.down"
 msgstr "Move down"
 
-msgid "plugins.generic.objectsForReview.invitation.remove"
+msgid "plugins.generic.bookReviewManager.invitation.remove"
 msgstr "Remove"
 
-msgid "plugins.generic.objectsForReview.invitation.empty"
+msgid "plugins.generic.bookReviewManager.invitation.empty"
 msgstr "Nobody on the list yet. Add people from the address book or as new users below."
 
-msgid "plugins.generic.objectsForReview.invitation.addressBook"
+msgid "plugins.generic.bookReviewManager.invitation.addressBook"
 msgstr "Add from the address book"
 
-msgid "plugins.generic.objectsForReview.invitation.search"
+msgid "plugins.generic.bookReviewManager.invitation.search"
 msgstr "Name, email or affiliation"
 
-msgid "plugins.generic.objectsForReview.invitation.add"
+msgid "plugins.generic.bookReviewManager.invitation.add"
 msgstr "Add to list"
 
-msgid "plugins.generic.objectsForReview.invitation.cannotAdd"
+msgid "plugins.generic.bookReviewManager.invitation.cannotAdd"
 msgstr "Already on the list, or has a bid or reservation"
 
-msgid "plugins.generic.objectsForReview.invitation.noResults"
+msgid "plugins.generic.bookReviewManager.invitation.noResults"
 msgstr "No users of this journal found."
 
-msgid "plugins.generic.objectsForReview.invitation.new"
+msgid "plugins.generic.bookReviewManager.invitation.new"
 msgstr "Add a new person"
 
-msgid "plugins.generic.objectsForReview.invitation.new.description"
+msgid "plugins.generic.bookReviewManager.invitation.new.description"
 msgstr "Creates a user account in the Author group of this journal, so that they can submit the review. No email is sent; they receive only the invitation. If an account with this email address already exists, that account is used."
 
-msgid "plugins.generic.objectsForReview.invitation.new.givenName"
+msgid "plugins.generic.bookReviewManager.invitation.new.givenName"
 msgstr "Given name"
 
-msgid "plugins.generic.objectsForReview.invitation.new.familyName"
+msgid "plugins.generic.bookReviewManager.invitation.new.familyName"
 msgstr "Family name"
 
-msgid "plugins.generic.objectsForReview.invitation.new.email"
+msgid "plugins.generic.bookReviewManager.invitation.new.email"
 msgstr "Email"
 
-msgid "plugins.generic.objectsForReview.invitation.new.affiliation"
+msgid "plugins.generic.bookReviewManager.invitation.new.affiliation"
 msgstr "Affiliation"
 
-msgid "plugins.generic.objectsForReview.invitation.new.submit"
+msgid "plugins.generic.bookReviewManager.invitation.new.submit"
 msgstr "Create and add to list"
 
-msgid "plugins.generic.objectsForReview.invitation.new.givenNameRequired"
+msgid "plugins.generic.bookReviewManager.invitation.new.givenNameRequired"
 msgstr "Please enter the given name."
 
-msgid "plugins.generic.objectsForReview.invitation.new.familyNameRequired"
+msgid "plugins.generic.bookReviewManager.invitation.new.familyNameRequired"
 msgstr "Please enter the family name."
 
-msgid "plugins.generic.objectsForReview.invitation.new.emailInvalid"
+msgid "plugins.generic.bookReviewManager.invitation.new.emailInvalid"
 msgstr "Please enter a valid email address."
 
-msgid "plugins.generic.objectsForReview.invitation.new.alreadyOnList"
+msgid "plugins.generic.bookReviewManager.invitation.new.alreadyOnList"
 msgstr "This person is already on the list, or has a bid or reservation for this work."
 
-msgid "plugins.generic.objectsForReview.invitation.page.title.reserve"
+msgid "plugins.generic.bookReviewManager.invitation.page.title.reserve"
 msgstr "Invitation to review"
 
-msgid "plugins.generic.objectsForReview.invitation.page.title.bid"
+msgid "plugins.generic.bookReviewManager.invitation.page.title.bid"
 msgstr "Invitation to apply for a review"
 
-msgid "plugins.generic.objectsForReview.invitation.page.intro.reserve"
+msgid "plugins.generic.bookReviewManager.invitation.page.intro.reserve"
 msgstr "Dear {$name}, you have been invited to review this work. To accept, please agree to the terms below by {$deadline}, or let us know that you cannot write the review."
 
-msgid "plugins.generic.objectsForReview.invitation.page.intro.bid"
+msgid "plugins.generic.bookReviewManager.invitation.page.intro.bid"
 msgstr "Dear {$name}, you have been invited to apply for the review of this work. Please apply by {$deadline}, or let us know that you are not interested."
 
-msgid "plugins.generic.objectsForReview.invitation.page.editor"
+msgid "plugins.generic.bookReviewManager.invitation.page.editor"
 msgstr "Invitation from {$name}"
 
-msgid "plugins.generic.objectsForReview.invitation.page.decline"
+msgid "plugins.generic.bookReviewManager.invitation.page.decline"
 msgstr "I cannot review this work"
 
-msgid "plugins.generic.objectsForReview.invitation.page.decline.submit"
+msgid "plugins.generic.bookReviewManager.invitation.page.decline.submit"
 msgstr "Decline the invitation"
 
-msgid "plugins.generic.objectsForReview.response.applied.title"
+msgid "plugins.generic.bookReviewManager.response.applied.title"
 msgstr "Application received"
 
-msgid "plugins.generic.objectsForReview.response.applied"
+msgid "plugins.generic.bookReviewManager.response.applied"
 msgstr "Thank you! The book review editor will choose among the applicants. If you are selected, you will receive an email with a link to the review agreement."
 
-msgid "plugins.generic.objectsForReview.response.invitationDeclined.title"
+msgid "plugins.generic.bookReviewManager.response.invitationDeclined.title"
 msgstr "Invitation declined"
 
-msgid "plugins.generic.objectsForReview.response.invitationDeclined"
+msgid "plugins.generic.bookReviewManager.response.invitationDeclined"
 msgstr "Thank you for letting us know. The editors have been informed."
 
-msgid "plugins.generic.objectsForReview.response.invitationClosed.title"
+msgid "plugins.generic.bookReviewManager.response.invitationClosed.title"
 msgstr "Invitation no longer open"
 
-msgid "plugins.generic.objectsForReview.response.invitationClosed"
+msgid "plugins.generic.bookReviewManager.response.invitationClosed"
 msgstr "This work is no longer available for review, or the invitation has ended. Please contact the editors if you have any questions."
 
-msgid "plugins.generic.objectsForReview.settings.invitationDays"
+msgid "plugins.generic.bookReviewManager.settings.invitationDays"
 msgstr "Invitations"
 
-msgid "plugins.generic.objectsForReview.settings.invitationDays.description"
+msgid "plugins.generic.bookReviewManager.settings.invitationDays.description"
 msgstr "Days invitees have to answer an invitation, and after how many days they are reminded (0: no reminder). Invitations to apply for an offer with a bid deadline use that deadline."
 
-msgid "plugins.generic.objectsForReview.settings.invitationDays.invalid"
+msgid "plugins.generic.bookReviewManager.settings.invitationDays.invalid"
 msgstr "Please enter a number of days between 1 and 90."
 
-msgid "plugins.generic.objectsForReview.status.invitationWithdrawn"
+msgid "plugins.generic.bookReviewManager.status.invitationWithdrawn"
 msgstr "Invitation withdrawn"
 
-msgid "plugins.generic.objectsForReview.history.email.invitationReminder"
+msgid "plugins.generic.bookReviewManager.history.email.invitationReminder"
 msgstr "Invitation reminder"
 
-msgid "plugins.generic.objectsForReview.history.email.invitationExhausted"
+msgid "plugins.generic.bookReviewManager.history.email.invitationExhausted"
 msgstr "Editor notified: invitation list exhausted"
 
-msgid "plugins.generic.objectsForReview.history.event.roundStarted"
+msgid "plugins.generic.bookReviewManager.history.event.roundStarted"
 msgstr "Sequential invitation round started"
 
-msgid "plugins.generic.objectsForReview.history.event.roundStopped"
+msgid "plugins.generic.bookReviewManager.history.event.roundStopped"
 msgstr "Invitation round ended"
 
-msgid "plugins.generic.objectsForReview.history.event.roundExhausted"
+msgid "plugins.generic.bookReviewManager.history.event.roundExhausted"
 msgstr "Invitation round reached the end of the list"
 
-msgid "plugins.generic.objectsForReview.history.event.roundCompleted"
+msgid "plugins.generic.bookReviewManager.history.event.roundCompleted"
 msgstr "Invitation round ended: reserved by {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.invitationWithdrawn"
+msgid "plugins.generic.bookReviewManager.history.event.invitationWithdrawn"
 msgstr "Invitation to {$recipientName} withdrawn"
 
-msgid "plugins.generic.objectsForReview.history.event.roundContinued"
+msgid "plugins.generic.bookReviewManager.history.event.roundContinued"
 msgstr "Invitation round continued"
 
-msgid "plugins.generic.objectsForReview.invitation.round.description"
+msgid "plugins.generic.bookReviewManager.invitation.round.description"
 msgstr "Starts a sequential round. {$name} is invited first. Each decline, or invitation not answered within {$days} days, automatically invites the next person on the list with this text, until someone reserves the work."
 
-msgid "plugins.generic.objectsForReview.invitation.round.hint"
+msgid "plugins.generic.bookReviewManager.invitation.round.hint"
 msgstr "{$recipientName}, {$invitationDeadline} and {$invitationUrl} are filled in for each person when their invitation is sent."
 
-msgid "plugins.generic.objectsForReview.invitation.round.start"
+msgid "plugins.generic.bookReviewManager.invitation.round.start"
 msgstr "Start sequential round"
 
-msgid "plugins.generic.objectsForReview.invitation.round.hideOffer"
+msgid "plugins.generic.bookReviewManager.invitation.round.hideOffer"
 msgstr "Hide from the public list during the invitation round"
 
-msgid "plugins.generic.objectsForReview.invitation.round.explain.reserve"
+msgid "plugins.generic.bookReviewManager.invitation.round.explain.reserve"
 msgstr "Invites the people waiting on the list one after another, automatically."
 
-msgid "plugins.generic.objectsForReview.invitation.round.running"
+msgid "plugins.generic.bookReviewManager.invitation.round.running"
 msgstr "Sequential round started on {$date} by {$name}"
 
-msgid "plugins.generic.objectsForReview.invitation.round.exhausted"
+msgid "plugins.generic.bookReviewManager.invitation.round.exhausted"
 msgstr "The round has reached the end of the list without a reservation. Add more people and continue the round, or stop it."
 
-msgid "plugins.generic.objectsForReview.invitation.round.current"
+msgid "plugins.generic.bookReviewManager.invitation.round.current"
 msgstr "Currently invited: {$name} (answer by {$deadline})"
 
-msgid "plugins.generic.objectsForReview.invitation.round.next"
+msgid "plugins.generic.bookReviewManager.invitation.round.next"
 msgstr "Next: {$name} ({$number} waiting)"
 
-msgid "plugins.generic.objectsForReview.invitation.round.noneWaiting"
+msgid "plugins.generic.bookReviewManager.invitation.round.noneWaiting"
 msgstr "Nobody else is waiting on the list."
 
-msgid "plugins.generic.objectsForReview.invitation.round.continue"
+msgid "plugins.generic.bookReviewManager.invitation.round.continue"
 msgstr "Continue round"
 
-msgid "plugins.generic.objectsForReview.invitation.round.stop"
+msgid "plugins.generic.bookReviewManager.invitation.round.stop"
 msgstr "Stop round"
 
-msgid "plugins.generic.objectsForReview.invitation.round.stop.confirm"
+msgid "plugins.generic.bookReviewManager.invitation.round.stop.confirm"
 msgstr "Stop the round? The pending invitation is withdrawn, and nobody else is invited."
 
-msgid "plugins.generic.objectsForReview.settings.invitationDays.reminderInvalid"
+msgid "plugins.generic.bookReviewManager.settings.invitationDays.reminderInvalid"
 msgstr "Please enter after how many days invitees are reminded (0: no reminder); it must be fewer than the days to answer."
 
-msgid "plugins.generic.objectsForReview.history.event.roundStartedParallel"
+msgid "plugins.generic.bookReviewManager.history.event.roundStartedParallel"
 msgstr "Invitations sent to everyone on the list (all at once)"
 
-msgid "plugins.generic.objectsForReview.history.event.roundFinished"
+msgid "plugins.generic.bookReviewManager.history.event.roundFinished"
 msgstr "Invitation round finished: everyone has answered"
 
-msgid "plugins.generic.objectsForReview.invitation.round.descriptionParallel"
+msgid "plugins.generic.bookReviewManager.invitation.round.descriptionParallel"
 msgstr "Invites everyone waiting on the list ({$number}) at the same time to apply for this review, until {$deadline}. You choose among the applicants on To-do."
 
-msgid "plugins.generic.objectsForReview.invitation.round.startParallel"
+msgid "plugins.generic.bookReviewManager.invitation.round.startParallel"
 msgstr "Invite everyone on the list"
 
-msgid "plugins.generic.objectsForReview.invitation.round.explain.bid"
+msgid "plugins.generic.bookReviewManager.invitation.round.explain.bid"
 msgstr "Sends the invitation to apply to everyone waiting on the list at once."
 
-msgid "plugins.generic.objectsForReview.invitation.round.runningParallel"
+msgid "plugins.generic.bookReviewManager.invitation.round.runningParallel"
 msgstr "Invitations sent to everyone on {$date} by {$name}"
 
-msgid "plugins.generic.objectsForReview.invitation.round.parallelCounts"
+msgid "plugins.generic.bookReviewManager.invitation.round.parallelCounts"
 msgstr "Waiting for an answer: {$invited} · answered: {$answered}"
 
-msgid "plugins.generic.objectsForReview.invitation.round.newPeople"
+msgid "plugins.generic.bookReviewManager.invitation.round.newPeople"
 msgstr "{$number} added since, not invited yet"
 
-msgid "plugins.generic.objectsForReview.invitation.round.inviteNew"
+msgid "plugins.generic.bookReviewManager.invitation.round.inviteNew"
 msgstr "Invite the new people"
 
-msgid "plugins.generic.objectsForReview.invitation.round.stop.confirmParallel"
+msgid "plugins.generic.bookReviewManager.invitation.round.stop.confirmParallel"
 msgstr "Stop the round? Pending invitations are withdrawn."
 
-msgid "plugins.generic.objectsForReview.invitation.round.exhaustedShort"
+msgid "plugins.generic.bookReviewManager.invitation.round.exhaustedShort"
 msgstr "End of the list reached without a reservation"
 
-msgid "plugins.generic.objectsForReview.desk.invitations"
+msgid "plugins.generic.bookReviewManager.desk.invitations"
 msgstr "Invitations"
 
-msgid "plugins.generic.objectsForReview.invitation.mode"
+msgid "plugins.generic.bookReviewManager.invitation.mode"
 msgstr "Mode"
 
-msgid "plugins.generic.objectsForReview.invitation.mode.sequential"
+msgid "plugins.generic.bookReviewManager.invitation.mode.sequential"
 msgstr "Sequential round"
 
-msgid "plugins.generic.objectsForReview.invitation.mode.parallel"
+msgid "plugins.generic.bookReviewManager.invitation.mode.parallel"
 msgstr "All at once"
 
-msgid "plugins.generic.objectsForReview.invitation.mode.manual"
+msgid "plugins.generic.bookReviewManager.invitation.mode.manual"
 msgstr "Sent individually"
 
-msgid "plugins.generic.objectsForReview.invitation.inviteMore"
+msgid "plugins.generic.bookReviewManager.invitation.inviteMore"
 msgstr "Invite more"
 
-msgid "plugins.generic.objectsForReview.invitation.openPage"
+msgid "plugins.generic.bookReviewManager.invitation.openPage"
 msgstr "Invitation page"
 
-msgid "plugins.generic.objectsForReview.management.noneCreated"
+msgid "plugins.generic.bookReviewManager.management.noneCreated"
 msgstr "No works have been offered yet."
 
-msgid "plugins.generic.objectsForReview.workflow.tabLabel"
+msgid "plugins.generic.bookReviewManager.workflow.tabLabel"
 msgstr "Reviewed works"
 
-msgid "plugins.generic.objectsForReview.invitation.search.hint"
+msgid "plugins.generic.bookReviewManager.invitation.search.hint"
 msgstr "Leave the field empty to list the users of this journal alphabetically."

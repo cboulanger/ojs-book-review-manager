@@ -24,7 +24,7 @@ const add = page.locator('a[id*="addObjectForReview"]');
 console.log('add link count:', await add.count());
 await add.first().click();
 
-const form = page.locator('#objectsForReviewForm');
+const form = page.locator('#bookReviewManagerForm');
 await form.waitFor({ timeout: 15000 });
 const box = form.locator('.orDoiLookup');
 console.log('button visible (DOI):', await box.isVisible());

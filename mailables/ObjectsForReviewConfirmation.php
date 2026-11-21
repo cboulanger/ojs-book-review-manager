@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/mailables/ObjectsForReviewConfirmation.php
+ * @file plugins/generic/bookReviewManager/mailables/ObjectsForReviewConfirmation.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
@@ -11,7 +11,7 @@
  *  Sent from the journal contact (no Sender trait, so from() can be used).
  */
 
-namespace APP\plugins\generic\objectsForReview\mailables;
+namespace APP\plugins\generic\bookReviewManager\mailables;
 
 use APP\journal\Journal;
 use PKP\mail\Mailable;
@@ -24,9 +24,9 @@ class ObjectsForReviewConfirmation extends Mailable
     use Configurable;
     use Recipient;
 
-    protected static ?string $name = 'emails.ofrConfirmation.name';
-    protected static ?string $description = 'emails.ofrConfirmation.description';
-    protected static ?string $emailTemplateKey = 'OFR_CONFIRMATION';
+    protected static ?string $name = 'emails.brmConfirmation.name';
+    protected static ?string $description = 'emails.brmConfirmation.description';
+    protected static ?string $emailTemplateKey = 'BRM_CONFIRMATION';
     protected static array $fromRoleIds = [self::FROM_SYSTEM];
     protected static array $toRoleIds = [Role::ROLE_ID_READER, Role::ROLE_ID_AUTHOR];
 

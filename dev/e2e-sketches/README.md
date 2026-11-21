@@ -4,7 +4,7 @@ Ad-hoc [Playwright](https://playwright.dev/) scripts written while developing th
 
 - They print values (`console.log`) for a person to read; nothing fails automatically.
 - They expect the data of the dev container *as it was at the time*: the accounts from `dev/devSetup.php users` (some renamed to Anna Weber, Jonas Becker, Clara Lindqvist), offers created by earlier scripts, and leftovers from earlier runs. Many only work in a certain order, and running one twice usually fails, because the first run changed the data.
-- They use the plugin's current names: URLs (`manageObjectsForReview`, `for-review`), CSS classes (`ofr…`), tables (`objects_for_review_…`), email subjects. These will change when the plugin is renamed.
+- They use the plugin's current names: URLs (`manageBookReviews`, `books-for-review`), CSS classes (`ofr…`), tables (`brm_objects_…`), email subjects. These will change when the plugin is renamed.
 
 The real test suites are in [`tests/`](../../tests/README.md); browser tests belong in `tests/e2e/ui` (see "Adding a suite" there). What is worth reusing: the helpers in `lib.mjs`, the selectors, the tricks for forcing time-dependent cases, and the list of scenarios below.
 
@@ -27,7 +27,7 @@ Screenshots written by the scripts land in this folder (git-ignored). The `doc*.
 | `login(user, password)` | New browser context, logged in; dialogs (`confirm()`) are accepted automatically |
 | `anonymous()` | New context without login (for one-click links) |
 | `since()` / `mails(timestamp)` | Emails sent since a moment, parsed from the container log (`podman logs`): `[{to, subject, body}]` |
-| `linkIn(text)` | The first one-click link (`for-review/link/<key>`) in an email |
+| `linkIn(text)` | The first one-click link (`books-for-review/link/<key>`) in an email |
 | `modalForm(page)` | Waits for the plugin's email modal (`#ofrReservationEmailForm`) |
 | `bodyText(page)` | Body of that modal, read from TinyMCE |
 
@@ -36,7 +36,7 @@ Most scripts also use a small `sql()` helper (`podman exec … mysql`) to look u
 ## Tricks and gotchas
 
 - **Time-dependent cases** (deadlines, reminders, expiry): move the stored date back with SQL (`invitationDeadline`, `dateInvited`, `contractDeadline`, `dueDate`, …), then run the daily task directly:
-  `podman exec -w /var/www/html ojs-objectsforreview runuser -u www-data -- php lib/pkp/tools/scheduler.php test --name="APP\plugins\generic\objectsForReview\classes\ReservationReminder"`.
+  `podman exec -w /var/www/html ojs-bookreviewmanager runuser -u www-data -- php lib/pkp/tools/scheduler.php test --name="APP\plugins\generic\bookReviewManager\classes\ReservationReminder"`.
   Its output contains the emails it sent. Run it as `www-data`; as root it creates cache files Apache can't write to (`chown -R www-data:www-data cache` fixes that).
 - **Plugin settings are cached** by OJS (Laravel cache). Change them through the settings form, not with SQL, or the change is not seen.
 - **Grid row actions** (Edit, Hide, Invite reviewers, …) are behind the arrow at the start of the row: click `a.show_extras`, then the link in `#<row id>-control-row`. Link texts have surrounding whitespace; match with `/^\s*Hide\s*$/`.

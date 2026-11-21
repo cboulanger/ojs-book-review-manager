@@ -1,9 +1,9 @@
 <?php
 
-namespace APP\plugins\generic\objectsForReview\tests\unit;
+namespace APP\plugins\generic\bookReviewManager\tests\unit;
 
-use APP\plugins\generic\objectsForReview\classes\Assignment;
-use APP\plugins\generic\objectsForReview\classes\AssignmentWorkflow as W;
+use APP\plugins\generic\bookReviewManager\classes\Assignment;
+use APP\plugins\generic\bookReviewManager\classes\AssignmentWorkflow as W;
 
 /**
  * Offer states and the rules derived from them (no database).

@@ -7,7 +7,7 @@
  *
  * Objects for review plugin -- ofr grid.
  *}
-<div id="objectsForReview">
-	{capture assign="objectsForReviewGridUrl"}{url router=PKP\core\PKPApplication::ROUTE_COMPONENT  component="plugins.generic.objectsForReview.controllers.grid.ObjectsForReviewGridHandler" op="fetchGrid" submissionId=$submission->getId() escape=false}{/capture}
-	{load_url_in_div id="objectsForReviewGridContainer"|uniqid url=$objectsForReviewGridUrl inVueEl=true}
+<div id="bookReviewManager">
+	{capture assign="bookReviewManagerGridUrl"}{url router=PKP\core\PKPApplication::ROUTE_COMPONENT  component="plugins.generic.bookReviewManager.controllers.grid.ObjectsForReviewGridHandler" op="fetchGrid" submissionId=$submission->getId() escape=false}{/capture}
+	{load_url_in_div id="bookReviewManagerGridContainer"|uniqid url=$bookReviewManagerGridUrl inVueEl=true}
 </div>

@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/classes/ActionLink.php
+ * @file plugins/generic/bookReviewManager/classes/ActionLink.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ActionLink
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief One-click links in emails, for people who should not have to log in
  *  (reviewers responding to a contract offer, confirming receipt or return of a
@@ -22,7 +22,7 @@
  *  URL acts on GET, and it only knows accept/decline.
  */
 
-namespace APP\plugins\generic\objectsForReview\classes;
+namespace APP\plugins\generic\bookReviewManager\classes;
 
 use APP\core\Application;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +30,7 @@ use PKP\core\Core;
 
 class ActionLink {
 
-	const TABLE = 'objects_for_review_links';
+	const TABLE = 'brm_links';
 
 	/** Accept or decline a contract offer */
 	const ACTION_CONTRACT = 'contract';
@@ -104,7 +104,7 @@ class ActionLink {
 	 */
 	public static function url($context, string $key): string {
 		$request = Application::get()->getRequest();
-		return $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $context->getPath(), 'for-review', 'link', [$key]);
+		return $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $context->getPath(), \APP\plugins\generic\bookReviewManager\pages\ObjectsForReviewHandler::PAGE, 'link', [$key]);
 	}
 
 	protected static function hash(string $key): string {

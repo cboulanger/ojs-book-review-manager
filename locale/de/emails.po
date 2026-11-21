@@ -11,13 +11,13 @@ msgstr ""
 "PO-Revision-Date: 2021-02-21T14:15:39+02:00\n"
 "Language: \n"
 
-msgid "emails.ofrNewReservation.name"
+msgid "emails.brmNewReservation.name"
 msgstr "Rezensionsobjekt reserviert"
 
-msgid "emails.ofrNewReservation.subject"
+msgid "emails.brmNewReservation.subject"
 msgstr "Neues Rezensionsobjekt reserviert"
 
-msgid "emails.ofrNewReservation.body"
+msgid "emails.brmNewReservation.body"
 msgstr ""
 "\n"
 "\t\t\tEin Rezensionsobjekt wurde reserviert.<br /><br />\n"
@@ -26,16 +26,16 @@ msgstr ""
 "\t\t\t{$reservationDetails}\n"
 "\t\t"
 
-msgid "emails.ofrNewReservation.description"
+msgid "emails.brmNewReservation.description"
 msgstr "Diese E-Mail benachrichtigt die Redaktion, wenn ein Rezensionsobjekt reserviert wurde."
 
-msgid "emails.ofrCancelReservation.name"
+msgid "emails.brmCancelReservation.name"
 msgstr "Reservierung eines Rezensionsobjekts storniert"
 
-msgid "emails.ofrCancelReservation.subject"
+msgid "emails.brmCancelReservation.subject"
 msgstr "Reservierung eines Rezensionsobjekts storniert"
 
-msgid "emails.ofrCancelReservation.body"
+msgid "emails.brmCancelReservation.body"
 msgstr ""
 "\n"
 "\t\t\tDie Reservierung eines Rezensionsobjekts wurde storniert.<br /><br />\n"
@@ -43,269 +43,269 @@ msgstr ""
 "\t\t\tNutzer/in: {$senderUsername} ({$senderEmail})<br />\n"
 "\t\t"
 
-msgid "emails.ofrCancelReservation.description"
+msgid "emails.brmCancelReservation.description"
 msgstr "Diese E-Mail benachrichtigt die Redaktion, wenn die Reservierung eines Rezensionsobjekts storniert wurde."
 
-msgid "emails.ofrMessage.name"
+msgid "emails.brmMessage.name"
 msgstr "Nachricht an die rezensierende Person"
 
-msgid "emails.ofrMessage.description"
+msgid "emails.brmMessage.description"
 msgstr "Wird von der Redaktion an die Person gesendet, die ein Rezensionsangebot reserviert hat."
 
-msgid "emails.ofrMessage.subject"
+msgid "emails.brmMessage.subject"
 msgstr "Ihr reserviertes Rezensionsexemplar ({$contextName})"
 
-msgid "emails.ofrMessage.body"
+msgid "emails.brmMessage.body"
 msgstr "<p>Liebe/r {$recipientName},</p><p>wir schreiben Ihnen zu dem von Ihnen zur Rezension reservierten Werk:<br />{$objectDescription}<br />Abgabetermin Ihrer Rezension: {$dueDate}</p><p></p><p>Mit freundlichen Grüßen<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrCancelByEditor.name"
+msgid "emails.brmCancelByEditor.name"
 msgstr "Reservierung durch die Redaktion aufgehoben"
 
-msgid "emails.ofrCancelByEditor.description"
+msgid "emails.brmCancelByEditor.description"
 msgstr "Benachrichtigt die Person, die ein Rezensionsangebot reserviert hat, dass die Redaktion die Reservierung aufgehoben hat."
 
-msgid "emails.ofrCancelByEditor.subject"
+msgid "emails.brmCancelByEditor.subject"
 msgstr "Ihre Reservierung wurde aufgehoben ({$contextName})"
 
-msgid "emails.ofrCancelByEditor.body"
+msgid "emails.brmCancelByEditor.body"
 msgstr "<p>Liebe/r {$recipientName},</p><p>da wir nichts von Ihnen gehört haben, haben wir Ihre Reservierung des folgenden Werks zur Rezension aufgehoben:<br />{$objectDescription}</p><p>Bei Fragen wenden Sie sich bitte an uns.</p><p>Mit freundlichen Grüßen<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrReminder.name"
+msgid "emails.brmReminder.name"
 msgstr "Erinnerung vor dem Abgabetermin"
 
-msgid "emails.ofrReminder.description"
+msgid "emails.brmReminder.description"
 msgstr "Wird automatisch eine einstellbare Anzahl von Tagen vor dem Abgabetermin an die Person gesendet, die ein Rezensionsangebot reserviert hat."
 
-msgid "emails.ofrReminder.subject"
+msgid "emails.brmReminder.subject"
 msgstr "Erinnerung: Ihre Rezension ist am {$dueDate} fällig"
 
-msgid "emails.ofrReminder.body"
+msgid "emails.brmReminder.body"
 msgstr "<p>Liebe/r {$recipientName},</p><p>wir möchten Sie freundlich daran erinnern, dass Ihre Rezension des folgenden Werks am <strong>{$dueDate}</strong> fällig ist:<br />{$objectDescription}</p><p>Wenn Sie mehr Zeit benötigen, wenden Sie sich bitte so bald wie möglich an die Redaktion.</p><p>Falls Sie die Rezension doch nicht schreiben können, teilen Sie uns dies bitte mit:<br /><a href=\"{$retractUrl}\">{$retractUrl}</a></p><p>Mit freundlichen Grüßen<br />{$contextName}</p>"
 
-msgid "emails.ofrContractOffer.name"
+msgid "emails.brmContractOffer.name"
 msgstr "Rezensionsvereinbarung: Vertragsangebot"
 
-msgid "emails.ofrContractOffer.description"
+msgid "emails.brmContractOffer.description"
 msgstr "An die von der Rezensionsredaktion ausgewählte Person, mit Link zur Rezensionsvereinbarung."
 
-msgid "emails.ofrContractOffer.subject"
+msgid "emails.brmContractOffer.subject"
 msgstr "Sie wurden für eine Rezension ausgewählt"
 
-msgid "emails.ofrContractOffer.body"
+msgid "emails.brmContractOffer.body"
 msgstr "<p>Liebe:r {$recipientName},</p><p>vielen Dank für Ihr Interesse. Wir freuen uns, Ihnen die Rezension des folgenden Werks anbieten zu können:<br />{$objectDescription}</p><p>Bitte nehmen Sie die Rezensionsvereinbarung bis <strong>{$contractDeadline}</strong> an oder lehnen Sie das Angebot ab:<br /><a href=\"{$contractUrl}\">{$contractUrl}</a></p><p>Mit freundlichen Grüßen<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrContractOfferAgain.name"
+msgid "emails.brmContractOfferAgain.name"
 msgstr "Rezensionsvereinbarung: Angebot nach Ausfall"
 
-msgid "emails.ofrContractOfferAgain.description"
+msgid "emails.brmContractOfferAgain.description"
 msgstr "An eine Person von der Bewerbungsliste, nachdem die zuvor ausgewählte Person ausgefallen ist."
 
-msgid "emails.ofrContractOfferAgain.subject"
+msgid "emails.brmContractOfferAgain.subject"
 msgstr "Die Rezension eines Werks, für das Sie sich beworben haben, ist wieder frei"
 
-msgid "emails.ofrContractOfferAgain.body"
+msgid "emails.brmContractOfferAgain.body"
 msgstr "<p>Liebe:r {$recipientName},</p><p>Sie hatten sich für die Rezension des folgenden Werks beworben:<br />{$objectDescription}</p><p>Die Rezension ist wieder frei, und wir würden sie Ihnen gerne anbieten. Wenn Sie weiterhin Interesse haben, nehmen Sie bitte die Rezensionsvereinbarung bis <strong>{$contractDeadline}</strong> an oder lehnen Sie das Angebot ab:<br /><a href=\"{$contractUrl}\">{$contractUrl}</a></p><p>Mit freundlichen Grüßen<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrContractReminder.name"
+msgid "emails.brmContractReminder.name"
 msgstr "Erinnerung an ein Vertragsangebot"
 
-msgid "emails.ofrContractReminder.description"
+msgid "emails.brmContractReminder.description"
 msgstr "Wird automatisch an eine ausgewählte Person gesendet, die noch nicht auf das Vertragsangebot geantwortet hat."
 
-msgid "emails.ofrContractReminder.subject"
+msgid "emails.brmContractReminder.subject"
 msgstr "Erinnerung: Bitte antworten Sie bis {$contractDeadline} auf das Rezensionsangebot"
 
-msgid "emails.ofrContractReminder.body"
+msgid "emails.brmContractReminder.body"
 msgstr "<p>Liebe:r {$recipientName},</p><p>wir möchten Sie freundlich daran erinnern, dass wir Ihnen die Rezension des folgenden Werks angeboten haben:<br />{$objectDescription}</p><p>Bitte nehmen Sie die Rezensionsvereinbarung bis <strong>{$contractDeadline}</strong> an oder lehnen Sie das Angebot ab:<br /><a href=\"{$contractUrl}\">{$contractUrl}</a></p><p>Mit freundlichen Grüßen<br />{$contextName}</p>"
 
-msgid "emails.ofrBidUnsuccessful.name"
+msgid "emails.brmBidUnsuccessful.name"
 msgstr "Bewerbung nicht ausgewählt"
 
-msgid "emails.ofrBidUnsuccessful.description"
+msgid "emails.brmBidUnsuccessful.description"
 msgstr "An die übrigen Bewerber:innen, sobald ein Vertrag angenommen wurde. Sie bleiben auf der Liste, falls die Rezension nicht zustande kommt."
 
-msgid "emails.ofrBidUnsuccessful.subject"
+msgid "emails.brmBidUnsuccessful.subject"
 msgstr "Ihre Bewerbung für eine Rezension"
 
-msgid "emails.ofrBidUnsuccessful.body"
+msgid "emails.brmBidUnsuccessful.body"
 msgstr "<p>Liebe:r {$recipientName},</p><p>vielen Dank für Ihre Bewerbung für die Rezension des folgenden Werks:<br />{$objectDescription}</p><p>Wir haben die Rezension diesmal an eine andere Person vergeben. Wir behalten Sie auf unserer Liste und kommen gegebenenfalls auf Sie zu, falls die Rezension nicht zustande kommt.</p><p>Wenn Sie lieber von der Liste gestrichen werden möchten, nutzen Sie bitte diesen Link:<br /><a href=\"{$removeUrl}\">{$removeUrl}</a></p><p>Mit freundlichen Grüßen<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrBidNew.name"
+msgid "emails.brmBidNew.name"
 msgstr "Neue Bewerbung (an die Rezensionsredaktion)"
 
-msgid "emails.ofrBidNew.description"
+msgid "emails.brmBidNew.description"
 msgstr "Wird automatisch an die zuständige Rezensionsredaktion gesendet, wenn sich jemand für eine Rezension bewirbt."
 
-msgid "emails.ofrBidNew.subject"
+msgid "emails.brmBidNew.subject"
 msgstr "Neue Bewerbung für eine Rezension: {$objectDescription}"
 
-msgid "emails.ofrBidNew.body"
+msgid "emails.brmBidNew.body"
 msgstr "<p>Liebe:r {$recipientName},</p><p>{$bidderName} hat sich für die Rezension des folgenden Werks beworben:<br />{$objectDescription}</p><p>Begründung:<br />{$bidStatement}</p><p>Hier können Sie unter den Bewerbungen auswählen: <a href=\"{$deskUrl}\">{$deskUrl}</a></p>"
 
-msgid "emails.ofrContractDeclined.name"
+msgid "emails.brmContractDeclined.name"
 msgstr "Vertrag abgelehnt oder abgelaufen (an die Rezensionsredaktion)"
 
-msgid "emails.ofrContractDeclined.description"
+msgid "emails.brmContractDeclined.description"
 msgstr "Wird automatisch an die zuständige Rezensionsredaktion gesendet, wenn eine ausgewählte Person das Vertragsangebot ablehnt oder nicht rechtzeitig antwortet."
 
-msgid "emails.ofrContractDeclined.subject"
+msgid "emails.brmContractDeclined.subject"
 msgstr "Rezensionsangebot nicht angenommen: {$objectDescription}"
 
-msgid "emails.ofrContractDeclined.body"
+msgid "emails.brmContractDeclined.body"
 msgstr "<p>Liebe:r {$recipientName},</p><p>{$reviewerName} hat das Angebot zur Rezension des folgenden Werks nicht angenommen:<br />{$objectDescription}</p><p>{$declineReason}</p><p>Bitte wählen Sie eine andere Person aus oder öffnen Sie die Bewerbung erneut: <a href=\"{$deskUrl}\">{$deskUrl}</a></p>"
 
-msgid "emails.ofrCopyRequest.name"
+msgid "emails.brmCopyRequest.name"
 msgstr "Anforderung eines Rezensionsexemplars (an den Verlag)"
 
-msgid "emails.ofrCopyRequest.description"
+msgid "emails.brmCopyRequest.description"
 msgstr "Von der Rezensionsredaktion an den Verlagskontakt, mit Lieferadresse (gedrucktes Exemplar) oder E-Mail-Adresse der Rezensentin/des Rezensenten (elektronisches Exemplar)."
 
-msgid "emails.ofrCopyRequest.subject"
+msgid "emails.brmCopyRequest.subject"
 msgstr "Bitte um ein Rezensionsexemplar: {$objectDescription}"
 
-msgid "emails.ofrCopyRequest.body"
+msgid "emails.brmCopyRequest.body"
 msgstr "<p>Liebe:r {$recipientName},</p><p>{$reviewerName} wird das folgende Werk für {$contextName} rezensieren:<br />{$objectDescription}</p><p>Wir wären Ihnen dankbar, wenn Sie ein Rezensionsexemplar ({$copyType}) zur Verfügung stellen könnten.</p><p>{$deliveryDetails}</p><p>Sobald Sie das Exemplar verschickt haben, teilen Sie uns dies bitte mit einem Klick mit:<br /><a href=\"{$copySentUrl}\">{$copySentUrl}</a></p><p>Vielen Dank und freundliche Grüße<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrCopySent.name"
+msgid "emails.brmCopySent.name"
 msgstr "Rezensionsexemplar versandt (an Rezensent:in)"
 
-msgid "emails.ofrCopySent.description"
+msgid "emails.brmCopySent.description"
 msgstr "Teilt der Rezensentin/dem Rezensenten mit, dass das Exemplar von der Zeitschrift oder dem Verlag verschickt wurde."
 
-msgid "emails.ofrCopySent.subject"
+msgid "emails.brmCopySent.subject"
 msgstr "Ihr Rezensionsexemplar ist unterwegs"
 
-msgid "emails.ofrCopySent.body"
+msgid "emails.brmCopySent.body"
 msgstr "<p>Liebe:r {$recipientName},</p><p>ein Rezensionsexemplar ({$copyType}) des folgenden Werks wurde {$copySource} an Sie geschickt:<br />{$objectDescription}</p><p>Ihre Rezension ist am {$dueDate} fällig.</p><p>Bitte bestätigen Sie den Eingang mit einem Klick, sobald es angekommen ist:<br /><a href=\"{$receivedUrl}\">{$receivedUrl}</a></p><p>Mit freundlichen Grüßen<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrReturnRequest.name"
+msgid "emails.brmReturnRequest.name"
 msgstr "Rücksendung eines Rezensionsexemplars (an Rezensent:in)"
 
-msgid "emails.ofrReturnRequest.description"
+msgid "emails.brmReturnRequest.description"
 msgstr "Bittet die Rezensentin/den Rezensenten um Rücksendung eines gedruckten Exemplars, wenn keine Rezension geschrieben wird, mit Rücksendeadresse."
 
-msgid "emails.ofrReturnRequest.subject"
+msgid "emails.brmReturnRequest.subject"
 msgstr "Bitte schicken Sie das Rezensionsexemplar zurück"
 
-msgid "emails.ofrReturnRequest.body"
+msgid "emails.brmReturnRequest.body"
 msgstr "<p>Liebe:r {$recipientName},</p><p>da die Rezension des folgenden Werks nicht geschrieben wird, bitten wir Sie, das Rezensionsexemplar zurückzuschicken:<br />{$objectDescription}</p><p>Bitte senden Sie es an:<br />{$returnAddress}</p><p>Sobald Sie es zurückgeschickt haben, teilen Sie uns dies bitte mit einem Klick mit:<br /><a href=\"{$returnSentUrl}\">{$returnSentUrl}</a></p><p>Vielen Dank und freundliche Grüße<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrReturnSent.name"
+msgid "emails.brmReturnSent.name"
 msgstr "Rezensionsexemplar zurück (an den Verlag)"
 
-msgid "emails.ofrReturnSent.description"
+msgid "emails.brmReturnSent.description"
 msgstr "Teilt dem Verlagskontakt mit, dass ein Rezensionsexemplar zurückgeschickt wurde."
 
-msgid "emails.ofrReturnSent.subject"
+msgid "emails.brmReturnSent.subject"
 msgstr "Rezensionsexemplar auf dem Rückweg: {$objectDescription}"
 
-msgid "emails.ofrReturnSent.body"
+msgid "emails.brmReturnSent.body"
 msgstr "<p>Liebe:r {$recipientName},</p><p>leider wird die Rezension des folgenden Werks nicht erscheinen:<br />{$objectDescription}</p><p>Das Rezensionsexemplar, das Sie freundlicherweise zur Verfügung gestellt haben, wurde an Sie zurückgeschickt.</p><p>Bitte bestätigen Sie den Eingang mit einem Klick, sobald es angekommen ist:<br /><a href=\"{$returnReceivedUrl}\">{$returnReceivedUrl}</a></p><p>Nochmals vielen Dank und freundliche Grüße<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrPublisherNotification.name"
+msgid "emails.brmPublisherNotification.name"
 msgstr "Rezension erschienen (an den Verlag)"
 
-msgid "emails.ofrPublisherNotification.description"
+msgid "emails.brmPublisherNotification.description"
 msgstr "Teilt dem Verlagskontakt mit, dass die Rezension erschienen ist, wenn der Verlag darum gebeten hat."
 
-msgid "emails.ofrPublisherNotification.subject"
+msgid "emails.brmPublisherNotification.subject"
 msgstr "Rezension erschienen: {$objectDescription}"
 
-msgid "emails.ofrPublisherNotification.body"
+msgid "emails.brmPublisherNotification.body"
 msgstr "<p>Liebe:r {$recipientName},</p><p>wir freuen uns, Ihnen mitteilen zu können, dass die Rezension des folgenden Werks von {$reviewerName} in {$contextName} erschienen ist:<br />{$objectDescription}</p><p><a href=\"{$reviewUrl}\">{$reviewUrl}</a></p><p>Vielen Dank für das Rezensionsexemplar und freundliche Grüße<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrCopyRequestReminder.name"
+msgid "emails.brmCopyRequestReminder.name"
 msgstr "Erinnerung an Exemplaranforderung (an den Verlag)"
 
-msgid "emails.ofrCopyRequestReminder.description"
+msgid "emails.brmCopyRequestReminder.description"
 msgstr "Wird automatisch an den Verlagskontakt gesendet, solange eine Exemplaranforderung unbeantwortet ist."
 
-msgid "emails.ofrCopyRequestReminder.subject"
+msgid "emails.brmCopyRequestReminder.subject"
 msgstr "Erinnerung: Bitte um ein Rezensionsexemplar: {$objectDescription}"
 
-msgid "emails.ofrCopyRequestReminder.body"
+msgid "emails.brmCopyRequestReminder.body"
 msgstr "<p>Liebe:r {$recipientName},</p><p>wir hatten Sie kürzlich um ein Rezensionsexemplar ({$copyType}) des folgenden Werks gebeten, das {$reviewerName} für {$contextName} rezensieren wird:<br />{$objectDescription}</p><p>{$deliveryDetails}</p><p>Falls Sie es bereits verschickt haben, teilen Sie uns dies bitte mit einem Klick mit:<br /><a href=\"{$copySentUrl}\">{$copySentUrl}</a></p><p>Mit freundlichen Grüßen<br />{$contextName}</p>"
 
-msgid "emails.ofrConfirmation.name"
+msgid "emails.brmConfirmation.name"
 msgstr "Bestätigung der Rezensionsvereinbarung (an Rezensent:in)"
 
-msgid "emails.ofrConfirmation.description"
+msgid "emails.brmConfirmation.description"
 msgstr "Wird nach Annahme der Rezensionsvereinbarung automatisch an die Rezensentin/den Rezensenten gesendet, mit einem Link zum Rücktritt."
 
-msgid "emails.ofrConfirmation.subject"
+msgid "emails.brmConfirmation.subject"
 msgstr "Ihre Rezension für {$contextName}: Bestätigung"
 
-msgid "emails.ofrConfirmation.body"
+msgid "emails.brmConfirmation.body"
 msgstr "<p>Liebe:r {$recipientName},</p><p>vielen Dank, dass Sie die Rezension des folgenden Werks übernehmen:<br />{$objectDescription}</p><p>{$reservationDetails}</p><p>Falls Sie die Rezension doch nicht schreiben können, teilen Sie uns dies bitte so früh wie möglich mit:<br /><a href=\"{$retractUrl}\">{$retractUrl}</a></p><p>Mit freundlichen Grüßen<br />{$contextName}</p>"
 
-msgid "emails.ofrInvitationReserve.name"
+msgid "emails.brmInvitationReserve.name"
 msgstr "Einladung zur Rezension (Direktreservierung)"
 
-msgid "emails.ofrInvitationReserve.description"
+msgid "emails.brmInvitationReserve.description"
 msgstr "Wird von der Rezensionsredaktion an eine Person auf der Einladungsliste eines Werks mit Direktreservierung gesendet, mit einem Link zum Reservieren oder Absagen."
 
-msgid "emails.ofrInvitationReserve.subject"
+msgid "emails.brmInvitationReserve.subject"
 msgstr "Einladung zur Rezension: {$objectDescription}"
 
-msgid "emails.ofrInvitationReserve.body"
+msgid "emails.brmInvitationReserve.body"
 msgstr "<p>Liebe/r {$recipientName},</p><p>wir möchten Sie einladen, das folgende Werk für {$contextName} zu rezensieren:<br />{$objectDescription}</p><p>Wenn Sie die Rezension übernehmen möchten, nehmen Sie bitte bis zum <strong>{$invitationDeadline}</strong> die Rezensionsvereinbarung an. Wenn Sie sie nicht schreiben können, teilen Sie uns dies bitte über denselben Link mit:<br /><a href=\"{$invitationUrl}\">{$invitationUrl}</a></p><p>Mit freundlichen Grüßen<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrInvitationBid.name"
+msgid "emails.brmInvitationBid.name"
 msgstr "Einladung zur Bewerbung um eine Rezension (Bewerbungsverfahren)"
 
-msgid "emails.ofrInvitationBid.description"
+msgid "emails.brmInvitationBid.description"
 msgstr "Wird von der Rezensionsredaktion an eine Person auf der Einladungsliste eines Werks im Bewerbungsverfahren gesendet, mit einem Link zum Bewerben oder Absagen."
 
-msgid "emails.ofrInvitationBid.subject"
+msgid "emails.brmInvitationBid.subject"
 msgstr "Einladung zur Bewerbung um eine Rezension: {$objectDescription}"
 
-msgid "emails.ofrInvitationBid.body"
+msgid "emails.brmInvitationBid.body"
 msgstr "<p>Liebe/r {$recipientName},</p><p>wir möchten Sie einladen, sich um die Rezension des folgenden Werks für {$contextName} zu bewerben:<br />{$objectDescription}</p><p>Die Rezensionsredaktion wählt unter den Bewerbungen aus. Wenn Sie Interesse haben, bewerben Sie sich bitte bis zum <strong>{$invitationDeadline}</strong>. Wenn nicht, teilen Sie uns dies bitte über denselben Link mit:<br /><a href=\"{$invitationUrl}\">{$invitationUrl}</a></p><p>Mit freundlichen Grüßen<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrInvitationDeclined.name"
+msgid "emails.brmInvitationDeclined.name"
 msgstr "Einladung abgelehnt oder unbeantwortet (an die Rezensionsredaktion)"
 
-msgid "emails.ofrInvitationDeclined.description"
+msgid "emails.brmInvitationDeclined.description"
 msgstr "Wird automatisch an die zuständige Rezensionsredaktion gesendet, wenn eine eingeladene Person absagt oder nicht rechtzeitig antwortet."
 
-msgid "emails.ofrInvitationDeclined.subject"
+msgid "emails.brmInvitationDeclined.subject"
 msgstr "Einladung nicht angenommen: {$objectDescription}"
 
-msgid "emails.ofrInvitationDeclined.body"
+msgid "emails.brmInvitationDeclined.body"
 msgstr "<p>Liebe/r {$recipientName},</p><p>{$inviteeName} wird das folgende Werk nicht rezensieren:<br />{$objectDescription}</p><p>{$declineReason}</p><p>Auf der Einladungsseite können Sie jemand anderen einladen: <a href=\"{$invitationListUrl}\">{$invitationListUrl}</a></p>"
 
-msgid "emails.ofrInvitationReminder.name"
+msgid "emails.brmInvitationReminder.name"
 msgstr "Erinnerung an eine Einladung"
 
-msgid "emails.ofrInvitationReminder.description"
+msgid "emails.brmInvitationReminder.description"
 msgstr "Wird automatisch an Eingeladene gesendet, die nicht geantwortet haben, nach der in den Plugin-Einstellungen festgelegten Zahl von Tagen."
 
-msgid "emails.ofrInvitationReminder.subject"
+msgid "emails.brmInvitationReminder.subject"
 msgstr "Erinnerung: Einladung zu {$objectDescription}"
 
-msgid "emails.ofrInvitationReminder.body"
+msgid "emails.brmInvitationReminder.body"
 msgstr "<p>Liebe/r {$recipientName},</p><p>wir möchten Sie freundlich an unsere Einladung zum folgenden Werk erinnern:<br />{$objectDescription}</p><p>Bitte teilen Sie uns bis zum <strong>{$invitationDeadline}</strong> mit, ob Sie sie annehmen möchten:<br /><a href=\"{$invitationUrl}\">{$invitationUrl}</a></p><p>Mit freundlichen Grüßen<br />{$contextName}</p>"
 
-msgid "emails.ofrInvitationExhausted.name"
+msgid "emails.brmInvitationExhausted.name"
 msgstr "Einladungsliste ausgeschöpft (an die Rezensionsredaktion)"
 
-msgid "emails.ofrInvitationExhausted.description"
+msgid "emails.brmInvitationExhausted.description"
 msgstr "Wird automatisch an die zuständige Rezensionsredaktion gesendet, wenn eine fortlaufende Einladungsrunde das Ende der Liste ohne Reservierung erreicht."
 
-msgid "emails.ofrInvitationExhausted.subject"
+msgid "emails.brmInvitationExhausted.subject"
 msgstr "Einladungsrunde ohne Ergebnis: {$objectDescription}"
 
-msgid "emails.ofrInvitationExhausted.body"
+msgid "emails.brmInvitationExhausted.body"
 msgstr "<p>Liebe/r {$recipientName},</p><p>alle Personen auf der Einladungsliste für das folgende Werk haben abgesagt oder nicht geantwortet:<br />{$objectDescription}</p><p>Sie können weitere Personen hinzufügen und die Runde fortsetzen oder sie beenden: <a href=\"{$invitationListUrl}\">{$invitationListUrl}</a></p>"
 
-msgid "emails.ofrReviewEssayChanged.name"
+msgid "emails.brmReviewEssayChanged.name"
 msgstr "Sammelrezension geändert (an Rezensent:in)"
 
-msgid "emails.ofrReviewEssayChanged.description"
+msgid "emails.brmReviewEssayChanged.description"
 msgstr "Wird von der Rezensionsredaktion an die Rezensentin/den Rezensenten einer Sammelrezension gesendet, wenn Werke hinzugefügt oder entfernt werden oder die Rezensionsvereinbarung für ein Werk zu einer Sammelrezension wird."
 
-msgid "emails.ofrReviewEssayChanged.subject"
+msgid "emails.brmReviewEssayChanged.subject"
 msgstr "Ihre Sammelrezension für {$journalName}: Liste der Werke geändert"
 
-msgid "emails.ofrReviewEssayChanged.body"
+msgid "emails.brmReviewEssayChanged.body"
 msgstr "<p>Liebe:r {$reviewerName},</p><p>die Sammelrezension, die Sie übernommen haben, umfasst jetzt diese Werke:<br />{$objectDescription}</p><p>Abgabetermin: {$dueDate}</p><p>Bei Fragen wenden Sie sich gern an uns.</p><p>Mit freundlichen Grüßen<br />{$journalName}</p>"

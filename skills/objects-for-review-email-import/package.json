@@ -1,9 +1,0 @@
-{
-  "name": "objects-for-review-email-import",
-  "private": true,
-  "description": "Reconstruct review processes from exported .eml files, pseudonymized, for the Objects for Review import API",
-  "license": "GPL-3.0-only",
-  "type": "module",
-  "engines": { "node": ">=20" },
-  "scripts": { "test": "node --test test/*.test.js" }
-}

@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/classes/CopyWorkflow.php
+ * @file plugins/generic/bookReviewManager/classes/CopyWorkflow.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class CopyWorkflow
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief How the reviewer gets the work, and what happens to a physical copy
  *  when no review materialises. The copy status belongs to the assignment:
@@ -25,7 +25,7 @@
  *  journal or the publisher, never directly to another reviewer.
  */
 
-namespace APP\plugins\generic\objectsForReview\classes;
+namespace APP\plugins\generic\bookReviewManager\classes;
 
 use APP\core\Application;
 use APP\facades\Repo;
@@ -246,8 +246,8 @@ class CopyWorkflow {
 		};
 		return [
 			'reviewerName' => htmlspecialchars($reviewer?->getFullName() ?? ''),
-			'copyType' => $preference ? htmlspecialchars(__('plugins.generic.objectsForReview.copy.type.' . $preference, [], $locale)) : '',
-			'copySource' => $sentBy ? htmlspecialchars(__('plugins.generic.objectsForReview.copy.source.' . $sentBy, [], $locale)) : '',
+			'copyType' => $preference ? htmlspecialchars(__('plugins.generic.bookReviewManager.copy.type.' . $preference, [], $locale)) : '',
+			'copySource' => $sentBy ? htmlspecialchars(__('plugins.generic.bookReviewManager.copy.source.' . $sentBy, [], $locale)) : '',
 			'deliveryDetails' => self::getDeliveryDetails($assignment, $reviewer, $locale),
 		];
 	}
@@ -301,7 +301,7 @@ class CopyWorkflow {
 	 * the postal address (physical copy) or the reviewer's email (electronic copy).
 	 */
 	public static function getDeliveryDetails(Assignment $assignment, ?User $reviewer, string $locale): string {
-		$t = fn ($key) => __('plugins.generic.objectsForReview.' . $key, [], $locale);
+		$t = fn ($key) => __('plugins.generic.bookReviewManager.' . $key, [], $locale);
 		$name = htmlspecialchars($reviewer?->getFullName() ?? '');
 		if (self::isPhysical($assignment)) {
 			$lines = [$t('copy.delivery.physical'), $name, nl2br(htmlspecialchars((string) $assignment->getData('shippingAddress')))];
@@ -321,12 +321,12 @@ class CopyWorkflow {
 		if (!$status) {
 			return '';
 		}
-		$label = __('plugins.generic.objectsForReview.copy.status.' . $status);
+		$label = __('plugins.generic.bookReviewManager.copy.status.' . $status);
 		if ($status === self::SENT && $assignment->getData('copySentBy')) {
-			$label .= ' (' . __('plugins.generic.objectsForReview.copy.by.' . $assignment->getData('copySentBy')) . ')';
+			$label .= ' (' . __('plugins.generic.bookReviewManager.copy.by.' . $assignment->getData('copySentBy')) . ')';
 		}
 		if (in_array($status, [self::RETURN_REQUESTED, self::RETURN_SENT, self::RETURNED], true) && $assignment->getData('returnTarget')) {
-			$label .= ' (' . __('plugins.generic.objectsForReview.copy.to.' . $assignment->getData('returnTarget')) . ')';
+			$label .= ' (' . __('plugins.generic.bookReviewManager.copy.to.' . $assignment->getData('returnTarget')) . ')';
 		}
 		return $label;
 	}

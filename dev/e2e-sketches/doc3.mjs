@@ -2,11 +2,11 @@
 import { B, browser, login, anonymous, since, mails, linkIn, modalForm } from './lib.mjs';
 const IMG = new URL('../../docs/images/', import.meta.url).pathname;
 const T1 = 'Law and Society in Transition', T3 = 'Legal Pluralism Revisited';
-const row = (p, t) => p.locator('#objects-for-review-table tr', { hasText: t });
+const row = (p, t) => p.locator('#book-review-manager-table tr', { hasText: t });
 const size = p => p.setViewportSize({ width: 1280, height: 900 });
 
 const bre = await login('bre', 'ojsbre'); await size(bre);
-await bre.goto(`${B}/manageObjectsForReview/desk`);
+await bre.goto(`${B}/manageBookReviews/desk`);
 let form, t;
 const unsuccessful = bre.locator('h2', { hasText: 'Notify bidders' }).locator('xpath=following-sibling::table[1]');
 await unsuccessful.locator('a', { hasText: 'Notify bidders' }).click();
@@ -33,12 +33,12 @@ await pub.screenshot({ path: IMG + 'link-done.png', fullPage: true });
 console.log('after publisher click:', mails(t).map(m => `${m.to} | ${m.subject}`));
 
 // History of the offer
-await bre.goto(`${B}/manageObjectsForReview/desk`);
+await bre.goto(`${B}/manageBookReviews/desk`);
 await bre.locator('.ofrCopies tbody tr', { hasText: T3 }).locator('a', { hasText: 'History' }).click();
 await bre.waitForTimeout(3000);
 await bre.screenshot({ path: IMG + 'history.png' });
 
 // Reviewers & bidders
-await bre.goto(`${B}/manageObjectsForReview/assignments`);
+await bre.goto(`${B}/manageBookReviews/assignments`);
 await bre.screenshot({ path: IMG + 'assignments.png', fullPage: true });
 await browser.close();

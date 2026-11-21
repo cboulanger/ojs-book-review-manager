@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/mailables/ObjectsForReviewCopyRequest.php
+ * @file plugins/generic/bookReviewManager/mailables/ObjectsForReviewCopyRequest.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
@@ -10,7 +10,7 @@
  * @brief Request for a review copy, sent to the publisher contact with the delivery details.
  */
 
-namespace APP\plugins\generic\objectsForReview\mailables;
+namespace APP\plugins\generic\bookReviewManager\mailables;
 
 use APP\journal\Journal;
 use PKP\mail\Mailable;
@@ -25,9 +25,9 @@ class ObjectsForReviewCopyRequest extends Mailable
     use Recipient;
     use Sender;
 
-    protected static ?string $name = 'emails.ofrCopyRequest.name';
-    protected static ?string $description = 'emails.ofrCopyRequest.description';
-    protected static ?string $emailTemplateKey = 'OFR_COPY_REQUEST';
+    protected static ?string $name = 'emails.brmCopyRequest.name';
+    protected static ?string $description = 'emails.brmCopyRequest.description';
+    protected static ?string $emailTemplateKey = 'BRM_COPY_REQUEST';
     protected static array $fromRoleIds = [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR];
     protected static array $toRoleIds = [Role::ROLE_ID_READER];
 

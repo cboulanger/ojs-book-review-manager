@@ -2,16 +2,16 @@ import { browser, login, OUT } from './lib.mjs';
 const admin = await login('admin', 'ojsadmin');
 for (const lang of ['en', 'de']) {
 	const base = `http://localhost:8080/index.php/test/${lang}`;
-	for (const path of ['manageObjectsForReview/desk', 'manageObjectsForReview/assignments?status=all', 'manageObjectsForReview', 'manageObjectsForReview/settings', 'for-review', 'for-review/link/0000']) {
+	for (const path of ['manageBookReviews/desk', 'manageBookReviews/assignments?status=all', 'manageBookReviews', 'manageBookReviews/settings', 'books-for-review', 'books-for-review/link/0000']) {
 		await admin.goto(`${base}/${path}`);
-		await admin.waitForTimeout(path.includes('settings') || path === 'manageObjectsForReview' ? 3500 : 500);
+		await admin.waitForTimeout(path.includes('settings') || path === 'manageBookReviews' ? 3500 : 500);
 		const text = await admin.locator('body').innerText();
 		const missing = [...new Set(text.match(/##[^#\s]+##/g) || [])];
 		console.log(lang, path, missing.length ? missing : 'ok');
 	}
 }
 // Settings: new fields and saving
-await admin.goto('http://localhost:8080/index.php/test/en/manageObjectsForReview/settings');
+await admin.goto('http://localhost:8080/index.php/test/en/manageBookReviews/settings');
 const f = admin.locator('#orSettingsForm');
 await f.waitFor({ timeout: 15000 });
 console.log('settings:', await f.locator('[name=ofrDefaultMode]').inputValue(), await f.locator('[name=ofrContractDays]').inputValue(), await f.locator('[name=ofrContractReminderDays]').inputValue(),

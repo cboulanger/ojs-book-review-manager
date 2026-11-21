@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/mailables/ObjectsForReviewCancelByEditor.php
+ * @file plugins/generic/bookReviewManager/mailables/ObjectsForReviewCancelByEditor.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
@@ -10,7 +10,7 @@
  * @brief Notifies the reviewer that the editors cancelled the reservation.
  */
 
-namespace APP\plugins\generic\objectsForReview\mailables;
+namespace APP\plugins\generic\bookReviewManager\mailables;
 
 use APP\journal\Journal;
 use PKP\mail\Mailable;
@@ -25,9 +25,9 @@ class ObjectsForReviewCancelByEditor extends Mailable
     use Recipient;
     use Sender;
 
-    protected static ?string $name = 'emails.ofrCancelByEditor.name';
-    protected static ?string $description = 'emails.ofrCancelByEditor.description';
-    protected static ?string $emailTemplateKey = 'OFR_CANCEL_BY_EDITOR';
+    protected static ?string $name = 'emails.brmCancelByEditor.name';
+    protected static ?string $description = 'emails.brmCancelByEditor.description';
+    protected static ?string $emailTemplateKey = 'BRM_CANCEL_BY_EDITOR';
     protected static array $fromRoleIds = [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR];
     protected static array $toRoleIds = [Role::ROLE_ID_READER, Role::ROLE_ID_AUTHOR];
 

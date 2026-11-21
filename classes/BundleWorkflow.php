@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/classes/BundleWorkflow.php
+ * @file plugins/generic/bookReviewManager/classes/BundleWorkflow.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class BundleWorkflow
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief Review essays: one review of several works.
  *
@@ -24,7 +24,7 @@
  *  container; running it again changes nothing.
  */
 
-namespace APP\plugins\generic\objectsForReview\classes;
+namespace APP\plugins\generic\bookReviewManager\classes;
 
 use APP\facades\Repo;
 use Illuminate\Support\Facades\DB;
@@ -34,7 +34,7 @@ use PKP\user\User;
 class BundleWorkflow {
 
 	/** Locale key prefix of the errors (an exception's message is the full key) */
-	const ERROR_PREFIX = 'plugins.generic.objectsForReview.reviewEssay.error.';
+	const ERROR_PREFIX = 'plugins.generic.bookReviewManager.reviewEssay.error.';
 
 	/**
 	 * The review essay a work belongs to, if any.

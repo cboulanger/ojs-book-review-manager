@@ -9,7 +9,7 @@ const setRich = (page, sel, html) => page.evaluate(([sel, html]) => {
 // Plugin settings (journal manager)
 const admin = await login('admin', 'ojsadmin');
 await admin.setViewportSize({ width: 1280, height: 900 });
-await admin.goto(`${B}/manageObjectsForReview/settings`);
+await admin.goto(`${B}/manageBookReviews/settings`);
 const sf = admin.locator('#orSettingsForm');
 await sf.waitFor({ timeout: 15000 });
 await admin.waitForTimeout(2000);
@@ -27,8 +27,8 @@ await admin.waitForTimeout(2500);
 const bre = await login('bre', 'ojsbre');
 await bre.setViewportSize({ width: 1280, height: 900 });
 async function offer({ type, id, authors, title, description, publisher, year, mode, deadline, contact, holds, notify, shot }) {
-	await bre.goto(`${B}/manageObjectsForReview`);
-	await bre.locator('#objectsForReviewGridContainer a[id*="addAvailableObjectForReview"]').click();
+	await bre.goto(`${B}/manageBookReviews`);
+	await bre.locator('#bookReviewManagerGridContainer a[id*="addAvailableObjectForReview"]').click();
 	const form = bre.locator('#availableObjectsForReviewForm');
 	await form.waitFor({ timeout: 15000 });
 	await bre.waitForTimeout(1500);
@@ -62,14 +62,14 @@ const deadline = new Date(Date.now() + 21 * 864e5).toISOString().slice(0, 10);
 await offer({ type: 'ISBN', id: '9781509982622', authors: 'Nelken, David', title: 'Law and Society in Transition', description: '<p>A comparative study of how legal institutions adapt to <em>social change</em>. We are looking for a reviewer with a background in sociology of law.</p>', publisher: 'Hart Publishing', year: '2025', mode: 'bidding', deadline, contact: true, notify: true, shot: 'offer-form.png' });
 await offer({ type: 'ISBN', id: '9780198862000', authors: 'Moller, Lena', title: 'The Rule of Law: A Comparative History', publisher: 'Oxford University Press', year: '2024', mode: 'direct', holds: true });
 await offer({ type: 'ISBN', id: '9783161600000', authors: 'Okafor, Chidi', title: 'Legal Pluralism Revisited', publisher: 'Test Press', year: '2025', mode: 'direct', contact: true });
-await bre.goto(`${B}/manageObjectsForReview`);
+await bre.goto(`${B}/manageBookReviews`);
 await bre.waitForTimeout(2500);
 await bre.screenshot({ path: IMG + 'available-objects.png', fullPage: true });
 
 // Public page
 const anon = await anonymous();
 await anon.setViewportSize({ width: 1280, height: 900 });
-await anon.goto(`${B}/for-review`);
+await anon.goto(`${B}/books-for-review`);
 await anon.screenshot({ path: IMG + 'public-page.png', fullPage: true });
-console.log('public rows:', (await anon.locator('#objects-for-review-table tbody tr').allInnerTexts()).map(t => t.replace(/\s+/g, ' ')));
+console.log('public rows:', (await anon.locator('#book-review-manager-table tbody tr').allInnerTexts()).map(t => t.replace(/\s+/g, ' ')));
 await browser.close();

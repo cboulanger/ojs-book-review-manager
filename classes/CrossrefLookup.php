@@ -1,18 +1,18 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/classes/CrossrefLookup.php
+ * @file plugins/generic/bookReviewManager/classes/CrossrefLookup.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class CrossrefLookup
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief Resolve a DOI via the Crossref REST API and map the result to
  *  the fields of the objects for review forms.
  */
 
-namespace APP\plugins\generic\objectsForReview\classes;
+namespace APP\plugins\generic\bookReviewManager\classes;
 
 use APP\core\Application;
 use GuzzleHttp\Exception\ClientException;
@@ -50,7 +50,7 @@ class CrossrefLookup {
 	public static function handleRequest($request) {
 		$doi = self::normalizeDoi($request->getUserVar('doi'));
 		if (!$doi) {
-			return new JSONMessage(false, __('plugins.generic.objectsForReview.doiLookup.invalid'));
+			return new JSONMessage(false, __('plugins.generic.bookReviewManager.doiLookup.invalid'));
 		}
 		try {
 			return new JSONMessage(true, self::lookup($doi));
@@ -97,16 +97,16 @@ class CrossrefLookup {
 			);
 		} catch (ClientException $e) {
 			if ($e->getResponse() && $e->getResponse()->getStatusCode() == 404) {
-				throw new \Exception('plugins.generic.objectsForReview.doiLookup.notFound');
+				throw new \Exception('plugins.generic.bookReviewManager.doiLookup.notFound');
 			}
-			throw new \Exception('plugins.generic.objectsForReview.doiLookup.failed');
+			throw new \Exception('plugins.generic.bookReviewManager.doiLookup.failed');
 		} catch (GuzzleException $e) {
-			throw new \Exception('plugins.generic.objectsForReview.doiLookup.failed');
+			throw new \Exception('plugins.generic.bookReviewManager.doiLookup.failed');
 		}
 
 		$json = json_decode((string) $response->getBody(), true);
 		if (!is_array($json) || !isset($json['message']) || !is_array($json['message'])) {
-			throw new \Exception('plugins.generic.objectsForReview.doiLookup.failed');
+			throw new \Exception('plugins.generic.bookReviewManager.doiLookup.failed');
 		}
 
 		return self::mapWork($json['message'], $doi);
@@ -137,7 +137,7 @@ class CrossrefLookup {
 		}
 		$authors = implode('; ', $names);
 		if ($authors !== '' && empty($work['author'])) {
-			$authors .= ' (' . __('plugins.generic.objectsForReview.doiLookup.editorSuffix') . ')';
+			$authors .= ' (' . __('plugins.generic.bookReviewManager.doiLookup.editorSuffix') . ')';
 		}
 
 		$year = '';

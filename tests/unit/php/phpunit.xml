@@ -10,7 +10,7 @@
          displayDetailsOnTestsThatTriggerWarnings="true"
          displayDetailsOnSkippedTests="true">
     <testsuites>
-        <testsuite name="objectsForReview">
+        <testsuite name="bookReviewManager">
             <directory suffix="Test.php">.</directory>
         </testsuite>
     </testsuites>

@@ -1,19 +1,19 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/classes/IsbnLookup.php
+ * @file plugins/generic/bookReviewManager/classes/IsbnLookup.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class IsbnLookup
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief Resolve an ISBN to book metadata (Crossref, which has the publishers'
  *  data for academic books, with Open Library as fallback) and build WorldCat
  *  links for ISBNs.
  */
 
-namespace APP\plugins\generic\objectsForReview\classes;
+namespace APP\plugins\generic\bookReviewManager\classes;
 
 use APP\core\Application;
 use GuzzleHttp\Exception\GuzzleException;
@@ -37,17 +37,17 @@ class IsbnLookup {
 	public static function handleRequest($request) {
 		$isbn = self::normalizeIsbn($request->getUserVar('isbn'));
 		if (!$isbn) {
-			return new JSONMessage(false, __('plugins.generic.objectsForReview.isbnLookup.invalid'));
+			return new JSONMessage(false, __('plugins.generic.bookReviewManager.isbnLookup.invalid'));
 		}
 		try {
 			$data = self::lookup($isbn);
 		} catch (\Exception $e) {
-			return new JSONMessage(false, __('plugins.generic.objectsForReview.isbnLookup.failed'));
+			return new JSONMessage(false, __('plugins.generic.bookReviewManager.isbnLookup.failed'));
 		}
 		if (!$data) {
-			return new JSONMessage(false, __('plugins.generic.objectsForReview.isbnLookup.notFound'));
+			return new JSONMessage(false, __('plugins.generic.bookReviewManager.isbnLookup.notFound'));
 		}
-		$data['message'] = __('plugins.generic.objectsForReview.isbnLookup.done', ['source' => $data['source']]);
+		$data['message'] = __('plugins.generic.bookReviewManager.isbnLookup.done', ['source' => $data['source']]);
 		return new JSONMessage(true, $data);
 	}
 

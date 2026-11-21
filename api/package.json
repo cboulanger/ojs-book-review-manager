@@ -1,7 +1,7 @@
 {
-  "name": "objects-for-review-client",
+  "name": "book-review-manager-client",
   "version": "1.0.0",
-  "description": "Node client and CLI for the REST API of the OJS Objects for Review plugin",
+  "description": "Node client and CLI for the REST API of the OJS Book Review Manager plugin",
   "license": "GPL-3.0-only",
   "type": "module",
   "main": "src/client.js",

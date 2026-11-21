@@ -13,8 +13,8 @@ set -euo pipefail
 
 DEV_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PLUGIN_DIR="$(dirname "$DEV_DIR")"
-IMAGE=localhost/ojs-objectsforreview:3.5
-CONTAINER=ojs-objectsforreview
+IMAGE=localhost/ojs-bookreviewmanager:3.5
+CONTAINER=ojs-bookreviewmanager
 PORT="${OJS_PORT:-8080}"
 PODMAN="${PODMAN:-podman}"
 
@@ -32,7 +32,7 @@ up() {
 		"$PODMAN" run -d --name "$CONTAINER" \
 			-p "127.0.0.1:${PORT}:80" \
 			-e OJS_BASE_URL="http://localhost:${PORT}" \
-			-v "$PLUGIN_DIR:/var/www/html/plugins/generic/objectsForReview:ro" \
+			-v "$PLUGIN_DIR:/var/www/html/plugins/generic/bookReviewManager:ro" \
 			"$IMAGE" >/dev/null
 	fi
 	echo "Waiting for OJS..."

@@ -14,17 +14,17 @@ async function login(user, pass) {
 	return page;
 }
 const bre = await login('bre', 'ojsbre');
-await bre.goto(`${B}/manageObjectsForReview/desk`);
+await bre.goto(`${B}/manageBookReviews/desk`);
 console.log('desk title:', await bre.locator('h1.app__pageHeading').innerText());
 const menu = await bre.locator('nav, .app__nav').first().innerText().catch(() => '');
 console.log('menu has To-do:', menu.includes('To-do'), '| has Settings entry for plugin:', /Reviewers & bidders[\s\S]*Settings/.test(menu));
-console.log('desk text:', (await bre.locator('.objectsForReviewManagement').innerText()).slice(0, 200).replace(/\s+/g, ' '));
-const settingsResp = await bre.goto(`${B}/manageObjectsForReview/settings`);
+console.log('desk text:', (await bre.locator('.bookReviewManagerManagement').innerText()).slice(0, 200).replace(/\s+/g, ' '));
+const settingsResp = await bre.goto(`${B}/manageBookReviews/settings`);
 console.log('settings page as BRE:', settingsResp.status(), (await bre.title()).slice(0, 60));
 
 // Create a bidding offer
-await bre.goto(`${B}/manageObjectsForReview`);
-await bre.locator('#objectsForReviewGridContainer a[id*="addAvailableObjectForReview"]').click();
+await bre.goto(`${B}/manageBookReviews`);
+await bre.locator('#bookReviewManagerGridContainer a[id*="addAvailableObjectForReview"]').click();
 const form = bre.locator('#availableObjectsForReviewForm');
 await form.waitFor({ timeout: 15000 });
 await bre.waitForTimeout(1500);
@@ -41,6 +41,6 @@ console.log('deadline visible (bidding):', await form.locator('input[name=bidDea
 await bre.screenshot({ path: OUT + 'p1-offerform.png' });
 await form.locator('button.submitFormButton').click();
 await bre.waitForTimeout(3000);
-const row = bre.locator('#objectsForReviewGridContainer tr.gridRow', { hasText: 'A bidding test book' });
+const row = bre.locator('#bookReviewManagerGridContainer tr.gridRow', { hasText: 'A bidding test book' });
 console.log('grid row:', (await row.innerText()).replace(/\s+/g, ' '));
 await browser.close();

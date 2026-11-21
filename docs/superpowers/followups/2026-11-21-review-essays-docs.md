@@ -2,7 +2,7 @@
 
 > **Applied on 2026-11-21**, with one change: review essays became part of the import document (`essays`, imported by `importData` / `ofr import` after the works). So step 9 of section 3.3 and the manual `essay-<n>.json` were dropped from the email-import skill; `cases-to-import.js` resolves and checks `essays` like the rest.
 
-These texts are not in the branch `worktree-review-essays`, so that they don't conflict with the uncommitted move of `api/SKILL.md` to `skills/objects-for-review-api/SKILL.md` and with the uncommitted `skills/objects-for-review-email-import/SKILL.md` in the main checkout. Apply them after the merge.
+These texts are not in the branch `worktree-review-essays`, so that they don't conflict with the uncommitted move of `api/SKILL.md` to `skills/book-review-manager-api/SKILL.md` and with the uncommitted `skills/book-review-manager-email-import/SKILL.md` in the main checkout. Apply them after the merge.
 
 ## 1. `README.md`
 
@@ -12,7 +12,7 @@ Under "Changed or new in this fork", after the bullet **Inviting reviewers** (be
 - **Review essays.** Several works can be offered as one review essay, created upfront or by combining works already offered (taking over a reviewer one of them already has). The process with the reviewer (offer, invitations, agreement, due date, submission, publication) runs once for the essay; the review copy and the publisher notification stay with each work. See [the manual](docs/workflow.md#9-review-essays-one-review-of-several-works).
 ```
 
-## 2. `skills/objects-for-review-api/SKILL.md` (formerly `api/SKILL.md`)
+## 2. `skills/book-review-manager-api/SKILL.md` (formerly `api/SKILL.md`)
 
 ### 2.1 Section "3. Commands"
 
@@ -77,7 +77,7 @@ Review essays add:
 - 400 `titleRequired`, `worksRequired`, `invalidCopies` (`copies` or `copyPreferences` name a work outside the essay, or one twice; or `copies` is given for an assignment of a work that is not a review essay), `invalidCopyPreference`, `invalidCopyStatus`, `shippingAddressRequired`, `invalidResourceType` (`PUT objects/{id}` with `resourceType: reviewEssay`: an essay is created with `POST bundles`);
 - 404 `bundleNotFound` (no review essay with this id), `objectNotFound`;
 - 409 `cannot_combine` (`POST bundles`) and `review_essay_rule` (adding or removing a work, or changing the `resourceType` of an essay), each with `reason`, one of:
-  - `plugins.generic.objectsForReview.reviewEssay.error.notAvailable` (a work is already in an essay, attached to a submission, closed, or an essay itself; or the id is unknown),
+  - `plugins.generic.bookReviewManager.reviewEssay.error.notAvailable` (a work is already in an essay, attached to a submission, closed, or an essay itself; or the id is unknown),
   - `...error.twoReviewers` (more than one work has a reviewer, or the work to add has one),
   - `...error.pending` (a contract offer or an invitation round is pending for a work),
   - `...error.lastMember` (the last work can't be removed),
@@ -86,7 +86,7 @@ Review essays add:
 - 409 `member_of_review_essay` with `bundleId`: an assignment was imported on a work of an essay; import it on the essay.
 ```
 
-## 3. `skills/objects-for-review-email-import/SKILL.md` (main checkout only)
+## 3. `skills/book-review-manager-email-import/SKILL.md` (main checkout only)
 
 ### 3.1 Workflow, step 4 ("Read each case")
 

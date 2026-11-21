@@ -1,5 +1,5 @@
 {**
- * plugins/generic/objectsForReview/templates/frontend/contractFields.tpl
+ * plugins/generic/bookReviewManager/templates/frontend/contractFields.tpl
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
@@ -13,7 +13,7 @@
 <div class="ofrContractFields">
 	{if $reserveErrors}
 		<div class="ofrErrors" role="alert">
-			<p>{translate key="plugins.generic.objectsForReview.reserve.error.summary"}</p>
+			<p>{translate key="plugins.generic.bookReviewManager.reserve.error.summary"}</p>
 			<ul>
 				{foreach from=$reserveErrors item=errorKey}
 					<li>{translate key=$errorKey}</li>
@@ -23,61 +23,61 @@
 	{/if}
 
 	<section class="ofrContract">
-		<h3>{translate key="plugins.generic.objectsForReview.reserve.contract"}</h3>
+		<h3>{translate key="plugins.generic.bookReviewManager.reserve.contract"}</h3>
 		<div class="ofrContractText" tabindex="0">{$reserveContract|strip_unsafe_html}</div>
 		<label class="ofrCheckbox">
 			<input type="checkbox" name="acceptTerms" value="1" required{if $input.acceptTerms} checked{/if} />
-			{translate key="plugins.generic.objectsForReview.reserve.acceptTerms"}
+			{translate key="plugins.generic.bookReviewManager.reserve.acceptTerms"}
 		</label>
 	</section>
 
 	<div class="ofrField">
-		<label for="ofrDueDate">{translate key="plugins.generic.objectsForReview.reserve.dueDate"} <span class="ofrRequired">*</span></label>
+		<label for="ofrDueDate">{translate key="plugins.generic.bookReviewManager.reserve.dueDate"} <span class="ofrRequired">*</span></label>
 		<input type="date" id="ofrDueDate" name="dueDate" required
 			min="{$reserveDueDate.min|escape}" max="{$reserveDueDate.max|escape}" value="{$input.dueDate|escape}" />
-		<p class="ofrHint">{translate key="plugins.generic.objectsForReview.reserve.dueDate.hint" maxDate=$reserveDueDate.max|date_format:$dateFormatShort}</p>
+		<p class="ofrHint">{translate key="plugins.generic.bookReviewManager.reserve.dueDate.hint" maxDate=$reserveDueDate.max|date_format:$dateFormatShort}</p>
 	</div>
 
 	<fieldset class="ofrCopy">
 		{if $reserveMembers}
 			{* Review essay: one copy preference per work *}
-			<legend>{translate key="plugins.generic.objectsForReview.reserve.copyPerWork"} <span class="ofrRequired">*</span></legend>
+			<legend>{translate key="plugins.generic.bookReviewManager.reserve.copyPerWork"} <span class="ofrRequired">*</span></legend>
 			{foreach from=$reserveMembers item=member}
 				<fieldset class="ofrCopyWork">
 					<legend>{$member.citation|strip_unsafe_html}</legend>
 					{foreach from=['have', 'physical', 'electronic', 'other'] item=preference}
 						<label class="ofrRadio">
 							<input type="radio" name="copyPreferences[{$member.id|escape}]" value="{$preference}" required{if $input.copyPreferences[$member.id] == $preference} checked{/if} />
-							{translate key="plugins.generic.objectsForReview.reserve.copy.$preference"}
+							{translate key="plugins.generic.bookReviewManager.reserve.copy.$preference"}
 						</label>
 					{/foreach}
 				</fieldset>
 			{/foreach}
 		{else}
-			<legend>{translate key="plugins.generic.objectsForReview.reserve.copy"} <span class="ofrRequired">*</span></legend>
+			<legend>{translate key="plugins.generic.bookReviewManager.reserve.copy"} <span class="ofrRequired">*</span></legend>
 			{foreach from=['have', 'physical', 'electronic', 'other'] item=preference}
 				<label class="ofrRadio">
 					<input type="radio" name="copyPreference" value="{$preference}" required{if $input.copyPreference == $preference} checked{/if} />
-					{translate key="plugins.generic.objectsForReview.reserve.copy.$preference"}
+					{translate key="plugins.generic.bookReviewManager.reserve.copy.$preference"}
 				</label>
 			{/foreach}
 		{/if}
 
 		<div class="ofrConditional" data-show-for="physical">
 			<div class="ofrField">
-				<label for="ofrShippingAddress">{translate key="plugins.generic.objectsForReview.reserve.shippingAddress"} <span class="ofrRequired">*</span></label>
+				<label for="ofrShippingAddress">{translate key="plugins.generic.bookReviewManager.reserve.shippingAddress"} <span class="ofrRequired">*</span></label>
 				<textarea id="ofrShippingAddress" name="shippingAddress" rows="4">{$input.shippingAddress|escape}</textarea>
 			</div>
 			<div class="ofrField">
-				<label for="ofrPhone">{translate key="plugins.generic.objectsForReview.reserve.phone"} <span class="ofrRequired">*</span></label>
+				<label for="ofrPhone">{translate key="plugins.generic.bookReviewManager.reserve.phone"} <span class="ofrRequired">*</span></label>
 				<input type="tel" id="ofrPhone" name="phone" value="{$input.phone|escape}" pattern="\+?[0-9 ()\/.\-]{ldelim}6,30{rdelim}" autocomplete="tel" />
-				<p class="ofrHint">{translate key="plugins.generic.objectsForReview.reserve.phone.hint"}</p>
+				<p class="ofrHint">{translate key="plugins.generic.bookReviewManager.reserve.phone.hint"}</p>
 			</div>
 		</div>
 
 		<div class="ofrConditional" data-show-for="other">
 			<div class="ofrField">
-				<label for="ofrCopyNote">{translate key="plugins.generic.objectsForReview.reserve.copyNote"} <span class="ofrRequired">*</span></label>
+				<label for="ofrCopyNote">{translate key="plugins.generic.bookReviewManager.reserve.copyNote"} <span class="ofrRequired">*</span></label>
 				<textarea id="ofrCopyNote" name="copyNote" rows="3">{$input.copyNote|escape}</textarea>
 			</div>
 		</div>

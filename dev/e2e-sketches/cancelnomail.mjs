@@ -14,7 +14,7 @@ async function login(user, pass) {
 }
 
 const author = await login('author', 'ojsauthor');
-await author.goto(`${B}/for-review`);
+await author.goto(`${B}/books-for-review`);
 await author.locator('.ofrReserveButton[data-object-id="6"]').click();
 const d = author.locator('#ofrReserveDialog');
 await d.locator('input[name=acceptTerms]').check();
@@ -23,7 +23,7 @@ await Promise.all([author.waitForNavigation(), d.locator('button[type=submit]').
 console.log('reserved:', await author.locator('.ofrDueDate').first().innerText().catch(() => 'no'));
 
 const admin = await login('admin', 'ojsadmin');
-await admin.goto(`${B}/manageObjectsForReview/reservations`);
+await admin.goto(`${B}/manageBookReviews/reservations`);
 const row = admin.locator('.ofrTable tbody tr', { hasText: 'A test book for reservations' });
 await row.locator('.ofrActions a', { hasText: 'Reservierung aufheben' }).click();
 const form = admin.locator('#ofrReservationEmailForm');
@@ -34,6 +34,6 @@ console.log('email fields hidden:', !(await form.locator('.ofrEmailFields').isVi
 await Promise.all([admin.waitForNavigation({ timeout: 20000 }), form.locator('button.submitFormButton').click()]);
 console.log('row after cancel:', await admin.locator('.ofrTable tbody tr', { hasText: 'A test book for reservations' }).count());
 
-await author.goto(`${B}/for-review`);
+await author.goto(`${B}/books-for-review`);
 console.log('offered again on public page:', await author.locator('.ofrReserveButton[data-object-id="6"]').count());
 await browser.close();

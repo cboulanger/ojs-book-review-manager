@@ -1,26 +1,26 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/ObjectsForReviewSettingsForm.inc.php
+ * @file plugins/generic/bookReviewManager/ObjectsForReviewSettingsForm.inc.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ObjectsForReviewSettingsForm
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
- * @brief Form for journal managers to modify Objects for Review plugin settings
+ * @brief Form for journal managers to modify Book Review Manager plugin settings
  */
 
-namespace APP\plugins\generic\objectsForReview;
+namespace APP\plugins\generic\bookReviewManager;
 
 use APP\core\Application;
 use APP\template\TemplateManager;
-use APP\plugins\generic\objectsForReview\classes\AssignmentWorkflow;
-use APP\plugins\generic\objectsForReview\classes\ObjectForReview;
-use APP\plugins\generic\objectsForReview\classes\Reservation;
-use APP\plugins\generic\objectsForReview\classes\Roles;
+use APP\plugins\generic\bookReviewManager\classes\AssignmentWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\ObjectForReview;
+use APP\plugins\generic\bookReviewManager\classes\Reservation;
+use APP\plugins\generic\bookReviewManager\classes\Roles;
 
 
 class ObjectsForReviewSettingsForm extends \PKP\form\Form {
@@ -33,7 +33,7 @@ class ObjectsForReviewSettingsForm extends \PKP\form\Form {
 
 	/**
 	 * Constructor
-	 * @param $plugin ObjectsForReviewPlugin
+	 * @param $plugin BookReviewManagerPlugin
 	 * @param $journalId int
 	 */
 	function __construct($plugin, $journalId) {
@@ -43,31 +43,31 @@ class ObjectsForReviewSettingsForm extends \PKP\form\Form {
 		parent::__construct($plugin->getTemplateResource('settingsForm.tpl'));
 
 		$this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'ofrDueMonthsMax', 'required',
-			'plugins.generic.objectsForReview.settings.dueMonths.invalid',
+			'plugins.generic.bookReviewManager.settings.dueMonths.invalid',
 			fn ($max) => ctype_digit((string) $max) && $max >= 1 && $max <= Reservation::MAX_DUE_MONTHS_LIMIT));
 		$this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'ofrDueMonthsDefault', 'required',
-			'plugins.generic.objectsForReview.settings.dueMonths.invalid',
+			'plugins.generic.bookReviewManager.settings.dueMonths.invalid',
 			fn ($default) => ctype_digit((string) $default) && $default >= 1 && $default <= (int) $this->getData('ofrDueMonthsMax')));
 		$this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'ofrReminderDays', 'required',
-			'plugins.generic.objectsForReview.settings.reminderDays.invalid',
+			'plugins.generic.bookReviewManager.settings.reminderDays.invalid',
 			fn ($days) => ctype_digit((string) $days) && $days <= Reservation::MAX_REMINDER_DAYS));
 		$this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'ofrContractDays', 'required',
-			'plugins.generic.objectsForReview.settings.contractDays.invalid',
+			'plugins.generic.bookReviewManager.settings.contractDays.invalid',
 			fn ($days) => ctype_digit((string) $days) && $days >= 1 && $days <= AssignmentWorkflow::MAX_CONTRACT_DAYS));
 		$this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'ofrContractReminderDays', 'required',
-			'plugins.generic.objectsForReview.settings.contractDays.invalid',
+			'plugins.generic.bookReviewManager.settings.contractDays.invalid',
 			fn ($days) => ctype_digit((string) $days) && $days < (int) $this->getData('ofrContractDays')));
 		$this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'ofrPublisherReminderDays', 'required',
-			'plugins.generic.objectsForReview.settings.publisherReminderDays.invalid',
-			fn ($days) => ctype_digit((string) $days) && $days <= \APP\plugins\generic\objectsForReview\classes\CopyWorkflow::MAX_PUBLISHER_REMINDER_DAYS));
+			'plugins.generic.bookReviewManager.settings.publisherReminderDays.invalid',
+			fn ($days) => ctype_digit((string) $days) && $days <= \APP\plugins\generic\bookReviewManager\classes\CopyWorkflow::MAX_PUBLISHER_REMINDER_DAYS));
 		$this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'ofrInvitationDays', 'required',
-			'plugins.generic.objectsForReview.settings.invitationDays.invalid',
-			fn ($days) => ctype_digit((string) $days) && $days >= 1 && $days <= \APP\plugins\generic\objectsForReview\classes\InvitationWorkflow::MAX_INVITATION_DAYS));
+			'plugins.generic.bookReviewManager.settings.invitationDays.invalid',
+			fn ($days) => ctype_digit((string) $days) && $days >= 1 && $days <= \APP\plugins\generic\bookReviewManager\classes\InvitationWorkflow::MAX_INVITATION_DAYS));
 		$this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'ofrInvitationReminderDays', 'required',
-			'plugins.generic.objectsForReview.settings.invitationDays.reminderInvalid',
+			'plugins.generic.bookReviewManager.settings.invitationDays.reminderInvalid',
 			fn ($days) => ctype_digit((string) $days) && ((int) $days === 0 || $days < (int) $this->getData('ofrInvitationDays'))));
 		$this->addCheck(new \PKP\form\validation\FormValidatorInSet($this, 'ofrDefaultMode', 'required',
-			'plugins.generic.objectsForReview.offer.modeRequired', ObjectForReview::MODES));
+			'plugins.generic.bookReviewManager.offer.modeRequired', ObjectForReview::MODES));
 		$this->addCheck(new \PKP\form\validation\FormValidatorPost($this));
 		$this->addCheck(new \PKP\form\validation\FormValidatorCSRF($this));
 	}
@@ -89,16 +89,16 @@ class ObjectsForReviewSettingsForm extends \PKP\form\Form {
 		[$this->_data['ofrDueMonthsDefault'], $this->_data['ofrDueMonthsMax']] = Reservation::getDueMonths($this->_plugin, $this->_journalId);
 		$this->_data['ofrReminderDays'] = Reservation::getReminderDays($this->_plugin, $this->_journalId);
 		[$this->_data['ofrContractDays'], $this->_data['ofrContractReminderDays']] = AssignmentWorkflow::getContractDays($this->_plugin, $this->_journalId);
-		$this->_data['ofrPublisherReminderDays'] = \APP\plugins\generic\objectsForReview\classes\CopyWorkflow::getPublisherReminderDays($this->_plugin, $this->_journalId);
-		$this->_data['ofrInvitationDays'] = \APP\plugins\generic\objectsForReview\classes\InvitationWorkflow::getInvitationDays($this->_plugin, $this->_journalId);
-		$this->_data['ofrInvitationReminderDays'] = \APP\plugins\generic\objectsForReview\classes\InvitationWorkflow::getReminderDays($this->_plugin, $this->_journalId);
+		$this->_data['ofrPublisherReminderDays'] = \APP\plugins\generic\bookReviewManager\classes\CopyWorkflow::getPublisherReminderDays($this->_plugin, $this->_journalId);
+		$this->_data['ofrInvitationDays'] = \APP\plugins\generic\bookReviewManager\classes\InvitationWorkflow::getInvitationDays($this->_plugin, $this->_journalId);
+		$this->_data['ofrInvitationReminderDays'] = \APP\plugins\generic\bookReviewManager\classes\InvitationWorkflow::getReminderDays($this->_plugin, $this->_journalId);
 		$this->_data['ofrDefaultMode'] = $this->_plugin->getSetting($this->_journalId, 'ofrDefaultMode') ?: ObjectForReview::MODE_DIRECT;
 		$this->_data['ofrDefaultEditorId'] = $this->_plugin->getSetting($this->_journalId, 'ofrDefaultEditorId');
 		// Prefill the contract with the default text
 		if (empty(array_filter((array) $this->_data['ofrContract']))) {
 			$contract = [];
 			foreach ($context->getSupportedFormLocales() as $locale) {
-				$contract[$locale] = __('plugins.generic.objectsForReview.contract.default', [], $locale);
+				$contract[$locale] = __('plugins.generic.bookReviewManager.contract.default', [], $locale);
 			}
 			$this->_data['ofrContract'] = $contract;
 		}
@@ -119,10 +119,10 @@ class ObjectsForReviewSettingsForm extends \PKP\form\Form {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('pluginName', $this->_plugin->getName());
 		$templateMgr->assign('assignmentModes', [
-			ObjectForReview::MODE_DIRECT => __('plugins.generic.objectsForReview.offer.mode.direct'),
-			ObjectForReview::MODE_BIDDING => __('plugins.generic.objectsForReview.offer.mode.bidding'),
+			ObjectForReview::MODE_DIRECT => __('plugins.generic.bookReviewManager.offer.mode.direct'),
+			ObjectForReview::MODE_BIDDING => __('plugins.generic.bookReviewManager.offer.mode.bidding'),
 		]);
-		$templateMgr->assign('bookReviewEditors', ['' => __('plugins.generic.objectsForReview.settings.defaultEditor.none')]
+		$templateMgr->assign('bookReviewEditors', ['' => __('plugins.generic.bookReviewManager.settings.defaultEditor.none')]
 			+ Roles::getMembers($this->_plugin, (int) $this->_journalId, Roles::EDITOR));
 		return parent::fetch($request, $template, $display);
 	}

@@ -18,7 +18,7 @@ const inDays = n => { const d = new Date(); d.setHours(12); d.setDate(d.getDate(
 
 // Author reserves the test book, due in 10 days
 const author = await login('author', 'ojsauthor');
-await author.goto(`${B}/for-review`);
+await author.goto(`${B}/books-for-review`);
 await author.locator('.ofrReserveButton[data-object-id="6"]').click();
 const d = author.locator('#ofrReserveDialog');
 await d.locator('input[name=acceptTerms]').check();
@@ -29,7 +29,7 @@ console.log('reserved:', await author.locator('.ofrDueDate').first().innerText()
 
 // Admin: actions on the reservations page
 const admin = await login('admin', 'ojsadmin');
-await admin.goto(`${B}/manageObjectsForReview/reservations`);
+await admin.goto(`${B}/manageBookReviews/reservations`);
 const row = admin.locator('.ofrTable tbody tr', { hasText: 'A test book for reservations' });
 console.log('row actions:', (await row.locator('.ofrActions a').allInnerTexts()).map(t => t.trim()));
 

@@ -19,7 +19,7 @@ const iso = d => d.toISOString().slice(0, 10);
 const addMonths = n => { const d = new Date(); d.setHours(12); d.setMonth(d.getMonth() + n); return iso(d); };
 
 const page = await login('author', 'ojsauthor');
-await page.goto(`${B}/for-review`);
+await page.goto(`${B}/books-for-review`);
 const button = page.locator('.ofrReserveButton').first();
 const objectId = await button.getAttribute('data-object-id');
 await button.click();
@@ -70,7 +70,7 @@ await Promise.all([page.waitForNavigation(), d2.locator('button[type=submit]').c
 console.log('\nafter reserve, own due date:', await page.locator('.ofrDueDate').first().innerText().catch(() => 'none'));
 
 const admin = await login('admin', 'ojsadmin');
-await admin.goto(`${B}/manageObjectsForReview/reservations`);
+await admin.goto(`${B}/manageBookReviews/reservations`);
 console.log('backend row:', (await admin.locator('.ofrTable tbody tr').first().innerText()).replace(/\s+/g, ' '));
 await admin.screenshot({ path: OUT + 'reserve-backend.png' });
 console.log('OBJECT_ID', objectId);

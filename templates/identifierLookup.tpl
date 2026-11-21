@@ -1,5 +1,5 @@
 {**
- * plugins/generic/objectsForReview/templates/identifierLookup.tpl
+ * plugins/generic/bookReviewManager/templates/identifierLookup.tpl
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
@@ -14,13 +14,13 @@
 {assign var=idLookupId value="orIdLookup"|concat:"-"|uniqid}
 <span class="orIdLookup" id="{$idLookupId|escape}"
 	data-doi-url="{$doiLookupUrl|escape}"
-	data-doi-label="{translate|escape key="plugins.generic.objectsForReview.doiLookup.button"}"
-	data-doi-loading="{translate|escape key="plugins.generic.objectsForReview.doiLookup.loading"}"
-	data-doi-done="{translate|escape key="plugins.generic.objectsForReview.doiLookup.done"}"
+	data-doi-label="{translate|escape key="plugins.generic.bookReviewManager.doiLookup.button"}"
+	data-doi-loading="{translate|escape key="plugins.generic.bookReviewManager.doiLookup.loading"}"
+	data-doi-done="{translate|escape key="plugins.generic.bookReviewManager.doiLookup.done"}"
 	data-isbn-url="{$isbnLookupUrl|escape}"
-	data-isbn-label="{translate|escape key="plugins.generic.objectsForReview.isbnLookup.button"}"
-	data-isbn-loading="{translate|escape key="plugins.generic.objectsForReview.isbnLookup.loading"}"
-	data-msg-failed="{translate|escape key="plugins.generic.objectsForReview.isbnLookup.failed"}">
+	data-isbn-label="{translate|escape key="plugins.generic.bookReviewManager.isbnLookup.button"}"
+	data-isbn-loading="{translate|escape key="plugins.generic.bookReviewManager.isbnLookup.loading"}"
+	data-msg-failed="{translate|escape key="plugins.generic.bookReviewManager.isbnLookup.failed"}">
 	<button type="button" class="pkp_button orIdLookupButton"></button>
 	<span class="orIdLookupStatus" role="status" aria-live="polite"></span>
 </span>

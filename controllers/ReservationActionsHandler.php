@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/controllers/ReservationActionsHandler.php
+ * @file plugins/generic/bookReviewManager/controllers/ReservationActionsHandler.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ReservationActionsHandler
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief Modals and actions of the book review editor's pages: email a
  *  reviewer, cancel a contract offer or reservation, select a bidder (contract
@@ -14,19 +14,19 @@
  *  reservation, close or reopen an offer, and show the audit trail.
  */
 
-namespace APP\plugins\generic\objectsForReview\controllers;
+namespace APP\plugins\generic\bookReviewManager\controllers;
 
 use APP\core\Application;
 use APP\handler\Handler;
-use APP\plugins\generic\objectsForReview\classes\Assignment;
-use APP\plugins\generic\objectsForReview\classes\AssignmentWorkflow;
-use APP\plugins\generic\objectsForReview\classes\InvitationWorkflow;
-use APP\plugins\generic\objectsForReview\classes\ReservationLog;
-use APP\plugins\generic\objectsForReview\classes\ReservationMailer;
-use APP\plugins\generic\objectsForReview\classes\Roles;
-use APP\plugins\generic\objectsForReview\classes\CopyWorkflow;
-use APP\plugins\generic\objectsForReview\controllers\form\CopyStepForm;
-use APP\plugins\generic\objectsForReview\controllers\form\ReservationEmailForm;
+use APP\plugins\generic\bookReviewManager\classes\Assignment;
+use APP\plugins\generic\bookReviewManager\classes\AssignmentWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\InvitationWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\ReservationLog;
+use APP\plugins\generic\bookReviewManager\classes\ReservationMailer;
+use APP\plugins\generic\bookReviewManager\classes\Roles;
+use APP\plugins\generic\bookReviewManager\classes\CopyWorkflow;
+use APP\plugins\generic\bookReviewManager\controllers\form\CopyStepForm;
+use APP\plugins\generic\bookReviewManager\controllers\form\ReservationEmailForm;
 use APP\template\TemplateManager;
 use PKP\core\JSONMessage;
 use PKP\db\DAO;
@@ -37,7 +37,7 @@ use PKP\security\Role;
 class ReservationActionsHandler extends Handler {
 
 	/** Component name used in URLs */
-	const COMPONENT = 'plugins.generic.objectsForReview.controllers.ReservationActionsHandler';
+	const COMPONENT = 'plugins.generic.bookReviewManager.controllers.ReservationActionsHandler';
 
 	/** Form modes: [show op, save op, allowed assignment statuses] */
 	const FORM_OPS = [
@@ -57,7 +57,7 @@ class ReservationActionsHandler extends Handler {
 
 	const OFFER_ACTIONS = ['reopenBidding', 'switchToDirect', 'closeOffer', 'reopenOffer'];
 
-	/** @var \APP\plugins\generic\objectsForReview\ObjectsForReviewPlugin */
+	/** @var \APP\plugins\generic\bookReviewManager\BookReviewManagerPlugin */
 	public $plugin;
 
 	public function __construct($plugin) {
@@ -106,7 +106,7 @@ class ReservationActionsHandler extends Handler {
 	public function copyStepForm($args, $request) {
 		[$object, $assignment, $step] = $this->getCopyStepTarget($request);
 		if (!$object) {
-			return new JSONMessage(false, __('plugins.generic.objectsForReview.desk.notPossible'));
+			return new JSONMessage(false, __('plugins.generic.bookReviewManager.desk.notPossible'));
 		}
 		ReservationMailer::ensureTemplates($this->plugin, $request->getContext()->getId());
 		$form = new CopyStepForm($this->plugin, $request->getContext(), $object, $assignment, $step);
@@ -117,7 +117,7 @@ class ReservationActionsHandler extends Handler {
 	public function copyStep($args, $request) {
 		[$object, $assignment, $step] = $this->getCopyStepTarget($request);
 		if (!$object || !$request->checkCSRF()) {
-			return new JSONMessage(false, __('plugins.generic.objectsForReview.desk.notPossible'));
+			return new JSONMessage(false, __('plugins.generic.bookReviewManager.desk.notPossible'));
 		}
 		$form = new CopyStepForm($this->plugin, $request->getContext(), $object, $assignment, $step);
 		$form->readInputData();
@@ -173,7 +173,7 @@ class ReservationActionsHandler extends Handler {
 		[$object, $assignments] = $this->getTarget($request, self::FORM_OPS[$op]);
 		if (!$object) {
 			return new JSONMessage(false, __(in_array(self::FORM_OPS[$op], [ReservationEmailForm::MODE_INVITATION, ReservationEmailForm::MODE_ROUND], true)
-				? 'plugins.generic.objectsForReview.desk.notPossible' : 'plugins.generic.objectsForReview.reservations.notReserved'));
+				? 'plugins.generic.bookReviewManager.desk.notPossible' : 'plugins.generic.bookReviewManager.reservations.notReserved'));
 		}
 		ReservationMailer::ensureTemplates($this->plugin, $request->getContext()->getId());
 		$form = new ReservationEmailForm($this->plugin, $request->getContext(), $object, $assignments, self::FORM_OPS[$op]);
@@ -185,7 +185,7 @@ class ReservationActionsHandler extends Handler {
 		[$object, $assignments] = $this->getTarget($request, self::FORM_OPS[$op]);
 		if (!$object || !$request->checkCSRF()) {
 			return new JSONMessage(false, __(in_array(self::FORM_OPS[$op], [ReservationEmailForm::MODE_INVITATION, ReservationEmailForm::MODE_ROUND], true)
-				? 'plugins.generic.objectsForReview.desk.notPossible' : 'plugins.generic.objectsForReview.reservations.notReserved'));
+				? 'plugins.generic.bookReviewManager.desk.notPossible' : 'plugins.generic.bookReviewManager.reservations.notReserved'));
 		}
 		$form = new ReservationEmailForm($this->plugin, $request->getContext(), $object, $assignments, self::FORM_OPS[$op]);
 		$form->readInputData();
@@ -206,7 +206,7 @@ class ReservationActionsHandler extends Handler {
 		}
 		if ($object->isBundleMember()) {
 			// A work of a review essay is offered through its essay
-			return new JSONMessage(false, __('plugins.generic.objectsForReview.desk.notPossible'));
+			return new JSONMessage(false, __('plugins.generic.bookReviewManager.desk.notPossible'));
 		}
 		$user = $request->getUser();
 		$assignments = AssignmentWorkflow::dao()->getByObjectId($object->getId());
@@ -215,26 +215,26 @@ class ReservationActionsHandler extends Handler {
 		switch ($action) {
 			case 'reopenBidding':
 				if (!$selecting) {
-					return new JSONMessage(false, __('plugins.generic.objectsForReview.desk.notPossible'));
+					return new JSONMessage(false, __('plugins.generic.bookReviewManager.desk.notPossible'));
 				}
 				$deadline = $object->getData('bidDeadline');
 				AssignmentWorkflow::reopenBidding($object, $user, $deadline && $deadline >= date('Y-m-d') ? $deadline : null);
 				break;
 			case 'switchToDirect':
 				if (!$selecting) {
-					return new JSONMessage(false, __('plugins.generic.objectsForReview.desk.notPossible'));
+					return new JSONMessage(false, __('plugins.generic.bookReviewManager.desk.notPossible'));
 				}
 				AssignmentWorkflow::switchToDirect($object, $user);
 				break;
 			case 'closeOffer':
 				if (!$selecting) {
-					return new JSONMessage(false, __('plugins.generic.objectsForReview.desk.notPossible'));
+					return new JSONMessage(false, __('plugins.generic.bookReviewManager.desk.notPossible'));
 				}
 				AssignmentWorkflow::closeOffer($object, $user);
 				break;
 			case 'reopenOffer':
 				if ($state !== AssignmentWorkflow::STATE_CLOSED) {
-					return new JSONMessage(false, __('plugins.generic.objectsForReview.desk.notPossible'));
+					return new JSONMessage(false, __('plugins.generic.bookReviewManager.desk.notPossible'));
 				}
 				AssignmentWorkflow::reopenOffer($object, $user);
 				break;
@@ -295,7 +295,7 @@ class ReservationActionsHandler extends Handler {
 	 * The requested object of the current journal.
 	 */
 	protected function getObject($request) {
-		$object = DAORegistry::getDAO('ObjectForReviewDAO')->getById((int) $request->getUserVar('objectId'));
+		$object = DAORegistry::getDAO('BookReviewManagerObjectDAO')->getById((int) $request->getUserVar('objectId'));
 		return $object && $object->getContextId() == $request->getContext()->getId() ? $object : null;
 	}
 }

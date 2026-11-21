@@ -1,18 +1,18 @@
 <?php
 /**
- * @file plugins/generic/objectsForReview/controllers/grid/ObjectsForReviewManagementGridCellProvider.inc.php
+ * @file plugins/generic/bookReviewManager/controllers/grid/ObjectsForReviewManagementGridCellProvider.inc.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ObjectsForReviewManagementGridCellProvider
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
- * @brief Class for a cell provider to display information about objectsForReview items
+ * @brief Class for a cell provider to display information about bookReviewManager items
  */
 
-namespace APP\plugins\generic\objectsForReview\controllers\grid;
+namespace APP\plugins\generic\bookReviewManager\controllers\grid;
 
 
 use PKP\controllers\grid\GridCellProvider;
@@ -33,16 +33,16 @@ class ObjectsForReviewManagementGridCellProvider extends GridCellProvider {
 	 * @copydoc GridCellProvider::getTemplateVarsFromRowColumn()
 	 */
 	function getTemplateVarsFromRowColumn($row, $column) {
-		$objectsForReviewItem = $row->getData();
+		$bookReviewManagerItem = $row->getData();
 		switch ($column->getId()) {
 			case 'identifierType':
-				return array('label' => $objectsForReviewItem['identifierType']);
+				return array('label' => $bookReviewManagerItem['identifierType']);
 			case 'identifier':
-				return array('label' => $objectsForReviewItem['identifier']);
+				return array('label' => $bookReviewManagerItem['identifier']);
 			case 'description':
-				return array('label' => $this->getDescriptionHtml($objectsForReviewItem));
+				return array('label' => $this->getDescriptionHtml($bookReviewManagerItem));
 			case 'user':
-				return array('label' => $objectsForReviewItem['user']);	
+				return array('label' => $bookReviewManagerItem['user']);	
 		}
 	}
 
@@ -54,7 +54,7 @@ class ObjectsForReviewManagementGridCellProvider extends GridCellProvider {
 		$description = PKPString::stripUnsafeHtml((string) $item['description']);
 		switch ($item['essayRole'] ?? null) {
 			case 'container':
-				return '<strong>' . htmlspecialchars(__('plugins.generic.objectsForReview.reviewEssay.label')) . '</strong> ' . $description;
+				return '<strong>' . htmlspecialchars(__('plugins.generic.bookReviewManager.reviewEssay.label')) . '</strong> ' . $description;
 			case 'member':
 				return '<span class="ofrEssayMember">↳ ' . $description . '</span>';
 		}

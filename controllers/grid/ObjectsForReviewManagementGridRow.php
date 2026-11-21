@@ -1,19 +1,19 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/controllers/grid/ObjectsForReviewManagementGridRow.inc.php
+ * @file plugins/generic/bookReviewManager/controllers/grid/ObjectsForReviewManagementGridRow.inc.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ObjectsForReviewManagementGridRow
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief Handle ObjectsForReview management grid row requests.
  */
 
-namespace APP\plugins\generic\objectsForReview\controllers\grid;
+namespace APP\plugins\generic\bookReviewManager\controllers\grid;
 
 use PKP\controllers\grid\GridRow;
 use PKP\linkAction\LinkAction;
@@ -68,9 +68,9 @@ class ObjectsForReviewManagementGridRow extends GridRow {
 						'addWork',
 						new AjaxModal(
 							$router->url($request, null, null, 'editBundleMember', null, ['containerId' => $objectId]),
-							__('plugins.generic.objectsForReview.reviewEssay.addWork'),
+							__('plugins.generic.bookReviewManager.reviewEssay.addWork'),
 							'modal_add_item'),
-						__('plugins.generic.objectsForReview.reviewEssay.addWork'),
+						__('plugins.generic.bookReviewManager.reviewEssay.addWork'),
 						'add_item'
 					)
 				);
@@ -80,11 +80,11 @@ class ObjectsForReviewManagementGridRow extends GridRow {
 						'dissolve',
 						new RemoteActionConfirmationModal(
 							$request->getSession(),
-							__('plugins.generic.objectsForReview.reviewEssay.dissolve.confirm'),
-							__('plugins.generic.objectsForReview.reviewEssay.dissolve'),
+							__('plugins.generic.bookReviewManager.reviewEssay.dissolve.confirm'),
+							__('plugins.generic.bookReviewManager.reviewEssay.dissolve'),
 							$router->url($request, null, null, 'dissolveReviewEssay', null, ['objectId' => $objectId]), 'modal_delete'
 						),
-						__('plugins.generic.objectsForReview.reviewEssay.dissolve'),
+						__('plugins.generic.bookReviewManager.reviewEssay.dissolve'),
 						'delete'
 					)
 				);
@@ -94,11 +94,11 @@ class ObjectsForReviewManagementGridRow extends GridRow {
 						'removeFromReviewEssay',
 						new RemoteActionConfirmationModal(
 							$request->getSession(),
-							__('plugins.generic.objectsForReview.reviewEssay.remove.confirm'),
-							__('plugins.generic.objectsForReview.reviewEssay.remove'),
+							__('plugins.generic.bookReviewManager.reviewEssay.remove.confirm'),
+							__('plugins.generic.bookReviewManager.reviewEssay.remove'),
 							$router->url($request, null, null, 'removeFromReviewEssay', null, ['objectId' => $objectId]), 'modal_delete'
 						),
-						__('plugins.generic.objectsForReview.reviewEssay.remove'),
+						__('plugins.generic.bookReviewManager.reviewEssay.remove'),
 						'delete'
 					)
 				);
@@ -109,9 +109,9 @@ class ObjectsForReviewManagementGridRow extends GridRow {
 						'addToReviewEssay',
 						new AjaxModal(
 							$router->url($request, null, null, 'editBundleMember', null, ['workId' => $objectId]),
-							__('plugins.generic.objectsForReview.reviewEssay.addToEssay'),
+							__('plugins.generic.bookReviewManager.reviewEssay.addToEssay'),
 							'modal_add_item'),
-						__('plugins.generic.objectsForReview.reviewEssay.addToEssay'),
+						__('plugins.generic.bookReviewManager.reviewEssay.addToEssay'),
 						'add_item'
 					)
 				);
@@ -123,15 +123,15 @@ class ObjectsForReviewManagementGridRow extends GridRow {
 					new LinkAction(
 						'invite',
 						new RedirectAction($request->getDispatcher()->url($request, \APP\core\Application::ROUTE_PAGE, null,
-							\APP\plugins\generic\objectsForReview\pages\ObjectsForReviewManagementHandler::PAGE, 'invite', [$objectId])),
-						__('plugins.generic.objectsForReview.invitation.inviteReviewers'),
+							\APP\plugins\generic\bookReviewManager\pages\ObjectsForReviewManagementHandler::PAGE, 'invite', [$objectId])),
+						__('plugins.generic.bookReviewManager.invitation.inviteReviewers'),
 						'invite'
 					)
 				);
 
 				// Hide from the public list, or show again
 				$hidden = !empty($data['hidden']);
-				$label = __($hidden ? 'plugins.generic.objectsForReview.show' : 'plugins.generic.objectsForReview.hide');
+				$label = __($hidden ? 'plugins.generic.bookReviewManager.show' : 'plugins.generic.bookReviewManager.hide');
 				$this->addAction(
 					new LinkAction(
 						'toggleHidden',
@@ -152,18 +152,18 @@ class ObjectsForReviewManagementGridRow extends GridRow {
 					'history',
 					new AjaxModal(
 						$request->getDispatcher()->url($request, \APP\core\Application::ROUTE_COMPONENT, null,
-							\APP\plugins\generic\objectsForReview\controllers\ReservationActionsHandler::COMPONENT, 'history', null, ['objectId' => $objectId]),
-						__('plugins.generic.objectsForReview.history'),
+							\APP\plugins\generic\bookReviewManager\controllers\ReservationActionsHandler::COMPONENT, 'history', null, ['objectId' => $objectId]),
+						__('plugins.generic.bookReviewManager.history'),
 						'modal_information'),
-					__('plugins.generic.objectsForReview.history'),
+					__('plugins.generic.bookReviewManager.history'),
 					'history'
 				)
 			);
 
 			// Create the "delete" action (a review essay is dissolved first, a work is first removed from its essay)
 			$confirmKey = match ($essayRole) {
-				'container' => 'plugins.generic.objectsForReview.reviewEssay.delete.confirmEssay',
-				'member' => 'plugins.generic.objectsForReview.reviewEssay.delete.confirmWork',
+				'container' => 'plugins.generic.bookReviewManager.reviewEssay.delete.confirmEssay',
+				'member' => 'plugins.generic.bookReviewManager.reviewEssay.delete.confirmWork',
 				default => 'common.confirmDelete',
 			};
 			$this->addAction(

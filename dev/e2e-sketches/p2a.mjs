@@ -1,15 +1,15 @@
 import { B, OUT, browser, login, since, mails, modalForm, bodyText } from './lib.mjs';
 import { execSync } from 'node:child_process';
-const sql = q => execSync(`podman exec ojs-objectsforreview mysql -N ojs -e ${JSON.stringify(q)}`).toString().trim();
+const sql = q => execSync(`podman exec ojs-bookreviewmanager mysql -N ojs -e ${JSON.stringify(q)}`).toString().trim();
 const TITLE = 'A copy test book';
-const objectRow = p => p.locator('#objects-for-review-table tr', { hasText: TITLE });
+const objectRow = p => p.locator('#book-review-manager-table tr', { hasText: TITLE });
 const status = async p => (await objectRow(p).locator('td').last().innerText()).replace(/\s+/g, ' ').trim();
 const formErrors = async p => (await p.locator('#availableObjectsForReviewForm .pkp_form_error, #availableObjectsForReviewForm label.error, #availableObjectsForReviewForm .error').allInnerTexts()).map(x => x.trim()).filter(Boolean);
 
 // Offer with a publisher contact
 const bre = await login('bre', 'ojsbre');
-await bre.goto(`${B}/manageObjectsForReview`);
-await bre.locator('#objectsForReviewGridContainer a[id*="addAvailableObjectForReview"]').click();
+await bre.goto(`${B}/manageBookReviews`);
+await bre.locator('#bookReviewManagerGridContainer a[id*="addAvailableObjectForReview"]').click();
 const form = bre.locator('#availableObjectsForReviewForm');
 await form.waitFor({ timeout: 15000 });
 await bre.waitForTimeout(1500);
@@ -33,13 +33,13 @@ await form.locator('input[name=notifyPublisher]').check();
 await bre.screenshot({ path: OUT + 'p2-offerform.png', fullPage: true });
 await form.locator('button.submitFormButton').click();
 await bre.waitForTimeout(3000);
-console.log('grid row:', (await bre.locator('#objectsForReviewGridContainer tr.gridRow', { hasText: TITLE }).innerText()).replace(/\s+/g, ' '));
-const objectId = sql(`SELECT object_id FROM objects_for_review_settings WHERE setting_name='title' AND setting_value LIKE '%${TITLE}%'`);
-console.log('offer settings:', sql(`SELECT GROUP_CONCAT(CONCAT(setting_name,'=',setting_value)) FROM objects_for_review_settings WHERE object_id=${objectId} AND setting_name IN ('publisherContactId','journalHoldsCopy','returnRequired','notifyPublisher','responsibleEditorId')`));
+console.log('grid row:', (await bre.locator('#bookReviewManagerGridContainer tr.gridRow', { hasText: TITLE }).innerText()).replace(/\s+/g, ' '));
+const objectId = sql(`SELECT object_id FROM brm_object_settings WHERE setting_name='title' AND setting_value LIKE '%${TITLE}%'`);
+console.log('offer settings:', sql(`SELECT GROUP_CONCAT(CONCAT(setting_name,'=',setting_value)) FROM brm_object_settings WHERE object_id=${objectId} AND setting_name IN ('publisherContactId','journalHoldsCopy','returnRequired','notifyPublisher','responsibleEditorId')`));
 
 // Direct reservation with a printed copy
 const author = await login('author', 'ojsauthor');
-await author.goto(`${B}/for-review`);
+await author.goto(`${B}/books-for-review`);
 await objectRow(author).locator('.ofrReserveButton').click();
 const d = author.locator('#ofrReserveDialog');
 await d.locator('input[name=acceptTerms]').check();
@@ -50,7 +50,7 @@ await Promise.all([author.waitForNavigation(), d.locator('button[type=submit]').
 console.log('author:', await status(author));
 
 // Editor requests the copy from the publisher
-await bre.goto(`${B}/manageObjectsForReview/desk`);
+await bre.goto(`${B}/manageBookReviews/desk`);
 let row = bre.locator('.ofrCopies tbody tr', { hasText: TITLE });
 console.log('copy row:', (await row.innerText()).replace(/\s+/g, ' '));
 await row.locator('a', { hasText: 'Request copy from publisher' }).click();
@@ -72,17 +72,17 @@ await Promise.all([bre.waitForNavigation({ timeout: 20000 }), mf.locator('button
 console.log('mails:', mails(t).map(m => `${m.to} | ${m.subject}`));
 
 // Reviewer confirms receipt
-await author.goto(`${B}/for-review`);
+await author.goto(`${B}/books-for-review`);
 console.log('author:', await status(author));
 await Promise.all([author.waitForNavigation(), objectRow(author).locator('.ofrReceivedButton').click()]);
 console.log('author after receipt:', await status(author));
-const aId = sql(`SELECT assignment_id FROM objects_for_review_assignments WHERE object_id=${objectId} AND status='accepted'`);
-console.log('settings now:', sql(`SELECT GROUP_CONCAT(CONCAT(setting_name,'=',setting_value)) FROM objects_for_review_assignment_settings WHERE assignment_id=${aId} AND setting_name IN ('copyStatus','copySentBy','shippingAddress','phone')`));
-await bre.goto(`${B}/manageObjectsForReview/desk`);
+const aId = sql(`SELECT assignment_id FROM brm_assignments WHERE object_id=${objectId} AND status='accepted'`);
+console.log('settings now:', sql(`SELECT GROUP_CONCAT(CONCAT(setting_name,'=',setting_value)) FROM brm_assignment_settings WHERE assignment_id=${aId} AND setting_name IN ('copyStatus','copySentBy','shippingAddress','phone')`));
+await bre.goto(`${B}/manageBookReviews/desk`);
 console.log('copy row after receipt:', await bre.locator('.ofrCopies tbody tr', { hasText: TITLE }).count());
 
 // No review will come: request return (from the Reviewers page)
-await bre.goto(`${B}/manageObjectsForReview/assignments`);
+await bre.goto(`${B}/manageBookReviews/assignments`);
 row = bre.locator('.ofrTable tbody tr', { hasText: TITLE });
 console.log('assignment row:', (await row.innerText()).replace(/\s+/g, ' '));
 await row.locator('a', { hasText: 'Request return' }).click();
@@ -94,17 +94,17 @@ t = since();
 await Promise.all([bre.waitForNavigation({ timeout: 20000 }), mf.locator('button.submitFormButton').click()]);
 const ret = mails(t);
 console.log('return mail:', ret.map(m => `${m.to} | ${m.subject}`), '| address filled:', /Example Street 1/.test(ret[0]?.body || ''), '| placeholder left:', /returnAddress/.test(ret[0]?.body || ''));
-console.log('assignment status:', sql(`SELECT status FROM objects_for_review_assignments WHERE assignment_id=${aId}`));
+console.log('assignment status:', sql(`SELECT status FROM brm_assignments WHERE assignment_id=${aId}`));
 
-await bre.goto(`${B}/manageObjectsForReview/desk`);
+await bre.goto(`${B}/manageBookReviews/desk`);
 row = bre.locator('.ofrCopies tbody tr', { hasText: TITLE });
 console.log('copy row:', (await row.innerText()).replace(/\s+/g, ' '));
 await row.locator('a', { hasText: 'Copy has arrived back' }).click();
 mf = await modalForm(bre);
 console.log('no email fields:', await mf.locator('input[name=subject]').count() === 0);
 await Promise.all([bre.waitForNavigation({ timeout: 20000 }), mf.locator('button.submitFormButton').click()]);
-console.log('journalHoldsCopy:', sql(`SELECT setting_value FROM objects_for_review_settings WHERE object_id=${objectId} AND setting_name='journalHoldsCopy'`));
+console.log('journalHoldsCopy:', sql(`SELECT setting_value FROM brm_object_settings WHERE object_id=${objectId} AND setting_name='journalHoldsCopy'`));
 console.log('copy rows left:', await bre.locator('.ofrCopies tbody tr', { hasText: TITLE }).count());
-await author.goto(`${B}/for-review`);
+await author.goto(`${B}/books-for-review`);
 console.log('offered again:', await status(author));
 await browser.close();

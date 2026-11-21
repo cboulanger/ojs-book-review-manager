@@ -1,5 +1,5 @@
 {
-  "name": "objectsforreview-e2e-sketches",
+  "name": "bookreviewmanager-e2e-sketches",
   "private": true,
   "description": "Ad-hoc Playwright scripts used during development; see README.md",
   "dependencies": {

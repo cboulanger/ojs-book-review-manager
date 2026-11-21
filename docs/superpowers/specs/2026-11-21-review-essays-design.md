@@ -12,7 +12,7 @@ A reviewer can write one review (a review essay) of several works. The process w
    - The editor creates a review essay offer from several works upfront.
    - The editor combines works later, including a work that already has a reviewer.
 2. **What stays per work:** publisher contact, the review copy steps (request, send, receive, return, reminders to the publisher) and the publisher notification. Everything else belongs to the essay.
-3. **Model: container work.** The essay is itself an `objects_for_review` row (the *container*) that owns the offer. Its works (the *members*) point to it. On the members, the reviewer's progress is mirrored into one assignment per work (the *mirror*), which carries that work's copy status.
+3. **Model: container work.** The essay is itself an `brm_objects` row (the *container*) that owns the offer. Its works (the *members*) point to it. On the members, the reviewer's progress is mirrored into one assignment per work (the *mirror*), which carries that work's copy status.
 
 Rejected alternatives: repeating every transition on every member (this duplicates bids and invitations per person), and assignments that cover several works (this would mean rewriting CopyWorkflow, the reminders, the API and the data).
 
@@ -22,7 +22,7 @@ There are no new tables. The changes are new rows and settings in the existing t
 
 ### Container
 
-- A row in `objects_for_review` with `resource_type = 'reviewEssay'`, `identifier = ''`, `identifier_type = ''`, and `creator` set to the editor.
+- A row in `brm_objects` with `resource_type = 'reviewEssay'`, `identifier = ''`, `identifier_type = ''`, and `creator` set to the editor.
 - It has its own `title` (plain text, e.g. "New books on legal pluralism") and `description` (rich text).
 - It holds all offer settings (`ObjectForReview::OFFER_FIELDS`) except the per-work copy settings `publisherContactId`, `journalHoldsCopy`, `returnRequired`, `notifyPublisher` and `publisherNotified`. Those stay on the members and are ignored on a container.
 - Bids, invitations, contract offers and the reviewer's assignment belong to the container, so the existing `AssignmentWorkflow` and `InvitationWorkflow` code runs on it unchanged.
@@ -40,7 +40,7 @@ There are no new tables. The changes are new rows and settings in the existing t
 
 ### Mirror assignment
 
-- An `objects_for_review_assignments` row on the member, for the container's reviewer, with the new setting `bundleAssignmentId` (the container assignment's id).
+- An `brm_assignments` row on the member, for the container's reviewer, with the new setting `bundleAssignmentId` (the container assignment's id).
 - It mirrors the container assignment's status: `accepted`, `submitted` and `completed`, and the dropout statuses `retracted` and `cancelled`.
 - It holds the per-work contract data needed for the copy:
   - `copyPreference`, `copyNote`, and `shippingAddress` and `phone` (only while this work's copy needs them);
@@ -163,16 +163,16 @@ Combining does the following:
 - **Emails.**
   - `ObjectForReview::getCitation()` on a container returns the title followed by the members' citations, one per line, so existing templates that use the citation work.
   - Copy emails use the member's citation.
-  - One new template: `OFR_REVIEW_ESSAY_CHANGED`, for works added to or removed from a reviewer's essay. It is added in `emailTemplates.xml` and in `locale/{en,de,fi}/emails.po`.
+  - One new template: `BRM_REVIEW_ESSAY_CHANGED`, for works added to or removed from a reviewer's essay. It is added in `emailTemplates.xml` and in `locale/{en,de,fi}/emails.po`.
 
 ## API
 
-- `POST /objectsForReview/bundles` takes `{title, description?, objectIds[], assignmentMode?, responsibleEditorId?, hidden?}` and creates a container from existing works, under the same rules as combining. It returns the container.
-- `POST /objectsForReview/bundles/{id}/members` takes `{objectId, copyPreference?}`. `DELETE /objectsForReview/bundles/{id}/members/{objectId}` removes a member.
+- `POST /bookReviewManager/bundles` takes `{title, description?, objectIds[], assignmentMode?, responsibleEditorId?, hidden?}` and creates a container from existing works, under the same rules as combining. It returns the container.
+- `POST /bookReviewManager/bundles/{id}/members` takes `{objectId, copyPreference?}`. `DELETE /bookReviewManager/bundles/{id}/members/{objectId}` removes a member.
 - `GET` of an object includes `isReviewEssay`, `bundleId` and, for a container, `members[]`.
-- `POST /objectsForReview/{containerId}/assignments` (importing a running process) accepts `copies: [{objectId, copyPreference, copyStatus?, ...}]`. A mirror is created for each work.
+- `POST /bookReviewManager/{containerId}/assignments` (importing a running process) accepts `copies: [{objectId, copyPreference, copyStatus?, ...}]`. A mirror is created for each work.
 - Reserving or importing an assignment on a member returns `409 member_of_review_essay`.
-- The Node client `ofr` gets `bundle create|add|remove`. `skills/objects-for-review-api/SKILL.md` and `skills/objects-for-review-email-import/SKILL.md` document review essays: an email thread about several books becomes a container.
+- The Node client `ofr` gets `bundle create|add|remove`. `skills/book-review-manager-api/SKILL.md` and `skills/book-review-manager-email-import/SKILL.md` document review essays: an email thread about several books becomes a container.
 
 ## Error handling
 

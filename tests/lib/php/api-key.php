@@ -5,7 +5,7 @@
  * Reuses the user's existing key, so that parallel test processes get the same one;
  * creates and enables a key if there is none.
  *
- * Run from the OJS folder: php plugins/generic/objectsForReview/tests/lib/php/api-key.php <username>
+ * Run from the OJS folder: php plugins/generic/bookReviewManager/tests/lib/php/api-key.php <username>
  */
 
 use APP\facades\Repo;

@@ -1,5 +1,5 @@
 /**
- * @file plugins/generic/objectsForReview/js/Workflow.js
+ * @file plugins/generic/bookReviewManager/js/Workflow.js
  *
  * Copyright (c) 2014-2026 Simon Fraser University
  * Copyright (c) 2000-2026 John Willinsky
@@ -10,24 +10,24 @@
  *
  *   The Template::Workflow::Publication hook used up to OJS 3.4 was removed in 3.5,
  *   see pkp/pkp-lib#10766. Configuration (grid URL, label) is provided by the plugin
- *   in window.pkpObjectsForReview.
+ *   in window.pkpBookReviewManager.
  */
 (function () {
 	if (typeof pkp === 'undefined' || !pkp.registry || !pkp.registry.storeExtend) {
 		return; // OJS < 3.5
 	}
 
-	var MENU_KEY = 'objectsForReview';
+	var MENU_KEY = 'bookReviewManager';
 
 	function getConfig() {
-		return window.pkpObjectsForReview || {};
+		return window.pkpBookReviewManager || {};
 	}
 
 	pkp.registry.registerComponent('ObjectsForReviewWorkflowGrid', {
 		props: {
 			submission: {type: Object, required: true},
 		},
-		template: '<div class="objectsForReviewWorkflowGrid"><div ref="container"></div></div>',
+		template: '<div class="bookReviewManagerWorkflowGrid"><div ref="container"></div></div>',
 		mounted: function () {
 			this.load();
 		},

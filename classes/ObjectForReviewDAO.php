@@ -1,19 +1,19 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/classes/ObjectForReviewDAO.inc.php
+ * @file plugins/generic/bookReviewManager/classes/ObjectForReviewDAO.inc.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ObjectForReviewDAO
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * Operations for retrieving and modifying ObjectForReview objects.
  */
 
-namespace APP\plugins\generic\objectsForReview\classes;
+namespace APP\plugins\generic\bookReviewManager\classes;
 
 use PKP\db\DAO;
 use Illuminate\Support\Facades\DB;
@@ -32,7 +32,7 @@ class ObjectForReviewDAO extends DAO {
 		if ($submissionId) $params[] = (int) $submissionId;
 
 		$result = $this->retrieve(
-			'SELECT * FROM objects_for_review WHERE object_id = ?'
+			'SELECT * FROM brm_objects WHERE object_id = ?'
 			. ($submissionId?' AND submission_id = ?':''),
 			$params
 		);
@@ -51,7 +51,7 @@ class ObjectForReviewDAO extends DAO {
 		if ($contextId) $params[] = (int) $contextId;
 
 		$result = $this->retrieve(
-			'SELECT * FROM objects_for_review WHERE submission_id = ?'
+			'SELECT * FROM brm_objects WHERE submission_id = ?'
 			. ($contextId?' AND context_id = ?':''),
 			$params
 		);
@@ -70,7 +70,7 @@ class ObjectForReviewDAO extends DAO {
 		if ($contextId) $params[] = (int) $contextId;
 
 		$result = $this->retrieve(
-			'SELECT * FROM objects_for_review WHERE user_id = ?'
+			'SELECT * FROM brm_objects WHERE user_id = ?'
 			. ($withoutSubmissionOnly?' AND submission_id IS NULL':'')
 			. ($contextId?' AND context_id = ?':''),
 			$params
@@ -88,7 +88,7 @@ class ObjectForReviewDAO extends DAO {
 	 */
 	function getAll($contextId, $withoutSubmissionOnly = false, $managerCreatedOnly = false) {
 		$result = $this->retrieve(
-			'SELECT * FROM objects_for_review WHERE context_id = ?'
+			'SELECT * FROM brm_objects WHERE context_id = ?'
 			. ($withoutSubmissionOnly?' AND submission_id IS NULL':'')
 			. ($managerCreatedOnly?" AND creator = 'manager'":""),
 			[$contextId]
@@ -103,7 +103,7 @@ class ObjectForReviewDAO extends DAO {
 	 */
 	function insertObject($objectForReview) {
 		$this->update(
-			'INSERT INTO objects_for_review (submission_id, context_id, user_id, identifier, identifier_type, resource_type, creator, date_created) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())',
+			'INSERT INTO brm_objects (submission_id, context_id, user_id, identifier, identifier_type, resource_type, creator, date_created) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())',
 			array(
 				$objectForReview->getSubmissionId(),
 				(int) $objectForReview->getContextId(),
@@ -127,7 +127,7 @@ class ObjectForReviewDAO extends DAO {
 	 */
 	function updateObject($objectForReview) {
 		$this->update(
-			'UPDATE	objects_for_review
+			'UPDATE	brm_objects
 			SET	submission_id = ?,
 				context_id = ?,
 				user_id = ?,
@@ -157,7 +157,7 @@ class ObjectForReviewDAO extends DAO {
 	 * @return ObjectForReview[]
 	 */
 	function getMembers(int $containerId): array {
-		$ids = DB::table('objects_for_review_settings')
+		$ids = DB::table('brm_object_settings')
 			->where('setting_name', 'bundleId')
 			->where('setting_value', (string) $containerId)
 			->pluck('object_id')->all();
@@ -174,12 +174,12 @@ class ObjectForReviewDAO extends DAO {
 	function deleteById($objectId) {
 		(new AssignmentDAO())->deleteByObjectId((int) $objectId);
 		$this->update(
-			'DELETE FROM objects_for_review WHERE object_id = ?',
+			'DELETE FROM brm_objects WHERE object_id = ?',
 			[(int) $objectId]
 		);
 
 		$this->update(
-			'DELETE FROM objects_for_review_settings WHERE object_id = ?',
+			'DELETE FROM brm_object_settings WHERE object_id = ?',
 			[(int) $objectId]
 		);
 	}
@@ -215,7 +215,7 @@ class ObjectForReviewDAO extends DAO {
 		$objectForReview->setSubmissionId($row['submission_id']);
 		$objectForReview->setCreator($row['creator']);
 		$objectForReview->setDateCreated($row['date_created']);
-		$this->getDataObjectSettings('objects_for_review_settings', 'object_id', $row['object_id'], $objectForReview);
+		$this->getDataObjectSettings('brm_object_settings', 'object_id', $row['object_id'], $objectForReview);
 
 		return $objectForReview;
 	}
@@ -233,7 +233,7 @@ class ObjectForReviewDAO extends DAO {
 	 * @param $objectForReview object
 	 */
 	function updateLocaleFields($objectForReview) {
-		$this->updateDataObjectSettings('objects_for_review_settings', $objectForReview, array('object_id' => (int) $objectForReview->getId()));
+		$this->updateDataObjectSettings('brm_object_settings', $objectForReview, array('object_id' => (int) $objectForReview->getId()));
 	}
 
 }

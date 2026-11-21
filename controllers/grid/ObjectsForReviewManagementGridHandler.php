@@ -1,39 +1,39 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/controllers/grid/ObjectsForReviewManagementGridHandler.inc.php
+ * @file plugins/generic/bookReviewManager/controllers/grid/ObjectsForReviewManagementGridHandler.inc.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ObjectsForReviewManagementGridHandler
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief Handle ObjectsForReview management grid requests.
  */
 
 
-namespace APP\plugins\generic\objectsForReview\controllers\grid;
+namespace APP\plugins\generic\bookReviewManager\controllers\grid;
 
-use APP\plugins\generic\objectsForReview\classes\ObjectForReviewDAO;
-use APP\plugins\generic\objectsForReview\classes\Assignment;
-use APP\plugins\generic\objectsForReview\classes\AssignmentWorkflow;
-use APP\plugins\generic\objectsForReview\classes\BundleWorkflow;
-use APP\plugins\generic\objectsForReview\classes\ObjectForReview;
-use APP\plugins\generic\objectsForReview\classes\ReservationMailer;
-use APP\plugins\generic\objectsForReview\classes\Roles;
+use APP\plugins\generic\bookReviewManager\classes\ObjectForReviewDAO;
+use APP\plugins\generic\bookReviewManager\classes\Assignment;
+use APP\plugins\generic\bookReviewManager\classes\AssignmentWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\BundleWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\ObjectForReview;
+use APP\plugins\generic\bookReviewManager\classes\ReservationMailer;
+use APP\plugins\generic\bookReviewManager\classes\Roles;
 use APP\core\Application;
-use APP\plugins\generic\objectsForReview\classes\CrossrefLookup;
-use APP\plugins\generic\objectsForReview\classes\IsbnLookup;
+use APP\plugins\generic\bookReviewManager\classes\CrossrefLookup;
+use APP\plugins\generic\bookReviewManager\classes\IsbnLookup;
 
-use APP\plugins\generic\objectsForReview\controllers\grid\form\AvailableObjectsForReviewForm;
-use APP\plugins\generic\objectsForReview\controllers\grid\form\BundleMemberForm;
-use APP\plugins\generic\objectsForReview\controllers\grid\form\ReviewEssayForm;
-use APP\plugins\generic\objectsForReview\controllers\grid\form\ObjectsForReviewForm;
+use APP\plugins\generic\bookReviewManager\controllers\grid\form\AvailableObjectsForReviewForm;
+use APP\plugins\generic\bookReviewManager\controllers\grid\form\BundleMemberForm;
+use APP\plugins\generic\bookReviewManager\controllers\grid\form\ReviewEssayForm;
+use APP\plugins\generic\bookReviewManager\controllers\grid\form\ObjectsForReviewForm;
 
-use APP\plugins\generic\objectsForReview\controllers\grid\ObjectsForReviewManagementGridRow;
-use APP\plugins\generic\objectsForReview\controllers\grid\ObjectsForReviewManagementGridCellProvider;
+use APP\plugins\generic\bookReviewManager\controllers\grid\ObjectsForReviewManagementGridRow;
+use APP\plugins\generic\bookReviewManager\controllers\grid\ObjectsForReviewManagementGridCellProvider;
 
 use PKP\controllers\grid\GridColumn;
 use PKP\controllers\grid\GridHandler;
@@ -95,18 +95,18 @@ class ObjectsForReviewManagementGridHandler extends GridHandler {
 		$context = $request->getContext();
 
 		// Set the grid details.
-		$this->setTitle('plugins.generic.objectsForReview.management.gridTitle');
-		$this->setEmptyRowText('plugins.generic.objectsForReview.management.noneCreated');
+		$this->setTitle('plugins.generic.bookReviewManager.management.gridTitle');
+		$this->setEmptyRowText('plugins.generic.bookReviewManager.management.noneCreated');
 
 		// Get the items and add the data to the grid
-		$objectForReviewDao = DAORegistry::getDAO('ObjectForReviewDAO');
-		$objectsForReview = $objectForReviewDao->getAll($context->getId(), true, true);
+		$objectForReviewDao = DAORegistry::getDAO('BookReviewManagerObjectDAO');
+		$bookReviewManager = $objectForReviewDao->getAll($context->getId(), true, true);
 		$assignmentsByObject = AssignmentWorkflow::dao()->getByContextId($context->getId());
 
 		// Each review essay is followed by its works. A work is always listed with its essay:
 		// syncMembers gives the works the essay's submission, so neither or both are listed.
 		$objects = [];
-		while ($objectForReview = $objectsForReview->next()) {
+		while ($objectForReview = $bookReviewManager->next()) {
 			$objects[$objectForReview->getId()] = $objectForReview;
 		}
 		$gridData = array();
@@ -132,10 +132,10 @@ class ObjectsForReviewManagementGridHandler extends GridHandler {
 				'addAvailableObjectForReview',
 				new AjaxModal(
 					$router->url($request, null, null, 'addAvailableObjectForReview', null, array()),
-					__('plugins.generic.objectsForReview.addAvailableObjectForReview'),
+					__('plugins.generic.bookReviewManager.addAvailableObjectForReview'),
 					'modal_add_item'
 				),
-				__('plugins.generic.objectsForReview.addAvailableObjectForReview'),
+				__('plugins.generic.bookReviewManager.addAvailableObjectForReview'),
 				'add_item'
 			)
 		);
@@ -144,10 +144,10 @@ class ObjectsForReviewManagementGridHandler extends GridHandler {
 				'addReviewEssay',
 				new AjaxModal(
 					$router->url($request, null, null, 'addReviewEssay', null, array()),
-					__('plugins.generic.objectsForReview.reviewEssay.create'),
+					__('plugins.generic.bookReviewManager.reviewEssay.create'),
 					'modal_add_item'
 				),
-				__('plugins.generic.objectsForReview.reviewEssay.create'),
+				__('plugins.generic.bookReviewManager.reviewEssay.create'),
 				'add_item'
 			)
 		);
@@ -157,7 +157,7 @@ class ObjectsForReviewManagementGridHandler extends GridHandler {
 		// The cell provider escapes the description (strip_unsafe_html) and adds the review essay markup
 		$this->addColumn(new GridColumn(
 			'description',
-			'plugins.generic.objectsForReview.itemDescription',
+			'plugins.generic.bookReviewManager.itemDescription',
 			null,
 			'controllers/grid/gridCell.tpl',
 			$cellProvider,
@@ -165,14 +165,14 @@ class ObjectsForReviewManagementGridHandler extends GridHandler {
 		));
 		$this->addColumn(new GridColumn(
 			'identifierType',
-			'plugins.generic.objectsForReview.itemIdentifierType',
+			'plugins.generic.bookReviewManager.itemIdentifierType',
 			null,
 			'controllers/grid/gridCell.tpl',
 			$cellProvider
 		));
 		$this->addColumn(new GridColumn(
 			'identifier',
-			'plugins.generic.objectsForReview.itemIdentifier',
+			'plugins.generic.bookReviewManager.itemIdentifier',
 			null,
 			'controllers/grid/gridCell.tpl',
 			$cellProvider
@@ -195,16 +195,16 @@ class ObjectsForReviewManagementGridHandler extends GridHandler {
 	protected function getRowData(ObjectForReview $objectForReview, array $assignmentsByObject, ?ObjectForReview $container): array {
 		$assignments = $assignmentsByObject[$objectForReview->getId()] ?? [];
 		$state = AssignmentWorkflow::getState($objectForReview, $assignments);
-		$userName = __('plugins.generic.objectsForReview.offerState.' . $state);
+		$userName = __('plugins.generic.bookReviewManager.offerState.' . $state);
 		if ($objectForReview->getUserId() && ($user = Repo::user()->get($objectForReview->getUserId(), true))) {
 			$userName .= ': ' . $user->getFullName() . ' (' . $user->getEmail() . ')';
 		} elseif (!$container && $objectForReview->isBidding() && in_array($state, [AssignmentWorkflow::STATE_OPEN, AssignmentWorkflow::STATE_SELECTION], true)) {
-			$userName .= ' (' . __('plugins.generic.objectsForReview.offerState.bidCount',
+			$userName .= ' (' . __('plugins.generic.bookReviewManager.offerState.bidCount',
 				['number' => count(AssignmentWorkflow::filter($assignments, Assignment::BIDDER_STATUSES))]) . ')';
 		}
 		// A work of an essay is offered through its essay: the essay's row shows bids and whether it is hidden
 		if (!$container && $objectForReview->isHidden()) {
-			$userName .= ' · ' . __('plugins.generic.objectsForReview.hidden');
+			$userName .= ' · ' . __('plugins.generic.bookReviewManager.hidden');
 		}
 
 		return array(
@@ -286,7 +286,7 @@ class ObjectsForReviewManagementGridHandler extends GridHandler {
 		// Validate
 		if ($availableObjectsForReviewForm->validate()) {
 			// Save
-			$objectsForReview = $availableObjectsForReviewForm->execute();
+			$bookReviewManager = $availableObjectsForReviewForm->execute();
  			return DAO::getDataChangedEvent($objectId);
 		} else {
 			// Present any errors
@@ -304,7 +304,7 @@ class ObjectsForReviewManagementGridHandler extends GridHandler {
 		if (!$request->isPost() || !$request->checkCSRF()) {
 			return new JSONMessage(false);
 		}
-		$objectForReviewDao = DAORegistry::getDAO('ObjectForReviewDAO');
+		$objectForReviewDao = DAORegistry::getDAO('BookReviewManagerObjectDAO');
 		$objectForReview = $objectForReviewDao->getById((int) $request->getUserVar('objectId'));
 		// Only objects of the current journal
 		if (!$objectForReview || $objectForReview->getContextId() != $request->getContext()->getId()) {
@@ -413,7 +413,7 @@ class ObjectsForReviewManagementGridHandler extends GridHandler {
 				$form->addError('objectIds', __($e->getMessage()));
 				return new JSONMessage(true, $form->fetch($request));
 			}
-			$message = __($container ? 'plugins.generic.objectsForReview.reviewEssay.saved' : 'plugins.generic.objectsForReview.reviewEssay.created');
+			$message = __($container ? 'plugins.generic.bookReviewManager.reviewEssay.saved' : 'plugins.generic.bookReviewManager.reviewEssay.created');
 			$this->notify($request, $message, $form->reviewerEmailed);
 			return DAO::getDataChangedEvent($saved->getId());
 		}
@@ -456,7 +456,7 @@ class ObjectsForReviewManagementGridHandler extends GridHandler {
 				$form->addError($form->getMode() === BundleMemberForm::MODE_ADD ? 'workId' : 'containerId', __($e->getMessage()));
 				return new JSONMessage(true, $form->fetch($request));
 			}
-			$this->notify($request, __('plugins.generic.objectsForReview.reviewEssay.workAdded'), $form->reviewerEmailed);
+			$this->notify($request, __('plugins.generic.bookReviewManager.reviewEssay.workAdded'), $form->reviewerEmailed);
 			return DAO::getDataChangedEvent();
 		}
 		return new JSONMessage(true, $form->fetch($request));
@@ -523,7 +523,7 @@ class ObjectsForReviewManagementGridHandler extends GridHandler {
 			return new JSONMessage(false, __($e->getMessage()));
 		}
 		$emailed = ReservationMailer::sendEssayChanged($this->plugin, $request->getContext(), $container, $request->getUser());
-		$this->notify($request, __('plugins.generic.objectsForReview.reviewEssay.workRemoved'), $emailed);
+		$this->notify($request, __('plugins.generic.bookReviewManager.reviewEssay.workRemoved'), $emailed);
 		return DAO::getDataChangedEvent();
 	}
 
@@ -532,7 +532,7 @@ class ObjectsForReviewManagementGridHandler extends GridHandler {
 	 */
 	protected function notify(PKPRequest $request, string $message, bool $reviewerEmailed): void {
 		if ($reviewerEmailed) {
-			$message .= ' ' . __('plugins.generic.objectsForReview.reviewEssay.reviewerEmailed');
+			$message .= ' ' . __('plugins.generic.bookReviewManager.reviewEssay.reviewerEmailed');
 		}
 		(new NotificationManager())->createTrivialNotification($request->getUser()->getId(),
 			Notification::NOTIFICATION_TYPE_SUCCESS, ['contents' => $message]);

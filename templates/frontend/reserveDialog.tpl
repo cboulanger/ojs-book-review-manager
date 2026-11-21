@@ -1,5 +1,5 @@
 {**
- * plugins/generic/objectsForReview/templates/frontend/reserveDialog.tpl
+ * plugins/generic/bookReviewManager/templates/frontend/reserveDialog.tpl
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
@@ -9,20 +9,20 @@
  * works, the button loads the page with ?reserve=<objectId> instead.
  *}
 {* A review essay asks for the copy per work: its works come from its row *}
-{if $reserveOpenObjectId}{assign var=reserveMembers value=$objectsForReview[$reserveOpenObjectId].members}{/if}
+{if $reserveOpenObjectId}{assign var=reserveMembers value=$bookReviewManager[$reserveOpenObjectId].members}{/if}
 <dialog id="ofrReserveDialog" class="ofrReserveDialog" aria-labelledby="ofrReserveDialogTitle"
 	data-open-object-id="{$reserveOpenObjectId|escape}"{if $reserveMembers} data-review-essay="1"{/if}{if $reserveOpenObjectId} open{/if}>
 	<form class="ofrReserveForm" method="post" action="{url op="reserveObject"}">
 		{csrf}
 		<input type="hidden" name="objectId" value="{$reserveOpenObjectId|escape}" />
 
-		<h2 id="ofrReserveDialogTitle">{translate key="plugins.generic.objectsForReview.reserve.title"}</h2>
-		<p class="ofrReserveObject">{if $reserveOpenObjectId}{$objectsForReview[$reserveOpenObjectId].citation|strip_unsafe_html}{/if}</p>
+		<h2 id="ofrReserveDialogTitle">{translate key="plugins.generic.bookReviewManager.reserve.title"}</h2>
+		<p class="ofrReserveObject">{if $reserveOpenObjectId}{$bookReviewManager[$reserveOpenObjectId].citation|strip_unsafe_html}{/if}</p>
 
 		{include file=$contractFieldsTemplate}
 
 		<div class="ofrButtons">
-			<button type="submit" class="pkp_button">{translate key="plugins.generic.objectsForReview.reserve.submit"}</button>
+			<button type="submit" class="pkp_button">{translate key="plugins.generic.bookReviewManager.reserve.submit"}</button>
 			<a class="pkp_button pkp_button_offset ofrCancel" href="{url op="index"}">{translate key="common.cancel"}</a>
 		</div>
 	</form>

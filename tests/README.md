@@ -21,7 +21,7 @@ tests/run.sh unit/php -- --filter IsbnLookupTest   # arguments after -- go to ea
 
 ### unit/php
 
-- Tests are in `tests/unit/php/*Test.php`, in the namespace `APP\plugins\generic\objectsForReview\tests\unit`, and extend `TestCase`.
+- Tests are in `tests/unit/php/*Test.php`, in the namespace `APP\plugins\generic\bookReviewManager\tests\unit`, and extend `TestCase`.
 - `TestCase` has `object()` and `assignment()` (unsaved data objects), `plugin()` (a `FakePlugin` with settings), and `invoke()` (calls a protected method).
 - `bootstrap.php` boots OJS the way its command line tools do, with English as the locale.
 - Tests that write to the database are in the `db` group. They clean up after themselves. Run without them: `tests/run.sh unit/php -- --exclude-group db`.
@@ -44,7 +44,7 @@ tests/run.sh unit/php -- --filter IsbnLookupTest   # arguments after -- go to ea
 | `ojs.mjs` | JS suites: `exec()` and `sql()` in the container, `apiKey(username)`, `mailsSince(timestamp)` (emails from the container log), `history(objectId)` (event log), unique data (`uid`, `email`, `isbn13`, `isbn10`, `doi`, `date`), dev accounts (`USERS`) |
 | `php/api-key.php` | Prints a user's API key (reuses an existing one, so parallel processes agree) |
 
-Configuration through the environment: `OFR_CONTAINER` (default `ojs-objectsforreview`), `PODMAN` (default `podman`), `OFR_E2E_URL` or `OJS_PORT`, and `OFR_E2E_OFFLINE`.
+Configuration through the environment: `OFR_CONTAINER` (default `ojs-bookreviewmanager`), `PODMAN` (default `podman`), `OFR_E2E_URL` or `OJS_PORT`, and `OFR_E2E_OFFLINE`.
 
 ## Adding a suite
 

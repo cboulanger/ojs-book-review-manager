@@ -1,8 +1,8 @@
 <?php
 
-namespace APP\plugins\generic\objectsForReview\tests\unit;
+namespace APP\plugins\generic\bookReviewManager\tests\unit;
 
-use APP\plugins\generic\objectsForReview\classes\CrossrefLookup;
+use APP\plugins\generic\bookReviewManager\classes\CrossrefLookup;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 class CrossrefLookupTest extends TestCase {

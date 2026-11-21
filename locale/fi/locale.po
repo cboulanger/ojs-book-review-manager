@@ -11,1793 +11,1793 @@ msgstr ""
 "PO-Revision-Date: 2021-02-21T14:12:01+02:00\n"
 "Language: \n"
 
-msgid "plugins.generic.objectsForReview.displayName"
-msgstr "Arvioitavaksi-lisäosa"
+msgid "plugins.generic.bookReviewManager.displayName"
+msgstr "Book Review Manager"
 
-msgid "plugins.generic.objectsForReview.description"
+msgid "plugins.generic.bookReviewManager.description"
 msgstr "Käyttäjät voivat varata esimerkiksi kirjoja arvioitavaksi ja liittää arvionnin kohde lähettämäänsä käsikirjoitukseen."
 
-msgid "plugins.generic.objectsForReview.tabTitle"
+msgid "plugins.generic.bookReviewManager.tabTitle"
 msgstr "Kirja-arviot"
 
-msgid "plugins.generic.objectsForReview.managementLink"
+msgid "plugins.generic.bookReviewManager.managementLink"
 msgstr "Kirja-arviot"
 
-msgid "plugins.generic.objectsForReview.management.gridTitle"
+msgid "plugins.generic.bookReviewManager.management.gridTitle"
 msgstr "Tarjolla olevat julkaisut"
 
-msgid "plugins.generic.objectsForReview.addAvailableObjectForReview"
+msgid "plugins.generic.bookReviewManager.addAvailableObjectForReview"
 msgstr "Lisää tarjottava kohde"
 
-msgid "plugins.generic.objectsForReview.userName"
+msgid "plugins.generic.bookReviewManager.userName"
 msgstr "Varattu käyttäjälle"
 
-msgid "plugins.generic.objectsForReview.settings.displayInToc.display"
+msgid "plugins.generic.bookReviewManager.settings.displayInToc.display"
 msgstr "Näytä arvioinnin kohteet sisällysluettelossa."
 
-msgid "plugins.generic.objectsForReview.settings.displayOptions"
+msgid "plugins.generic.bookReviewManager.settings.displayOptions"
 msgstr "Tietojen esittämisen asetukset"
 
-msgid "plugins.generic.objectsForReview.settings.displayAsSubtitle"
+msgid "plugins.generic.bookReviewManager.settings.displayAsSubtitle"
 msgstr "Näytä arvioidut kohteet käsikirjoituksen alaotsikossa."
 
-msgid "plugins.generic.objectsForReview.settings.displayAsList"
+msgid "plugins.generic.bookReviewManager.settings.displayAsList"
 msgstr "Näytä arvioidut kohteet abstraktin alapuolella."
 
-msgid "plugins.generic.objectsForReview.settings.onlyReserved"
+msgid "plugins.generic.bookReviewManager.settings.onlyReserved"
 msgstr "Salli vain toimittajien luomat arvioinnin kohteet"
 
-msgid "plugins.generic.objectsForReview.settings.notifyEmail"
+msgid "plugins.generic.bookReviewManager.settings.notifyEmail"
 msgstr "Sähköposti varausten ja peruutusten ilmoittamiseen"
 
-msgid "plugins.generic.objectsForReview.settings.notifyEmail.description"
+msgid "plugins.generic.bookReviewManager.settings.notifyEmail.description"
 msgstr "Mikäli osoitetta ei ole annettu, lisäosa käyttää oletuksena julkaisun pääasiallisen kontaktihenkilön sähköpostia"
 
-msgid "plugins.generic.objectsForReview.settings.instructions"
+msgid "plugins.generic.bookReviewManager.settings.instructions"
 msgstr "Julkiset ohjeet"
 
-msgid "plugins.generic.objectsForReview.settings.instructions.description"
+msgid "plugins.generic.bookReviewManager.settings.instructions.description"
 msgstr "Nämä ohjeet näkyvät OFR-sivulla lukijoille."
 
-msgid "plugins.generic.objectsForReview.navMenuItem.description"
+msgid "plugins.generic.bookReviewManager.navMenuItem.description"
 msgstr "Linkki arvioitavaksi tarjottujen julkaisujen julkiseen luetteloon."
 
-msgid "plugins.generic.objectsForReview.navMenuItem"
+msgid "plugins.generic.bookReviewManager.navMenuItem"
 msgstr "Arvioitavaksi"
 
-msgid "plugins.generic.objectsForReview.objectsForReviewTitle"
+msgid "plugins.generic.bookReviewManager.bookReviewManagerTitle"
 msgstr "Tässä käsikirjoituksessa arvioidut julkaisut"
 
-msgid "plugins.generic.objectsForReview.noReservedObjects"
+msgid "plugins.generic.bookReviewManager.noReservedObjects"
 msgstr "Sinulle ei ole varattuja arvioitavia julkaisuja"
 
-msgid "plugins.generic.objectsForReview.submissionWizard.name"
+msgid "plugins.generic.bookReviewManager.submissionWizard.name"
 msgstr "Arvioidut julkaisut"
 
-msgid "plugins.generic.objectsForReview.addObjectForReview"
+msgid "plugins.generic.bookReviewManager.addObjectForReview"
 msgstr "Lisää arvioitu julkaisu"
 
-msgid "plugins.generic.objectsForReview.resourceType"
+msgid "plugins.generic.bookReviewManager.resourceType"
 msgstr "Julkaisun tyyppi"
 
-msgid "plugins.generic.objectsForReview.itemIdentifierType"
+msgid "plugins.generic.bookReviewManager.itemIdentifierType"
 msgstr "Tunnisteen tyyppi"
 
-msgid "plugins.generic.objectsForReview.itemIdentifier"
+msgid "plugins.generic.bookReviewManager.itemIdentifier"
 msgstr "Tunniste"
 
-msgid "plugins.generic.objectsForReview.itemDescription"
+msgid "plugins.generic.bookReviewManager.itemDescription"
 msgstr "Kuvaus"
 
-msgid "plugins.generic.objectsForReview.itemAuthors"
+msgid "plugins.generic.bookReviewManager.itemAuthors"
 msgstr "Tekijät"
 
-msgid "plugins.generic.objectsForReview.itemTitle"
+msgid "plugins.generic.bookReviewManager.itemTitle"
 msgstr "Nimike"
 
-msgid "plugins.generic.objectsForReview.itemDescription.description"
+msgid "plugins.generic.bookReviewManager.itemDescription.description"
 msgstr "Valinnainen. Näytetään nimikkeen alla arvioitavaksi tarjottujen teosten luettelossa."
 
-msgid "plugins.generic.objectsForReview.itemPublisher"
+msgid "plugins.generic.bookReviewManager.itemPublisher"
 msgstr "Julkaisija"
 
-msgid "plugins.generic.objectsForReview.itemYear"
+msgid "plugins.generic.bookReviewManager.itemYear"
 msgstr "Julkaisuvuosi"
 
-msgid "plugins.generic.objectsForReview.noneCreated"
+msgid "plugins.generic.bookReviewManager.noneCreated"
 msgstr "Tähän käsikirjoitukseen ei liity arvioituja julkaisuja."
 
-msgid "plugins.generic.objectsForReview.objectsForReviewData.addReservedObject"
+msgid "plugins.generic.bookReviewManager.bookReviewManagerData.addReservedObject"
 msgstr "Valitse tämä julkaisu"
 
-msgid "plugins.generic.objectsForReview.notifyDefaultName"
+msgid "plugins.generic.bookReviewManager.notifyDefaultName"
 msgstr "OFR-kontakti"
 
-msgid "plugins.generic.objectsForReview.objectsForReviewData.singular"
+msgid "plugins.generic.bookReviewManager.bookReviewManagerData.singular"
 msgstr "Arvioitu julkaisu"
 
-msgid "plugins.generic.objectsForReview.objectsForReviewData.plural"
+msgid "plugins.generic.bookReviewManager.bookReviewManagerData.plural"
 msgstr "Arvioidut julkaisut"
 
-msgid "plugins.generic.objectsForReview.frontendTitle"
+msgid "plugins.generic.bookReviewManager.frontendTitle"
 msgstr "Arvioitavaksi"
 
-msgid "plugins.generic.objectsForReview.reserve"
+msgid "plugins.generic.bookReviewManager.reserve"
 msgstr "Varaa arvioitavaksi"
 
-msgid "plugins.generic.objectsForReview.cancel"
+msgid "plugins.generic.bookReviewManager.cancel"
 msgstr "Peruuta oma varaus"
 
-msgid "plugins.generic.objectsForReview.reserve.confirm"
+msgid "plugins.generic.bookReviewManager.reserve.confirm"
 msgstr "Valittu julkaisu varataan sinulle. Kun arvio on valmis, voit lähettää sen käsikirjoituksena kirjoittajaohjeiden mukaisesti."
 
-msgid "plugins.generic.objectsForReview.cancel.confirm"
+msgid "plugins.generic.bookReviewManager.cancel.confirm"
 msgstr "Haluatko varmasti perua tätä julkaisua koskevan arviosi?"
 
-msgid "plugins.generic.objectsForReview.objectAvailable"
+msgid "plugins.generic.bookReviewManager.objectAvailable"
 msgstr "Vapaa arvioitavaksi"
 
-msgid "plugins.generic.objectsForReview.objectReserved"
+msgid "plugins.generic.bookReviewManager.objectReserved"
 msgstr "Varattu"
 
-msgid "plugins.generic.objectsForReview.logInToReserve"
+msgid "plugins.generic.bookReviewManager.logInToReserve"
 msgstr "Arvioitavia julkaisuja voi varata kirjautumalla ensin sisään."
 
-msgid "plugins.generic.objectsForReview.COAR.book"
+msgid "plugins.generic.bookReviewManager.COAR.book"
 msgstr "kirja"
 
-msgid "plugins.generic.objectsForReview.COAR.bookPart"
+msgid "plugins.generic.bookReviewManager.COAR.bookPart"
 msgstr "kirjan luku"
 
-msgid "plugins.generic.objectsForReview.COAR.journalArticle"
+msgid "plugins.generic.bookReviewManager.COAR.journalArticle"
 msgstr "artikkeli"
 
-msgid "plugins.generic.objectsForReview.COAR.conferencePaper"
+msgid "plugins.generic.bookReviewManager.COAR.conferencePaper"
 msgstr "konferenssipaperi"
 
-msgid "plugins.generic.objectsForReview.COAR.thesis"
+msgid "plugins.generic.bookReviewManager.COAR.thesis"
 msgstr "opinnäyte"
 
-msgid "plugins.generic.objectsForReview.COAR.preprint"
+msgid "plugins.generic.bookReviewManager.COAR.preprint"
 msgstr "preprint-versio"
 
-msgid "plugins.generic.objectsForReview.COAR.website"
+msgid "plugins.generic.bookReviewManager.COAR.website"
 msgstr "verkkosivu"
 
-msgid "plugins.generic.objectsForReview.COAR.dataset"
+msgid "plugins.generic.bookReviewManager.COAR.dataset"
 msgstr "tietoaineisto"
 
-msgid "plugins.generic.objectsForReview.COAR.software"
+msgid "plugins.generic.bookReviewManager.COAR.software"
 msgstr "ohjelmisto"
 
-msgid "plugins.generic.objectsForReview.COAR.cartographicMaterial"
+msgid "plugins.generic.bookReviewManager.COAR.cartographicMaterial"
 msgstr "kartta"
 
-msgid "plugins.generic.objectsForReview.COAR.sound"
+msgid "plugins.generic.bookReviewManager.COAR.sound"
 msgstr "äänite"
 
-msgid "plugins.generic.objectsForReview.itemYearShort"
+msgid "plugins.generic.bookReviewManager.itemYearShort"
 msgstr "Vuosi"
 
-msgid "plugins.generic.objectsForReview.menu.available"
+msgid "plugins.generic.bookReviewManager.menu.available"
 msgstr "Tarjolla olevat julkaisut"
 
-msgid "plugins.generic.objectsForReview.menu.reservations"
+msgid "plugins.generic.bookReviewManager.menu.reservations"
 msgstr "Varaukset"
 
-msgid "plugins.generic.objectsForReview.menu.reviewedWorks"
+msgid "plugins.generic.bookReviewManager.menu.reviewedWorks"
 msgstr "Arvioidut julkaisut"
 
-msgid "plugins.generic.objectsForReview.menu.settings"
+msgid "plugins.generic.bookReviewManager.menu.settings"
 msgstr "Asetukset"
 
-msgid "plugins.generic.objectsForReview.menu.publicPage"
+msgid "plugins.generic.bookReviewManager.menu.publicPage"
 msgstr "Julkinen sivu"
 
-msgid "plugins.generic.objectsForReview.column.object"
+msgid "plugins.generic.bookReviewManager.column.object"
 msgstr "Julkaisu"
 
-msgid "plugins.generic.objectsForReview.column.reservedBy"
+msgid "plugins.generic.bookReviewManager.column.reservedBy"
 msgstr "Varaaja"
 
-msgid "plugins.generic.objectsForReview.column.submission"
+msgid "plugins.generic.bookReviewManager.column.submission"
 msgstr "Käsikirjoitus"
 
-msgid "plugins.generic.objectsForReview.filter.allUsers"
+msgid "plugins.generic.bookReviewManager.filter.allUsers"
 msgstr "Kaikki käyttäjät"
 
-msgid "plugins.generic.objectsForReview.filter.apply"
+msgid "plugins.generic.bookReviewManager.filter.apply"
 msgstr "Suodata"
 
-msgid "plugins.generic.objectsForReview.reservations.none"
+msgid "plugins.generic.bookReviewManager.reservations.none"
 msgstr "Varattuja julkaisuja ei ole."
 
-msgid "plugins.generic.objectsForReview.reviewedWorks.none"
+msgid "plugins.generic.bookReviewManager.reviewedWorks.none"
 msgstr "Käsikirjoituksiin ei ole vielä liitetty julkaisuja."
 
-msgid "plugins.generic.objectsForReview.reserve.title"
+msgid "plugins.generic.bookReviewManager.reserve.title"
 msgstr "Varaa arvioitavaksi"
 
-msgid "plugins.generic.objectsForReview.reserve.contract"
+msgid "plugins.generic.bookReviewManager.reserve.contract"
 msgstr "Varauksen ehdot"
 
-msgid "plugins.generic.objectsForReview.reserve.acceptTerms"
+msgid "plugins.generic.bookReviewManager.reserve.acceptTerms"
 msgstr "Olen lukenut ehdot ja hyväksyn ne."
 
-msgid "plugins.generic.objectsForReview.reserve.dueDate"
+msgid "plugins.generic.bookReviewManager.reserve.dueDate"
 msgstr "Arvion määräpäivä"
 
-msgid "plugins.generic.objectsForReview.reserve.dueDate.hint"
+msgid "plugins.generic.bookReviewManager.reserve.dueDate.hint"
 msgstr "Sitoudut toimittamaan arviosi tähän päivään mennessä (viimeistään {$maxDate})."
 
-msgid "plugins.generic.objectsForReview.reserve.copy"
+msgid "plugins.generic.bookReviewManager.reserve.copy"
 msgstr "Julkaisun saatavuus"
 
-msgid "plugins.generic.objectsForReview.reserve.copyPerWork"
+msgid "plugins.generic.bookReviewManager.reserve.copyPerWork"
 msgstr "Kooste-arvion julkaisujen saatavuus (yksi valinta julkaisua kohden)"
 
-msgid "plugins.generic.objectsForReview.reserve.copy.have"
+msgid "plugins.generic.bookReviewManager.reserve.copy.have"
 msgstr "Minulla on julkaisu jo"
 
-msgid "plugins.generic.objectsForReview.reserve.copy.physical"
+msgid "plugins.generic.bookReviewManager.reserve.copy.physical"
 msgstr "Toivon painettua kappaletta"
 
-msgid "plugins.generic.objectsForReview.reserve.copy.electronic"
+msgid "plugins.generic.bookReviewManager.reserve.copy.electronic"
 msgstr "Toivon sähköistä kappaletta"
 
-msgid "plugins.generic.objectsForReview.reserve.copy.other"
+msgid "plugins.generic.bookReviewManager.reserve.copy.other"
 msgstr "Muu"
 
-msgid "plugins.generic.objectsForReview.reserve.shippingAddress"
+msgid "plugins.generic.bookReviewManager.reserve.shippingAddress"
 msgstr "Toimitusosoite"
 
-msgid "plugins.generic.objectsForReview.reserve.phone"
+msgid "plugins.generic.bookReviewManager.reserve.phone"
 msgstr "Puhelinnumero"
 
-msgid "plugins.generic.objectsForReview.reserve.phone.hint"
+msgid "plugins.generic.bookReviewManager.reserve.phone.hint"
 msgstr "Kuljetusliike tarvitsee tämän."
 
-msgid "plugins.generic.objectsForReview.reserve.copyNote"
+msgid "plugins.generic.bookReviewManager.reserve.copyNote"
 msgstr "Tarkenna"
 
-msgid "plugins.generic.objectsForReview.reserve.submit"
+msgid "plugins.generic.bookReviewManager.reserve.submit"
 msgstr "Varaa"
 
-msgid "plugins.generic.objectsForReview.reserve.yourDueDate"
+msgid "plugins.generic.bookReviewManager.reserve.yourDueDate"
 msgstr "Arviosi määräpäivä on {$dueDate}."
 
-msgid "plugins.generic.objectsForReview.reserve.error.summary"
+msgid "plugins.generic.bookReviewManager.reserve.error.summary"
 msgstr "Korjaa seuraavat kohdat:"
 
-msgid "plugins.generic.objectsForReview.reserve.error.acceptTerms"
+msgid "plugins.generic.bookReviewManager.reserve.error.acceptTerms"
 msgstr "Sinun on hyväksyttävä varauksen ehdot."
 
-msgid "plugins.generic.objectsForReview.reserve.error.dueDate"
+msgid "plugins.generic.bookReviewManager.reserve.error.dueDate"
 msgstr "Anna kelvollinen määräpäivä."
 
-msgid "plugins.generic.objectsForReview.reserve.error.dueDateRange"
+msgid "plugins.generic.bookReviewManager.reserve.error.dueDateRange"
 msgstr "Määräpäivän on oltava tulevaisuudessa ja sallitun ajan sisällä."
 
-msgid "plugins.generic.objectsForReview.reserve.error.copyPreference"
+msgid "plugins.generic.bookReviewManager.reserve.error.copyPreference"
 msgstr "Valitse, miten saat julkaisun."
 
-msgid "plugins.generic.objectsForReview.reserve.error.shippingAddress"
+msgid "plugins.generic.bookReviewManager.reserve.error.shippingAddress"
 msgstr "Anna toimitusosoite."
 
-msgid "plugins.generic.objectsForReview.reserve.error.phone"
+msgid "plugins.generic.bookReviewManager.reserve.error.phone"
 msgstr "Anna kelvollinen puhelinnumero."
 
-msgid "plugins.generic.objectsForReview.reserve.error.copyNote"
+msgid "plugins.generic.bookReviewManager.reserve.error.copyNote"
 msgstr "Kerro, miten saat julkaisun."
 
-msgid "plugins.generic.objectsForReview.column.dates"
+msgid "plugins.generic.bookReviewManager.column.dates"
 msgstr "Päivämäärät"
 
-msgid "plugins.generic.objectsForReview.column.reservedOn"
+msgid "plugins.generic.bookReviewManager.column.reservedOn"
 msgstr "Varattu"
 
-msgid "plugins.generic.objectsForReview.settings.contract"
+msgid "plugins.generic.bookReviewManager.settings.contract"
 msgstr "Varauksen ehdot"
 
-msgid "plugins.generic.objectsForReview.settings.contract.description"
+msgid "plugins.generic.bookReviewManager.settings.contract.description"
 msgstr "Näytetään varausikkunassa; arvioijien on hyväksyttävä ehdot."
 
-msgid "plugins.generic.objectsForReview.settings.dueMonths"
+msgid "plugins.generic.bookReviewManager.settings.dueMonths"
 msgstr "Arvion määräpäivä"
 
-msgid "plugins.generic.objectsForReview.settings.dueMonths.description"
+msgid "plugins.generic.bookReviewManager.settings.dueMonths.description"
 msgstr "Kuukautta varauksen jälkeen"
 
-msgid "plugins.generic.objectsForReview.settings.dueMonthsDefault"
+msgid "plugins.generic.bookReviewManager.settings.dueMonthsDefault"
 msgstr "Oletus"
 
-msgid "plugins.generic.objectsForReview.settings.dueMonthsMax"
+msgid "plugins.generic.bookReviewManager.settings.dueMonthsMax"
 msgstr "Enintään"
 
-msgid "plugins.generic.objectsForReview.settings.dueMonths.invalid"
+msgid "plugins.generic.bookReviewManager.settings.dueMonths.invalid"
 msgstr "Anna kuukaudet kokonaislukuina (enintään 24); oletus ei saa ylittää enimmäisarvoa."
 
-msgid "plugins.generic.objectsForReview.contract.default"
+msgid "plugins.generic.bookReviewManager.contract.default"
 msgstr "<p>Varaamalla tämän julkaisun hyväksyt seuraavat ehdot:</p><ul><li>Kirjoitat julkaisusta arvion ja lähetät sen lehdelle valitsemaasi määräpäivään mennessä.</li><li>Jos et ehdi toimittaa arviota ajallaan, ilmoitat toimitukselle mahdollisimman pian.</li><li>Jos perut varauksen tai et toimita arviota, toimitus voi pyytää sinua palauttamaan saamasi arvostelukappaleen.</li><li>Arviosi käy läpi lehden tavanomaisen toimitusprosessin; lähettäminen ei takaa julkaisua.</li></ul>"
 
-msgid "plugins.generic.objectsForReview.doiLookup.button"
+msgid "plugins.generic.bookReviewManager.doiLookup.button"
 msgstr "Hae DOI"
 
-msgid "plugins.generic.objectsForReview.doiLookup.loading"
+msgid "plugins.generic.bookReviewManager.doiLookup.loading"
 msgstr "Haetaan metatietoja Crossrefistä…"
 
-msgid "plugins.generic.objectsForReview.doiLookup.done"
+msgid "plugins.generic.bookReviewManager.doiLookup.done"
 msgstr "Metatiedot haettu Crossrefistä. Tarkista kentät ennen tallentamista."
 
-msgid "plugins.generic.objectsForReview.doiLookup.failed"
+msgid "plugins.generic.bookReviewManager.doiLookup.failed"
 msgstr "Crossref-haku epäonnistui. Yritä myöhemmin uudelleen tai syötä metatiedot käsin."
 
-msgid "plugins.generic.objectsForReview.doiLookup.notFound"
+msgid "plugins.generic.bookReviewManager.doiLookup.notFound"
 msgstr "Tätä DOI-tunnistetta ei löytynyt Crossrefistä. Se voi olla rekisteröity toisessa palvelussa (esim. DataCite); syötä metatiedot käsin."
 
-msgid "plugins.generic.objectsForReview.doiLookup.invalid"
+msgid "plugins.generic.bookReviewManager.doiLookup.invalid"
 msgstr "Anna kelvollinen DOI, esim. 10.1000/xyz123."
 
-msgid "plugins.generic.objectsForReview.doiLookup.editorSuffix"
+msgid "plugins.generic.bookReviewManager.doiLookup.editorSuffix"
 msgstr "toim."
 
-msgid "plugins.generic.objectsForReview.isbnLookup.button"
+msgid "plugins.generic.bookReviewManager.isbnLookup.button"
 msgstr "Hae ISBN"
 
-msgid "plugins.generic.objectsForReview.isbnLookup.loading"
+msgid "plugins.generic.bookReviewManager.isbnLookup.loading"
 msgstr "Haetaan metatietoja (Crossref, Open Library)…"
 
-msgid "plugins.generic.objectsForReview.isbnLookup.done"
+msgid "plugins.generic.bookReviewManager.isbnLookup.done"
 msgstr "Metatiedot haettu lähteestä {$source}. Tarkista kentät ennen tallentamista."
 
-msgid "plugins.generic.objectsForReview.isbnLookup.failed"
+msgid "plugins.generic.bookReviewManager.isbnLookup.failed"
 msgstr "Haku epäonnistui. Yritä myöhemmin uudelleen tai syötä metatiedot käsin."
 
-msgid "plugins.generic.objectsForReview.isbnLookup.notFound"
+msgid "plugins.generic.bookReviewManager.isbnLookup.notFound"
 msgstr "Tälle ISBN:lle ei löytynyt metatietoja (haettu: Crossref, Open Library). Syötä metatiedot käsin."
 
-msgid "plugins.generic.objectsForReview.isbnLookup.invalid"
+msgid "plugins.generic.bookReviewManager.isbnLookup.invalid"
 msgstr "Anna kelvollinen ISBN-10 tai ISBN-13, esim. 978-3-658-45780-8."
 
-msgid "plugins.generic.objectsForReview.history"
+msgid "plugins.generic.bookReviewManager.history"
 msgstr "Historia"
 
-msgid "plugins.generic.objectsForReview.history.empty"
+msgid "plugins.generic.bookReviewManager.history.empty"
 msgstr "Ei merkintöjä."
 
-msgid "plugins.generic.objectsForReview.history.system"
+msgid "plugins.generic.bookReviewManager.history.system"
 msgstr "automaattisesti"
 
-msgid "plugins.generic.objectsForReview.history.email"
+msgid "plugins.generic.bookReviewManager.history.email"
 msgstr "Sähköposti"
 
-msgid "plugins.generic.objectsForReview.history.email.message"
+msgid "plugins.generic.bookReviewManager.history.email.message"
 msgstr "Sähköposti arvioijalle"
 
-msgid "plugins.generic.objectsForReview.history.email.cancelledByEditor"
+msgid "plugins.generic.bookReviewManager.history.email.cancelledByEditor"
 msgstr "Peruutusilmoitus lähetetty"
 
-msgid "plugins.generic.objectsForReview.history.email.reminder"
+msgid "plugins.generic.bookReviewManager.history.email.reminder"
 msgstr "Muistutus lähetetty"
 
-msgid "plugins.generic.objectsForReview.history.event.reserved"
+msgid "plugins.generic.bookReviewManager.history.event.reserved"
 msgstr "{$recipientName} varasi, määräpäivä {$reviewDueDate}"
 
-msgid "plugins.generic.objectsForReview.history.event.cancelledByReviewer"
+msgid "plugins.generic.bookReviewManager.history.event.cancelledByReviewer"
 msgstr "{$recipientName} perui varauksen"
 
-msgid "plugins.generic.objectsForReview.history.event.cancelledByEditor"
+msgid "plugins.generic.bookReviewManager.history.event.cancelledByEditor"
 msgstr "Toimitus perui käyttäjän {$recipientName} varauksen"
 
-msgid "plugins.generic.objectsForReview.history.event.attached"
+msgid "plugins.generic.bookReviewManager.history.event.attached"
 msgstr "{$recipientName} liitti käsikirjoitukseen #{$submissionId}"
 
-msgid "plugins.generic.objectsForReview.reservations.email"
+msgid "plugins.generic.bookReviewManager.reservations.email"
 msgstr "Lähetä sähköposti"
 
-msgid "plugins.generic.objectsForReview.reservations.email.submit"
+msgid "plugins.generic.bookReviewManager.reservations.email.submit"
 msgstr "Lähetä"
 
-msgid "plugins.generic.objectsForReview.reservations.cancel"
+msgid "plugins.generic.bookReviewManager.reservations.cancel"
 msgstr "Peru varaus"
 
-msgid "plugins.generic.objectsForReview.reservations.cancel.description"
+msgid "plugins.generic.bookReviewManager.reservations.cancel.description"
 msgstr "Perutaanko käyttäjän {$reviewer} varaus? Julkaisu tulee taas tarjolle arvioitavaksi."
 
-msgid "plugins.generic.objectsForReview.reservations.cancel.sendEmail"
+msgid "plugins.generic.bookReviewManager.reservations.cancel.sendEmail"
 msgstr "Ilmoita arvioijalle sähköpostitse"
 
-msgid "plugins.generic.objectsForReview.reservations.cancel.submit"
+msgid "plugins.generic.bookReviewManager.reservations.cancel.submit"
 msgstr "Peru varaus"
 
-msgid "plugins.generic.objectsForReview.reservations.notReserved"
+msgid "plugins.generic.bookReviewManager.reservations.notReserved"
 msgstr "Julkaisua ei ole (enää) varattu."
 
-msgid "plugins.generic.objectsForReview.reservations.subjectRequired"
+msgid "plugins.generic.bookReviewManager.reservations.subjectRequired"
 msgstr "Anna aihe."
 
-msgid "plugins.generic.objectsForReview.reservations.bodyRequired"
+msgid "plugins.generic.bookReviewManager.reservations.bodyRequired"
 msgstr "Kirjoita viesti."
 
-msgid "plugins.generic.objectsForReview.column.reminderSent"
+msgid "plugins.generic.bookReviewManager.column.reminderSent"
 msgstr "Muistutus lähetetty"
 
-msgid "plugins.generic.objectsForReview.settings.reminderDays"
+msgid "plugins.generic.bookReviewManager.settings.reminderDays"
 msgstr "Muistutus"
 
-msgid "plugins.generic.objectsForReview.settings.reminderDays.description"
+msgid "plugins.generic.bookReviewManager.settings.reminderDays.description"
 msgstr "Montako päivää ennen määräpäivää arvioijia muistutetaan automaattisesti (0: ei muistutusta)"
 
-msgid "plugins.generic.objectsForReview.settings.reminderDays.invalid"
+msgid "plugins.generic.bookReviewManager.settings.reminderDays.invalid"
 msgstr "Anna päivien määrä kokonaislukuna väliltä 0–90."
 
-msgid "plugins.generic.objectsForReview.reminder.taskName"
+msgid "plugins.generic.bookReviewManager.reminder.taskName"
 msgstr "Kirja-arviot: päivittäiset muistutukset"
 
-msgid "plugins.generic.objectsForReview.reminder.sent"
+msgid "plugins.generic.bookReviewManager.reminder.sent"
 msgstr "{$context}: {$reminders} määräpäivämuistutus(ta), {$contractReminders} sopimustarjousmuistutus(ta), {$expired} vanhentunut(ta) sopimustarjous(ta), {$publisherReminders} kustantajamuistutus(ta), {$expiredInvitations} vanhentunut(ta) kutsu(a), {$invitationReminders} kutsumuistutus(ta)."
 
-msgid "plugins.generic.objectsForReview.identifierTypeRequired"
+msgid "plugins.generic.bookReviewManager.identifierTypeRequired"
 msgstr "Valitse tunnisteen tyyppi."
 
-msgid "plugins.generic.objectsForReview.resourceTypeRequired"
+msgid "plugins.generic.bookReviewManager.resourceTypeRequired"
 msgstr "Valitse aineiston tyyppi."
 
-msgid "plugins.generic.objectsForReview.titleRequired"
+msgid "plugins.generic.bookReviewManager.titleRequired"
 msgstr "Anna nimeke."
 
-msgid "plugins.generic.objectsForReview.identifierRequired"
+msgid "plugins.generic.bookReviewManager.identifierRequired"
 msgstr "Anna tunniste."
 
-msgid "plugins.generic.objectsForReview.role.bookReviewEditor"
+msgid "plugins.generic.bookReviewManager.role.bookReviewEditor"
 msgstr "Kirja-arvioiden toimittaja"
 
-msgid "plugins.generic.objectsForReview.role.bookReviewEditor.abbrev"
+msgid "plugins.generic.bookReviewManager.role.bookReviewEditor.abbrev"
 msgstr "KAT"
 
-msgid "plugins.generic.objectsForReview.role.publisherContact"
+msgid "plugins.generic.bookReviewManager.role.publisherContact"
 msgstr "Kustantajan yhteyshenkilö"
 
-msgid "plugins.generic.objectsForReview.role.publisherContact.abbrev"
+msgid "plugins.generic.bookReviewManager.role.publisherContact.abbrev"
 msgstr "KY"
 
-msgid "plugins.generic.objectsForReview.menu.desk"
+msgid "plugins.generic.bookReviewManager.menu.desk"
 msgstr "Tehtävät"
 
-msgid "plugins.generic.objectsForReview.menu.assignments"
+msgid "plugins.generic.bookReviewManager.menu.assignments"
 msgstr "Arvioijat ja hakijat"
 
-msgid "plugins.generic.objectsForReview.assignments.none"
+msgid "plugins.generic.bookReviewManager.assignments.none"
 msgstr "Ei merkintöjä tällä tilalla."
 
-msgid "plugins.generic.objectsForReview.status.active"
+msgid "plugins.generic.bookReviewManager.status.active"
 msgstr "Ajankohtaiset (tarjottu tai varattu)"
 
-msgid "plugins.generic.objectsForReview.status.all"
+msgid "plugins.generic.bookReviewManager.status.all"
 msgstr "Kaikki"
 
-msgid "plugins.generic.objectsForReview.status.bid"
+msgid "plugins.generic.bookReviewManager.status.bid"
 msgstr "Hakemus"
 
-msgid "plugins.generic.objectsForReview.status.unsuccessful"
+msgid "plugins.generic.bookReviewManager.status.unsuccessful"
 msgstr "Ei valittu (listalla)"
 
-msgid "plugins.generic.objectsForReview.status.offered"
+msgid "plugins.generic.bookReviewManager.status.offered"
 msgstr "Sopimus tarjottu"
 
-msgid "plugins.generic.objectsForReview.status.accepted"
+msgid "plugins.generic.bookReviewManager.status.accepted"
 msgstr "Varattu"
 
-msgid "plugins.generic.objectsForReview.status.submitted"
+msgid "plugins.generic.bookReviewManager.status.submitted"
 msgstr "Arvio lähetetty"
 
-msgid "plugins.generic.objectsForReview.status.completed"
+msgid "plugins.generic.bookReviewManager.status.completed"
 msgstr "Arvio julkaistu"
 
-msgid "plugins.generic.objectsForReview.status.withdrawn"
+msgid "plugins.generic.bookReviewManager.status.withdrawn"
 msgstr "Hakemus peruttu"
 
-msgid "plugins.generic.objectsForReview.status.declined"
+msgid "plugins.generic.bookReviewManager.status.declined"
 msgstr "Sopimus hylätty"
 
-msgid "plugins.generic.objectsForReview.status.expired"
+msgid "plugins.generic.bookReviewManager.status.expired"
 msgstr "Sopimustarjous vanhentunut"
 
-msgid "plugins.generic.objectsForReview.status.retracted"
+msgid "plugins.generic.bookReviewManager.status.retracted"
 msgstr "Arvioija perui"
 
-msgid "plugins.generic.objectsForReview.status.cancelled"
+msgid "plugins.generic.bookReviewManager.status.cancelled"
 msgstr "Toimitus perui"
 
-msgid "plugins.generic.objectsForReview.status.discarded"
+msgid "plugins.generic.bookReviewManager.status.discarded"
 msgstr "Lista suljettu"
 
-msgid "plugins.generic.objectsForReview.offerState.open"
+msgid "plugins.generic.bookReviewManager.offerState.open"
 msgstr "Avoin"
 
-msgid "plugins.generic.objectsForReview.offerState.selection"
+msgid "plugins.generic.bookReviewManager.offerState.selection"
 msgstr "Valinta kesken"
 
-msgid "plugins.generic.objectsForReview.offerState.contractOffered"
+msgid "plugins.generic.bookReviewManager.offerState.contractOffered"
 msgstr "Sopimus tarjottu"
 
-msgid "plugins.generic.objectsForReview.offerState.assigned"
+msgid "plugins.generic.bookReviewManager.offerState.assigned"
 msgstr "Varattu"
 
-msgid "plugins.generic.objectsForReview.offerState.submitted"
+msgid "plugins.generic.bookReviewManager.offerState.submitted"
 msgstr "Arvio lähetetty"
 
-msgid "plugins.generic.objectsForReview.offerState.closed"
+msgid "plugins.generic.bookReviewManager.offerState.closed"
 msgstr "Suljettu"
 
-msgid "plugins.generic.objectsForReview.offerState.bidCount"
+msgid "plugins.generic.bookReviewManager.offerState.bidCount"
 msgstr "{$number} hakemusta"
 
-msgid "plugins.generic.objectsForReview.offer.title"
+msgid "plugins.generic.bookReviewManager.offer.title"
 msgstr "Tarjous"
 
-msgid "plugins.generic.objectsForReview.offer.mode"
+msgid "plugins.generic.bookReviewManager.offer.mode"
 msgstr "Jakotapa"
 
-msgid "plugins.generic.objectsForReview.offer.mode.description"
+msgid "plugins.generic.bookReviewManager.offer.mode.description"
 msgstr "Suora varaus: arvion saa ensimmäinen ehdot hyväksyvä. Haku: arvioijat hakevat, ja kirja-arvioiden toimittaja valitsee."
 
-msgid "plugins.generic.objectsForReview.offer.mode.direct"
+msgid "plugins.generic.bookReviewManager.offer.mode.direct"
 msgstr "Suora varaus"
 
-msgid "plugins.generic.objectsForReview.offer.mode.bidding"
+msgid "plugins.generic.bookReviewManager.offer.mode.bidding"
 msgstr "Haku"
 
-msgid "plugins.generic.objectsForReview.offer.modeRequired"
+msgid "plugins.generic.bookReviewManager.offer.modeRequired"
 msgstr "Valitse jakotapa."
 
-msgid "plugins.generic.objectsForReview.offer.bidDeadline"
+msgid "plugins.generic.bookReviewManager.offer.bidDeadline"
 msgstr "Hakuaika päättyy"
 
-msgid "plugins.generic.objectsForReview.offer.bidDeadline.description"
+msgid "plugins.generic.bookReviewManager.offer.bidDeadline.description"
 msgstr "Valinnainen. Hakemuksia otetaan vastaan tämän päivän loppuun."
 
-msgid "plugins.generic.objectsForReview.offer.bidDeadlineInvalid"
+msgid "plugins.generic.bookReviewManager.offer.bidDeadlineInvalid"
 msgstr "Anna kelvollinen päivämäärä."
 
-msgid "plugins.generic.objectsForReview.offer.responsibleEditor"
+msgid "plugins.generic.bookReviewManager.offer.responsibleEditor"
 msgstr "Vastuullinen kirja-arvioiden toimittaja"
 
-msgid "plugins.generic.objectsForReview.offer.responsibleEditor.description"
+msgid "plugins.generic.bookReviewManager.offer.responsibleEditor.description"
 msgstr "Saa tätä tarjousta koskevat ilmoitukset. Kirja-arvioiden toimittajat ovat ryhmän ”Kirja-arvioiden toimittaja” käyttäjiä (Käyttäjät ja roolit)."
 
-msgid "plugins.generic.objectsForReview.offer.noEditor"
+msgid "plugins.generic.bookReviewManager.offer.noEditor"
 msgstr "— ei ketään (ilmoitusosoite asetuksista) —"
 
-msgid "plugins.generic.objectsForReview.offer.editorInvalid"
+msgid "plugins.generic.bookReviewManager.offer.editorInvalid"
 msgstr "Valitse kirja-arvioiden toimittaja."
 
-msgid "plugins.generic.objectsForReview.bid"
+msgid "plugins.generic.bookReviewManager.bid"
 msgstr "Hae"
 
-msgid "plugins.generic.objectsForReview.bid.title"
+msgid "plugins.generic.bookReviewManager.bid.title"
 msgstr "Hae tämän teoksen arvioijaksi"
 
-msgid "plugins.generic.objectsForReview.bid.description"
+msgid "plugins.generic.bookReviewManager.bid.description"
 msgstr "Kirja-arvioiden toimittaja valitsee hakijoiden joukosta. Jos sinut valitaan, saat sähköpostin, jossa on linkki arviointisopimukseen."
 
-msgid "plugins.generic.objectsForReview.bid.statement"
+msgid "plugins.generic.bookReviewManager.bid.statement"
 msgstr "Perustelut"
 
-msgid "plugins.generic.objectsForReview.bid.statement.hint"
+msgid "plugins.generic.bookReviewManager.bid.statement.hint"
 msgstr "Valinnainen: miksi haluaisit arvioida teoksen, ja asiantuntemuksesi."
 
-msgid "plugins.generic.objectsForReview.bid.submit"
+msgid "plugins.generic.bookReviewManager.bid.submit"
 msgstr "Lähetä hakemus"
 
-msgid "plugins.generic.objectsForReview.bid.open"
+msgid "plugins.generic.bookReviewManager.bid.open"
 msgstr "Haettavissa"
 
-msgid "plugins.generic.objectsForReview.bid.closed"
+msgid "plugins.generic.bookReviewManager.bid.closed"
 msgstr "Valinta käynnissä"
 
-msgid "plugins.generic.objectsForReview.bid.deadline"
+msgid "plugins.generic.bookReviewManager.bid.deadline"
 msgstr "Haku päättyy {$deadline}"
 
-msgid "plugins.generic.objectsForReview.bid.yours"
+msgid "plugins.generic.bookReviewManager.bid.yours"
 msgstr "Hait {$date}."
 
-msgid "plugins.generic.objectsForReview.bid.unsuccessful"
+msgid "plugins.generic.bookReviewManager.bid.unsuccessful"
 msgstr "Toinen henkilö arvioi teoksen. Pysyt listalla siltä varalta, ettei arviota synny."
 
-msgid "plugins.generic.objectsForReview.bid.withdraw"
+msgid "plugins.generic.bookReviewManager.bid.withdraw"
 msgstr "Peru hakemus"
 
-msgid "plugins.generic.objectsForReview.bid.withdraw.confirm"
+msgid "plugins.generic.bookReviewManager.bid.withdraw.confirm"
 msgstr "Haluatko perua hakemuksesi?"
 
-msgid "plugins.generic.objectsForReview.bid.selected"
+msgid "plugins.generic.bookReviewManager.bid.selected"
 msgstr "Sinut on valittu. Vastaa viimeistään {$deadline}."
 
-msgid "plugins.generic.objectsForReview.bid.respond"
+msgid "plugins.generic.bookReviewManager.bid.respond"
 msgstr "Vastaa tarjoukseen"
 
-msgid "plugins.generic.objectsForReview.backToList"
+msgid "plugins.generic.bookReviewManager.backToList"
 msgstr "Takaisin arvioitavien teosten luetteloon"
 
-msgid "plugins.generic.objectsForReview.contract.title"
+msgid "plugins.generic.bookReviewManager.contract.title"
 msgstr "Arviointisopimus"
 
-msgid "plugins.generic.objectsForReview.contract.intro"
+msgid "plugins.generic.bookReviewManager.contract.intro"
 msgstr "Hyvä {$name}, sinut on valittu arvioimaan tämä teos. Hyväksy sopimus viimeistään {$deadline} tai ilmoita, jos et voi kirjoittaa arviota."
 
-msgid "plugins.generic.objectsForReview.contract.accept"
+msgid "plugins.generic.bookReviewManager.contract.accept"
 msgstr "Hyväksy sopimus"
 
-msgid "plugins.generic.objectsForReview.contract.decline"
+msgid "plugins.generic.bookReviewManager.contract.decline"
 msgstr "En voi kirjoittaa tätä arviota"
 
-msgid "plugins.generic.objectsForReview.contract.declineReason"
+msgid "plugins.generic.bookReviewManager.contract.declineReason"
 msgstr "Syy (valinnainen)"
 
-msgid "plugins.generic.objectsForReview.contract.decline.submit"
+msgid "plugins.generic.bookReviewManager.contract.decline.submit"
 msgstr "Hylkää tarjous"
 
-msgid "plugins.generic.objectsForReview.contract.declined.noReason"
+msgid "plugins.generic.bookReviewManager.contract.declined.noReason"
 msgstr "Syytä ei annettu."
 
-msgid "plugins.generic.objectsForReview.contract.expired"
+msgid "plugins.generic.bookReviewManager.contract.expired"
 msgstr "Tarjoukseen ei vastattu määräaikaan mennessä."
 
-msgid "plugins.generic.objectsForReview.leave.title"
+msgid "plugins.generic.bookReviewManager.leave.title"
 msgstr "Poistu listalta"
 
-msgid "plugins.generic.objectsForReview.leave.description"
+msgid "plugins.generic.bookReviewManager.leave.description"
 msgstr "Hyvä {$name}, haluatko, että sinut poistetaan tämän teoksen hakijalistalta? Sinuun ei oteta enää yhteyttä teoksesta."
 
-msgid "plugins.generic.objectsForReview.leave.submit"
+msgid "plugins.generic.bookReviewManager.leave.submit"
 msgstr "Poista minut listalta"
 
-msgid "plugins.generic.objectsForReview.link.invalid.title"
+msgid "plugins.generic.bookReviewManager.link.invalid.title"
 msgstr "Linkki ei ole enää voimassa"
 
-msgid "plugins.generic.objectsForReview.link.invalid"
+msgid "plugins.generic.bookReviewManager.link.invalid"
 msgstr "Linkki on vanhentunut tai sitä on jo käytetty. Ota tarvittaessa yhteyttä toimitukseen."
 
-msgid "plugins.generic.objectsForReview.response.accepted.title"
+msgid "plugins.generic.bookReviewManager.response.accepted.title"
 msgstr "Kiitos!"
 
-msgid "plugins.generic.objectsForReview.response.accepted"
+msgid "plugins.generic.bookReviewManager.response.accepted"
 msgstr "Olet hyväksynyt arviointisopimuksen. Arviosi määräpäivä on {$dueDate}."
 
-msgid "plugins.generic.objectsForReview.response.declined.title"
+msgid "plugins.generic.bookReviewManager.response.declined.title"
 msgstr "Tarjous hylätty"
 
-msgid "plugins.generic.objectsForReview.response.declined"
+msgid "plugins.generic.bookReviewManager.response.declined"
 msgstr "Kiitos ilmoituksesta. Toimitukselle on ilmoitettu."
 
-msgid "plugins.generic.objectsForReview.response.left.title"
+msgid "plugins.generic.bookReviewManager.response.left.title"
 msgstr "Poistettu listalta"
 
-msgid "plugins.generic.objectsForReview.response.left"
+msgid "plugins.generic.bookReviewManager.response.left"
 msgstr "Sinut on poistettu tämän teoksen hakijalistalta."
 
-msgid "plugins.generic.objectsForReview.desk.empty"
+msgid "plugins.generic.bookReviewManager.desk.empty"
 msgstr "Ei tehtäviä tällä hetkellä."
 
-msgid "plugins.generic.objectsForReview.desk.selection"
+msgid "plugins.generic.bookReviewManager.desk.selection"
 msgstr "Valitse arvioija"
 
-msgid "plugins.generic.objectsForReview.desk.biddingOpen"
+msgid "plugins.generic.bookReviewManager.desk.biddingOpen"
 msgstr "Haku on käynnissä."
 
-msgid "plugins.generic.objectsForReview.desk.biddingClosed"
+msgid "plugins.generic.bookReviewManager.desk.biddingClosed"
 msgstr "Haku on suljettu."
 
-msgid "plugins.generic.objectsForReview.desk.deadlinePassed"
+msgid "plugins.generic.bookReviewManager.desk.deadlinePassed"
 msgstr "Hakuaika ({$deadline}) on päättynyt."
 
-msgid "plugins.generic.objectsForReview.desk.dropout.declined"
+msgid "plugins.generic.bookReviewManager.desk.dropout.declined"
 msgstr "{$name} hylkäsi sopimuksen {$date}."
 
-msgid "plugins.generic.objectsForReview.desk.dropout.expired"
+msgid "plugins.generic.bookReviewManager.desk.dropout.expired"
 msgstr "Sopimustarjous henkilölle {$name} vanheni {$date}."
 
-msgid "plugins.generic.objectsForReview.desk.dropout.retracted"
+msgid "plugins.generic.bookReviewManager.desk.dropout.retracted"
 msgstr "{$name} perui varauksen {$date}."
 
-msgid "plugins.generic.objectsForReview.desk.dropout.cancelled"
+msgid "plugins.generic.bookReviewManager.desk.dropout.cancelled"
 msgstr "Toimitus perui henkilön {$name} tehtävän {$date}."
 
-msgid "plugins.generic.objectsForReview.desk.noBidders"
+msgid "plugins.generic.bookReviewManager.desk.noBidders"
 msgstr "Listalla ei ole enää hakijoita."
 
-msgid "plugins.generic.objectsForReview.desk.reviewCount"
+msgid "plugins.generic.bookReviewManager.desk.reviewCount"
 msgstr "Arvioita tähän lehteen: {$number}"
 
-msgid "plugins.generic.objectsForReview.desk.onList"
+msgid "plugins.generic.bookReviewManager.desk.onList"
 msgstr "Listalla (on jo kerrottu, että toinen valittiin)"
 
-msgid "plugins.generic.objectsForReview.desk.select"
+msgid "plugins.generic.bookReviewManager.desk.select"
 msgstr "Valitse ja lähetä sopimus"
 
-msgid "plugins.generic.objectsForReview.desk.offers"
+msgid "plugins.generic.bookReviewManager.desk.offers"
 msgstr "Odotetaan vastausta sopimustarjoukseen"
 
-msgid "plugins.generic.objectsForReview.desk.unsuccessful"
+msgid "plugins.generic.bookReviewManager.desk.unsuccessful"
 msgstr "Ilmoita hakijoille, joita ei valittu"
 
-msgid "plugins.generic.objectsForReview.desk.closed"
+msgid "plugins.generic.bookReviewManager.desk.closed"
 msgstr "Suljetut tarjoukset"
 
-msgid "plugins.generic.objectsForReview.desk.notPossible"
+msgid "plugins.generic.bookReviewManager.desk.notPossible"
 msgstr "Tämä vaihe ei ole mahdollinen tarjouksen nykyisessä tilassa."
 
-msgid "plugins.generic.objectsForReview.desk.reopenBidding"
+msgid "plugins.generic.bookReviewManager.desk.reopenBidding"
 msgstr "Avaa haku uudelleen"
 
-msgid "plugins.generic.objectsForReview.desk.reopenBidding.confirm"
+msgid "plugins.generic.bookReviewManager.desk.reopenBidding.confirm"
 msgstr "Avataanko haku uudelleen? Listalla olevat hakijat pysyvät listalla."
 
-msgid "plugins.generic.objectsForReview.desk.switchToDirect"
+msgid "plugins.generic.bookReviewManager.desk.switchToDirect"
 msgstr "Vaihda suoraan varaukseen"
 
-msgid "plugins.generic.objectsForReview.desk.switchToDirect.confirm"
+msgid "plugins.generic.bookReviewManager.desk.switchToDirect.confirm"
 msgstr "Vaihdetaanko tarjous suoraan varaukseen? Arvion saa ensimmäinen, joka hyväksyy ehdot julkisella sivulla."
 
-msgid "plugins.generic.objectsForReview.desk.closeOffer"
+msgid "plugins.generic.bookReviewManager.desk.closeOffer"
 msgstr "Sulje tarjous"
 
-msgid "plugins.generic.objectsForReview.desk.closeOffer.confirm"
+msgid "plugins.generic.bookReviewManager.desk.closeOffer.confirm"
 msgstr "Suljetaanko tarjous? Se poistetaan julkiselta sivulta ja hakijalista hylätään."
 
-msgid "plugins.generic.objectsForReview.desk.reopenOffer"
+msgid "plugins.generic.bookReviewManager.desk.reopenOffer"
 msgstr "Avaa tarjous uudelleen"
 
-msgid "plugins.generic.objectsForReview.desk.reopenOffer.confirm"
+msgid "plugins.generic.bookReviewManager.desk.reopenOffer.confirm"
 msgstr "Tarjotaanko teosta uudelleen arvioitavaksi?"
 
-msgid "plugins.generic.objectsForReview.column.bidder"
+msgid "plugins.generic.bookReviewManager.column.bidder"
 msgstr "Hakija"
 
-msgid "plugins.generic.objectsForReview.column.bidDate"
+msgid "plugins.generic.bookReviewManager.column.bidDate"
 msgstr "Haettu"
 
-msgid "plugins.generic.objectsForReview.column.selectedBidder"
+msgid "plugins.generic.bookReviewManager.column.selectedBidder"
 msgstr "Valittu hakija"
 
-msgid "plugins.generic.objectsForReview.column.offeredOn"
+msgid "plugins.generic.bookReviewManager.column.offeredOn"
 msgstr "Tarjottu"
 
-msgid "plugins.generic.objectsForReview.column.answerBy"
+msgid "plugins.generic.bookReviewManager.column.answerBy"
 msgstr "Vastattava viimeistään"
 
-msgid "plugins.generic.objectsForReview.column.remainingBidders"
+msgid "plugins.generic.bookReviewManager.column.remainingBidders"
 msgstr "Muut hakijat"
 
-msgid "plugins.generic.objectsForReview.column.person"
+msgid "plugins.generic.bookReviewManager.column.person"
 msgstr "Henkilö"
 
-msgid "plugins.generic.objectsForReview.contractOffer.description"
+msgid "plugins.generic.bookReviewManager.contractOffer.description"
 msgstr "Valitse {$reviewer} arvioimaan teos. Haku suljetaan, ja {$reviewer} saa alla olevan sähköpostin, jossa on linkki arviointisopimukseen."
 
-msgid "plugins.generic.objectsForReview.contractOffer.linkHint"
+msgid "plugins.generic.bookReviewManager.contractOffer.linkHint"
 msgstr "{$contractUrl} korvataan lähetettäessä henkilökohtaisella linkillä sopimukseen."
 
-msgid "plugins.generic.objectsForReview.contractOffer.linkRequired"
+msgid "plugins.generic.bookReviewManager.contractOffer.linkRequired"
 msgstr "Sähköpostin on sisällettävä {$contractUrl}, linkki sopimukseen."
 
-msgid "plugins.generic.objectsForReview.contractOffer.submit"
+msgid "plugins.generic.bookReviewManager.contractOffer.submit"
 msgstr "Valitse ja lähetä"
 
-msgid "plugins.generic.objectsForReview.contractOffer.cancel"
+msgid "plugins.generic.bookReviewManager.contractOffer.cancel"
 msgstr "Peru tarjous"
 
-msgid "plugins.generic.objectsForReview.contractOffer.cancel.description"
+msgid "plugins.generic.bookReviewManager.contractOffer.cancel.description"
 msgstr "Perutaanko sopimustarjous henkilölle {$reviewer}? Voit sitten valita toisen hakijan."
 
-msgid "plugins.generic.objectsForReview.unsuccessful.action"
+msgid "plugins.generic.bookReviewManager.unsuccessful.action"
 msgstr "Ilmoita hakijoille"
 
-msgid "plugins.generic.objectsForReview.unsuccessful.description"
+msgid "plugins.generic.bookReviewManager.unsuccessful.description"
 msgstr "Kerro näille hakijoille, että toinen henkilö arvioi teoksen. He pysyvät listalla siltä varalta, ettei arviota synny."
 
-msgid "plugins.generic.objectsForReview.unsuccessful.linkHint"
+msgid "plugins.generic.bookReviewManager.unsuccessful.linkHint"
 msgstr "Jokainen hakija saa henkilökohtaisen sähköpostin: {$recipientName} ja {$removeUrl} (linkki listalta poistumiseen) täytetään lähetettäessä."
 
-msgid "plugins.generic.objectsForReview.unsuccessful.submit"
+msgid "plugins.generic.bookReviewManager.unsuccessful.submit"
 msgstr "Ilmoita"
 
-msgid "plugins.generic.objectsForReview.history.email.contractOffer"
+msgid "plugins.generic.bookReviewManager.history.email.contractOffer"
 msgstr "Sopimustarjous lähetetty"
 
-msgid "plugins.generic.objectsForReview.history.email.contractOfferAgain"
+msgid "plugins.generic.bookReviewManager.history.email.contractOfferAgain"
 msgstr "Sopimustarjous lähetetty (peruutuksen jälkeen)"
 
-msgid "plugins.generic.objectsForReview.history.email.contractReminder"
+msgid "plugins.generic.bookReviewManager.history.email.contractReminder"
 msgstr "Muistutus sopimustarjouksesta lähetetty"
 
-msgid "plugins.generic.objectsForReview.history.email.bidUnsuccessful"
+msgid "plugins.generic.bookReviewManager.history.email.bidUnsuccessful"
 msgstr "Hakijalle ilmoitettu: ei valittu"
 
-msgid "plugins.generic.objectsForReview.history.email.bidNew"
+msgid "plugins.generic.bookReviewManager.history.email.bidNew"
 msgstr "Toimittajalle ilmoitettu uudesta hakemuksesta"
 
-msgid "plugins.generic.objectsForReview.history.email.contractDeclined"
+msgid "plugins.generic.bookReviewManager.history.email.contractDeclined"
 msgstr "Toimittajalle ilmoitettu: sopimus hylätty tai vanhentunut"
 
-msgid "plugins.generic.objectsForReview.history.event.bid"
+msgid "plugins.generic.bookReviewManager.history.event.bid"
 msgstr "{$recipientName} haki"
 
-msgid "plugins.generic.objectsForReview.history.event.bidWithdrawn"
+msgid "plugins.generic.bookReviewManager.history.event.bidWithdrawn"
 msgstr "{$recipientName} perui hakemuksensa"
 
-msgid "plugins.generic.objectsForReview.history.event.contractOffered"
+msgid "plugins.generic.bookReviewManager.history.event.contractOffered"
 msgstr "Sopimus tarjottu henkilölle {$recipientName}; haku suljettu"
 
-msgid "plugins.generic.objectsForReview.history.event.contractAccepted"
+msgid "plugins.generic.bookReviewManager.history.event.contractAccepted"
 msgstr "{$recipientName} hyväksyi sopimuksen, määräpäivä {$reviewDueDate}"
 
-msgid "plugins.generic.objectsForReview.history.event.contractDeclined"
+msgid "plugins.generic.bookReviewManager.history.event.contractDeclined"
 msgstr "{$recipientName} hylkäsi sopimuksen"
 
-msgid "plugins.generic.objectsForReview.history.event.contractExpired"
+msgid "plugins.generic.bookReviewManager.history.event.contractExpired"
 msgstr "Sopimustarjous henkilölle {$recipientName} vanheni"
 
-msgid "plugins.generic.objectsForReview.history.event.contractWithdrawn"
+msgid "plugins.generic.bookReviewManager.history.event.contractWithdrawn"
 msgstr "Toimitus perui sopimustarjouksen henkilölle {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.bidderUnsuccessful"
+msgid "plugins.generic.bookReviewManager.history.event.bidderUnsuccessful"
 msgstr "{$recipientName}: ilmoitettu, ettei valittu (pysyy listalla)"
 
-msgid "plugins.generic.objectsForReview.history.event.biddingReopened"
+msgid "plugins.generic.bookReviewManager.history.event.biddingReopened"
 msgstr "Haku avattu uudelleen"
 
-msgid "plugins.generic.objectsForReview.history.event.modeDirect"
+msgid "plugins.generic.bookReviewManager.history.event.modeDirect"
 msgstr "Vaihdettu suoraan varaukseen"
 
-msgid "plugins.generic.objectsForReview.history.event.offerClosed"
+msgid "plugins.generic.bookReviewManager.history.event.offerClosed"
 msgstr "Tarjous suljettu"
 
-msgid "plugins.generic.objectsForReview.history.event.offerReopened"
+msgid "plugins.generic.bookReviewManager.history.event.offerReopened"
 msgstr "Tarjous avattu uudelleen"
 
-msgid "plugins.generic.objectsForReview.history.event.listDiscarded"
+msgid "plugins.generic.bookReviewManager.history.event.listDiscarded"
 msgstr "Hakijalista hylätty ({$recipientCount})"
 
-msgid "plugins.generic.objectsForReview.history.event.completed"
+msgid "plugins.generic.bookReviewManager.history.event.completed"
 msgstr "Henkilön {$recipientName} arvio julkaistu"
 
-msgid "plugins.generic.objectsForReview.history.event.imported"
+msgid "plugins.generic.bookReviewManager.history.event.imported"
 msgstr "Tuotu API:n kautta: {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.essayMirrored"
+msgid "plugins.generic.bookReviewManager.history.event.essayMirrored"
 msgstr "Kooste-arvio: {$recipientName} — arvioijan sopimus kattaa tämän teoksen"
 
-msgid "plugins.generic.objectsForReview.history.event.essayStatus"
+msgid "plugins.generic.bookReviewManager.history.event.essayStatus"
 msgstr "Kooste-arvio: {$recipientName} — tila muuttui"
 
-msgid "plugins.generic.objectsForReview.history.event.essayStatus.accepted"
+msgid "plugins.generic.bookReviewManager.history.event.essayStatus.accepted"
 msgstr "Kooste-arvio: {$recipientName} — tilaksi muuttui Varattu"
 
-msgid "plugins.generic.objectsForReview.history.event.essayStatus.submitted"
+msgid "plugins.generic.bookReviewManager.history.event.essayStatus.submitted"
 msgstr "Kooste-arvio: {$recipientName} — tilaksi muuttui Arvio lähetetty"
 
-msgid "plugins.generic.objectsForReview.history.event.essayStatus.completed"
+msgid "plugins.generic.bookReviewManager.history.event.essayStatus.completed"
 msgstr "Kooste-arvio: {$recipientName} — tilaksi muuttui Arvio julkaistu"
 
-msgid "plugins.generic.objectsForReview.history.event.essayStatus.retracted"
+msgid "plugins.generic.bookReviewManager.history.event.essayStatus.retracted"
 msgstr "Kooste-arvio: {$recipientName} — tilaksi muuttui Arvioija perui"
 
-msgid "plugins.generic.objectsForReview.history.event.essayStatus.cancelled"
+msgid "plugins.generic.bookReviewManager.history.event.essayStatus.cancelled"
 msgstr "Kooste-arvio: {$recipientName} — tilaksi muuttui Toimitus perui"
 
-msgid "plugins.generic.objectsForReview.history.event.essayCreated"
+msgid "plugins.generic.bookReviewManager.history.event.essayCreated"
 msgstr "Kooste-arvio luotu: {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.essayMemberAdded"
+msgid "plugins.generic.bookReviewManager.history.event.essayMemberAdded"
 msgstr "Kooste-arvio: {$recipientName} — teos lisätty kooste-arvioon"
 
-msgid "plugins.generic.objectsForReview.history.event.essayMemberAdded.container"
+msgid "plugins.generic.bookReviewManager.history.event.essayMemberAdded.container"
 msgstr "Teos lisätty kooste-arvioon: {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.essayMemberRemoved"
+msgid "plugins.generic.bookReviewManager.history.event.essayMemberRemoved"
 msgstr "Kooste-arvio: {$recipientName} — teos poistettu kooste-arviosta"
 
-msgid "plugins.generic.objectsForReview.history.event.essayMemberRemoved.container"
+msgid "plugins.generic.bookReviewManager.history.event.essayMemberRemoved.container"
 msgstr "Teos poistettu kooste-arviosta: {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.essayDissolved"
+msgid "plugins.generic.bookReviewManager.history.event.essayDissolved"
 msgstr "Kooste-arvio: {$recipientName} — purettu, teosta tarjotaan taas erikseen"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.notAvailable"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.notAvailable"
 msgstr "Tämä teos ei voi kuulua kooste-arvioon: se kuuluu jo kooste-arvioon, on liitetty käsikirjoitukseen tai sen tarjous on suljettu."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.twoReviewers"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.twoReviewers"
 msgstr "Vain yhdellä teoksista voi olla arvioija: kooste-arviolla on yksi arvioija."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.pending"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.pending"
 msgstr "Yhdellä teoksista on avoin sopimustarjous tai kutsukierros. Odota sen päättymistä tai peru se ensin."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.lastMember"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.lastMember"
 msgstr "Kooste-arvion viimeistä teosta ei voi poistaa. Pura kooste-arvio sen sijaan."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.hasReviewer"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.hasReviewer"
 msgstr "Kooste-arviota, jolla on arvioija, ei voi purkaa."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.submitted"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.submitted"
 msgstr "Kooste-arvio on lähetetty: sen teoksia ei voi enää muuttaa."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.pendingEssay"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.pendingEssay"
 msgstr "Tällä kooste-arviolla on avoin sopimustarjous."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.resourceType"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.resourceType"
 msgstr "Kooste-arvion resurssityyppiä ei voi muuttaa. Pura kooste-arvio sen sijaan."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.api.notFound"
+msgid "plugins.generic.bookReviewManager.reviewEssay.api.notFound"
 msgstr "Tällä tunnisteella ei ole kooste-arviota."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.api.workNotFound"
+msgid "plugins.generic.bookReviewManager.reviewEssay.api.workNotFound"
 msgstr "Tällä tunnisteella ei ole teosta."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.api.memberOfReviewEssay"
+msgid "plugins.generic.bookReviewManager.reviewEssay.api.memberOfReviewEssay"
 msgstr "Tämä teos kuuluu kooste-arvioon {$bundleId}: tuo arvioija sen sijaan kooste-arviolle."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.api.invalidCopies"
+msgid "plugins.generic.bookReviewManager.reviewEssay.api.invalidCopies"
 msgstr "copies (luettelo merkinnöistä, joissa on objectId) ja copyPreferences (teoksen tunnisteen mukaan) saavat mainita vain kooste-arvion teoksia, kunkin teoksen enintään kerran."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.api.invalidCopyPreference"
+msgid "plugins.generic.bookReviewManager.reviewEssay.api.invalidCopyPreference"
 msgstr "copyPreference-kentän on oltava jokin näistä: {$values}."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.api.invalidCopyStatus"
+msgid "plugins.generic.bookReviewManager.reviewEssay.api.invalidCopyStatus"
 msgstr "copyStatus-kentän on oltava jokin näistä: {$values}."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.api.shippingAddressRequired"
+msgid "plugins.generic.bookReviewManager.reviewEssay.api.shippingAddressRequired"
 msgstr "shippingAddress vaaditaan, jos teoksen painettua kappaletta ei ole vielä lähetetty."
 
-msgid "plugins.generic.objectsForReview.history.email.essayChanged"
+msgid "plugins.generic.bookReviewManager.history.email.essayChanged"
 msgstr "Arvioijalle ilmoitettu: kooste-arvion teokset ovat muuttuneet"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.create"
+msgid "plugins.generic.bookReviewManager.reviewEssay.create"
 msgstr "Luo kooste-arvio"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.label"
+msgid "plugins.generic.bookReviewManager.reviewEssay.label"
 msgstr "Kooste-arvio:"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.memberOf"
+msgid "plugins.generic.bookReviewManager.reviewEssay.memberOf"
 msgstr "(kooste-arvio: {$title})"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.title"
+msgid "plugins.generic.bookReviewManager.reviewEssay.title"
 msgstr "Kooste-arvion otsikko"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.titleRequired"
+msgid "plugins.generic.bookReviewManager.reviewEssay.titleRequired"
 msgstr "Anna kooste-arviolle otsikko."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.works"
+msgid "plugins.generic.bookReviewManager.reviewEssay.works"
 msgstr "Teokset"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.works.description"
+msgid "plugins.generic.bookReviewManager.reviewEssay.works.description"
 msgstr "Luettelossa ei näytetä teoksia, jotka kuuluvat jo kooste-arvioon, on liitetty käsikirjoitukseen tai joilla on avoin sopimustarjous tai kutsukierros. Enintään yhdellä valituista teoksista saa olla arvioija: hän kirjoittaa silloin kooste-arvion."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.worksRequired"
+msgid "plugins.generic.bookReviewManager.reviewEssay.worksRequired"
 msgstr "Valitse vähintään yksi teos."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.noWorks"
+msgid "plugins.generic.bookReviewManager.reviewEssay.noWorks"
 msgstr "Ei ole teoksia, joista voisi koota kooste-arvion."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.workHasReviewer"
+msgid "plugins.generic.bookReviewManager.reviewEssay.workHasReviewer"
 msgstr "arvioija on jo valittu"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.copyPreference"
+msgid "plugins.generic.bookReviewManager.reviewEssay.copyPreference"
 msgstr "Arvioijan pääsy tähän teokseen"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.copyPreference.description"
+msgid "plugins.generic.bookReviewManager.reviewEssay.copyPreference.description"
 msgstr "Kooste-arviolla on arvioija. Valitse, miten hän saa pääsyn lisättyyn teokseen."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.copyPreferences.description"
+msgid "plugins.generic.bookReviewManager.reviewEssay.copyPreferences.description"
 msgstr "Valitun teoksen, jolla arvioija on jo valittu, arvioijasta tulee kooste-arvion arvioija. Valitse jokaiselle muulle teokselle, miten hän saa siihen pääsyn."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.hidden"
+msgid "plugins.generic.bookReviewManager.reviewEssay.hidden"
 msgstr "Piilota kooste-arvio toistaiseksi julkisesta luettelosta"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.emailNotice"
+msgid "plugins.generic.bookReviewManager.reviewEssay.emailNotice"
 msgstr "Jos kooste-arviolla on arvioija, hänelle ilmoitetaan sähköpostilla ”Kooste-arvio muuttunut” (mallipohjan teksti sellaisenaan)."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.endsBidsNotice"
+msgid "plugins.generic.bookReviewManager.reviewEssay.endsBidsNotice"
 msgstr "Valittujen teosten avoimet hakemukset ja kutsut päätetään, kun kooste-arvio luodaan. Hakijoille ja kutsutuille ei lähetetä sähköpostia, ja heidän linkkinsä lakkaavat toimimasta."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.membersHint"
+msgid "plugins.generic.bookReviewManager.reviewEssay.membersHint"
 msgstr "Teoksia lisätään kooste-arvioon ja poistetaan siitä luettelon toiminnoilla."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.created"
+msgid "plugins.generic.bookReviewManager.reviewEssay.created"
 msgstr "Kooste-arvio luotiin."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.saved"
+msgid "plugins.generic.bookReviewManager.reviewEssay.saved"
 msgstr "Kooste-arvio tallennettiin."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.workAdded"
+msgid "plugins.generic.bookReviewManager.reviewEssay.workAdded"
 msgstr "Teos lisättiin kooste-arvioon."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.workRemoved"
+msgid "plugins.generic.bookReviewManager.reviewEssay.workRemoved"
 msgstr "Teos poistettiin kooste-arviosta. Sitä tarjotaan taas erikseen, aluksi piilotettuna."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.reviewerEmailed"
+msgid "plugins.generic.bookReviewManager.reviewEssay.reviewerEmailed"
 msgstr "Arvioijalle ilmoitettiin sähköpostilla (mallipohjan teksti muokkaamattomana)."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.selectRequired"
+msgid "plugins.generic.bookReviewManager.reviewEssay.selectRequired"
 msgstr "Tee kelvollinen valinta."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.essay"
+msgid "plugins.generic.bookReviewManager.reviewEssay.essay"
 msgstr "Kooste-arvio"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.work"
+msgid "plugins.generic.bookReviewManager.reviewEssay.work"
 msgstr "Teos"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.noWorksToAdd"
+msgid "plugins.generic.bookReviewManager.reviewEssay.noWorksToAdd"
 msgstr "Ei ole teoksia, jotka voisi lisätä kooste-arvioon."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.noEssays"
+msgid "plugins.generic.bookReviewManager.reviewEssay.noEssays"
 msgstr "Ei ole kooste-arviota, johon tämän teoksen voisi lisätä."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.addWork"
+msgid "plugins.generic.bookReviewManager.reviewEssay.addWork"
 msgstr "Lisää teos"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.addToEssay"
+msgid "plugins.generic.bookReviewManager.reviewEssay.addToEssay"
 msgstr "Lisää kooste-arvioon…"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.dissolve"
+msgid "plugins.generic.bookReviewManager.reviewEssay.dissolve"
 msgstr "Pura"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.dissolve.confirm"
+msgid "plugins.generic.bookReviewManager.reviewEssay.dissolve.confirm"
 msgstr "Puretaanko tämä kooste-arvio? Sen teoksia tarjotaan taas erikseen, aluksi piilotettuina."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.remove"
+msgid "plugins.generic.bookReviewManager.reviewEssay.remove"
 msgstr "Poista kooste-arviosta"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.remove.confirm"
+msgid "plugins.generic.bookReviewManager.reviewEssay.remove.confirm"
 msgstr "Poistetaanko tämä teos kooste-arviosta? Sitä tarjotaan taas erikseen, aluksi piilotettuna. Jos kooste-arviolla on arvioija, hänelle ilmoitetaan sähköpostilla ”Kooste-arvio muuttunut” (mallipohjan teksti sellaisenaan)."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.delete.confirmEssay"
+msgid "plugins.generic.bookReviewManager.reviewEssay.delete.confirmEssay"
 msgstr "Poistetaanko tämä kooste-arvio? Se puretaan ensin: sen teokset jäävät luetteloon ja niitä tarjotaan taas erikseen, aluksi piilotettuina. Kooste-arviota, jolla on arvioija, ei voi poistaa."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.delete.confirmWork"
+msgid "plugins.generic.bookReviewManager.reviewEssay.delete.confirmWork"
 msgstr "Poistetaanko tämä teos? Se poistetaan ensin kooste-arviostaan (kooste-arvion mahdolliselle arvioijalle ilmoitetaan sähköpostilla). Kooste-arvion viimeistä teosta ei voi poistaa."
 
-msgid "plugins.generic.objectsForReview.settings.defaultMode"
+msgid "plugins.generic.bookReviewManager.settings.defaultMode"
 msgstr "Uusien tarjousten oletusjakotapa"
 
-msgid "plugins.generic.objectsForReview.settings.defaultMode.description"
+msgid "plugins.generic.bookReviewManager.settings.defaultMode.description"
 msgstr "Voidaan muuttaa tarjouskohtaisesti."
 
-msgid "plugins.generic.objectsForReview.settings.defaultEditor"
+msgid "plugins.generic.bookReviewManager.settings.defaultEditor"
 msgstr "Oletusarvoinen vastuullinen kirja-arvioiden toimittaja"
 
-msgid "plugins.generic.objectsForReview.settings.defaultEditor.description"
+msgid "plugins.generic.bookReviewManager.settings.defaultEditor.description"
 msgstr "Uusille tarjouksille. Jos ketään ei ole asetettu, tarjouksen luova kirja-arvioiden toimittaja on vastuussa."
 
-msgid "plugins.generic.objectsForReview.settings.defaultEditor.none"
+msgid "plugins.generic.bookReviewManager.settings.defaultEditor.none"
 msgstr "— ei ketään —"
 
-msgid "plugins.generic.objectsForReview.settings.contractDays"
+msgid "plugins.generic.bookReviewManager.settings.contractDays"
 msgstr "Sopimustarjoukset"
 
-msgid "plugins.generic.objectsForReview.settings.contractDays.description"
+msgid "plugins.generic.bookReviewManager.settings.contractDays.description"
 msgstr "Montako päivää valitulla hakijalla on aikaa hyväksyä sopimus, ja monenko päivän jälkeen lähetetään muistutus (0: ei muistutusta)."
 
-msgid "plugins.generic.objectsForReview.settings.contractDays.deadline"
+msgid "plugins.generic.bookReviewManager.settings.contractDays.deadline"
 msgstr "Vastausaika päivinä"
 
-msgid "plugins.generic.objectsForReview.settings.contractDays.reminder"
+msgid "plugins.generic.bookReviewManager.settings.contractDays.reminder"
 msgstr "Muistutus (päivän kuluttua)"
 
-msgid "plugins.generic.objectsForReview.settings.contractDays.invalid"
+msgid "plugins.generic.bookReviewManager.settings.contractDays.invalid"
 msgstr "Anna vastausaika (1–90 päivää) ja muistutus ennen määräaikaa."
 
-msgid "plugins.generic.objectsForReview.desk.declineReason"
+msgid "plugins.generic.bookReviewManager.desk.declineReason"
 msgstr "Syy"
 
-msgid "plugins.generic.objectsForReview.copy.status.notNeeded"
+msgid "plugins.generic.bookReviewManager.copy.status.notNeeded"
 msgstr "Kappaletta ei tarvita"
 
-msgid "plugins.generic.objectsForReview.copy.status.pending"
+msgid "plugins.generic.bookReviewManager.copy.status.pending"
 msgstr "Kappale järjestettävä"
 
-msgid "plugins.generic.objectsForReview.copy.status.requested"
+msgid "plugins.generic.bookReviewManager.copy.status.requested"
 msgstr "Pyydetty kustantajalta"
 
-msgid "plugins.generic.objectsForReview.copy.status.sent"
+msgid "plugins.generic.bookReviewManager.copy.status.sent"
 msgstr "Lähetetty"
 
-msgid "plugins.generic.objectsForReview.copy.status.received"
+msgid "plugins.generic.bookReviewManager.copy.status.received"
 msgstr "Arvioija on vastaanottanut"
 
-msgid "plugins.generic.objectsForReview.copy.status.returnRequested"
+msgid "plugins.generic.bookReviewManager.copy.status.returnRequested"
 msgstr "Palautusta pyydetty"
 
-msgid "plugins.generic.objectsForReview.copy.status.returnSent"
+msgid "plugins.generic.bookReviewManager.copy.status.returnSent"
 msgstr "Lähetetty takaisin"
 
-msgid "plugins.generic.objectsForReview.copy.status.returned"
+msgid "plugins.generic.bookReviewManager.copy.status.returned"
 msgstr "Palautettu"
 
-msgid "plugins.generic.objectsForReview.copy.by.journal"
+msgid "plugins.generic.bookReviewManager.copy.by.journal"
 msgstr "lehden toimesta"
 
-msgid "plugins.generic.objectsForReview.copy.by.publisher"
+msgid "plugins.generic.bookReviewManager.copy.by.publisher"
 msgstr "kustantajan toimesta"
 
-msgid "plugins.generic.objectsForReview.copy.to.journal"
+msgid "plugins.generic.bookReviewManager.copy.to.journal"
 msgstr "lehdelle"
 
-msgid "plugins.generic.objectsForReview.copy.to.publisher"
+msgid "plugins.generic.bookReviewManager.copy.to.publisher"
 msgstr "kustantajalle"
 
-msgid "plugins.generic.objectsForReview.copy.type.physical"
+msgid "plugins.generic.bookReviewManager.copy.type.physical"
 msgstr "painettu kappale"
 
-msgid "plugins.generic.objectsForReview.copy.type.electronic"
+msgid "plugins.generic.bookReviewManager.copy.type.electronic"
 msgstr "sähköinen kappale"
 
-msgid "plugins.generic.objectsForReview.copy.type.have"
+msgid "plugins.generic.bookReviewManager.copy.type.have"
 msgstr "kappaletta ei tarvita"
 
-msgid "plugins.generic.objectsForReview.copy.type.other"
+msgid "plugins.generic.bookReviewManager.copy.type.other"
 msgstr "katso huomautus"
 
-msgid "plugins.generic.objectsForReview.copy.source.journal"
+msgid "plugins.generic.bookReviewManager.copy.source.journal"
 msgstr "lehden toimesta"
 
-msgid "plugins.generic.objectsForReview.copy.source.publisher"
+msgid "plugins.generic.bookReviewManager.copy.source.publisher"
 msgstr "kustantajan toimesta"
 
-msgid "plugins.generic.objectsForReview.copy.delivery.physical"
+msgid "plugins.generic.bookReviewManager.copy.delivery.physical"
 msgstr "Lähetä painettu kappale osoitteeseen:"
 
-msgid "plugins.generic.objectsForReview.copy.delivery.electronic"
+msgid "plugins.generic.bookReviewManager.copy.delivery.electronic"
 msgstr "Lähetä sähköinen kappale osoitteeseen:"
 
-msgid "plugins.generic.objectsForReview.copy.step.requestCopy"
+msgid "plugins.generic.bookReviewManager.copy.step.requestCopy"
 msgstr "Pyydä kappale kustantajalta"
 
-msgid "plugins.generic.objectsForReview.copy.step.requestCopy.description"
+msgid "plugins.generic.bookReviewManager.copy.step.requestCopy.description"
 msgstr "Pyydä henkilöltä {$publisher} kappale arvioijalle {$reviewer}. Sähköposti sisältää toimitustiedot."
 
-msgid "plugins.generic.objectsForReview.copy.step.sendFromStock"
+msgid "plugins.generic.bookReviewManager.copy.step.sendFromStock"
 msgstr "Lähetä kappale lehden varastosta"
 
-msgid "plugins.generic.objectsForReview.copy.step.sendFromStock.description"
+msgid "plugins.generic.bookReviewManager.copy.step.sendFromStock.description"
 msgstr "Kirjaa, että lehti on lähettänyt kappaleensa arvioijalle {$reviewer}."
 
-msgid "plugins.generic.objectsForReview.copy.step.publisherSent"
+msgid "plugins.generic.bookReviewManager.copy.step.publisherSent"
 msgstr "Kustantaja on lähettänyt kappaleen"
 
-msgid "plugins.generic.objectsForReview.copy.step.publisherSent.description"
+msgid "plugins.generic.bookReviewManager.copy.step.publisherSent.description"
 msgstr "Kirjaa, että kustantaja on lähettänyt kappaleen arvioijalle {$reviewer}."
 
-msgid "plugins.generic.objectsForReview.copy.step.markReceived"
+msgid "plugins.generic.bookReviewManager.copy.step.markReceived"
 msgstr "Merkitse vastaanotetuksi"
 
-msgid "plugins.generic.objectsForReview.copy.step.markReceived.description"
+msgid "plugins.generic.bookReviewManager.copy.step.markReceived.description"
 msgstr "Kirjaa, että {$reviewer} on vastaanottanut kappaleen. Toimitusosoite ja puhelinnumero poistetaan."
 
-msgid "plugins.generic.objectsForReview.copy.step.withdrawRequest"
+msgid "plugins.generic.bookReviewManager.copy.step.withdrawRequest"
 msgstr "Peru kappalepyyntö"
 
-msgid "plugins.generic.objectsForReview.copy.step.withdrawRequest.description"
+msgid "plugins.generic.bookReviewManager.copy.step.withdrawRequest.description"
 msgstr "Kirjaa, ettei kappaletta enää tarvita. Ilmoita asiasta henkilölle {$publisher}."
 
-msgid "plugins.generic.objectsForReview.copy.step.requestReturn"
+msgid "plugins.generic.bookReviewManager.copy.step.requestReturn"
 msgstr "Pyydä palautus"
 
-msgid "plugins.generic.objectsForReview.copy.step.requestReturn.description"
+msgid "plugins.generic.bookReviewManager.copy.step.requestReturn.description"
 msgstr "Henkilöltä {$reviewer} ei tule arviota: pyydä painetun kappaleen palautusta. Voimassa oleva varaus perutaan."
 
-msgid "plugins.generic.objectsForReview.copy.step.returnSent"
+msgid "plugins.generic.bookReviewManager.copy.step.returnSent"
 msgstr "Kappale on lähetetty takaisin"
 
-msgid "plugins.generic.objectsForReview.copy.step.returnSent.description"
+msgid "plugins.generic.bookReviewManager.copy.step.returnSent.description"
 msgstr "Kirjaa, että {$reviewer} on lähettänyt kappaleen takaisin."
 
-msgid "plugins.generic.objectsForReview.copy.step.returned"
+msgid "plugins.generic.bookReviewManager.copy.step.returned"
 msgstr "Kappale on palautunut"
 
-msgid "plugins.generic.objectsForReview.copy.step.returned.description"
+msgid "plugins.generic.bookReviewManager.copy.step.returned.description"
 msgstr "Kirjaa, että kappale on palautettu. Lehdelle palautettu kappale on seuraavan arvioijan käytettävissä."
 
-msgid "plugins.generic.objectsForReview.copy.step.notifyPublisher"
+msgid "plugins.generic.bookReviewManager.copy.step.notifyPublisher"
 msgstr "Ilmoita kustantajalle"
 
-msgid "plugins.generic.objectsForReview.copy.step.notifyPublisher.description"
+msgid "plugins.generic.bookReviewManager.copy.step.notifyPublisher.description"
 msgstr "Ilmoita henkilölle {$publisher}, että arvioijan {$reviewer} arvio on julkaistu."
 
-msgid "plugins.generic.objectsForReview.copy.returnTarget"
+msgid "plugins.generic.bookReviewManager.copy.returnTarget"
 msgstr "Palautetaan"
 
-msgid "plugins.generic.objectsForReview.copy.returnTargetRequired"
+msgid "plugins.generic.bookReviewManager.copy.returnTargetRequired"
 msgstr "Valitse, minne kappale palautetaan."
 
-msgid "plugins.generic.objectsForReview.copy.returnAddressHint"
+msgid "plugins.generic.bookReviewManager.copy.returnAddressHint"
 msgstr "{$returnAddress} korvataan lähetettäessä yllä valitulla osoitteella."
 
-msgid "plugins.generic.objectsForReview.copy.journalHoldsCopy"
+msgid "plugins.generic.bookReviewManager.copy.journalHoldsCopy"
 msgstr "Lehdellä on kappale"
 
-msgid "plugins.generic.objectsForReview.copy.noSource"
+msgid "plugins.generic.bookReviewManager.copy.noSource"
 msgstr "Ei kustantajan yhteyshenkilöä eikä lehden kappaletta: muokkaa tarjousta"
 
-msgid "plugins.generic.objectsForReview.copy.reviewerStatus.pending"
+msgid "plugins.generic.bookReviewManager.copy.reviewerStatus.pending"
 msgstr "Toimitus järjestää sinulle kappaleen."
 
-msgid "plugins.generic.objectsForReview.copy.reviewerStatus.requested"
+msgid "plugins.generic.bookReviewManager.copy.reviewerStatus.requested"
 msgstr "Kappaletta on pyydetty kustantajalta."
 
-msgid "plugins.generic.objectsForReview.copy.reviewerStatus.sent"
+msgid "plugins.generic.bookReviewManager.copy.reviewerStatus.sent"
 msgstr "Sinulle on lähetetty kappale."
 
-msgid "plugins.generic.objectsForReview.copy.reviewerStatus.returnRequested"
+msgid "plugins.generic.bookReviewManager.copy.reviewerStatus.returnRequested"
 msgstr "Palauta kappale."
 
-msgid "plugins.generic.objectsForReview.copy.reviewerStatus.returnSent"
+msgid "plugins.generic.bookReviewManager.copy.reviewerStatus.returnSent"
 msgstr "Kappale lähetetty takaisin."
 
-msgid "plugins.generic.objectsForReview.copy.reviewerStatus.returned"
+msgid "plugins.generic.bookReviewManager.copy.reviewerStatus.returned"
 msgstr "Kappale palautettu."
 
-msgid "plugins.generic.objectsForReview.copy.confirmReceipt"
+msgid "plugins.generic.bookReviewManager.copy.confirmReceipt"
 msgstr "Olen vastaanottanut kappaleen"
 
-msgid "plugins.generic.objectsForReview.desk.copies"
+msgid "plugins.generic.bookReviewManager.desk.copies"
 msgstr "Arvostelukappaleet"
 
-msgid "plugins.generic.objectsForReview.desk.notifications"
+msgid "plugins.generic.bookReviewManager.desk.notifications"
 msgstr "Ilmoita kustantajille julkaistuista arvioista"
 
-msgid "plugins.generic.objectsForReview.column.copy"
+msgid "plugins.generic.bookReviewManager.column.copy"
 msgstr "Kappale"
 
-msgid "plugins.generic.objectsForReview.column.copySource"
+msgid "plugins.generic.bookReviewManager.column.copySource"
 msgstr "Lähde"
 
-msgid "plugins.generic.objectsForReview.column.reviewer"
+msgid "plugins.generic.bookReviewManager.column.reviewer"
 msgstr "Arvioija"
 
-msgid "plugins.generic.objectsForReview.offer.copyTitle"
+msgid "plugins.generic.bookReviewManager.offer.copyTitle"
 msgstr "Arvostelukappale"
 
-msgid "plugins.generic.objectsForReview.offer.publisherContact"
+msgid "plugins.generic.bookReviewManager.offer.publisherContact"
 msgstr "Kustantajan yhteyshenkilö"
 
-msgid "plugins.generic.objectsForReview.offer.publisherContact.description"
+msgid "plugins.generic.bookReviewManager.offer.publisherContact.description"
 msgstr "Kustantajan henkilö, joka toimittaa arvostelukappaleita. Kustantajien yhteyshenkilöt ovat ryhmän ”Kustantajan yhteyshenkilö” käyttäjiä (Käyttäjät ja roolit); heidän ei tarvitse kirjautua."
 
-msgid "plugins.generic.objectsForReview.offer.noPublisherContact"
+msgid "plugins.generic.bookReviewManager.offer.noPublisherContact"
 msgstr "— ei ketään —"
 
-msgid "plugins.generic.objectsForReview.offer.noPublisherContacts"
+msgid "plugins.generic.bookReviewManager.offer.noPublisherContacts"
 msgstr "Kustantajien yhteyshenkilöitä ei vielä ole. Lisää heidät kohdassa Käyttäjät ja roolit ryhmään ”Kustantajan yhteyshenkilö” postiosoitteineen."
 
-msgid "plugins.generic.objectsForReview.offer.journalHoldsCopy"
+msgid "plugins.generic.bookReviewManager.offer.journalHoldsCopy"
 msgstr "Lehdellä on tämän teoksen kappale"
 
-msgid "plugins.generic.objectsForReview.offer.returnRequired"
+msgid "plugins.generic.bookReviewManager.offer.returnRequired"
 msgstr "Painetut kappaleet on palautettava, jos arviota ei synny"
 
-msgid "plugins.generic.objectsForReview.offer.notifyPublisher"
+msgid "plugins.generic.bookReviewManager.offer.notifyPublisher"
 msgstr "Kustantaja haluaa ilmoituksen arvion julkaisusta"
 
-msgid "plugins.generic.objectsForReview.offer.publisherContactInvalid"
+msgid "plugins.generic.bookReviewManager.offer.publisherContactInvalid"
 msgstr "Valitse kustantajan yhteyshenkilö."
 
-msgid "plugins.generic.objectsForReview.offer.editorAddressRequired"
+msgid "plugins.generic.bookReviewManager.offer.editorAddressRequired"
 msgstr "Lehden varastosta lähetetyt kappaleet palautetaan vastuulliselle kirja-arvioiden toimittajalle: valitse henkilö, jonka profiilissa on postiosoite."
 
-msgid "plugins.generic.objectsForReview.offer.publisherAddressRequired"
+msgid "plugins.generic.bookReviewManager.offer.publisherAddressRequired"
 msgstr "Kappaleet voidaan palauttaa kustantajan yhteyshenkilölle: hänen postiosoitteensa on oltava profiilissa."
 
-msgid "plugins.generic.objectsForReview.offer.notifyNeedsContact"
+msgid "plugins.generic.bookReviewManager.offer.notifyNeedsContact"
 msgstr "Valitse kustantajan yhteyshenkilö, jolle ilmoitetaan."
 
-msgid "plugins.generic.objectsForReview.history.email.copyRequest"
+msgid "plugins.generic.bookReviewManager.history.email.copyRequest"
 msgstr "Kappaletta pyydetty kustantajalta"
 
-msgid "plugins.generic.objectsForReview.history.email.copySent"
+msgid "plugins.generic.bookReviewManager.history.email.copySent"
 msgstr "Arvioijalle ilmoitettu lähetyksestä"
 
-msgid "plugins.generic.objectsForReview.history.email.returnRequest"
+msgid "plugins.generic.bookReviewManager.history.email.returnRequest"
 msgstr "Kappaleen palautusta pyydetty"
 
-msgid "plugins.generic.objectsForReview.history.email.returnSent"
+msgid "plugins.generic.bookReviewManager.history.email.returnSent"
 msgstr "Kustantajalle ilmoitettu palautuksesta"
 
-msgid "plugins.generic.objectsForReview.history.email.publisherNotification"
+msgid "plugins.generic.bookReviewManager.history.email.publisherNotification"
 msgstr "Kustantajalle ilmoitettu julkaistusta arviosta"
 
-msgid "plugins.generic.objectsForReview.history.event.copyRequested"
+msgid "plugins.generic.bookReviewManager.history.event.copyRequested"
 msgstr "Kappale henkilölle {$recipientName} pyydetty kustantajalta"
 
-msgid "plugins.generic.objectsForReview.history.event.copySentJournal"
+msgid "plugins.generic.bookReviewManager.history.event.copySentJournal"
 msgstr "Lehti lähetti kappaleen henkilölle {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.copySentPublisher"
+msgid "plugins.generic.bookReviewManager.history.event.copySentPublisher"
 msgstr "Kustantaja lähetti kappaleen henkilölle {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.copyReceived"
+msgid "plugins.generic.bookReviewManager.history.event.copyReceived"
 msgstr "{$recipientName} vastaanotti kappaleen"
 
-msgid "plugins.generic.objectsForReview.history.event.copyRequestWithdrawn"
+msgid "plugins.generic.bookReviewManager.history.event.copyRequestWithdrawn"
 msgstr "Kappalepyyntö henkilölle {$recipientName} peruttu"
 
-msgid "plugins.generic.objectsForReview.history.event.returnRequestedJournal"
+msgid "plugins.generic.bookReviewManager.history.event.returnRequestedJournal"
 msgstr "Henkilöltä {$recipientName} pyydetty kappaleen palautusta lehdelle"
 
-msgid "plugins.generic.objectsForReview.history.event.returnRequestedPublisher"
+msgid "plugins.generic.bookReviewManager.history.event.returnRequestedPublisher"
 msgstr "Henkilöltä {$recipientName} pyydetty kappaleen palautusta kustantajalle"
 
-msgid "plugins.generic.objectsForReview.history.event.returnSent"
+msgid "plugins.generic.bookReviewManager.history.event.returnSent"
 msgstr "{$recipientName} lähetti kappaleen takaisin"
 
-msgid "plugins.generic.objectsForReview.history.event.returnedJournal"
+msgid "plugins.generic.bookReviewManager.history.event.returnedJournal"
 msgstr "Kappale palautunut lehdelle (henkilöltä {$recipientName})"
 
-msgid "plugins.generic.objectsForReview.history.event.returnedPublisher"
+msgid "plugins.generic.bookReviewManager.history.event.returnedPublisher"
 msgstr "Kappale palautunut kustantajalle (henkilöltä {$recipientName})"
 
-msgid "plugins.generic.objectsForReview.history.event.publisherNotified"
+msgid "plugins.generic.bookReviewManager.history.event.publisherNotified"
 msgstr "Kustantajalle ilmoitettu henkilön {$recipientName} arviosta"
 
-msgid "plugins.generic.objectsForReview.link.copySent"
+msgid "plugins.generic.bookReviewManager.link.copySent"
 msgstr "Olen lähettänyt kappaleen"
 
-msgid "plugins.generic.objectsForReview.link.copySent.title"
+msgid "plugins.generic.bookReviewManager.link.copySent.title"
 msgstr "Arvostelukappale lähetetty"
 
-msgid "plugins.generic.objectsForReview.link.copySent.description"
+msgid "plugins.generic.bookReviewManager.link.copySent.description"
 msgstr "Vahvista, että olet lähettänyt arvostelukappaleen henkilölle {$reviewer}. Hänelle ilmoitetaan asiasta."
 
-msgid "plugins.generic.objectsForReview.link.copySent.submit"
+msgid "plugins.generic.bookReviewManager.link.copySent.submit"
 msgstr "Vahvista: kappale lähetetty"
 
-msgid "plugins.generic.objectsForReview.link.copySent.done"
+msgid "plugins.generic.bookReviewManager.link.copySent.done"
 msgstr "Kiitos! Olemme kirjanneet, että kappale on matkalla."
 
-msgid "plugins.generic.objectsForReview.link.received"
+msgid "plugins.generic.bookReviewManager.link.received"
 msgstr "Olen vastaanottanut kappaleen"
 
-msgid "plugins.generic.objectsForReview.link.received.title"
+msgid "plugins.generic.bookReviewManager.link.received.title"
 msgstr "Arvostelukappale vastaanotettu"
 
-msgid "plugins.generic.objectsForReview.link.received.description"
+msgid "plugins.generic.bookReviewManager.link.received.description"
 msgstr "Vahvista, että arvostelukappale on saapunut. Toimitusosoitteesi ja puhelinnumerosi poistetaan sen jälkeen."
 
-msgid "plugins.generic.objectsForReview.link.received.submit"
+msgid "plugins.generic.bookReviewManager.link.received.submit"
 msgstr "Vahvista vastaanotto"
 
-msgid "plugins.generic.objectsForReview.link.received.done"
+msgid "plugins.generic.bookReviewManager.link.received.done"
 msgstr "Kiitos! Olemme kirjanneet, että olet vastaanottanut kappaleen."
 
-msgid "plugins.generic.objectsForReview.link.returnSent"
+msgid "plugins.generic.bookReviewManager.link.returnSent"
 msgstr "Olen lähettänyt kappaleen takaisin"
 
-msgid "plugins.generic.objectsForReview.link.returnSent.title"
+msgid "plugins.generic.bookReviewManager.link.returnSent.title"
 msgstr "Arvostelukappale palautettu"
 
-msgid "plugins.generic.objectsForReview.link.returnSent.description"
+msgid "plugins.generic.bookReviewManager.link.returnSent.description"
 msgstr "Vahvista, että olet lähettänyt arvostelukappaleen takaisin."
 
-msgid "plugins.generic.objectsForReview.link.returnSent.submit"
+msgid "plugins.generic.bookReviewManager.link.returnSent.submit"
 msgstr "Vahvista: kappale lähetetty takaisin"
 
-msgid "plugins.generic.objectsForReview.link.returnSent.done"
+msgid "plugins.generic.bookReviewManager.link.returnSent.done"
 msgstr "Kiitos! Olemme kirjanneet, että kappale on palautumassa."
 
-msgid "plugins.generic.objectsForReview.link.returnReceived"
+msgid "plugins.generic.bookReviewManager.link.returnReceived"
 msgstr "Palautettu kappale on saapunut"
 
-msgid "plugins.generic.objectsForReview.link.returnReceived.title"
+msgid "plugins.generic.bookReviewManager.link.returnReceived.title"
 msgstr "Palautettu kappale vastaanotettu"
 
-msgid "plugins.generic.objectsForReview.link.returnReceived.description"
+msgid "plugins.generic.bookReviewManager.link.returnReceived.description"
 msgstr "Vahvista, että henkilön {$reviewer} palauttama arvostelukappale on saapunut."
 
-msgid "plugins.generic.objectsForReview.link.returnReceived.submit"
+msgid "plugins.generic.bookReviewManager.link.returnReceived.submit"
 msgstr "Vahvista vastaanotto"
 
-msgid "plugins.generic.objectsForReview.link.returnReceived.done"
+msgid "plugins.generic.bookReviewManager.link.returnReceived.done"
 msgstr "Kiitos! Olemme kirjanneet, että kappale on palautunut teille."
 
-msgid "plugins.generic.objectsForReview.link.retract"
+msgid "plugins.generic.bookReviewManager.link.retract"
 msgstr "En voi kirjoittaa tätä arviota"
 
-msgid "plugins.generic.objectsForReview.link.retract.title"
+msgid "plugins.generic.bookReviewManager.link.retract.title"
 msgstr "Luovu arvioinnista"
 
-msgid "plugins.generic.objectsForReview.link.retract.description"
+msgid "plugins.generic.bookReviewManager.link.retract.description"
 msgstr "Hyvä {$reviewer}, haluatko luopua tämän teoksen arvioinnista? Toimitukselle ilmoitetaan. Jos olet saanut painetun kappaleen, sinua voidaan pyytää palauttamaan se."
 
-msgid "plugins.generic.objectsForReview.link.retract.submit"
+msgid "plugins.generic.bookReviewManager.link.retract.submit"
 msgstr "Luovu arvioinnista"
 
-msgid "plugins.generic.objectsForReview.link.retract.done"
+msgid "plugins.generic.bookReviewManager.link.retract.done"
 msgstr "Olet luopunut arvioinnista. Toimitukselle on ilmoitettu."
 
-msgid "plugins.generic.objectsForReview.response.done.title"
+msgid "plugins.generic.bookReviewManager.response.done.title"
 msgstr "Kiitos!"
 
-msgid "plugins.generic.objectsForReview.history.viaLink"
+msgid "plugins.generic.bookReviewManager.history.viaLink"
 msgstr "sähköpostilinkin kautta"
 
-msgid "plugins.generic.objectsForReview.history.email.copyRequestReminder"
+msgid "plugins.generic.bookReviewManager.history.email.copyRequestReminder"
 msgstr "Kustantajaa muistutettu kappalepyynnöstä"
 
-msgid "plugins.generic.objectsForReview.history.email.confirmation"
+msgid "plugins.generic.bookReviewManager.history.email.confirmation"
 msgstr "Vahvistus lähetetty arvioijalle"
 
-msgid "plugins.generic.objectsForReview.desk.overdue"
+msgid "plugins.generic.bookReviewManager.desk.overdue"
 msgstr "Myöhässä olevat arviot"
 
-msgid "plugins.generic.objectsForReview.copy.reminders"
+msgid "plugins.generic.bookReviewManager.copy.reminders"
 msgstr "{$number} muistutus(ta) kustantajalle, viimeksi {$date}"
 
-msgid "plugins.generic.objectsForReview.settings.publisherReminderDays"
+msgid "plugins.generic.bookReviewManager.settings.publisherReminderDays"
 msgstr "Muistutukset kustantajille"
 
-msgid "plugins.generic.objectsForReview.settings.publisherReminderDays.description"
+msgid "plugins.generic.bookReviewManager.settings.publisherReminderDays.description"
 msgstr "Montako päivää vastaamattoman kappalepyynnön jälkeen kustantajan yhteyshenkilöä muistutetaan, ja muistutusten väli (0: ei muistutuksia)."
 
-msgid "plugins.generic.objectsForReview.settings.publisherReminderDays.invalid"
+msgid "plugins.generic.bookReviewManager.settings.publisherReminderDays.invalid"
 msgstr "Anna päivien määrä väliltä 0–90."
 
-msgid "plugins.generic.objectsForReview.hide"
+msgid "plugins.generic.bookReviewManager.hide"
 msgstr "Piilota"
 
-msgid "plugins.generic.objectsForReview.show"
+msgid "plugins.generic.bookReviewManager.show"
 msgstr "Näytä"
 
-msgid "plugins.generic.objectsForReview.hidden"
+msgid "plugins.generic.bookReviewManager.hidden"
 msgstr "Piilotettu"
 
-msgid "plugins.generic.objectsForReview.history.event.offerHidden"
+msgid "plugins.generic.bookReviewManager.history.event.offerHidden"
 msgstr "Piilotettu julkisesta luettelosta"
 
-msgid "plugins.generic.objectsForReview.history.event.offerShown"
+msgid "plugins.generic.bookReviewManager.history.event.offerShown"
 msgstr "Näytetään taas julkisessa luettelossa"
 
-msgid "plugins.generic.objectsForReview.status.listed"
+msgid "plugins.generic.bookReviewManager.status.listed"
 msgstr "Kutsulistalla"
 
-msgid "plugins.generic.objectsForReview.status.invited"
+msgid "plugins.generic.bookReviewManager.status.invited"
 msgstr "Kutsuttu"
 
-msgid "plugins.generic.objectsForReview.status.invitationDeclined"
+msgid "plugins.generic.bookReviewManager.status.invitationDeclined"
 msgstr "Kutsusta kieltäydytty"
 
-msgid "plugins.generic.objectsForReview.status.invitationExpired"
+msgid "plugins.generic.bookReviewManager.status.invitationExpired"
 msgstr "Kutsuun ei vastattu"
 
-msgid "plugins.generic.objectsForReview.history.email.invitationReserve"
+msgid "plugins.generic.bookReviewManager.history.email.invitationReserve"
 msgstr "Kutsu arvioijaksi"
 
-msgid "plugins.generic.objectsForReview.history.email.invitationBid"
+msgid "plugins.generic.bookReviewManager.history.email.invitationBid"
 msgstr "Kutsu hakemaan"
 
-msgid "plugins.generic.objectsForReview.history.email.invitationDeclined"
+msgid "plugins.generic.bookReviewManager.history.email.invitationDeclined"
 msgstr "Toimittajalle ilmoitettu: kutsusta kieltäydytty tai siihen ei vastattu"
 
-msgid "plugins.generic.objectsForReview.history.event.inviteeAdded"
+msgid "plugins.generic.bookReviewManager.history.event.inviteeAdded"
 msgstr "{$recipientName} lisätty kutsulistalle"
 
-msgid "plugins.generic.objectsForReview.history.event.inviteeCreated"
+msgid "plugins.generic.bookReviewManager.history.event.inviteeCreated"
 msgstr "Tili luotu käyttäjälle {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.inviteeRemoved"
+msgid "plugins.generic.bookReviewManager.history.event.inviteeRemoved"
 msgstr "{$recipientName} poistettu kutsulistalta"
 
-msgid "plugins.generic.objectsForReview.history.event.invitationListReordered"
+msgid "plugins.generic.bookReviewManager.history.event.invitationListReordered"
 msgstr "Kutsulistan järjestystä muutettu"
 
-msgid "plugins.generic.objectsForReview.history.event.invitationSent"
+msgid "plugins.generic.bookReviewManager.history.event.invitationSent"
 msgstr "Kutsu lähetetty: {$recipientName} (vastaus viimeistään {$reviewDueDate})"
 
-msgid "plugins.generic.objectsForReview.history.event.invitationDeclined"
+msgid "plugins.generic.bookReviewManager.history.event.invitationDeclined"
 msgstr "{$recipientName} kieltäytyi kutsusta"
 
-msgid "plugins.generic.objectsForReview.history.event.invitationExpired"
+msgid "plugins.generic.bookReviewManager.history.event.invitationExpired"
 msgstr "{$recipientName} ei vastannut kutsuun ajoissa"
 
-msgid "plugins.generic.objectsForReview.history.event.reservedViaInvitation"
+msgid "plugins.generic.bookReviewManager.history.event.reservedViaInvitation"
 msgstr "Varannut {$recipientName} (kutsu), määräpäivä {$reviewDueDate}"
 
-msgid "plugins.generic.objectsForReview.history.event.bidViaInvitation"
+msgid "plugins.generic.bookReviewManager.history.event.bidViaInvitation"
 msgstr "Hakemus: {$recipientName} (kutsu)"
 
-msgid "plugins.generic.objectsForReview.history.event.invitationsEnded"
+msgid "plugins.generic.bookReviewManager.history.event.invitationsEnded"
 msgstr "{$recipientCount} avointa kutsua päätetty"
 
-msgid "plugins.generic.objectsForReview.invitation.expired"
+msgid "plugins.generic.bookReviewManager.invitation.expired"
 msgstr "Kutsuun ei vastattu määräaikaan mennessä."
 
-msgid "plugins.generic.objectsForReview.invitation.linkRequired"
+msgid "plugins.generic.bookReviewManager.invitation.linkRequired"
 msgstr "Sähköpostissa on oltava paikkamerkki {$invitationUrl} kutsulinkkiä varten."
 
-msgid "plugins.generic.objectsForReview.invitation.linkHint"
+msgid "plugins.generic.bookReviewManager.invitation.linkHint"
 msgstr "{$invitationUrl} korvataan lähetettäessä henkilökohtaisella kutsulinkillä."
 
-msgid "plugins.generic.objectsForReview.invitation.send"
+msgid "plugins.generic.bookReviewManager.invitation.send"
 msgstr "Lähetä kutsu"
 
-msgid "plugins.generic.objectsForReview.invitation.sendAgain"
+msgid "plugins.generic.bookReviewManager.invitation.sendAgain"
 msgstr "Kutsu uudelleen"
 
-msgid "plugins.generic.objectsForReview.invitation.send.description.reserve"
+msgid "plugins.generic.bookReviewManager.invitation.send.description.reserve"
 msgstr "Kutsu {$name} arvioimaan tämä teos. Varaus tai kieltäytyminen on mahdollista {$deadline} asti."
 
-msgid "plugins.generic.objectsForReview.invitation.send.description.bid"
+msgid "plugins.generic.bookReviewManager.invitation.send.description.bid"
 msgstr "Kutsu {$name} hakemaan tämän teoksen arvioijaksi. Hakeminen tai kieltäytyminen on mahdollista {$deadline} asti."
 
-msgid "plugins.generic.objectsForReview.invitation.title"
+msgid "plugins.generic.bookReviewManager.invitation.title"
 msgstr "Kutsu arvioijia"
 
-msgid "plugins.generic.objectsForReview.invitation.inviteReviewers"
+msgid "plugins.generic.bookReviewManager.invitation.inviteReviewers"
 msgstr "Kutsu arvioijia"
 
-msgid "plugins.generic.objectsForReview.invitation.kind.reserve"
+msgid "plugins.generic.bookReviewManager.invitation.kind.reserve"
 msgstr "Kutsutut voivat varata teoksen (nopein voittaa)"
 
-msgid "plugins.generic.objectsForReview.invitation.kind.bid"
+msgid "plugins.generic.bookReviewManager.invitation.kind.bid"
 msgstr "Kutsutut voivat hakea; valitset hakijoista Tehtävät-sivulla"
 
-msgid "plugins.generic.objectsForReview.invitation.manualNote"
+msgid "plugins.generic.bookReviewManager.invitation.manualNote"
 msgstr "Lähetä jokainen kutsu erikseen painikkeella \"Lähetä kutsu\". Tänään lähetettyihin kutsuihin voi vastata {$deadline} asti."
 
-msgid "plugins.generic.objectsForReview.invitation.notPossible"
+msgid "plugins.generic.bookReviewManager.invitation.notPossible"
 msgstr "Kutsuja ei voi lähettää tarjouksen nykyisessä tilassa: sen on oltava avoinna varauksille tai hakemuksille."
 
-msgid "plugins.generic.objectsForReview.invitation.list"
+msgid "plugins.generic.bookReviewManager.invitation.list"
 msgstr "Kutsulista"
 
-msgid "plugins.generic.objectsForReview.invitation.person"
+msgid "plugins.generic.bookReviewManager.invitation.person"
 msgstr "Henkilö"
 
-msgid "plugins.generic.objectsForReview.invitation.drag"
+msgid "plugins.generic.bookReviewManager.invitation.drag"
 msgstr "Vedä järjestääksesi"
 
-msgid "plugins.generic.objectsForReview.invitation.reservationCount"
+msgid "plugins.generic.bookReviewManager.invitation.reservationCount"
 msgstr "Nykyiset varaukset: {$number}"
 
-msgid "plugins.generic.objectsForReview.invitation.sentOn"
+msgid "plugins.generic.bookReviewManager.invitation.sentOn"
 msgstr "Kutsuttu {$date}"
 
-msgid "plugins.generic.objectsForReview.invitation.up"
+msgid "plugins.generic.bookReviewManager.invitation.up"
 msgstr "Siirrä ylös"
 
-msgid "plugins.generic.objectsForReview.invitation.down"
+msgid "plugins.generic.bookReviewManager.invitation.down"
 msgstr "Siirrä alas"
 
-msgid "plugins.generic.objectsForReview.invitation.remove"
+msgid "plugins.generic.bookReviewManager.invitation.remove"
 msgstr "Poista"
 
-msgid "plugins.generic.objectsForReview.invitation.empty"
+msgid "plugins.generic.bookReviewManager.invitation.empty"
 msgstr "Listalla ei ole vielä ketään. Lisää henkilöitä osoitekirjasta tai uusina käyttäjinä alla."
 
-msgid "plugins.generic.objectsForReview.invitation.addressBook"
+msgid "plugins.generic.bookReviewManager.invitation.addressBook"
 msgstr "Lisää osoitekirjasta"
 
-msgid "plugins.generic.objectsForReview.invitation.search"
+msgid "plugins.generic.bookReviewManager.invitation.search"
 msgstr "Nimi, sähköposti tai organisaatio"
 
-msgid "plugins.generic.objectsForReview.invitation.add"
+msgid "plugins.generic.bookReviewManager.invitation.add"
 msgstr "Lisää listalle"
 
-msgid "plugins.generic.objectsForReview.invitation.cannotAdd"
+msgid "plugins.generic.bookReviewManager.invitation.cannotAdd"
 msgstr "Jo listalla tai on hakenut tai varannut"
 
-msgid "plugins.generic.objectsForReview.invitation.noResults"
+msgid "plugins.generic.bookReviewManager.invitation.noResults"
 msgstr "Tämän julkaisun käyttäjiä ei löytynyt."
 
-msgid "plugins.generic.objectsForReview.invitation.new"
+msgid "plugins.generic.bookReviewManager.invitation.new"
 msgstr "Lisää uusi henkilö"
 
-msgid "plugins.generic.objectsForReview.invitation.new.description"
+msgid "plugins.generic.bookReviewManager.invitation.new.description"
 msgstr "Luo käyttäjätilin tämän julkaisun Kirjoittaja-ryhmään, jotta henkilö voi lähettää arvion. Sähköpostia ei lähetetä; henkilö saa vain kutsun. Jos tällä sähköpostiosoitteella on jo tili, sitä käytetään."
 
-msgid "plugins.generic.objectsForReview.invitation.new.givenName"
+msgid "plugins.generic.bookReviewManager.invitation.new.givenName"
 msgstr "Etunimi"
 
-msgid "plugins.generic.objectsForReview.invitation.new.familyName"
+msgid "plugins.generic.bookReviewManager.invitation.new.familyName"
 msgstr "Sukunimi"
 
-msgid "plugins.generic.objectsForReview.invitation.new.email"
+msgid "plugins.generic.bookReviewManager.invitation.new.email"
 msgstr "Sähköposti"
 
-msgid "plugins.generic.objectsForReview.invitation.new.affiliation"
+msgid "plugins.generic.bookReviewManager.invitation.new.affiliation"
 msgstr "Organisaatio"
 
-msgid "plugins.generic.objectsForReview.invitation.new.submit"
+msgid "plugins.generic.bookReviewManager.invitation.new.submit"
 msgstr "Luo ja lisää listalle"
 
-msgid "plugins.generic.objectsForReview.invitation.new.givenNameRequired"
+msgid "plugins.generic.bookReviewManager.invitation.new.givenNameRequired"
 msgstr "Anna etunimi."
 
-msgid "plugins.generic.objectsForReview.invitation.new.familyNameRequired"
+msgid "plugins.generic.bookReviewManager.invitation.new.familyNameRequired"
 msgstr "Anna sukunimi."
 
-msgid "plugins.generic.objectsForReview.invitation.new.emailInvalid"
+msgid "plugins.generic.bookReviewManager.invitation.new.emailInvalid"
 msgstr "Anna kelvollinen sähköpostiosoite."
 
-msgid "plugins.generic.objectsForReview.invitation.new.alreadyOnList"
+msgid "plugins.generic.bookReviewManager.invitation.new.alreadyOnList"
 msgstr "Tämä henkilö on jo listalla tai on hakenut tai varannut tämän teoksen."
 
-msgid "plugins.generic.objectsForReview.invitation.page.title.reserve"
+msgid "plugins.generic.bookReviewManager.invitation.page.title.reserve"
 msgstr "Kutsu arvioijaksi"
 
-msgid "plugins.generic.objectsForReview.invitation.page.title.bid"
+msgid "plugins.generic.bookReviewManager.invitation.page.title.bid"
 msgstr "Kutsu hakemaan arvioijaksi"
 
-msgid "plugins.generic.objectsForReview.invitation.page.intro.reserve"
+msgid "plugins.generic.bookReviewManager.invitation.page.intro.reserve"
 msgstr "Hyvä {$name}, sinut on kutsuttu arvioimaan tämä teos. Hyväksy alla olevat ehdot viimeistään {$deadline} tai ilmoita, ettet voi kirjoittaa arviota."
 
-msgid "plugins.generic.objectsForReview.invitation.page.intro.bid"
+msgid "plugins.generic.bookReviewManager.invitation.page.intro.bid"
 msgstr "Hyvä {$name}, sinut on kutsuttu hakemaan tämän teoksen arvioijaksi. Hae viimeistään {$deadline} tai ilmoita, ettet ole kiinnostunut."
 
-msgid "plugins.generic.objectsForReview.invitation.page.editor"
+msgid "plugins.generic.bookReviewManager.invitation.page.editor"
 msgstr "Kutsun lähettäjä: {$name}"
 
-msgid "plugins.generic.objectsForReview.invitation.page.decline"
+msgid "plugins.generic.bookReviewManager.invitation.page.decline"
 msgstr "En voi arvioida tätä teosta"
 
-msgid "plugins.generic.objectsForReview.invitation.page.decline.submit"
+msgid "plugins.generic.bookReviewManager.invitation.page.decline.submit"
 msgstr "Kieltäydy kutsusta"
 
-msgid "plugins.generic.objectsForReview.response.applied.title"
+msgid "plugins.generic.bookReviewManager.response.applied.title"
 msgstr "Hakemus vastaanotettu"
 
-msgid "plugins.generic.objectsForReview.response.applied"
+msgid "plugins.generic.bookReviewManager.response.applied"
 msgstr "Kiitos! Kirja-arvioiden toimittaja valitsee arvioijan hakijoista. Jos sinut valitaan, saat sähköpostin, jossa on linkki arviointisopimukseen."
 
-msgid "plugins.generic.objectsForReview.response.invitationDeclined.title"
+msgid "plugins.generic.bookReviewManager.response.invitationDeclined.title"
 msgstr "Kutsusta kieltäydytty"
 
-msgid "plugins.generic.objectsForReview.response.invitationDeclined"
+msgid "plugins.generic.bookReviewManager.response.invitationDeclined"
 msgstr "Kiitos ilmoituksesta. Toimittajille on ilmoitettu."
 
-msgid "plugins.generic.objectsForReview.response.invitationClosed.title"
+msgid "plugins.generic.bookReviewManager.response.invitationClosed.title"
 msgstr "Kutsu ei ole enää avoinna"
 
-msgid "plugins.generic.objectsForReview.response.invitationClosed"
+msgid "plugins.generic.bookReviewManager.response.invitationClosed"
 msgstr "Tämä teos ei ole enää arvioitavana tai kutsu on päättynyt. Ota yhteyttä toimittajiin, jos sinulla on kysyttävää."
 
-msgid "plugins.generic.objectsForReview.settings.invitationDays"
+msgid "plugins.generic.bookReviewManager.settings.invitationDays"
 msgstr "Kutsut"
 
-msgid "plugins.generic.objectsForReview.settings.invitationDays.description"
+msgid "plugins.generic.bookReviewManager.settings.invitationDays.description"
 msgstr "Päivät, joiden kuluessa kutsuttujen on vastattava, ja monenko päivän kuluttua heitä muistutetaan (0: ei muistutusta). Hakukutsuissa käytetään tarjouksen hakuaikaa, jos sellainen on."
 
-msgid "plugins.generic.objectsForReview.settings.invitationDays.invalid"
+msgid "plugins.generic.bookReviewManager.settings.invitationDays.invalid"
 msgstr "Anna päivien määrä väliltä 1–90."
 
-msgid "plugins.generic.objectsForReview.status.invitationWithdrawn"
+msgid "plugins.generic.bookReviewManager.status.invitationWithdrawn"
 msgstr "Kutsu peruttu"
 
-msgid "plugins.generic.objectsForReview.history.email.invitationReminder"
+msgid "plugins.generic.bookReviewManager.history.email.invitationReminder"
 msgstr "Kutsumuistutus"
 
-msgid "plugins.generic.objectsForReview.history.email.invitationExhausted"
+msgid "plugins.generic.bookReviewManager.history.email.invitationExhausted"
 msgstr "Toimittajalle ilmoitettu: kutsulista käyty läpi"
 
-msgid "plugins.generic.objectsForReview.history.event.roundStarted"
+msgid "plugins.generic.bookReviewManager.history.event.roundStarted"
 msgstr "Peräkkäinen kutsukierros aloitettu"
 
-msgid "plugins.generic.objectsForReview.history.event.roundStopped"
+msgid "plugins.generic.bookReviewManager.history.event.roundStopped"
 msgstr "Kutsukierros päätetty"
 
-msgid "plugins.generic.objectsForReview.history.event.roundExhausted"
+msgid "plugins.generic.bookReviewManager.history.event.roundExhausted"
 msgstr "Kutsukierros saavutti listan lopun"
 
-msgid "plugins.generic.objectsForReview.history.event.roundCompleted"
+msgid "plugins.generic.bookReviewManager.history.event.roundCompleted"
 msgstr "Kutsukierros päättyi: varannut {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.invitationWithdrawn"
+msgid "plugins.generic.bookReviewManager.history.event.invitationWithdrawn"
 msgstr "Kutsu henkilölle {$recipientName} peruttu"
 
-msgid "plugins.generic.objectsForReview.history.event.roundContinued"
+msgid "plugins.generic.bookReviewManager.history.event.roundContinued"
 msgstr "Kutsukierrosta jatkettu"
 
-msgid "plugins.generic.objectsForReview.invitation.round.description"
+msgid "plugins.generic.bookReviewManager.invitation.round.description"
 msgstr "Aloittaa peräkkäisen kierroksen. Ensin kutsutaan {$name}. Jokainen kieltäytyminen tai kutsu, johon ei vastata {$days} päivän kuluessa, kutsuu automaattisesti listan seuraavan henkilön tällä tekstillä, kunnes joku varaa teoksen."
 
-msgid "plugins.generic.objectsForReview.invitation.round.hint"
+msgid "plugins.generic.bookReviewManager.invitation.round.hint"
 msgstr "{$recipientName}, {$invitationDeadline} ja {$invitationUrl} täytetään kullekin henkilölle, kun hänen kutsunsa lähetetään."
 
-msgid "plugins.generic.objectsForReview.invitation.round.start"
+msgid "plugins.generic.bookReviewManager.invitation.round.start"
 msgstr "Aloita peräkkäinen kierros"
 
-msgid "plugins.generic.objectsForReview.invitation.round.hideOffer"
+msgid "plugins.generic.bookReviewManager.invitation.round.hideOffer"
 msgstr "Piilota julkisesta luettelosta kutsukierroksen ajaksi"
 
-msgid "plugins.generic.objectsForReview.invitation.round.explain.reserve"
+msgid "plugins.generic.bookReviewManager.invitation.round.explain.reserve"
 msgstr "Kutsuu listalla odottavat henkilöt automaattisesti yksi kerrallaan."
 
-msgid "plugins.generic.objectsForReview.invitation.round.running"
+msgid "plugins.generic.bookReviewManager.invitation.round.running"
 msgstr "Peräkkäinen kierros, aloitettu {$date}, aloittaja {$name}"
 
-msgid "plugins.generic.objectsForReview.invitation.round.exhausted"
+msgid "plugins.generic.bookReviewManager.invitation.round.exhausted"
 msgstr "Kierros saavutti listan lopun ilman varausta. Lisää henkilöitä ja jatka kierrosta tai lopeta se."
 
-msgid "plugins.generic.objectsForReview.invitation.round.current"
+msgid "plugins.generic.bookReviewManager.invitation.round.current"
 msgstr "Kutsuttuna nyt: {$name} (vastaus viimeistään {$deadline})"
 
-msgid "plugins.generic.objectsForReview.invitation.round.next"
+msgid "plugins.generic.bookReviewManager.invitation.round.next"
 msgstr "Seuraavaksi: {$name} ({$number} odottaa)"
 
-msgid "plugins.generic.objectsForReview.invitation.round.noneWaiting"
+msgid "plugins.generic.bookReviewManager.invitation.round.noneWaiting"
 msgstr "Listalla ei odota muita."
 
-msgid "plugins.generic.objectsForReview.invitation.round.continue"
+msgid "plugins.generic.bookReviewManager.invitation.round.continue"
 msgstr "Jatka kierrosta"
 
-msgid "plugins.generic.objectsForReview.invitation.round.stop"
+msgid "plugins.generic.bookReviewManager.invitation.round.stop"
 msgstr "Lopeta kierros"
 
-msgid "plugins.generic.objectsForReview.invitation.round.stop.confirm"
+msgid "plugins.generic.bookReviewManager.invitation.round.stop.confirm"
 msgstr "Lopetetaanko kierros? Avoin kutsu perutaan, eikä ketään muuta kutsuta."
 
-msgid "plugins.generic.objectsForReview.settings.invitationDays.reminderInvalid"
+msgid "plugins.generic.bookReviewManager.settings.invitationDays.reminderInvalid"
 msgstr "Anna, monenko päivän kuluttua kutsuttuja muistutetaan (0: ei muistutusta); määrän on oltava pienempi kuin vastausaika."
 
-msgid "plugins.generic.objectsForReview.history.event.roundStartedParallel"
+msgid "plugins.generic.bookReviewManager.history.event.roundStartedParallel"
 msgstr "Kutsut lähetetty kaikille listalla oleville (kaikki kerralla)"
 
-msgid "plugins.generic.objectsForReview.history.event.roundFinished"
+msgid "plugins.generic.bookReviewManager.history.event.roundFinished"
 msgstr "Kutsukierros päättyi: kaikki ovat vastanneet"
 
-msgid "plugins.generic.objectsForReview.invitation.round.descriptionParallel"
+msgid "plugins.generic.bookReviewManager.invitation.round.descriptionParallel"
 msgstr "Kutsuu kaikki listalla odottavat ({$number}) samanaikaisesti hakemaan tämän teoksen arvioijaksi {$deadline} mennessä. Valitset hakijoista Tehtävät-sivulla."
 
-msgid "plugins.generic.objectsForReview.invitation.round.startParallel"
+msgid "plugins.generic.bookReviewManager.invitation.round.startParallel"
 msgstr "Kutsu kaikki listalla olevat"
 
-msgid "plugins.generic.objectsForReview.invitation.round.explain.bid"
+msgid "plugins.generic.bookReviewManager.invitation.round.explain.bid"
 msgstr "Lähettää hakukutsun kerralla kaikille listalla odottaville."
 
-msgid "plugins.generic.objectsForReview.invitation.round.runningParallel"
+msgid "plugins.generic.bookReviewManager.invitation.round.runningParallel"
 msgstr "Kutsut lähetetty kaikille {$date}, lähettäjä {$name}"
 
-msgid "plugins.generic.objectsForReview.invitation.round.parallelCounts"
+msgid "plugins.generic.bookReviewManager.invitation.round.parallelCounts"
 msgstr "Vastausta odotetaan: {$invited} · vastanneet: {$answered}"
 
-msgid "plugins.generic.objectsForReview.invitation.round.newPeople"
+msgid "plugins.generic.bookReviewManager.invitation.round.newPeople"
 msgstr "{$number} lisätty sen jälkeen, ei vielä kutsuttu"
 
-msgid "plugins.generic.objectsForReview.invitation.round.inviteNew"
+msgid "plugins.generic.bookReviewManager.invitation.round.inviteNew"
 msgstr "Kutsu uudet henkilöt"
 
-msgid "plugins.generic.objectsForReview.invitation.round.stop.confirmParallel"
+msgid "plugins.generic.bookReviewManager.invitation.round.stop.confirmParallel"
 msgstr "Lopetetaanko kierros? Avoimet kutsut perutaan."
 
-msgid "plugins.generic.objectsForReview.invitation.round.exhaustedShort"
+msgid "plugins.generic.bookReviewManager.invitation.round.exhaustedShort"
 msgstr "Listan loppu saavutettu ilman varausta"
 
-msgid "plugins.generic.objectsForReview.desk.invitations"
+msgid "plugins.generic.bookReviewManager.desk.invitations"
 msgstr "Kutsut"
 
-msgid "plugins.generic.objectsForReview.invitation.mode"
+msgid "plugins.generic.bookReviewManager.invitation.mode"
 msgstr "Tapa"
 
-msgid "plugins.generic.objectsForReview.invitation.mode.sequential"
+msgid "plugins.generic.bookReviewManager.invitation.mode.sequential"
 msgstr "Peräkkäinen kierros"
 
-msgid "plugins.generic.objectsForReview.invitation.mode.parallel"
+msgid "plugins.generic.bookReviewManager.invitation.mode.parallel"
 msgstr "Kaikki kerralla"
 
-msgid "plugins.generic.objectsForReview.invitation.mode.manual"
+msgid "plugins.generic.bookReviewManager.invitation.mode.manual"
 msgstr "Lähetetty yksitellen"
 
-msgid "plugins.generic.objectsForReview.invitation.inviteMore"
+msgid "plugins.generic.bookReviewManager.invitation.inviteMore"
 msgstr "Kutsu lisää"
 
-msgid "plugins.generic.objectsForReview.invitation.openPage"
+msgid "plugins.generic.bookReviewManager.invitation.openPage"
 msgstr "Kutsusivu"
 
-msgid "plugins.generic.objectsForReview.management.noneCreated"
+msgid "plugins.generic.bookReviewManager.management.noneCreated"
 msgstr "Julkaisuja ei ole vielä tarjottu."
 
-msgid "plugins.generic.objectsForReview.workflow.tabLabel"
+msgid "plugins.generic.bookReviewManager.workflow.tabLabel"
 msgstr "Arvioidut julkaisut"
 
-msgid "plugins.generic.objectsForReview.invitation.search.hint"
+msgid "plugins.generic.bookReviewManager.invitation.search.hint"
 msgstr "Jätä kenttä tyhjäksi, niin julkaisun käyttäjät luetellaan aakkosjärjestyksessä."

@@ -1,24 +1,24 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/controllers/grid/form/AvailableObjectsForReviewForm.inc.php
+ * @file plugins/generic/bookReviewManager/controllers/grid/form/AvailableObjectsForReviewForm.inc.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class AvailableObjectsForReviewForm
- * @ingroup controllers_grid_objectsForReviewManager
+ * @ingroup controllers_grid_bookReviewManagerManager
  *
  * Form for adding/editing an available objectForReview
  *
  */
-namespace APP\plugins\generic\objectsForReview\controllers\grid\form;
+namespace APP\plugins\generic\bookReviewManager\controllers\grid\form;
 
 use APP\core\Application;
-use APP\plugins\generic\objectsForReview\classes\ObjectForReview;
-use APP\plugins\generic\objectsForReview\classes\Roles;
-use APP\plugins\generic\objectsForReview\ObjectsForReviewPlugin;
+use APP\plugins\generic\bookReviewManager\classes\ObjectForReview;
+use APP\plugins\generic\bookReviewManager\classes\Roles;
+use APP\plugins\generic\bookReviewManager\BookReviewManagerPlugin;
 use APP\template\TemplateManager;
 use PKP\db\DAORegistry;
 
@@ -29,40 +29,40 @@ class AvailableobjectsForReviewForm extends \PKP\form\Form {
     /** @var string objectId */
     public $objectId;
 
-	/** @var ObjectsForReviewPlugin */
+	/** @var BookReviewManagerPlugin */
 	var $plugin;
 
 	/**
 	 * Constructor
-	 * @param $objectsForReviewPlugin ObjectsForReviewPlugin
+	 * @param $bookReviewManagerPlugin BookReviewManagerPlugin
 	 * @param $contextId int Context ID
 	 * @param $objectId int (optional) Review ID
 	 */
-	function __construct($objectsForReviewPlugin, $contextId, $objectId = null) {
-		parent::__construct($objectsForReviewPlugin->getTemplateResource('editAvailableObjectForReviewForm.tpl'));
+	function __construct($bookReviewManagerPlugin, $contextId, $objectId = null) {
+		parent::__construct($bookReviewManagerPlugin->getTemplateResource('editAvailableObjectForReviewForm.tpl'));
 
 		$this->contextId = $contextId;
 		$this->objectId = $objectId;
-		$this->plugin = $objectsForReviewPlugin;
+		$this->plugin = $bookReviewManagerPlugin;
 
 		// Add form checks
-		$this->addCheck(new \PKP\form\validation\FormValidator($this, 'identifierType', 'required', 'plugins.generic.objectsForReview.identifierTypeRequired'));
-		$this->addCheck(new \PKP\form\validation\FormValidator($this, 'resourceType', 'required', 'plugins.generic.objectsForReview.resourceTypeRequired'));
-		$this->addCheck(new \PKP\form\validation\FormValidator($this, 'title', 'required', 'plugins.generic.objectsForReview.titleRequired'));
-		$this->addCheck(new \PKP\form\validation\FormValidator($this, 'identifier', 'required', 'plugins.generic.objectsForReview.identifierRequired'));
-		$this->addCheck(new \PKP\form\validation\FormValidatorInSet($this, 'assignmentMode', 'required', 'plugins.generic.objectsForReview.offer.modeRequired', ObjectForReview::MODES));
-		$this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'bidDeadline', 'optional', 'plugins.generic.objectsForReview.offer.bidDeadlineInvalid',
+		$this->addCheck(new \PKP\form\validation\FormValidator($this, 'identifierType', 'required', 'plugins.generic.bookReviewManager.identifierTypeRequired'));
+		$this->addCheck(new \PKP\form\validation\FormValidator($this, 'resourceType', 'required', 'plugins.generic.bookReviewManager.resourceTypeRequired'));
+		$this->addCheck(new \PKP\form\validation\FormValidator($this, 'title', 'required', 'plugins.generic.bookReviewManager.titleRequired'));
+		$this->addCheck(new \PKP\form\validation\FormValidator($this, 'identifier', 'required', 'plugins.generic.bookReviewManager.identifierRequired'));
+		$this->addCheck(new \PKP\form\validation\FormValidatorInSet($this, 'assignmentMode', 'required', 'plugins.generic.bookReviewManager.offer.modeRequired', ObjectForReview::MODES));
+		$this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'bidDeadline', 'optional', 'plugins.generic.bookReviewManager.offer.bidDeadlineInvalid',
 			fn ($date) => ($d = \DateTimeImmutable::createFromFormat('!Y-m-d', (string) $date)) && $d->format('Y-m-d') === $date));
-		$this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'responsibleEditorId', 'optional', 'plugins.generic.objectsForReview.offer.editorInvalid',
+		$this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'responsibleEditorId', 'optional', 'plugins.generic.bookReviewManager.offer.editorInvalid',
 			fn ($id) => isset(Roles::getMembers($this->plugin, (int) $this->contextId, Roles::EDITOR)[(int) $id])));
-		$this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'publisherContactId', 'optional', 'plugins.generic.objectsForReview.offer.publisherContactInvalid',
+		$this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'publisherContactId', 'optional', 'plugins.generic.bookReviewManager.offer.publisherContactInvalid',
 			fn ($id) => isset(Roles::getMembers($this->plugin, (int) $this->contextId, Roles::PUBLISHER)[(int) $id])));
 		// Physical copies are returned to the responsible editor (journal stock) or the publisher contact: their addresses are needed
-		$this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'journalHoldsCopy', 'optional', 'plugins.generic.objectsForReview.offer.editorAddressRequired',
+		$this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'journalHoldsCopy', 'optional', 'plugins.generic.bookReviewManager.offer.editorAddressRequired',
 			fn ($holds) => !$this->getData('returnRequired') || $this->hasMailingAddress((int) $this->getData('responsibleEditorId'))));
-		$this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'publisherContactId', 'optional', 'plugins.generic.objectsForReview.offer.publisherAddressRequired',
+		$this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'publisherContactId', 'optional', 'plugins.generic.bookReviewManager.offer.publisherAddressRequired',
 			fn ($id) => !$this->getData('returnRequired') || $this->hasMailingAddress((int) $id)));
-		$this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'notifyPublisher', 'optional', 'plugins.generic.objectsForReview.offer.notifyNeedsContact',
+		$this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'notifyPublisher', 'optional', 'plugins.generic.bookReviewManager.offer.notifyNeedsContact',
 			fn ($notify) => (bool) $this->getData('publisherContactId')));
 		$this->addCheck(new \PKP\form\validation\FormValidatorPost($this));
 		$this->addCheck(new \PKP\form\validation\FormValidatorCSRF($this));
@@ -74,7 +74,7 @@ class AvailableobjectsForReviewForm extends \PKP\form\Form {
 	 */
 	function initData() {
 		if ($this->objectId) {
-			$objectForReviewDao = DAORegistry::getDAO('ObjectForReviewDAO');
+			$objectForReviewDao = DAORegistry::getDAO('BookReviewManagerObjectDAO');
 			$objectForReview = $objectForReviewDao->getById($this->objectId);
 			$this->setData('identifierType', $objectForReview->getIdentifierType());
 			$this->setData('resourceType', $objectForReview->getResourceType());
@@ -126,7 +126,7 @@ class AvailableobjectsForReviewForm extends \PKP\form\Form {
 		self::assignOfferSettings($templateMgr, $this->plugin, (int) $this->contextId);
 		$publisherContacts = Roles::getMembers($this->plugin, (int) $this->contextId, Roles::PUBLISHER);
 		$templateMgr->assign('hasPublisherContacts', (bool) $publisherContacts);
-		$templateMgr->assign('publisherContacts', ['' => __('plugins.generic.objectsForReview.offer.noPublisherContact')] + $publisherContacts);
+		$templateMgr->assign('publisherContacts', ['' => __('plugins.generic.bookReviewManager.offer.noPublisherContact')] + $publisherContacts);
 		return parent::fetch($request);
 	}
 
@@ -136,10 +136,10 @@ class AvailableobjectsForReviewForm extends \PKP\form\Form {
 	public static function assignOfferSettings(TemplateManager $templateMgr, $plugin, int $contextId): void {
 		$templateMgr->assign('offerSettingsTemplate', $plugin->getTemplateResource('offerSettingsFields.tpl'));
 		$templateMgr->assign('assignmentModes', [
-			ObjectForReview::MODE_DIRECT => __('plugins.generic.objectsForReview.offer.mode.direct'),
-			ObjectForReview::MODE_BIDDING => __('plugins.generic.objectsForReview.offer.mode.bidding'),
+			ObjectForReview::MODE_DIRECT => __('plugins.generic.bookReviewManager.offer.mode.direct'),
+			ObjectForReview::MODE_BIDDING => __('plugins.generic.bookReviewManager.offer.mode.bidding'),
 		]);
-		$templateMgr->assign('bookReviewEditors', ['' => __('plugins.generic.objectsForReview.offer.noEditor')]
+		$templateMgr->assign('bookReviewEditors', ['' => __('plugins.generic.bookReviewManager.offer.noEditor')]
 			+ Roles::getMembers($plugin, $contextId, Roles::EDITOR));
 	}
 
@@ -148,7 +148,7 @@ class AvailableobjectsForReviewForm extends \PKP\form\Form {
 	 */
 	function execute(...$functionArgs) {
 		$objectId = $this->objectId;
-		$objectForReviewDao = DAORegistry::getDAO('ObjectForReviewDAO');
+		$objectForReviewDao = DAORegistry::getDAO('BookReviewManagerObjectDAO');
 
 		if ($objectId) {
 			// Load and update an existing objectForReview
@@ -180,7 +180,7 @@ class AvailableobjectsForReviewForm extends \PKP\form\Form {
 		if ($objectId) {
 			$objectForReviewDao->updateObject($objectForReview);
 			// A changed assignment mode or bid deadline may end an invitation round
-			\APP\plugins\generic\objectsForReview\classes\InvitationWorkflow::onOfferChanged($objectForReview,
+			\APP\plugins\generic\bookReviewManager\classes\InvitationWorkflow::onOfferChanged($objectForReview,
 				\APP\core\Application::get()->getRequest()->getUser());
 		} else {
 			$objectForReview = $objectForReviewDao->insertObject($objectForReview);
@@ -228,17 +228,17 @@ class AvailableobjectsForReviewForm extends \PKP\form\Form {
 	 */
 	function _getResourceTypes($uri = null) {
 		$resourceTypes = array(
-				'http://purl.org/coar/resource_type/c_2f33' => 'plugins.generic.objectsForReview.COAR.book',
-				'http://purl.org/coar/resource_type/c_3248' => 'plugins.generic.objectsForReview.COAR.bookPart',
-				'http://purl.org/coar/resource_type/c_6501' => 'plugins.generic.objectsForReview.COAR.journalArticle',
-				'http://purl.org/coar/resource_type/c_5794' => 'plugins.generic.objectsForReview.COAR.conferencePaper',
-				'http://purl.org/coar/resource_type/c_46ec' => 'plugins.generic.objectsForReview.COAR.thesis',
-				'http://purl.org/coar/resource_type/c_816b' => 'plugins.generic.objectsForReview.COAR.preprint',
-				'http://purl.org/coar/resource_type/c_7ad9' => 'plugins.generic.objectsForReview.COAR.website',
-				'http://purl.org/coar/resource_type/c_ddb1' => 'plugins.generic.objectsForReview.COAR.dataset',
-				'http://purl.org/coar/resource_type/c_ddb1' => 'plugins.generic.objectsForReview.COAR.software',
-				'http://purl.org/coar/resource_type/c_12cc' => 'plugins.generic.objectsForReview.COAR.cartographicMaterial',
-				'http://purl.org/coar/resource_type/c_18cc' => 'plugins.generic.objectsForReview.COAR.sound'
+				'http://purl.org/coar/resource_type/c_2f33' => 'plugins.generic.bookReviewManager.COAR.book',
+				'http://purl.org/coar/resource_type/c_3248' => 'plugins.generic.bookReviewManager.COAR.bookPart',
+				'http://purl.org/coar/resource_type/c_6501' => 'plugins.generic.bookReviewManager.COAR.journalArticle',
+				'http://purl.org/coar/resource_type/c_5794' => 'plugins.generic.bookReviewManager.COAR.conferencePaper',
+				'http://purl.org/coar/resource_type/c_46ec' => 'plugins.generic.bookReviewManager.COAR.thesis',
+				'http://purl.org/coar/resource_type/c_816b' => 'plugins.generic.bookReviewManager.COAR.preprint',
+				'http://purl.org/coar/resource_type/c_7ad9' => 'plugins.generic.bookReviewManager.COAR.website',
+				'http://purl.org/coar/resource_type/c_ddb1' => 'plugins.generic.bookReviewManager.COAR.dataset',
+				'http://purl.org/coar/resource_type/c_ddb1' => 'plugins.generic.bookReviewManager.COAR.software',
+				'http://purl.org/coar/resource_type/c_12cc' => 'plugins.generic.bookReviewManager.COAR.cartographicMaterial',
+				'http://purl.org/coar/resource_type/c_18cc' => 'plugins.generic.bookReviewManager.COAR.sound'
 		);
 		if ($uri){
 			return $resourceTypes[$uri];

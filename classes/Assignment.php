@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/classes/Assignment.php
+ * @file plugins/generic/bookReviewManager/classes/Assignment.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Assignment
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief One bidder or reviewer of an object for review. In direct reservation
  *  mode an assignment starts as "accepted"; in bidding mode it starts as a bid.
@@ -14,7 +14,7 @@
  *  assignment (see Reservation::FIELDS).
  */
 
-namespace APP\plugins\generic\objectsForReview\classes;
+namespace APP\plugins\generic\bookReviewManager\classes;
 
 use PKP\core\DataObject;
 

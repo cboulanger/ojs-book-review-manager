@@ -1,12 +1,12 @@
 import { B, browser, login } from './lib.mjs';
 import { execSync } from 'node:child_process';
-const sql = q => execSync(`podman exec ojs-objectsforreview mysql -N ojs -e ${JSON.stringify(q)}`).toString().trim();
+const sql = q => execSync(`podman exec ojs-bookreviewmanager mysql -N ojs -e ${JSON.stringify(q)}`).toString().trim();
 const T = 'Courts and Crises';
-const id = sql(`SELECT object_id FROM objects_for_review_settings WHERE setting_name='title' AND setting_value LIKE '%${T}%' ORDER BY object_id DESC LIMIT 1`);
-const st = () => sql(`SELECT GROUP_CONCAT(CONCAT(u.username,':',a.status) ORDER BY a.assignment_id) FROM objects_for_review_assignments a JOIN users u USING(user_id) WHERE a.object_id=${id}`);
+const id = sql(`SELECT object_id FROM brm_object_settings WHERE setting_name='title' AND setting_value LIKE '%${T}%' ORDER BY object_id DESC LIMIT 1`);
+const st = () => sql(`SELECT GROUP_CONCAT(CONCAT(u.username,':',a.status) ORDER BY a.assignment_id) FROM brm_assignments a JOIN users u USING(user_id) WHERE a.object_id=${id}`);
 const bre = await login('bre', 'ojsbre');
 const deskAction = async label => {
-	await bre.goto(`${B}/manageObjectsForReview/desk`);
+	await bre.goto(`${B}/manageBookReviews/desk`);
 	const scope = bre.locator('.ofrDeskItem, details.ofrClosed tr', { hasText: T }).first();
 	if (label === 'Reopen offer') await bre.locator('details.ofrClosed summary').click();
 	await scope.locator('a', { hasText: label }).click();
@@ -15,15 +15,15 @@ const deskAction = async label => {
 };
 await deskAction('Reopen offer');
 const anna = await login('author', 'ojsauthor');
-await anna.goto(`${B}/for-review`);
-const row = p => p.locator('#objects-for-review-table tr', { hasText: T });
+await anna.goto(`${B}/books-for-review`);
+const row = p => p.locator('#book-review-manager-table tr', { hasText: T });
 await row(anna).locator('.ofrBidButton').click();
 await Promise.all([anna.waitForNavigation(), anna.locator('#ofrBidDialog button[type=submit]').click()]);
 console.log('after public bid:', st());
 await deskAction('Switch to direct reservation');
 // Anna's bid stays; Jonas reserves directly
 const jonas = await login('reviewer2', 'ojsreviewer2');
-await jonas.goto(`${B}/for-review`);
+await jonas.goto(`${B}/books-for-review`);
 console.log('jonas sees:', (await row(jonas).locator('td').last().innerText()).replace(/\s+/g, ' '));
 await row(jonas).locator('.ofrReserveButton').click();
 const d = jonas.locator('#ofrReserveDialog');

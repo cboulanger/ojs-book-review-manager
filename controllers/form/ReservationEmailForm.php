@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/controllers/form/ReservationEmailForm.php
+ * @file plugins/generic/bookReviewManager/controllers/form/ReservationEmailForm.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ReservationEmailForm
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief A workflow step taken by the book review editor, with a prefilled,
  *  editable email that is recorded in the audit trail (like unassigning a
@@ -20,17 +20,17 @@
  *  - round: start a sequential invitation round (the text is stored and reused)
  */
 
-namespace APP\plugins\generic\objectsForReview\controllers\form;
+namespace APP\plugins\generic\bookReviewManager\controllers\form;
 
 use APP\core\Application;
 use APP\facades\Repo;
-use APP\plugins\generic\objectsForReview\classes\ActionLink;
-use APP\plugins\generic\objectsForReview\classes\Assignment;
-use APP\plugins\generic\objectsForReview\classes\AssignmentWorkflow;
-use APP\plugins\generic\objectsForReview\classes\InvitationWorkflow;
-use APP\plugins\generic\objectsForReview\classes\ReservationEmailEventType;
-use APP\plugins\generic\objectsForReview\classes\ReservationMailer;
-use APP\plugins\generic\objectsForReview\controllers\ReservationActionsHandler;
+use APP\plugins\generic\bookReviewManager\classes\ActionLink;
+use APP\plugins\generic\bookReviewManager\classes\Assignment;
+use APP\plugins\generic\bookReviewManager\classes\AssignmentWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\InvitationWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\ReservationEmailEventType;
+use APP\plugins\generic\bookReviewManager\classes\ReservationMailer;
+use APP\plugins\generic\bookReviewManager\controllers\ReservationActionsHandler;
 use APP\template\TemplateManager;
 use PKP\form\validation\FormValidatorCSRF;
 use PKP\form\validation\FormValidatorCustom;
@@ -84,16 +84,16 @@ class ReservationEmailForm extends \PKP\form\Form {
 		}
 
 		$needsEmail = fn () => !in_array($this->mode, self::OPTIONAL_EMAIL_MODES, true) || $this->getData('sendEmail');
-		$this->addCheck(new FormValidatorCustom($this, 'subject', 'required', 'plugins.generic.objectsForReview.reservations.subjectRequired',
+		$this->addCheck(new FormValidatorCustom($this, 'subject', 'required', 'plugins.generic.bookReviewManager.reservations.subjectRequired',
 			fn ($subject) => !$needsEmail() || trim((string) $subject) !== ''));
-		$this->addCheck(new FormValidatorCustom($this, 'body', 'required', 'plugins.generic.objectsForReview.reservations.bodyRequired',
+		$this->addCheck(new FormValidatorCustom($this, 'body', 'required', 'plugins.generic.bookReviewManager.reservations.bodyRequired',
 			fn ($body) => !$needsEmail() || trim(strip_tags((string) $body)) !== ''));
 		if ($mode === self::MODE_CONTRACT_OFFER) {
-			$this->addCheck(new FormValidatorCustom($this, 'body', 'required', 'plugins.generic.objectsForReview.contractOffer.linkRequired',
+			$this->addCheck(new FormValidatorCustom($this, 'body', 'required', 'plugins.generic.bookReviewManager.contractOffer.linkRequired',
 				fn ($body) => str_contains((string) $body, '{$contractUrl}')));
 		}
 		if (in_array($mode, [self::MODE_INVITATION, self::MODE_ROUND], true)) {
-			$this->addCheck(new FormValidatorCustom($this, 'body', 'required', 'plugins.generic.objectsForReview.invitation.linkRequired',
+			$this->addCheck(new FormValidatorCustom($this, 'body', 'required', 'plugins.generic.bookReviewManager.invitation.linkRequired',
 				fn ($body) => str_contains((string) $body, '{$invitationUrl}')));
 		}
 		$this->addCheck(new FormValidatorPost($this));
@@ -158,26 +158,26 @@ class ReservationEmailForm extends \PKP\form\Form {
 			'optionalEmail' => in_array($this->mode, self::OPTIONAL_EMAIL_MODES, true),
 			'cancelOffer' => $this->mode === self::MODE_CANCEL && reset($this->assignments)?->getStatus() === Assignment::STATUS_OFFERED,
 		] + ($this->mode === self::MODE_INVITATION ? [
-			'stepDescription' => __('plugins.generic.objectsForReview.invitation.send.description.' . InvitationWorkflow::getKind($this->object), [
+			'stepDescription' => __('plugins.generic.bookReviewManager.invitation.send.description.' . InvitationWorkflow::getKind($this->object), [
 				'name' => $first['name'],
 				'deadline' => $this->formatDate(InvitationWorkflow::getDeadline($this->plugin, $this->object)),
 			]),
-			'bodyHint' => __('plugins.generic.objectsForReview.invitation.linkHint'),
-			'submitKey' => 'plugins.generic.objectsForReview.invitation.send',
+			'bodyHint' => __('plugins.generic.bookReviewManager.invitation.linkHint'),
+			'submitKey' => 'plugins.generic.bookReviewManager.invitation.send',
 		] : []) + ($this->mode === self::MODE_ROUND ? [
 			'stepDescription' => $this->object->isBidding()
-				? __('plugins.generic.objectsForReview.invitation.round.descriptionParallel', [
+				? __('plugins.generic.bookReviewManager.invitation.round.descriptionParallel', [
 					'number' => count($recipients),
 					'deadline' => $this->formatDate(InvitationWorkflow::getDeadline($this->plugin, $this->object)),
 				])
-				: __('plugins.generic.objectsForReview.invitation.round.description', [
+				: __('plugins.generic.bookReviewManager.invitation.round.description', [
 					'name' => $first['name'],
 					'days' => InvitationWorkflow::getInvitationDays($this->plugin, (int) $this->context->getId()),
 				]),
 			'hideOfferOption' => true,
 			'hideOffer' => (bool) $this->getData('hideOffer'),
-			'bodyHint' => __('plugins.generic.objectsForReview.invitation.round.hint'),
-			'submitKey' => $this->object->isBidding() ? 'plugins.generic.objectsForReview.invitation.round.startParallel' : 'plugins.generic.objectsForReview.invitation.round.start',
+			'bodyHint' => __('plugins.generic.bookReviewManager.invitation.round.hint'),
+			'submitKey' => $this->object->isBidding() ? 'plugins.generic.bookReviewManager.invitation.round.startParallel' : 'plugins.generic.bookReviewManager.invitation.round.start',
 		] : []) + [
 			'actionUrl' => $request->getDispatcher()->url($request, Application::ROUTE_COMPONENT, null,
 				ReservationActionsHandler::COMPONENT, self::SAVE_OPS[$this->mode]),

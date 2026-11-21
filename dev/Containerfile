@@ -1,5 +1,5 @@
 # Local test environment: Apache + PHP 8.2 + MariaDB with a preinstalled OJS 3.5
-# and a test journal. The objectsForReview plugin is bind-mounted at runtime
+# and a test journal. The bookReviewManager plugin is bind-mounted at runtime
 # (see dev/ojs-dev.sh), so changes to the plugin are live without rebuilding.
 #
 # For local testing only: default passwords, all hosts allowed, no TLS.

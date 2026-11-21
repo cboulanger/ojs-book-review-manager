@@ -40,7 +40,7 @@ test('a section editor who is not a book review editor has no access', async (t)
     WHERE ug.role_id = 17 AND ug.context_id = 1 AND (uug.date_end IS NULL OR uug.date_end > NOW())
     AND u.user_id NOT IN (SELECT uug2.user_id FROM user_user_groups uug2 JOIN user_groups ug2 ON ug2.user_group_id = uug2.user_group_id
       WHERE ug2.role_id IN (1, 16) OR ug2.user_group_id = (SELECT setting_value FROM plugin_settings
-        WHERE plugin_name = 'objectsforreviewplugin' AND setting_name = 'ofrEditorGroupId' AND context_id = 1))
+        WHERE plugin_name = 'bookreviewmanagerplugin' AND setting_name = 'ofrEditorGroupId' AND context_id = 1))
     LIMIT 1`);
   if (!row) {
     t.skip('the dev journal has no section editor outside the book review editor group');

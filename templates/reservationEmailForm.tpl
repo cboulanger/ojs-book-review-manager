@@ -1,5 +1,5 @@
 {**
- * plugins/generic/objectsForReview/templates/reservationEmailForm.tpl
+ * plugins/generic/bookReviewManager/templates/reservationEmailForm.tpl
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
@@ -23,21 +23,21 @@
 	{fbvFormArea id="ofrReservationEmailFormArea"}
 		<p class="ofrReservationObject"><em>{$objectDescription|strip_unsafe_html}</em></p>
 		{if $mode == 'cancel'}
-			<p>{if $cancelOffer}{translate key="plugins.generic.objectsForReview.contractOffer.cancel.description" reviewer=$reviewerName|escape}{else}{translate key="plugins.generic.objectsForReview.reservations.cancel.description" reviewer=$reviewerName|escape}{/if}</p>
+			<p>{if $cancelOffer}{translate key="plugins.generic.bookReviewManager.contractOffer.cancel.description" reviewer=$reviewerName|escape}{else}{translate key="plugins.generic.bookReviewManager.reservations.cancel.description" reviewer=$reviewerName|escape}{/if}</p>
 		{elseif $mode == 'contractOffer'}
-			<p>{translate key="plugins.generic.objectsForReview.contractOffer.description" reviewer=$reviewerName|escape}</p>
+			<p>{translate key="plugins.generic.bookReviewManager.contractOffer.description" reviewer=$reviewerName|escape}</p>
 		{elseif $mode == 'unsuccessful'}
-			<p>{translate key="plugins.generic.objectsForReview.unsuccessful.description"}</p>
+			<p>{translate key="plugins.generic.bookReviewManager.unsuccessful.description"}</p>
 		{elseif $stepDescription}
 			<p class="ofrStepDescription">{$stepDescription|escape}</p>
 		{/if}
 
 		{if $returnTargets}
-			{fbvFormSection list=true label="plugins.generic.objectsForReview.copy.returnTarget"}
+			{fbvFormSection list=true label="plugins.generic.bookReviewManager.copy.returnTarget"}
 				{foreach from=$returnTargets key=target item=address}
 					<label class="ofrReturnTarget">
 						<input type="radio" name="returnTarget" value="{$target|escape}"{if $target == $returnTarget} checked{/if} />
-						<strong>{translate key="plugins.generic.objectsForReview.copy.to.$target"}</strong>
+						<strong>{translate key="plugins.generic.bookReviewManager.copy.to.$target"}</strong>
 						<span class="ofrDetail">{$address|escape|nl2br}</span>
 					</label>
 				{/foreach}
@@ -46,14 +46,14 @@
 
 		{if $hideOfferOption}
 			{fbvFormSection list=true}
-				{fbvElement type="checkbox" id="hideOffer" value="1" checked=$hideOffer label="plugins.generic.objectsForReview.invitation.round.hideOffer"}
+				{fbvElement type="checkbox" id="hideOffer" value="1" checked=$hideOffer label="plugins.generic.bookReviewManager.invitation.round.hideOffer"}
 			{/fbvFormSection}
 		{/if}
 
 		{if !$noEmail}
 		{if $optionalEmail}
 			{fbvFormSection list=true}
-				{fbvElement type="checkbox" id="sendEmail" value="1" checked=$sendEmail label="plugins.generic.objectsForReview.reservations.cancel.sendEmail"}
+				{fbvElement type="checkbox" id="sendEmail" value="1" checked=$sendEmail label="plugins.generic.bookReviewManager.reservations.cancel.sendEmail"}
 			{/fbvFormSection}
 		{/if}
 
@@ -69,9 +69,9 @@
 			{fbvFormSection label="email.body" required=true}
 				{fbvElement type="textarea" id="body" value=$body rich=true height=$fbvStyles.height.TALL}
 				{if $mode == 'contractOffer'}
-					<p class="ofrHint">{translate key="plugins.generic.objectsForReview.contractOffer.linkHint"}</p>
+					<p class="ofrHint">{translate key="plugins.generic.bookReviewManager.contractOffer.linkHint"}</p>
 				{elseif $mode == 'unsuccessful'}
-					<p class="ofrHint">{translate key="plugins.generic.objectsForReview.unsuccessful.linkHint"}</p>
+					<p class="ofrHint">{translate key="plugins.generic.bookReviewManager.unsuccessful.linkHint"}</p>
 				{elseif $bodyHint}
 					<p class="ofrHint">{$bodyHint|escape}</p>
 				{/if}
@@ -82,13 +82,13 @@
 		{if $submitKey}
 			{fbvFormButtons submitText=$submitKey}
 		{elseif $mode == 'cancel'}
-			{fbvFormButtons submitText="plugins.generic.objectsForReview.reservations.cancel.submit"}
+			{fbvFormButtons submitText="plugins.generic.bookReviewManager.reservations.cancel.submit"}
 		{elseif $mode == 'contractOffer'}
-			{fbvFormButtons submitText="plugins.generic.objectsForReview.contractOffer.submit"}
+			{fbvFormButtons submitText="plugins.generic.bookReviewManager.contractOffer.submit"}
 		{elseif $mode == 'unsuccessful'}
-			{fbvFormButtons submitText="plugins.generic.objectsForReview.unsuccessful.submit"}
+			{fbvFormButtons submitText="plugins.generic.bookReviewManager.unsuccessful.submit"}
 		{else}
-			{fbvFormButtons submitText="plugins.generic.objectsForReview.reservations.email.submit"}
+			{fbvFormButtons submitText="plugins.generic.bookReviewManager.reservations.email.submit"}
 		{/if}
 	{/fbvFormArea}
 </form>

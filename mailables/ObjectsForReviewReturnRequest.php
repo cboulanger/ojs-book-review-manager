@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/mailables/ObjectsForReviewReturnRequest.php
+ * @file plugins/generic/bookReviewManager/mailables/ObjectsForReviewReturnRequest.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
@@ -10,7 +10,7 @@
  * @brief Request to the reviewer to return a physical review copy, with the return address.
  */
 
-namespace APP\plugins\generic\objectsForReview\mailables;
+namespace APP\plugins\generic\bookReviewManager\mailables;
 
 use APP\journal\Journal;
 use PKP\mail\Mailable;
@@ -25,9 +25,9 @@ class ObjectsForReviewReturnRequest extends Mailable
     use Recipient;
     use Sender;
 
-    protected static ?string $name = 'emails.ofrReturnRequest.name';
-    protected static ?string $description = 'emails.ofrReturnRequest.description';
-    protected static ?string $emailTemplateKey = 'OFR_RETURN_REQUEST';
+    protected static ?string $name = 'emails.brmReturnRequest.name';
+    protected static ?string $description = 'emails.brmReturnRequest.description';
+    protected static ?string $emailTemplateKey = 'BRM_RETURN_REQUEST';
     protected static array $fromRoleIds = [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR];
     protected static array $toRoleIds = [Role::ROLE_ID_READER, Role::ROLE_ID_AUTHOR];
 

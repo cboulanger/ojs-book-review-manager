@@ -1,10 +1,10 @@
 import { B, browser, login } from './lib.mjs';
 import { execSync } from 'node:child_process';
-const id = execSync(`podman exec ojs-objectsforreview mysql -N ojs -e "SELECT object_id FROM objects_for_review_settings WHERE setting_name='title' AND setting_value LIKE '%Law in Context%' LIMIT 1"`).toString().trim();
+const id = execSync(`podman exec ojs-bookreviewmanager mysql -N ojs -e "SELECT object_id FROM brm_object_settings WHERE setting_name='title' AND setting_value LIKE '%Law in Context%' LIMIT 1"`).toString().trim();
 const bre = await login('bre', 'ojsbre');
 const de = B.replace('/en', '/de');
 for (const q of ['Weber', '']) {
-	await bre.goto(`${de}/manageObjectsForReview/invite/${id}`);
+	await bre.goto(`${de}/manageBookReviews/invite/${id}`);
 	console.log('form action:', await bre.locator('form.ofrFilter').getAttribute('action'));
 	await bre.fill('#ofrInviteSearch', q);
 	const before = bre.url();

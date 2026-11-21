@@ -1,38 +1,38 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/ObjectsForReviewPlugin.inc.php
+ * @file plugins/generic/bookReviewManager/BookReviewManagerPlugin.inc.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @class ObjectsForReviewPlugin
- * @ingroup plugins_generic_objectsForReview
- * @brief Add objectsForReview data to the submission metadata and display them on the submission view page.
+ * @class BookReviewManagerPlugin
+ * @ingroup plugins_generic_bookReviewManager
+ * @brief Add bookReviewManager data to the submission metadata and display them on the submission view page.
  *
  */
 
-namespace APP\plugins\generic\objectsForReview;
+namespace APP\plugins\generic\bookReviewManager;
 
 use APP\core\Application;
 use APP\pages\submission\SubmissionHandler;
-use APP\plugins\generic\objectsForReview\classes\ObjectForReview;
-use APP\plugins\generic\objectsForReview\classes\ObjectForReviewDAO;
-use APP\plugins\generic\objectsForReview\classes\AssignmentDAO;
-use APP\plugins\generic\objectsForReview\classes\AssignmentWorkflow;
-use APP\plugins\generic\objectsForReview\classes\ReservationMailer;
-use APP\plugins\generic\objectsForReview\classes\Roles;
+use APP\plugins\generic\bookReviewManager\classes\ObjectForReview;
+use APP\plugins\generic\bookReviewManager\classes\ObjectForReviewDAO;
+use APP\plugins\generic\bookReviewManager\classes\AssignmentDAO;
+use APP\plugins\generic\bookReviewManager\classes\AssignmentWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\ReservationMailer;
+use APP\plugins\generic\bookReviewManager\classes\Roles;
 
-use APP\plugins\generic\objectsForReview\controllers\grid\ObjectsForReviewGridHandler;
-use APP\plugins\generic\objectsForReview\controllers\grid\ObjectsForReviewManagementGridHandler;
-use APP\plugins\generic\objectsForReview\ObjectsForReviewSchemaMigration;
-use APP\plugins\generic\objectsForReview\api\ObjectsForReviewController;
-use APP\plugins\generic\objectsForReview\pages\ObjectsForReviewHandler;
-use APP\plugins\generic\objectsForReview\pages\ObjectsForReviewManagementHandler;
+use APP\plugins\generic\bookReviewManager\controllers\grid\ObjectsForReviewGridHandler;
+use APP\plugins\generic\bookReviewManager\controllers\grid\ObjectsForReviewManagementGridHandler;
+use APP\plugins\generic\bookReviewManager\ObjectsForReviewSchemaMigration;
+use APP\plugins\generic\bookReviewManager\api\ObjectsForReviewController;
+use APP\plugins\generic\bookReviewManager\pages\ObjectsForReviewHandler;
+use APP\plugins\generic\bookReviewManager\pages\ObjectsForReviewManagementHandler;
 
-use APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewNew;
-use APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewCancel;
+use APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewNew;
+use APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewCancel;
 
 use APP\facades\Repo;
 use PKP\linkAction\request\AjaxModal;
@@ -44,36 +44,43 @@ use APP\template\TemplateManager;
 use PKP\db\DAORegistry;
 use PKP\plugins\GenericPlugin;
 use PKP\plugins\Hook;
+use PKP\plugins\PluginRegistry;
+use PKP\config\Config;
 use PKP\plugins\interfaces\HasTaskScheduler;
 use PKP\scheduledTask\PKPScheduler;
-use APP\plugins\generic\objectsForReview\classes\ReservationReminder;
+use APP\plugins\generic\bookReviewManager\classes\ReservationReminder;
 use PKP\security\Role;
 use Illuminate\Support\Facades\Mail;
 
 
-define('OBJECTSFORREVIEW_NMI_TYPE', 'OBJECTSFORREVIEW_NMI');
 
-class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
+class BookReviewManagerPlugin extends GenericPlugin implements HasTaskScheduler {
+
+	/** Navigation menu item type of the public page */
+	const NMI_TYPE = 'BOOKREVIEWMANAGER_NMI';
+
+	/** Name of the upstream Objects for Review plugin, which can be installed alongside */
+	const UPSTREAM_PLUGIN = 'ObjectsForReviewPlugin';
 
 	/**
 	 * @copydoc Plugin::getName()
 	 */
 	function getName() {
-		return 'ObjectsForReviewPlugin';
+		return 'BookReviewManagerPlugin';
     }
 
 	/**
 	 * @copydoc Plugin::getDisplayName()
 	 */
     function getDisplayName() {
-		return __('plugins.generic.objectsForReview.displayName');
+		return __('plugins.generic.bookReviewManager.displayName');
     }
 
 	/**
 	 * @copydoc Plugin::getDescription()
 	 */
     function getDescription() {
-		return __('plugins.generic.objectsForReview.description');
+		return __('plugins.generic.bookReviewManager.description');
     }
 
 	/**
@@ -170,15 +177,19 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
     function register($category, $path, $mainContextId = null) {
 
 		$success = parent::register($category, $path, $mainContextId);
+		// Also before the plugin is enabled: taking over an installation of the objectsForReview
+		// fork moves its settings, including where it is enabled (see ObjectsForReviewSchemaMigration::adoptFork())
+		if ($success && Config::getVar('general', 'installed')) {
+			$this->upgradeSchema();
+		}
 		if ($success && $this->getEnabled($mainContextId)) {
 
 			$request = Application::get()->getRequest();
 			$context = $request->getContext();
 
 			$objectForReviewDao = new ObjectForReviewDAO();
-			DAORegistry::registerDAO('ObjectForReviewDAO', $objectForReviewDao);
-			DAORegistry::registerDAO('ObjectForReviewAssignmentDAO', new AssignmentDAO());
-			$this->upgradeSchema();
+			DAORegistry::registerDAO('BookReviewManagerObjectDAO', $objectForReviewDao);
+			DAORegistry::registerDAO('BookReviewManagerAssignmentDAO', new AssignmentDAO());
 
             Hook::add('TemplateManager::display', $this->addToSubmissionWizardSteps(...));
             Hook::add('Template::SubmissionWizard::Section', $this->addToSubmissionWizardTemplate(...));
@@ -207,7 +218,7 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
 			Hook::add('Mailer::Mailables', [$this, 'addMailable']);
 			Hook::add('Publication::publish', [$this, 'completeOnPublish']);
 
-			// REST API for imports: /index.php/{journal}/api/v1/objectsForReview/... (see api/SKILL.md)
+			// REST API for imports: /index.php/{journal}/api/v1/bookReviewManager/... (see api/SKILL.md)
 			Hook::add('APIHandler::endpoints::plugin', [$this, 'registerApi']);
 
 
@@ -220,12 +231,13 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
 	 * Create or upgrade the plugin's tables (installation only runs the migration once).
 	 */
 	protected function upgradeSchema(): void {
-		$siteContextId = Application::SITE_CONTEXT_ID;
-		if ((int) $this->getSetting($siteContextId, 'schemaVersion') >= ObjectsForReviewSchemaMigration::SCHEMA_VERSION) {
+		$version = (int) $this->getSetting(Application::SITE_CONTEXT_ID, 'schemaVersion');
+		// Not installed yet (CLI tools register every plugin on disk): the installation runs the migration
+		if ($version >= ObjectsForReviewSchemaMigration::SCHEMA_VERSION || !$this->getCurrentVersion()) {
 			return;
 		}
-		(new ObjectsForReviewSchemaMigration())->up();
-		$this->updateSetting($siteContextId, 'schemaVersion', ObjectsForReviewSchemaMigration::SCHEMA_VERSION, 'int');
+		// Stores the new schema version itself (it also runs as the install migration)
+		(new ObjectsForReviewSchemaMigration($version))->up();
 	}
 
 	/**
@@ -266,7 +278,7 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
 	}
 
 	/**
-	 * Add the "Objects for Review" section to the backend's left menu.
+	 * Add the "Book Review Manager" section to the backend's left menu.
 	 * Hooked to TemplateManager::setupBackendPage.
 	 */
 	public function addBackendMenu($hookName, $args) {
@@ -295,17 +307,17 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
 		$submenu = [];
 		foreach ($ops as $op => $key) {
 			$submenu[$key] = [
-				'name' => __('plugins.generic.objectsForReview.menu.' . $key),
+				'name' => __('plugins.generic.bookReviewManager.menu.' . $key),
 				'url' => $router->url($request, null, $page, $op),
 				'isCurrent' => $onPage && $requestedOp === $op,
 			];
 		}
 		$submenu['publicPage'] = [
-			'name' => __('plugins.generic.objectsForReview.menu.publicPage'),
-			'url' => $router->url($request, null, 'for-review'),
+			'name' => __('plugins.generic.bookReviewManager.menu.publicPage'),
+			'url' => $router->url($request, null, ObjectsForReviewHandler::PAGE),
 		];
 		$entry = [
-			'name' => __('plugins.generic.objectsForReview.managementLink'),
+			'name' => __('plugins.generic.bookReviewManager.managementLink'),
 			'icon' => 'Book',
 			'submenu' => $submenu,
 		];
@@ -315,8 +327,8 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
 		$menu = (array) $templateMgr->getState('menu');
 		$pos = array_search('settings', array_keys($menu), true);
 		$menu = $pos === false
-			? $menu + ['objectsForReview' => $entry]
-			: array_slice($menu, 0, $pos, true) + ['objectsForReview' => $entry] + array_slice($menu, $pos, null, true);
+			? $menu + ['bookReviewManager' => $entry]
+			: array_slice($menu, 0, $pos, true) + ['bookReviewManager' => $entry] + array_slice($menu, $pos, null, true);
 		$templateMgr->setState(['menu' => $menu]);
 		return false;
 	}
@@ -330,12 +342,12 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
 		$component =& $params[0];
 		$componentInstance =& $params[2];
 
-		if ($component === 'plugins.generic.objectsForReview.controllers.grid.ObjectsForReviewGridHandler') {
+		if ($component === 'plugins.generic.bookReviewManager.controllers.grid.ObjectsForReviewGridHandler') {
 			$componentInstance = new controllers\grid\ObjectsForReviewGridHandler($this);
 			return true;
 		}
 
-		if ($component === 'plugins.generic.objectsForReview.controllers.grid.ObjectsForReviewManagementGridHandler') {
+		if ($component === 'plugins.generic.bookReviewManager.controllers.grid.ObjectsForReviewManagementGridHandler') {
 			$componentInstance = new controllers\grid\ObjectsForReviewManagementGridHandler($this);
 			return true;
 		}
@@ -377,14 +389,14 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
         }
 
         /** @var ObjectForReviewDAO $objectForReviewDao */
-        $objectForReviewDao = DAORegistry::getDAO('ObjectForReviewDAO');
+        $objectForReviewDao = DAORegistry::getDAO('BookReviewManagerObjectDAO');
         $objectForReviewResult = $objectForReviewDao->getBySubmissionId($submission->getId());
 
-        $objectsForReview = [];
+        $bookReviewManager = [];
         while ($objectForReview = $objectForReviewResult->next()) {
             // A review essay is one entry (its citation lists the works)
             if (!$objectForReview->isBundleMember()) {
-                $objectsForReview[] = $this->getObjectForReviewData($objectForReview);
+                $bookReviewManager[] = $this->getObjectForReviewData($objectForReview);
             }
         }
 
@@ -395,8 +407,8 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
         $steps = array_map(function($step) {
             if ($step['id'] === 'editors') {
                 $step['sections'][] = [
-                    'id' => 'objectsForReview',
-                    'name' => __('plugins.generic.objectsForReview.submissionWizard.name'),
+                    'id' => 'bookReviewManager',
+                    'name' => __('plugins.generic.bookReviewManager.submissionWizard.name'),
                     'type' => SubmissionHandler::SECTION_TYPE_TEMPLATE,
                 ];
             }
@@ -404,7 +416,7 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
         }, $steps);
 
         $templateMgr->setState([
-            'objectsForReview' => $objectsForReview,
+            'bookReviewManager' => $bookReviewManager,
             'steps' => $steps,
         ]);
 
@@ -433,7 +445,7 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
         $output =& $params[2];
 
         $output .= sprintf(
-            '<template v-else-if="section.id === \'objectsForReview\'">%s</template>',
+            '<template v-else-if="section.id === \'bookReviewManager\'">%s</template>',
             $smarty->fetch($this->getTemplateResource('objectsForReviewGrid.tpl'))
         );
 
@@ -494,13 +506,13 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
 
 		$submission = $templateMgr->getTemplateVars('monograph') ? $templateMgr->getTemplateVars('monograph') : $templateMgr->getTemplateVars('article');
 
-		$objectForReviewDao = DAORegistry::getDAO('ObjectForReviewDAO');
-		$objectsForReview = $objectForReviewDao->getBySubmissionId($submission->getId());
+		$objectForReviewDao = DAORegistry::getDAO('BookReviewManagerObjectDAO');
+		$bookReviewManager = $objectForReviewDao->getBySubmissionId($submission->getId());
 
-		if ($objectsForReview){
+		if ($bookReviewManager){
 			$templateData = array();
 
-			while ($objectForReview = $objectsForReview->next()) {
+			while ($objectForReview = $bookReviewManager->next()) {
 				// Only the reviewed works, not the review essay that holds them
 				if ($objectForReview->isReviewEssay()) {
 					continue;
@@ -515,7 +527,7 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
 			}
 
 			if ($templateData){
-				$templateMgr->assign('objectsForReview', $templateData);
+				$templateMgr->assign('bookReviewManager', $templateData);
 				$output .= $templateMgr->fetch($this->getTemplateResource('listReviews.tpl'));
 			}
 
@@ -533,12 +545,12 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
 		// NOTE Not working in 3.2, need to rewrite this
 		$submission =& $params[0];
 
-		$objectForReviewDao = DAORegistry::getDAO('ObjectForReviewDAO');
-		$objectsForReview = $objectForReviewDao->getBySubmissionId($submission->getId());
+		$objectForReviewDao = DAORegistry::getDAO('BookReviewManagerObjectDAO');
+		$bookReviewManager = $objectForReviewDao->getBySubmissionId($submission->getId());
 
-		if ($objectsForReview){
+		if ($bookReviewManager){
 			$objects = array();
-			while ($objectForReview = $objectsForReview->next()) {
+			while ($objectForReview = $bookReviewManager->next()) {
 				$objects[] = $objectForReview->getCitation();
 			}
 
@@ -576,16 +588,16 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
 			$request,
 			Application::ROUTE_COMPONENT,
 			null,
-			'plugins.generic.objectsForReview.controllers.grid.ObjectsForReviewGridHandler',
+			'plugins.generic.bookReviewManager.controllers.grid.ObjectsForReviewGridHandler',
 			'fetchGrid',
 			null,
 			['submissionId' => '__submissionId__']
 		);
 		$templateMgr->addJavaScript(
 			'ObjectsForReviewWorkflowConfig',
-			'window.pkpObjectsForReview = ' . json_encode([
+			'window.pkpBookReviewManager = ' . json_encode([
 				'gridUrl' => $gridUrl,
-				'label' => __('plugins.generic.objectsForReview.workflow.tabLabel'),
+				'label' => __('plugins.generic.bookReviewManager.workflow.tabLabel'),
 			]) . ';',
 			[
 				'inline' => true,
@@ -594,7 +606,7 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
 		);
 		// The backend side menu ignores link targets: open the "Public page" entry in a new tab
 		if ($request->getContext()) {
-			$publicUrl = $request->getDispatcher()->url($request, Application::ROUTE_PAGE, null, 'for-review');
+			$publicUrl = $request->getDispatcher()->url($request, Application::ROUTE_PAGE, null, ObjectsForReviewHandler::PAGE);
 			$templateMgr->addJavaScript(
 				'ObjectsForReviewPublicPageLink',
 				'document.addEventListener("click", function (e) {'
@@ -619,35 +631,35 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
 		);
 		$templateMgr->addStylesheet(
 			'ObjectsForReviewGridHandlerStyles',
-			'.objectsForReviewWorkflowGrid { margin: 1rem; } .orIdLookup .orIdLookupButton, .orIdLookup .orIdLookupStatus { margin-left: 0.5em; }'
-				. ' .objectsForReviewManagement .ofrTable { width: 100%; border-collapse: collapse; }'
-				. ' .objectsForReviewManagement .ofrTable th, .objectsForReviewManagement .ofrTable td { text-align: left; vertical-align: top; padding: 0.75rem 1rem; border-bottom: 1px solid #ddd; }'
-				. ' .objectsForReviewManagement .ofrIdentifier { margin-top: 0.25rem; font-size: 0.875rem; }'
-				. ' .objectsForReviewManagement .ofrFilter { margin-bottom: 1rem; }'
-				. ' .objectsForReviewManagement .ofrNoWrap { white-space: nowrap; }'
-				. ' .objectsForReviewManagement .ofrActions a { display: block; white-space: nowrap; margin-bottom: 0.25rem; }'
-				. ' .objectsForReviewManagement .ofrDetail { margin-top: 0.25rem; font-size: 0.875rem; }'
-				. ' .objectsForReviewManagement .ofrFilter label { margin: 0 0.5rem 0 1rem; font-weight: bold; }'
-				. ' .objectsForReviewManagement h2 { margin: 2rem 0 0.75rem; font-size: 1.125rem; }'
-				. ' .objectsForReviewManagement h2:first-child { margin-top: 0; }'
-				. ' .objectsForReviewManagement .ofrDeskItem { border: 1px solid #ddd; border-radius: 4px; padding: 1rem; margin-bottom: 1rem; }'
-				. ' .objectsForReviewManagement .ofrDeskState { margin: 0.5rem 0 1rem; }'
-				. ' .objectsForReviewManagement .ofrOfferActions { margin-top: 0.75rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }'
-				. ' .objectsForReviewManagement .ofrClosed { margin-top: 2rem; }'
-				. ' .objectsForReviewManagement .ofrClosed summary { cursor: pointer; font-weight: bold; }'
-				. ' .objectsForReviewManagement .ofrWarning { color: #b00; }'
-				. ' .objectsForReviewManagement .ofrInlineActions { display: flex; gap: 0.75rem; align-items: center; margin-top: 0.25rem; }'
-				. ' .objectsForReviewManagement .ofrInlineForm { display: inline; margin: 0; }'
-				. ' .objectsForReviewManagement .ofrLinkButton { background: none; border: none; padding: 0; color: #006798; cursor: pointer; font: inherit; text-decoration: underline; }'
-				. ' .objectsForReviewManagement .ofrDragHandle { cursor: move; color: #888; letter-spacing: -0.2em; margin-right: 0.25rem; }'
-				. ' .objectsForReviewManagement tr.ofrDragging { opacity: 0.4; }'
-				. ' .objectsForReviewManagement .ofrInviteHistory { margin-left: 1rem; }'
-				. ' .objectsForReviewManagement .ofrRound { border-left: 4px solid #006798; background: #f3f8fb; padding: 0.75rem 1rem; margin: 1rem 0; }'
-				. ' .objectsForReviewManagement .ofrRound p { margin: 0.25rem 0; }'
-				. ' .objectsForReviewManagement .ofrNewInvitee .ofrField { margin-bottom: 0.75rem; }'
-				. ' .objectsForReviewManagement .ofrNewInvitee label { display: block; font-weight: bold; }'
-				. ' .objectsForReviewManagement .ofrNewInvitee input { width: 100%; max-width: 30rem; }'
-				. ' .objectsForReviewManagement input[type=text], .objectsForReviewManagement input[type=email], .objectsForReviewManagement input[type=search] { border: 1px solid #bbb; border-radius: 3px; padding: 0.4rem 0.5rem; font: inherit; }'
+			'.bookReviewManagerWorkflowGrid { margin: 1rem; } .orIdLookup .orIdLookupButton, .orIdLookup .orIdLookupStatus { margin-left: 0.5em; }'
+				. ' .bookReviewManagerManagement .ofrTable { width: 100%; border-collapse: collapse; }'
+				. ' .bookReviewManagerManagement .ofrTable th, .bookReviewManagerManagement .ofrTable td { text-align: left; vertical-align: top; padding: 0.75rem 1rem; border-bottom: 1px solid #ddd; }'
+				. ' .bookReviewManagerManagement .ofrIdentifier { margin-top: 0.25rem; font-size: 0.875rem; }'
+				. ' .bookReviewManagerManagement .ofrFilter { margin-bottom: 1rem; }'
+				. ' .bookReviewManagerManagement .ofrNoWrap { white-space: nowrap; }'
+				. ' .bookReviewManagerManagement .ofrActions a { display: block; white-space: nowrap; margin-bottom: 0.25rem; }'
+				. ' .bookReviewManagerManagement .ofrDetail { margin-top: 0.25rem; font-size: 0.875rem; }'
+				. ' .bookReviewManagerManagement .ofrFilter label { margin: 0 0.5rem 0 1rem; font-weight: bold; }'
+				. ' .bookReviewManagerManagement h2 { margin: 2rem 0 0.75rem; font-size: 1.125rem; }'
+				. ' .bookReviewManagerManagement h2:first-child { margin-top: 0; }'
+				. ' .bookReviewManagerManagement .ofrDeskItem { border: 1px solid #ddd; border-radius: 4px; padding: 1rem; margin-bottom: 1rem; }'
+				. ' .bookReviewManagerManagement .ofrDeskState { margin: 0.5rem 0 1rem; }'
+				. ' .bookReviewManagerManagement .ofrOfferActions { margin-top: 0.75rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }'
+				. ' .bookReviewManagerManagement .ofrClosed { margin-top: 2rem; }'
+				. ' .bookReviewManagerManagement .ofrClosed summary { cursor: pointer; font-weight: bold; }'
+				. ' .bookReviewManagerManagement .ofrWarning { color: #b00; }'
+				. ' .bookReviewManagerManagement .ofrInlineActions { display: flex; gap: 0.75rem; align-items: center; margin-top: 0.25rem; }'
+				. ' .bookReviewManagerManagement .ofrInlineForm { display: inline; margin: 0; }'
+				. ' .bookReviewManagerManagement .ofrLinkButton { background: none; border: none; padding: 0; color: #006798; cursor: pointer; font: inherit; text-decoration: underline; }'
+				. ' .bookReviewManagerManagement .ofrDragHandle { cursor: move; color: #888; letter-spacing: -0.2em; margin-right: 0.25rem; }'
+				. ' .bookReviewManagerManagement tr.ofrDragging { opacity: 0.4; }'
+				. ' .bookReviewManagerManagement .ofrInviteHistory { margin-left: 1rem; }'
+				. ' .bookReviewManagerManagement .ofrRound { border-left: 4px solid #006798; background: #f3f8fb; padding: 0.75rem 1rem; margin: 1rem 0; }'
+				. ' .bookReviewManagerManagement .ofrRound p { margin: 0.25rem 0; }'
+				. ' .bookReviewManagerManagement .ofrNewInvitee .ofrField { margin-bottom: 0.75rem; }'
+				. ' .bookReviewManagerManagement .ofrNewInvitee label { display: block; font-weight: bold; }'
+				. ' .bookReviewManagerManagement .ofrNewInvitee input { width: 100%; max-width: 30rem; }'
+				. ' .bookReviewManagerManagement input[type=text], .bookReviewManagerManagement input[type=email], .bookReviewManagerManagement input[type=search] { border: 1px solid #bbb; border-radius: 3px; padding: 0.4rem 0.5rem; font: inherit; }'
 				. ' .ofrBadge { display: inline-block; margin-left: 0.25rem; padding: 0 0.4rem; border: 1px solid #888; border-radius: 3px; font-size: 0.75rem; line-height: 1.4; color: #555; vertical-align: middle; }'
 				. ' .ofrEssayMember { display: inline-block; padding-left: 1.5rem; }'
 				. ' .ofrEssayWorkChoice { list-style: none; padding: 0; } .ofrEssayWorkChoice li { margin-bottom: 0.5rem; } .ofrEssayCopyPreference { margin: 0.25rem 0 0 1.5rem; }'
@@ -665,7 +677,7 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
 				$tablesortJs,
 				array('contexts' => 'frontend')
 			);
-			$tablesortCss = $request->getBaseUrl() . '/plugins/generic/objectsForReview/style.css';
+			$tablesortCss = $request->getBaseUrl() . '/plugins/generic/bookReviewManager/style.css';
 			$templateMgr->addStyleSheet('tablesortCss', $tablesortCss);
 		}
 
@@ -693,7 +705,13 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
 	 */
 	public function loadPageHandler($hookName, $args) {
         $page = $args[0];
-        if ($this->getEnabled() && $page === 'for-review') {
+        if ($this->getEnabled() && $this->isLegacyPage($page)) {
+            // Old URLs (e.g. one-click links in emails sent before the rename): continue at the new page
+            $request = Application::get()->getRequest();
+            $newPage = $page === ObjectsForReviewManagementHandler::LEGACY_PAGE ? ObjectsForReviewManagementHandler::PAGE : ObjectsForReviewHandler::PAGE;
+            $request->redirect(null, $newPage, $request->getRequestedOp() ?: null, $request->getRequestedArgs(), $request->getQueryArray());
+        }
+        if ($this->getEnabled() && $page === ObjectsForReviewHandler::PAGE) {
 			$handler =& $args[3];
             $handler = new ObjectsForReviewHandler($this);
             return true;
@@ -704,6 +722,21 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
             return true;
         }
         return false;
+	}
+
+	/**
+	 * Is this a page path used before the plugin was renamed? The old public page path
+	 * belongs to the upstream Objects for Review plugin when that is enabled.
+	 */
+	protected function isLegacyPage(?string $page): bool {
+		if ($page === ObjectsForReviewManagementHandler::LEGACY_PAGE) {
+			return true;
+		}
+		if ($page !== ObjectsForReviewHandler::LEGACY_PAGE) {
+			return false;
+		}
+		$upstream = PluginRegistry::getPlugin('generic', self::UPSTREAM_PLUGIN);
+		return !($upstream && $upstream->getEnabled());
 	}
 
 	/**
@@ -719,9 +752,9 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
 		$request = Application::get()->getRequest();
 		$context = $request->getContext();
 		$contextId = $context ? $context->getId() : Application::CONTEXT_ID_NONE;
-		$types[OBJECTSFORREVIEW_NMI_TYPE] = array(
-			'title' => __('plugins.generic.objectsForReview.navMenuItem'),
-			'description' => __('plugins.generic.objectsForReview.navMenuItem.description'),
+		$types[self::NMI_TYPE] = array(
+			'title' => __('plugins.generic.bookReviewManager.navMenuItem'),
+			'description' => __('plugins.generic.bookReviewManager.navMenuItem.description'),
 		);
 	}
 
@@ -735,7 +768,7 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
 	 */
 	public function setMenuItemDisplayDetails($hookName, $args) {
 		$navigationMenuItem =& $args[0];
-		if ($navigationMenuItem->getType() == OBJECTSFORREVIEW_NMI_TYPE) {
+		if ($navigationMenuItem->getType() == self::NMI_TYPE) {
 			$request = Application::get()->getRequest();
 			$context = $request->getContext();
 			if ($context){
@@ -744,7 +777,7 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
 					$request,
 					Application::ROUTE_PAGE,
 					null,
-					'for-review'
+					ObjectsForReviewHandler::PAGE
 				));
 			}
 		}
@@ -765,7 +798,7 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
 		if ($context) {
 			// Create and append sitemap XML "url" element
 			$url = $doc->createElement('url');
-			$url->appendChild($doc->createElement('loc', htmlspecialchars($request->url($context->getPath(), 'for-review'), ENT_COMPAT, 'UTF-8')));
+			$url->appendChild($doc->createElement('loc', htmlspecialchars($request->url($context->getPath(), ObjectsForReviewHandler::PAGE), ENT_COMPAT, 'UTF-8')));
 			$rootNode->appendChild($url);
 		}
 		return false;
@@ -814,9 +847,9 @@ class ObjectsForReviewPlugin extends GenericPlugin implements HasTaskScheduler {
             'reservationDetails' => $reservationDetails,
         ];
 
-		if ($mailTemplate == 'OFR_NEW_RESERVATION'){
+		if ($mailTemplate == 'BRM_NEW_RESERVATION'){
 			$mailable = new ObjectsForReviewNew($context, $emailParams);
-		} elseif ($mailTemplate == 'OFR_CANCEL_RESERVATION'){
+		} elseif ($mailTemplate == 'BRM_CANCEL_RESERVATION'){
 			$mailable = new ObjectsForReviewCancel($context, $emailParams);
 		} 
 

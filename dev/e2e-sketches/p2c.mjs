@@ -1,11 +1,11 @@
 import { B, OUT, browser, login, since, mails, modalForm } from './lib.mjs';
 import { execSync } from 'node:child_process';
-const sql = q => execSync(`podman exec ojs-objectsforreview mysql -N ojs -e ${JSON.stringify(q)}`).toString().trim();
+const sql = q => execSync(`podman exec ojs-bookreviewmanager mysql -N ojs -e ${JSON.stringify(q)}`).toString().trim();
 const bre = await login('bre', 'ojsbre');
 
 // Edit offer 1: validation message, then add the publisher contact
-await bre.goto(`${B}/manageObjectsForReview`);
-const gridRow = bre.locator('#objectsForReviewGridContainer tr.gridRow', { hasText: 'Analysis of Large and Complex Data' });
+await bre.goto(`${B}/manageBookReviews`);
+const gridRow = bre.locator('#bookReviewManagerGridContainer tr.gridRow', { hasText: 'Analysis of Large and Complex Data' });
 await gridRow.locator('a.show_extras').click();
 await bre.locator('a[id*="grid-row-1-edit-button"]').click();
 const form = bre.locator('#availableObjectsForReviewForm');
@@ -24,10 +24,10 @@ await form.locator('input[name=notifyPublisher]').uncheck();
 await form.locator('[name=publisherContactId]').selectOption({ label: 'Paula Publisher (publisher@example.org)' });
 await form.locator('button.submitFormButton').click();
 await bre.waitForTimeout(3000);
-console.log('saved contact:', sql("SELECT setting_value FROM objects_for_review_settings WHERE object_id=1 AND setting_name='publisherContactId'"));
+console.log('saved contact:', sql("SELECT setting_value FROM brm_object_settings WHERE object_id=1 AND setting_name='publisherContactId'"));
 
 const step = async (label, { uncheck = false, target = null } = {}) => {
-	await bre.goto(`${B}/manageObjectsForReview/desk`);
+	await bre.goto(`${B}/manageBookReviews/desk`);
 	const row = bre.locator('.ofrCopies tbody tr').filter({ has: bre.locator('a', { hasText: label }) }).first();
 	await row.locator('a', { hasText: label }).click();
 	const mf = await modalForm(bre);
@@ -35,18 +35,18 @@ const step = async (label, { uncheck = false, target = null } = {}) => {
 	if (target) await mf.locator(`input[name=returnTarget][value=${target}]`).check();
 	const t = since();
 	await Promise.all([bre.waitForNavigation({ timeout: 20000 }), mf.locator('button.submitFormButton').click()]);
-	const status = sql("SELECT setting_value FROM objects_for_review_assignment_settings WHERE assignment_id=1 AND setting_name='copyStatus'");
+	const status = sql("SELECT setting_value FROM brm_assignment_settings WHERE assignment_id=1 AND setting_name='copyStatus'");
 	console.log(`${label} -> ${status}`, mails(t).map(m => `${m.to} | ${m.subject}`));
 };
 await step('Request copy from publisher');
 await step('Withdraw copy request');
 console.log('copy rows after withdraw:', await bre.locator('.ofrCopies tbody tr').count());
-sql("UPDATE objects_for_review_assignment_settings SET setting_value='pending' WHERE assignment_id=1 AND setting_name='copyStatus'");
+sql("UPDATE brm_assignment_settings SET setting_value='pending' WHERE assignment_id=1 AND setting_name='copyStatus'");
 await step('Request copy from publisher');
 await step('Publisher has sent the copy', { uncheck: true });
 await step('Mark as received');
 // Return to the publisher, from the Reviewers page
-await bre.goto(`${B}/manageObjectsForReview/assignments`);
+await bre.goto(`${B}/manageBookReviews/assignments`);
 const row = bre.locator('.ofrTable tbody tr').filter({ has: bre.locator('a', { hasText: 'Request return' }) }).first();
 await row.locator('a', { hasText: 'Request return' }).click();
 let mf = await modalForm(bre);
@@ -56,9 +56,9 @@ await Promise.all([bre.waitForNavigation({ timeout: 20000 }), mf.locator('button
 console.log('return mail has publisher address:', /Publisher Lane 5/.test(mails(t)[0]?.body || ''));
 await step('Copy has been sent back');
 await step('Copy has arrived back');
-console.log('journalHoldsCopy (should be empty):', sql("SELECT setting_value FROM objects_for_review_settings WHERE object_id=1 AND setting_name='journalHoldsCopy'"));
+console.log('journalHoldsCopy (should be empty):', sql("SELECT setting_value FROM brm_object_settings WHERE object_id=1 AND setting_name='journalHoldsCopy'"));
 
-await bre.goto(`http://localhost:8080/index.php/test/de/manageObjectsForReview/assignments?status=all`);
+await bre.goto(`http://localhost:8080/index.php/test/de/manageBookReviews/assignments?status=all`);
 console.log('de missing keys:', [...new Set(((await bre.locator('body').innerText()).match(/##[^#\s]+##/g) || []))].filter(k => !k.includes('common.help')));
 await bre.locator('.ofrTable tbody tr').first().locator('a', { hasText: 'Verlauf' }).click();
 const hist = bre.locator('.ofrHistory');

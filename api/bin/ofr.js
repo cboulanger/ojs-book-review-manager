@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Command line client for the REST API of the OJS Objects for Review plugin.
+ * Command line client for the REST API of the OJS Book Review Manager plugin.
  * Run `ofr help` for the commands. Output is JSON on stdout; progress goes to stderr.
  */
 

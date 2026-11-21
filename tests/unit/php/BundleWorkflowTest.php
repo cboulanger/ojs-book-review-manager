@@ -8,17 +8,17 @@
  * @brief Review essays: containers, members and mirror assignments (writes to the database).
  */
 
-namespace APP\plugins\generic\objectsForReview\tests\unit;
+namespace APP\plugins\generic\bookReviewManager\tests\unit;
 
-use APP\plugins\generic\objectsForReview\classes\Assignment;
-use APP\plugins\generic\objectsForReview\classes\AssignmentDAO;
-use APP\plugins\generic\objectsForReview\classes\AssignmentWorkflow;
-use APP\plugins\generic\objectsForReview\classes\BundleWorkflow;
-use APP\plugins\generic\objectsForReview\classes\InvitationWorkflow;
-use APP\plugins\generic\objectsForReview\classes\ObjectForReview;
-use APP\plugins\generic\objectsForReview\classes\ObjectForReviewDAO;
-use APP\plugins\generic\objectsForReview\classes\ReservationLog;
-use APP\plugins\generic\objectsForReview\classes\ReservationReminder;
+use APP\plugins\generic\bookReviewManager\classes\Assignment;
+use APP\plugins\generic\bookReviewManager\classes\AssignmentDAO;
+use APP\plugins\generic\bookReviewManager\classes\AssignmentWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\BundleWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\InvitationWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\ObjectForReview;
+use APP\plugins\generic\bookReviewManager\classes\ObjectForReviewDAO;
+use APP\plugins\generic\bookReviewManager\classes\ReservationLog;
+use APP\plugins\generic\bookReviewManager\classes\ReservationReminder;
 use PHPUnit\Framework\Attributes\Group;
 
 #[Group('db')]
@@ -419,9 +419,9 @@ class BundleWorkflowTest extends TestCase {
 		$this->newAssignment($a, Assignment::STATUS_ACCEPTED, 1, ['dueDate' => '2030-01-31']);
 		$this->newAssignment($b, Assignment::STATUS_ACCEPTED, 1, ['dueDate' => '2030-01-31']);
 
-		$this->assertSame('plugins.generic.objectsForReview.reviewEssay.error.twoReviewers', BundleWorkflow::canCombine([$a, $b]));
+		$this->assertSame('plugins.generic.bookReviewManager.reviewEssay.error.twoReviewers', BundleWorkflow::canCombine([$a, $b]));
 		$this->expectException(\InvalidArgumentException::class);
-		$this->expectExceptionMessage('plugins.generic.objectsForReview.reviewEssay.error.twoReviewers');
+		$this->expectExceptionMessage('plugins.generic.bookReviewManager.reviewEssay.error.twoReviewers');
 		$this->createEssay([$a, $b]);
 	}
 
@@ -433,12 +433,12 @@ class BundleWorkflowTest extends TestCase {
 		$round = $this->newWork('Round', ['invitationMode' => InvitationWorkflow::MODE_SEQUENTIAL]);
 		$free = $this->newWork('Free');
 
-		$notAvailable = 'plugins.generic.objectsForReview.reviewEssay.error.notAvailable';
+		$notAvailable = 'plugins.generic.bookReviewManager.reviewEssay.error.notAvailable';
 		$this->assertSame($notAvailable, BundleWorkflow::canCombine([$free, $container]));
 		$this->assertSame($notAvailable, BundleWorkflow::canCombine([$free, $member]));
 		$this->assertSame($notAvailable, BundleWorkflow::canCombine([$free, $closed]));
-		$this->assertSame('plugins.generic.objectsForReview.reviewEssay.error.pending', BundleWorkflow::canCombine([$free, $offered]));
-		$this->assertSame('plugins.generic.objectsForReview.reviewEssay.error.pending', BundleWorkflow::canCombine([$free, $round]));
+		$this->assertSame('plugins.generic.bookReviewManager.reviewEssay.error.pending', BundleWorkflow::canCombine([$free, $offered]));
+		$this->assertSame('plugins.generic.bookReviewManager.reviewEssay.error.pending', BundleWorkflow::canCombine([$free, $round]));
 		$this->assertNull(BundleWorkflow::canCombine([$free]));
 	}
 
@@ -509,13 +509,13 @@ class BundleWorkflowTest extends TestCase {
 			BundleWorkflow::addMember($container, $c, $this->editor());
 			$this->fail('A work with its own reviewer was added');
 		} catch (\InvalidArgumentException $e) {
-			$this->assertSame('plugins.generic.objectsForReview.reviewEssay.error.twoReviewers', $e->getMessage());
+			$this->assertSame('plugins.generic.bookReviewManager.reviewEssay.error.twoReviewers', $e->getMessage());
 		}
 
 		$container = $this->reload($container);
 		$container->setSubmissionId(424242);
 		(new ObjectForReviewDAO())->updateObject($container);
-		$this->expectExceptionMessage('plugins.generic.objectsForReview.reviewEssay.error.submitted');
+		$this->expectExceptionMessage('plugins.generic.bookReviewManager.reviewEssay.error.submitted');
 		BundleWorkflow::addMember($container, $this->newWork('D'), $this->editor());
 	}
 
@@ -549,14 +549,14 @@ class BundleWorkflowTest extends TestCase {
 	public function testRemoveLastMemberRefused(): void {
 		[$container, [$a]] = $this->newEssay(['A']);
 		$this->expectException(\InvalidArgumentException::class);
-		$this->expectExceptionMessage('plugins.generic.objectsForReview.reviewEssay.error.lastMember');
+		$this->expectExceptionMessage('plugins.generic.bookReviewManager.reviewEssay.error.lastMember');
 		BundleWorkflow::removeMember($container, $a, $this->editor());
 	}
 
 	public function testDissolveRefusedWithReviewer(): void {
 		[$container] = $this->essayWithReviewer(['A' => 'have', 'B' => 'have']);
 		$this->expectException(\InvalidArgumentException::class);
-		$this->expectExceptionMessage('plugins.generic.objectsForReview.reviewEssay.error.hasReviewer');
+		$this->expectExceptionMessage('plugins.generic.bookReviewManager.reviewEssay.error.hasReviewer');
 		BundleWorkflow::dissolve($container, $this->editor());
 	}
 
@@ -564,7 +564,7 @@ class BundleWorkflowTest extends TestCase {
 		[$container] = $this->newEssay(['A', 'B']);
 		$this->newAssignment($container, Assignment::STATUS_OFFERED, 1);
 		$this->expectException(\InvalidArgumentException::class);
-		$this->expectExceptionMessage('plugins.generic.objectsForReview.reviewEssay.error.pendingEssay');
+		$this->expectExceptionMessage('plugins.generic.bookReviewManager.reviewEssay.error.pendingEssay');
 		BundleWorkflow::dissolve($container, $this->editor());
 	}
 
@@ -573,7 +573,7 @@ class BundleWorkflowTest extends TestCase {
 		$unknown = $this->newWork('Gone');
 		(new ObjectForReviewDAO())->deleteById($unknown->getId());
 
-		$notAvailable = 'plugins.generic.objectsForReview.reviewEssay.error.notAvailable';
+		$notAvailable = 'plugins.generic.bookReviewManager.reviewEssay.error.notAvailable';
 		$this->assertSame($notAvailable, BundleWorkflow::canCombine([$a, null]));
 		foreach ([[$a, null], [$a, $unknown]] as $works) {
 			try {
@@ -633,7 +633,7 @@ class BundleWorkflowTest extends TestCase {
 	/** A request of the editor's dialogs for these parameters */
 	protected function handlerRequest(array $vars): object {
 		// The plugin registers its DAO when it is loaded, which these tests do not do
-		\PKP\db\DAORegistry::registerDAO('ObjectForReviewDAO', new ObjectForReviewDAO());
+		\PKP\db\DAORegistry::registerDAO('BookReviewManagerObjectDAO', new ObjectForReviewDAO());
 		$context = $this->context();
 		$user = $this->editor();
 		return new class($vars, $context, $user) {
@@ -650,7 +650,7 @@ class BundleWorkflowTest extends TestCase {
 		[$container, [$a], $reviewer] = $this->essayWithReviewer(['A' => 'electronic', 'B' => 'have']);
 		$mirror = (new AssignmentDAO())->getByObjectId($a->getId())[0];
 		$this->assertTrue($mirror->isMirror());
-		$handler = new \APP\plugins\generic\objectsForReview\controllers\ReservationActionsHandler($this->plugin());
+		$handler = new \APP\plugins\generic\bookReviewManager\controllers\ReservationActionsHandler($this->plugin());
 		foreach (['message', 'cancel'] as $mode) {
 			[$object, $assignments] = $this->invoke($handler, 'getTarget',
 				$this->handlerRequest(['objectId' => $a->getId(), 'assignmentId' => $mirror->getId()]), $mode);
@@ -665,7 +665,7 @@ class BundleWorkflowTest extends TestCase {
 
 	public function testHandlerRefusesOfferActionsOnMembers(): void {
 		[$container, [$a]] = $this->newEssay(['A', 'B']);
-		$handler = new \APP\plugins\generic\objectsForReview\controllers\ReservationActionsHandler($this->plugin());
+		$handler = new \APP\plugins\generic\bookReviewManager\controllers\ReservationActionsHandler($this->plugin());
 		foreach (['closeOffer', 'switchToDirect', 'reopenBidding', 'reopenOffer'] as $action) {
 			$result = $this->invoke($handler, 'offerAction', $this->handlerRequest(['objectId' => $a->getId()]), $action);
 			$this->assertFalse($result->getStatus(), "{$action}: refused on a work of an essay");

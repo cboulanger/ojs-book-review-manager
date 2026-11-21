@@ -1,30 +1,30 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/pages/ObjectsForReviewHandler.php
+ * @file plugins/generic/bookReviewManager/pages/ObjectsForReviewHandler.php
  *
  * Copyright (c) 2014-2019 Simon Fraser University
  * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ObjectsForReviewHandler
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  * @brief Reader-facing pages: the list of offers (reserve, bid, withdraw,
  *  cancel), the contract page for selected bidders and the one-click links.
  */
 
-namespace APP\plugins\generic\objectsForReview\pages;
+namespace APP\plugins\generic\bookReviewManager\pages;
 
 use APP\facades\Repo;
 use APP\handler\Handler;
-use APP\plugins\generic\objectsForReview\classes\ActionLink;
-use APP\plugins\generic\objectsForReview\classes\Assignment;
-use APP\plugins\generic\objectsForReview\classes\AssignmentWorkflow;
-use APP\plugins\generic\objectsForReview\classes\BundleWorkflow;
-use APP\plugins\generic\objectsForReview\classes\CopyWorkflow;
-use APP\plugins\generic\objectsForReview\classes\InvitationWorkflow;
-use APP\plugins\generic\objectsForReview\classes\Reservation;
-use APP\plugins\generic\objectsForReview\classes\ReservationEmailEventType;
+use APP\plugins\generic\bookReviewManager\classes\ActionLink;
+use APP\plugins\generic\bookReviewManager\classes\Assignment;
+use APP\plugins\generic\bookReviewManager\classes\AssignmentWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\BundleWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\CopyWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\InvitationWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\Reservation;
+use APP\plugins\generic\bookReviewManager\classes\ReservationEmailEventType;
 use APP\template\TemplateManager;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
@@ -33,6 +33,12 @@ use PKP\security\authorization\ContextRequiredPolicy;
 use PKP\security\Validation;
 
 class ObjectsForReviewHandler extends Handler {
+
+	/** Page path of the public page */
+	const PAGE = 'books-for-review';
+
+	/** Page path used before the plugin was renamed (links in emails sent by the objectsForReview fork) */
+	const LEGACY_PAGE = 'for-review';
 
 	const CONTRACT_INPUT = ['acceptTerms', 'dueDate', 'copyPreference', 'copyPreferences', 'shippingAddress', 'phone', 'copyNote'];
 	const MAX_STATEMENT_LENGTH = 2000;
@@ -46,7 +52,7 @@ class ObjectsForReviewHandler extends Handler {
 	}
 
 	protected function plugin() {
-		return PluginRegistry::getPlugin('generic', 'ObjectsForReviewPlugin');
+		return PluginRegistry::getPlugin('generic', 'BookReviewManagerPlugin');
 	}
 
 	/**
@@ -64,9 +70,9 @@ class ObjectsForReviewHandler extends Handler {
 		$currentUser = $request->getUser();
 
 		$assignmentsByObject = AssignmentWorkflow::dao()->getByContextId($contextId);
-		$objectsForReview = DAORegistry::getDAO('ObjectForReviewDAO')->getAll($contextId, true, true);
+		$bookReviewManager = DAORegistry::getDAO('BookReviewManagerObjectDAO')->getAll($contextId, true, true);
 		$gridData = [];
-		while ($objectForReview = $objectsForReview->next()) {
+		while ($objectForReview = $bookReviewManager->next()) {
 			// The works of a review essay are listed under the essay
 			if ($objectForReview->getData('offerClosed') || $objectForReview->isBundleMember()) {
 				continue;
@@ -133,7 +139,7 @@ class ObjectsForReviewHandler extends Handler {
 			$openObjectId = 0;
 		}
 		$templateMgr->assign($this->contractTemplateData($request, $reserveState) + [
-			'objectsForReview' => $gridData,
+			'bookReviewManager' => $gridData,
 			'currentUser' => $currentUser,
 			'instructions' => $instructions,
 			'reserveDialogTemplate' => $plugin->getTemplateResource('frontend/reserveDialog.tpl'),
@@ -150,7 +156,7 @@ class ObjectsForReviewHandler extends Handler {
 		[$object, $user, $context] = $this->requirePost($request);
 		$assignments = AssignmentWorkflow::dao()->getByObjectId($object->getId());
 		if ($object->isHidden() || !AssignmentWorkflow::isReservable($object, $assignments)) {
-			$request->redirect(null, 'for-review');
+			$request->redirect(null, self::PAGE);
 		}
 		$input = $this->contractInput($request);
 		[$errors, $data] = Reservation::validate($input, Reservation::getDueDateRange($this->plugin(), $context->getId()),
@@ -159,7 +165,7 @@ class ObjectsForReviewHandler extends Handler {
 			return $this->index($args, $request, ['objectId' => $object->getId(), 'errors' => $errors, 'input' => $input]);
 		}
 		AssignmentWorkflow::reserve($this->plugin(), $context, $object, $user, $data);
-		$request->redirect(null, 'for-review');
+		$request->redirect(null, self::PAGE);
 	}
 
 	/**
@@ -171,7 +177,7 @@ class ObjectsForReviewHandler extends Handler {
 		if ($assignment) {
 			AssignmentWorkflow::retract($this->plugin(), $object, $assignment, $user);
 		}
-		$request->redirect(null, 'for-review');
+		$request->redirect(null, self::PAGE);
 	}
 
 	/**
@@ -184,7 +190,7 @@ class ObjectsForReviewHandler extends Handler {
 		if ($assignment && CopyWorkflow::getStatus($assignment) === CopyWorkflow::SENT) {
 			CopyWorkflow::confirmReceipt($this->plugin(), $context, $object, $assignment, $user);
 		}
-		$request->redirect(null, 'for-review');
+		$request->redirect(null, self::PAGE);
 	}
 
 	/**
@@ -199,7 +205,7 @@ class ObjectsForReviewHandler extends Handler {
 			$statement = mb_substr(trim((string) $request->getUserVar('statement')), 0, self::MAX_STATEMENT_LENGTH);
 			AssignmentWorkflow::bid($this->plugin(), $context, $object, $user, $statement);
 		}
-		$request->redirect(null, 'for-review');
+		$request->redirect(null, self::PAGE);
 	}
 
 	/**
@@ -211,7 +217,7 @@ class ObjectsForReviewHandler extends Handler {
 		if ($assignment) {
 			AssignmentWorkflow::withdrawBid($object, $assignment, $user);
 		}
-		$request->redirect(null, 'for-review');
+		$request->redirect(null, self::PAGE);
 	}
 
 	/**
@@ -251,7 +257,7 @@ class ObjectsForReviewHandler extends Handler {
 	 */
 	function respond($args, $request) {
 		if (!$request->isPost() || !$request->checkCSRF()) {
-			$request->redirect(null, 'for-review');
+			$request->redirect(null, self::PAGE);
 		}
 		$context = $request->getContext();
 		$key = (string) $request->getUserVar('key');
@@ -486,7 +492,7 @@ class ObjectsForReviewHandler extends Handler {
 	 * An object of the current journal.
 	 */
 	protected function getObject($request, int $objectId) {
-		$object = $objectId ? DAORegistry::getDAO('ObjectForReviewDAO')->getById($objectId) : null;
+		$object = $objectId ? DAORegistry::getDAO('BookReviewManagerObjectDAO')->getById($objectId) : null;
 		return $object && $object->getContextId() == $request->getContext()->getId() ? $object : null;
 	}
 
@@ -504,7 +510,7 @@ class ObjectsForReviewHandler extends Handler {
 		// The offer of a work of a review essay is that of its essay
 		$offer = $object && $object->isBundleMember() ? (BundleWorkflow::getContainer($object) ?? $object) : $object;
 		if (!$object || $object->getSubmissionId() || $offer->getData('offerClosed') || (!$allowMember && $object->isBundleMember())) {
-			$request->redirect(null, 'for-review');
+			$request->redirect(null, self::PAGE);
 		}
 		return [$object, $request->getUser(), $request->getContext()];
 	}

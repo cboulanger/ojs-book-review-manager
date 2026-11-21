@@ -1,47 +1,50 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/pages/ObjectsForReviewManagementHandler.php
+ * @file plugins/generic/bookReviewManager/pages/ObjectsForReviewManagementHandler.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ObjectsForReviewManagementHandler
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
- * @brief Backend pages of the plugin (left menu section "Objects for Review").
+ * @brief Backend pages of the plugin (left menu section "Book Review Manager").
  */
 
-namespace APP\plugins\generic\objectsForReview\pages;
+namespace APP\plugins\generic\bookReviewManager\pages;
 
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\handler\Handler;
-use APP\plugins\generic\objectsForReview\classes\Assignment;
-use APP\plugins\generic\objectsForReview\classes\AssignmentWorkflow;
-use APP\plugins\generic\objectsForReview\classes\BundleWorkflow;
-use APP\plugins\generic\objectsForReview\classes\CopyWorkflow;
-use APP\plugins\generic\objectsForReview\classes\InvitationWorkflow;
-use APP\plugins\generic\objectsForReview\controllers\form\CopyStepForm;
-use APP\plugins\generic\objectsForReview\classes\Reservation;
-use APP\plugins\generic\objectsForReview\classes\Roles;
+use APP\plugins\generic\bookReviewManager\classes\Assignment;
+use APP\plugins\generic\bookReviewManager\classes\AssignmentWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\BundleWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\CopyWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\InvitationWorkflow;
+use APP\plugins\generic\bookReviewManager\controllers\form\CopyStepForm;
+use APP\plugins\generic\bookReviewManager\classes\Reservation;
+use APP\plugins\generic\bookReviewManager\classes\Roles;
 use PKP\linkAction\request\RemoteActionConfirmationModal;
 use APP\template\TemplateManager;
 use PKP\db\DAORegistry;
 use PKP\linkAction\LinkAction;
 use PKP\linkAction\request\AjaxModal;
-use APP\plugins\generic\objectsForReview\controllers\ReservationActionsHandler;
+use APP\plugins\generic\bookReviewManager\controllers\ReservationActionsHandler;
 use PKP\security\authorization\ContextAccessPolicy;
 use PKP\security\Role;
 
 class ObjectsForReviewManagementHandler extends Handler {
 
 	/** Page name used in URLs */
-	const PAGE = 'manageObjectsForReview';
+	const PAGE = 'manageBookReviews';
+
+	/** Page path used before the plugin was renamed */
+	const LEGACY_PAGE = 'manageObjectsForReview';
 
 	/** @copydoc PKPHandler::_isBackendPage */
 	public $_isBackendPage = true;
 
-	/** @var \APP\plugins\generic\objectsForReview\ObjectsForReviewPlugin */
+	/** @var \APP\plugins\generic\bookReviewManager\BookReviewManagerPlugin */
 	public $plugin;
 
 	public function __construct($plugin) {
@@ -76,8 +79,8 @@ class ObjectsForReviewManagementHandler extends Handler {
 	public function index($args, $request) {
 		Roles::ensureGroups($this->plugin, $request->getContext()->getId());
 		$gridUrl = $request->getDispatcher()->url($request, Application::ROUTE_COMPONENT, null,
-			'plugins.generic.objectsForReview.controllers.grid.ObjectsForReviewManagementGridHandler', 'fetchGrid');
-		return $this->display($request, 'available', 'plugins.generic.objectsForReview.menu.available', ['gridUrl' => $gridUrl]);
+			'plugins.generic.bookReviewManager.controllers.grid.ObjectsForReviewManagementGridHandler', 'fetchGrid');
+		return $this->display($request, 'available', 'plugins.generic.bookReviewManager.menu.available', ['gridUrl' => $gridUrl]);
 	}
 
 	/**
@@ -185,7 +188,7 @@ class ObjectsForReviewManagementHandler extends Handler {
 						'publisherContact' => CopyWorkflow::getPublisherContact($object)?->getFullName(),
 						'action' => $this->linkAction($request, 'copyStepForm',
 							['objectId' => $object->getId(), 'assignmentId' => $assignment->getId(), 'step' => CopyStepForm::NOTIFY_PUBLISHER],
-							'plugins.generic.objectsForReview.copy.step.notifyPublisher', 'modal_email', 'notify-' . $assignment->getId()),
+							'plugins.generic.bookReviewManager.copy.step.notifyPublisher', 'modal_email', 'notify-' . $assignment->getId()),
 					];
 				}
 			}
@@ -197,12 +200,12 @@ class ObjectsForReviewManagementHandler extends Handler {
 					'reviewer' => $reviewer ? $this->userName(end($reviewer)->getUserId(), $userCache) : '',
 					'names' => array_map(fn ($a) => $this->userName($a->getUserId(), $userCache), $remaining),
 					'action' => $this->linkAction($request, 'unsuccessfulForm', ['objectId' => $object->getId()],
-						'plugins.generic.objectsForReview.unsuccessful.action', 'modal_email', 'unsuccessful-' . $object->getId()),
+						'plugins.generic.bookReviewManager.unsuccessful.action', 'modal_email', 'unsuccessful-' . $object->getId()),
 				];
 			}
 		}
 
-		return $this->display($request, 'desk', 'plugins.generic.objectsForReview.menu.desk', [
+		return $this->display($request, 'desk', 'plugins.generic.bookReviewManager.menu.desk', [
 			'selection' => $selection,
 			'offers' => $offers,
 			'unsuccessful' => $unsuccessful,
@@ -278,7 +281,7 @@ class ObjectsForReviewManagementHandler extends Handler {
 		asort($users);
 		usort($rows, fn ($a, $b) => strcmp((string) ($a['dueDate'] ?: $a['contractDeadline'] ?: '9999'), (string) ($b['dueDate'] ?: $b['contractDeadline'] ?: '9999'))
 			?: strcmp((string) $b['dateStatus'], (string) $a['dateStatus']));
-		return $this->display($request, 'assignments', 'plugins.generic.objectsForReview.menu.assignments', [
+		return $this->display($request, 'assignments', 'plugins.generic.bookReviewManager.menu.assignments', [
 			'rows' => $rows,
 			'users' => $users,
 			'filterUserId' => $filterUserId,
@@ -351,7 +354,7 @@ class ObjectsForReviewManagementHandler extends Handler {
 				'canMoveDown' => $index < count($list) - 1,
 				'sendAction' => $sendable ? $this->linkAction($request, 'invitationForm',
 					['objectId' => $object->getId(), 'assignmentId' => $assignment->getId()],
-					$status === Assignment::STATUS_LISTED ? 'plugins.generic.objectsForReview.invitation.send' : 'plugins.generic.objectsForReview.invitation.sendAgain',
+					$status === Assignment::STATUS_LISTED ? 'plugins.generic.bookReviewManager.invitation.send' : 'plugins.generic.bookReviewManager.invitation.sendAgain',
 					'modal_email', 'invite-' . $assignment->getId()) : null,
 			];
 		}
@@ -389,18 +392,18 @@ class ObjectsForReviewManagementHandler extends Handler {
 			'next' => $waiting ? $personData($waiting[0]->getUserId())['name'] : null,
 			'waitingCount' => count($waiting),
 		] : null;
-		return $this->display($request, 'invite', 'plugins.generic.objectsForReview.invitation.title', [
+		return $this->display($request, 'invite', 'plugins.generic.bookReviewManager.invitation.title', [
 			'object' => $this->objectRow($object),
 			'objectId' => $object->getId(),
 			'kind' => InvitationWorkflow::getKind($object),
-			'offerState' => __('plugins.generic.objectsForReview.offerState.' . $state),
+			'offerState' => __('plugins.generic.bookReviewManager.offerState.' . $state),
 			'canInvite' => $canInvite,
 			'canEdit' => !$object->getData('offerClosed') && !$object->getSubmissionId(),
 			'deadline' => InvitationWorkflow::getDeadline($this->plugin, $object),
 			'round' => $round,
 			'roundAction' => InvitationWorkflow::canStartRound($object, $assignments)
 				? $this->linkAction($request, 'roundForm', ['objectId' => $object->getId()],
-					$object->isBidding() ? 'plugins.generic.objectsForReview.invitation.round.startParallel' : 'plugins.generic.objectsForReview.invitation.round.start',
+					$object->isBidding() ? 'plugins.generic.bookReviewManager.invitation.round.startParallel' : 'plugins.generic.bookReviewManager.invitation.round.start',
 					'modal_email', 'round-' . $object->getId())
 				: null,
 			'rows' => $rows,
@@ -444,15 +447,15 @@ class ObjectsForReviewManagementHandler extends Handler {
 				}
 				$errors = [];
 				if ($input['givenName'] === '') {
-					$errors['givenName'] = __('plugins.generic.objectsForReview.invitation.new.givenNameRequired');
+					$errors['givenName'] = __('plugins.generic.bookReviewManager.invitation.new.givenNameRequired');
 				}
 				if ($input['familyName'] === '') {
-					$errors['familyName'] = __('plugins.generic.objectsForReview.invitation.new.familyNameRequired');
+					$errors['familyName'] = __('plugins.generic.bookReviewManager.invitation.new.familyNameRequired');
 				}
 				if (!filter_var($input['email'], FILTER_VALIDATE_EMAIL)) {
-					$errors['email'] = __('plugins.generic.objectsForReview.invitation.new.emailInvalid');
+					$errors['email'] = __('plugins.generic.bookReviewManager.invitation.new.emailInvalid');
 				} elseif (($existing = Repo::user()->getByEmail($input['email'], true)) && !InvitationWorkflow::canAdd($object, $existing->getId())) {
-					$errors['email'] = __('plugins.generic.objectsForReview.invitation.new.alreadyOnList');
+					$errors['email'] = __('plugins.generic.bookReviewManager.invitation.new.alreadyOnList');
 				}
 				if ($errors) {
 					return $this->invite([$object->getId()], $request, ['input' => $input, 'errors' => $errors]);
@@ -507,7 +510,7 @@ class ObjectsForReviewManagementHandler extends Handler {
 			];
 		}
 		usort($rows, fn ($a, $b) => $b['submissionId'] <=> $a['submissionId']);
-		return $this->display($request, 'reviewedWorks', 'plugins.generic.objectsForReview.menu.reviewedWorks', ['rows' => $rows]);
+		return $this->display($request, 'reviewedWorks', 'plugins.generic.bookReviewManager.menu.reviewedWorks', ['rows' => $rows]);
 	}
 
 	/**
@@ -517,7 +520,7 @@ class ObjectsForReviewManagementHandler extends Handler {
 		$settingsUrl = $request->getDispatcher()->url($request, Application::ROUTE_COMPONENT, null,
 			'grid.settings.plugins.SettingsPluginGridHandler', 'manage', null,
 			['verb' => 'settings', 'plugin' => $this->plugin->getName(), 'category' => 'generic', 'standalone' => 1]);
-		return $this->display($request, 'settings', 'plugins.generic.objectsForReview.menu.settings', ['settingsUrl' => $settingsUrl]);
+		return $this->display($request, 'settings', 'plugins.generic.bookReviewManager.menu.settings', ['settingsUrl' => $settingsUrl]);
 	}
 
 	/**
@@ -526,10 +529,10 @@ class ObjectsForReviewManagementHandler extends Handler {
 	 */
 	protected function assignmentActions($request, $object, ?Assignment $assignment, array $names): array {
 		$definitions = [
-			'email' => ['emailForm', 'plugins.generic.objectsForReview.reservations.email', 'modal_email'],
+			'email' => ['emailForm', 'plugins.generic.bookReviewManager.reservations.email', 'modal_email'],
 			'cancel' => ['cancelForm', $assignment?->getStatus() === Assignment::STATUS_OFFERED
-				? 'plugins.generic.objectsForReview.contractOffer.cancel' : 'plugins.generic.objectsForReview.reservations.cancel', 'modal_delete'],
-			'history' => ['history', 'plugins.generic.objectsForReview.history', 'modal_information'],
+				? 'plugins.generic.bookReviewManager.contractOffer.cancel' : 'plugins.generic.bookReviewManager.reservations.cancel', 'modal_delete'],
+			'history' => ['history', 'plugins.generic.bookReviewManager.history', 'modal_information'],
 		];
 		$actions = [];
 		foreach ($names as $name) {
@@ -550,9 +553,9 @@ class ObjectsForReviewManagementHandler extends Handler {
 		foreach ($names as $name) {
 			$url = $request->getDispatcher()->url($request, Application::ROUTE_COMPONENT, null,
 				ReservationActionsHandler::COMPONENT, $name, null, ['objectId' => $object->getId()]);
-			$label = __('plugins.generic.objectsForReview.desk.' . $name);
+			$label = __('plugins.generic.bookReviewManager.desk.' . $name);
 			$actions[$name] = new LinkAction('ofr-' . $name . '-' . $object->getId(),
-				new RemoteActionConfirmationModal($request->getSession(), __('plugins.generic.objectsForReview.desk.' . $name . '.confirm'),
+				new RemoteActionConfirmationModal($request->getSession(), __('plugins.generic.bookReviewManager.desk.' . $name . '.confirm'),
 					$label, $url, 'modal_confirm'),
 				$label);
 		}
@@ -573,7 +576,7 @@ class ObjectsForReviewManagementHandler extends Handler {
 		return [
 			'reviewer' => $this->userName($assignment->getUserId(), $userCache),
 			'assignmentStatus' => $assignment->getStatus(),
-			'copyPreferenceLabel' => $assignment->getData('copyPreference') ? __('plugins.generic.objectsForReview.reserve.copy.' . $assignment->getData('copyPreference')) : '',
+			'copyPreferenceLabel' => $assignment->getData('copyPreference') ? __('plugins.generic.bookReviewManager.reserve.copy.' . $assignment->getData('copyPreference')) : '',
 			'copyStatusLabel' => CopyWorkflow::getStatusLabel($assignment),
 			'copyStatusDate' => $assignment->getData('copyStatusDate'),
 			'copyReminderCount' => (int) $assignment->getData('copyReminderCount'),
@@ -594,7 +597,7 @@ class ObjectsForReviewManagementHandler extends Handler {
 		foreach (CopyWorkflow::getAllowedSteps($this->plugin, $object, $assignment) as $step) {
 			$actions[$step] = $this->linkAction($request, 'copyStepForm',
 				['objectId' => $object->getId(), 'assignmentId' => $assignment->getId(), 'step' => $step],
-				'plugins.generic.objectsForReview.copy.step.' . $step, 'modal_edit', $step . '-' . $assignment->getId());
+				'plugins.generic.bookReviewManager.copy.step.' . $step, 'modal_edit', $step . '-' . $assignment->getId());
 		}
 		return $actions;
 	}
@@ -615,7 +618,7 @@ class ObjectsForReviewManagementHandler extends Handler {
 			'reviewCount' => AssignmentWorkflow::dao()->countReviewsByUser($assignment->getUserId(), $object->getContextId()),
 			'selectAction' => $this->linkAction($request, 'contractOfferForm',
 				['objectId' => $object->getId(), 'assignmentId' => $assignment->getId()],
-				'plugins.generic.objectsForReview.desk.select', 'modal_email', 'select-' . $assignment->getId()),
+				'plugins.generic.bookReviewManager.desk.select', 'modal_email', 'select-' . $assignment->getId()),
 		];
 	}
 
@@ -631,15 +634,15 @@ class ObjectsForReviewManagementHandler extends Handler {
 	 * An object of the current journal.
 	 */
 	protected function getObject($request, int $objectId) {
-		$object = $objectId ? DAORegistry::getDAO('ObjectForReviewDAO')->getById($objectId) : null;
+		$object = $objectId ? DAORegistry::getDAO('BookReviewManagerObjectDAO')->getById($objectId) : null;
 		return $object && $object->getContextId() == $request->getContext()->getId() ? $object : null;
 	}
 
 	/**
-	 * @return \APP\plugins\generic\objectsForReview\classes\ObjectForReview[]
+	 * @return \APP\plugins\generic\bookReviewManager\classes\ObjectForReview[]
 	 */
 	protected function getObjects($request) {
-		$objects = DAORegistry::getDAO('ObjectForReviewDAO')->getAll($request->getContext()->getId());
+		$objects = DAORegistry::getDAO('BookReviewManagerObjectDAO')->getAll($request->getContext()->getId());
 		return $objects->toArray();
 	}
 

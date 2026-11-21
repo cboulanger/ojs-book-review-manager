@@ -11,10 +11,10 @@ msgstr ""
 "PO-Revision-Date: 2021-02-21T14:14:36+02:00\n"
 "Language: \n"
 
-msgid "emails.ofrNewReservation.subject"
+msgid "emails.brmNewReservation.subject"
 msgstr "New work for review reserved"
 
-msgid "emails.ofrNewReservation.body"
+msgid "emails.brmNewReservation.body"
 msgstr ""
 "\n"
 "\t\t\n"
@@ -25,16 +25,16 @@ msgstr ""
 "\t\t\n"
 "\t\t"
 
-msgid "emails.ofrNewReservation.description"
+msgid "emails.brmNewReservation.description"
 msgstr "This email template is used to notify the editor for a reserved OFR item."
 
-msgid "emails.ofrCancelReservation.subject"
+msgid "emails.brmCancelReservation.subject"
 msgstr "Reservation of a work for review cancelled"
 
-msgid "emails.ofrNewReservation.name"
+msgid "emails.brmNewReservation.name"
 msgstr "Notify the editor for a reserved OFR item."
 
-msgid "emails.ofrCancelReservation.body"
+msgid "emails.brmCancelReservation.body"
 msgstr ""
 "\n"
 "\t\t\n"
@@ -44,271 +44,271 @@ msgstr ""
 "\t\t\n"
 "\t\t"
 
-msgid "emails.ofrCancelReservation.description"
+msgid "emails.brmCancelReservation.description"
 msgstr "This email template is used to notify the editor for a cancelled OFR item reservation."
 
-msgid "emails.ofrCancelReservation.name"
+msgid "emails.brmCancelReservation.name"
 msgstr "Notify the editor for a cancelled OFR item reservation."
-msgid "emails.ofrMessage.name"
+msgid "emails.brmMessage.name"
 msgstr "Message to the reviewer of a reserved work"
 
-msgid "emails.ofrMessage.description"
+msgid "emails.brmMessage.description"
 msgstr "Sent by the editors to the person who reserved a work for review."
 
-msgid "emails.ofrMessage.subject"
+msgid "emails.brmMessage.subject"
 msgstr "Your reserved work for review ({$contextName})"
 
-msgid "emails.ofrMessage.body"
+msgid "emails.brmMessage.body"
 msgstr "<p>Dear {$recipientName},</p><p>regarding the work you reserved for review:<br />{$objectDescription}<br />Due date of your review: {$dueDate}</p><p></p><p>Kind regards,<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrCancelByEditor.name"
+msgid "emails.brmCancelByEditor.name"
 msgstr "Reservation cancelled by the editors"
 
-msgid "emails.ofrCancelByEditor.description"
+msgid "emails.brmCancelByEditor.description"
 msgstr "Notifies the person who reserved a work for review that the editors cancelled the reservation."
 
-msgid "emails.ofrCancelByEditor.subject"
+msgid "emails.brmCancelByEditor.subject"
 msgstr "Your reservation has been cancelled ({$contextName})"
 
-msgid "emails.ofrCancelByEditor.body"
+msgid "emails.brmCancelByEditor.body"
 msgstr "<p>Dear {$recipientName},</p><p>as we have not heard from you, we have cancelled your reservation of the following work for review:<br />{$objectDescription}</p><p>If you have any questions, please contact us.</p><p>Kind regards,<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrReminder.name"
+msgid "emails.brmReminder.name"
 msgstr "Reminder before the review is due"
 
-msgid "emails.ofrReminder.description"
+msgid "emails.brmReminder.description"
 msgstr "Sent automatically to the person who reserved a work for review, a configurable number of days before the due date."
 
-msgid "emails.ofrReminder.subject"
+msgid "emails.brmReminder.subject"
 msgstr "Reminder: your review is due on {$dueDate}"
 
-msgid "emails.ofrReminder.body"
+msgid "emails.brmReminder.body"
 msgstr "<p>Dear {$recipientName},</p><p>this is a friendly reminder that your review of the following work is due on <strong>{$dueDate}</strong>:<br />{$objectDescription}</p><p>If you need more time, please contact the editors as soon as possible.</p><p>If you cannot write the review after all, please let us know:<br /><a href=\"{$retractUrl}\">{$retractUrl}</a></p><p>Kind regards,<br />{$contextName}</p>"
 
-msgid "emails.ofrContractOffer.name"
+msgid "emails.brmContractOffer.name"
 msgstr "Review agreement: contract offer"
 
-msgid "emails.ofrContractOffer.description"
+msgid "emails.brmContractOffer.description"
 msgstr "Sent to the bidder selected by the book review editor, with a link to the review agreement."
 
-msgid "emails.ofrContractOffer.subject"
+msgid "emails.brmContractOffer.subject"
 msgstr "You have been selected to review a work"
 
-msgid "emails.ofrContractOffer.body"
+msgid "emails.brmContractOffer.body"
 msgstr "<p>Dear {$recipientName},</p><p>thank you for your interest. We are happy to offer you the review of the following work:<br />{$objectDescription}</p><p>Please accept the review agreement, or decline the offer, by <strong>{$contractDeadline}</strong>:<br /><a href=\"{$contractUrl}\">{$contractUrl}</a></p><p>Kind regards,<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrContractOfferAgain.name"
+msgid "emails.brmContractOfferAgain.name"
 msgstr "Review agreement: offer after a dropout"
 
-msgid "emails.ofrContractOfferAgain.description"
+msgid "emails.brmContractOfferAgain.description"
 msgstr "Sent to a bidder from the kept list after the previously selected reviewer dropped out."
 
-msgid "emails.ofrContractOfferAgain.subject"
+msgid "emails.brmContractOfferAgain.subject"
 msgstr "The review of a work you applied for is available again"
 
-msgid "emails.ofrContractOfferAgain.body"
+msgid "emails.brmContractOfferAgain.body"
 msgstr "<p>Dear {$recipientName},</p><p>you applied to review the following work:<br />{$objectDescription}</p><p>The review has become available again, and we would be happy to offer it to you. If you are still interested, please accept the review agreement by <strong>{$contractDeadline}</strong>, or decline the offer:<br /><a href=\"{$contractUrl}\">{$contractUrl}</a></p><p>Kind regards,<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrContractReminder.name"
+msgid "emails.brmContractReminder.name"
 msgstr "Reminder about a contract offer"
 
-msgid "emails.ofrContractReminder.description"
+msgid "emails.brmContractReminder.description"
 msgstr "Sent automatically to a selected bidder who has not yet answered the contract offer."
 
-msgid "emails.ofrContractReminder.subject"
+msgid "emails.brmContractReminder.subject"
 msgstr "Reminder: please respond to the review offer by {$contractDeadline}"
 
-msgid "emails.ofrContractReminder.body"
+msgid "emails.brmContractReminder.body"
 msgstr "<p>Dear {$recipientName},</p><p>this is a friendly reminder that we have offered you the review of the following work:<br />{$objectDescription}</p><p>Please accept the review agreement, or decline the offer, by <strong>{$contractDeadline}</strong>:<br /><a href=\"{$contractUrl}\">{$contractUrl}</a></p><p>Kind regards,<br />{$contextName}</p>"
 
-msgid "emails.ofrBidUnsuccessful.name"
+msgid "emails.brmBidUnsuccessful.name"
 msgstr "Bidder not selected"
 
-msgid "emails.ofrBidUnsuccessful.description"
+msgid "emails.brmBidUnsuccessful.description"
 msgstr "Sent to the other bidders once a contract has been accepted. They stay on the list in case the review does not materialise."
 
-msgid "emails.ofrBidUnsuccessful.subject"
+msgid "emails.brmBidUnsuccessful.subject"
 msgstr "Your application to review a work"
 
-msgid "emails.ofrBidUnsuccessful.body"
+msgid "emails.brmBidUnsuccessful.body"
 msgstr "<p>Dear {$recipientName},</p><p>thank you for applying to review the following work:<br />{$objectDescription}</p><p>We have given the review to another applicant this time. We will keep you on our list, and may contact you if the review does not materialise.</p><p>If you would rather be removed from the list, please use this link:<br /><a href=\"{$removeUrl}\">{$removeUrl}</a></p><p>Kind regards,<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrBidNew.name"
+msgid "emails.brmBidNew.name"
 msgstr "New bid (to the book review editor)"
 
-msgid "emails.ofrBidNew.description"
+msgid "emails.brmBidNew.description"
 msgstr "Sent automatically to the responsible book review editor when someone applies to review a work."
 
-msgid "emails.ofrBidNew.subject"
+msgid "emails.brmBidNew.subject"
 msgstr "New application to review: {$objectDescription}"
 
-msgid "emails.ofrBidNew.body"
+msgid "emails.brmBidNew.body"
 msgstr "<p>Dear {$recipientName},</p><p>{$bidderName} has applied to review the following work:<br />{$objectDescription}</p><p>Statement:<br />{$bidStatement}</p><p>You can choose among the applicants here: <a href=\"{$deskUrl}\">{$deskUrl}</a></p>"
 
-msgid "emails.ofrContractDeclined.name"
+msgid "emails.brmContractDeclined.name"
 msgstr "Contract declined or expired (to the book review editor)"
 
-msgid "emails.ofrContractDeclined.description"
+msgid "emails.brmContractDeclined.description"
 msgstr "Sent automatically to the responsible book review editor when a selected bidder declines the contract offer or does not answer in time."
 
-msgid "emails.ofrContractDeclined.subject"
+msgid "emails.brmContractDeclined.subject"
 msgstr "Review offer not accepted: {$objectDescription}"
 
-msgid "emails.ofrContractDeclined.body"
+msgid "emails.brmContractDeclined.body"
 msgstr "<p>Dear {$recipientName},</p><p>{$reviewerName} has not accepted the offer to review the following work:<br />{$objectDescription}</p><p>{$declineReason}</p><p>Please choose another bidder, or reopen bidding: <a href=\"{$deskUrl}\">{$deskUrl}</a></p>"
 
-msgid "emails.ofrCopyRequest.name"
+msgid "emails.brmCopyRequest.name"
 msgstr "Review copy request (to the publisher)"
 
-msgid "emails.ofrCopyRequest.description"
+msgid "emails.brmCopyRequest.description"
 msgstr "Sent by the book review editor to the publisher contact, with the delivery address (printed copy) or the reviewer's email (electronic copy)."
 
-msgid "emails.ofrCopyRequest.subject"
+msgid "emails.brmCopyRequest.subject"
 msgstr "Request for a review copy: {$objectDescription}"
 
-msgid "emails.ofrCopyRequest.body"
+msgid "emails.brmCopyRequest.body"
 msgstr "<p>Dear {$recipientName},</p><p>{$reviewerName} will review the following work for {$contextName}:<br />{$objectDescription}</p><p>We would be grateful if you could provide a review copy ({$copyType}).</p><p>{$deliveryDetails}</p><p>Once you have sent the copy, please let us know with one click:<br /><a href=\"{$copySentUrl}\">{$copySentUrl}</a></p><p>Thank you very much, and kind regards,<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrCopySent.name"
+msgid "emails.brmCopySent.name"
 msgstr "Review copy sent (to the reviewer)"
 
-msgid "emails.ofrCopySent.description"
+msgid "emails.brmCopySent.description"
 msgstr "Tells the reviewer that the review copy has been sent by the journal or the publisher."
 
-msgid "emails.ofrCopySent.subject"
+msgid "emails.brmCopySent.subject"
 msgstr "Your review copy is on its way"
 
-msgid "emails.ofrCopySent.body"
+msgid "emails.brmCopySent.body"
 msgstr "<p>Dear {$recipientName},</p><p>a review copy ({$copyType}) of the following work has been sent to you {$copySource}:<br />{$objectDescription}</p><p>Your review is due on {$dueDate}.</p><p>Once it has arrived, please confirm receipt with one click:<br /><a href=\"{$receivedUrl}\">{$receivedUrl}</a></p><p>Kind regards,<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrReturnRequest.name"
+msgid "emails.brmReturnRequest.name"
 msgstr "Return of a review copy (to the reviewer)"
 
-msgid "emails.ofrReturnRequest.description"
+msgid "emails.brmReturnRequest.description"
 msgstr "Asks the reviewer to return a printed review copy when no review will be written, with the return address."
 
-msgid "emails.ofrReturnRequest.subject"
+msgid "emails.brmReturnRequest.subject"
 msgstr "Please return the review copy"
 
-msgid "emails.ofrReturnRequest.body"
+msgid "emails.brmReturnRequest.body"
 msgstr "<p>Dear {$recipientName},</p><p>as the review of the following work will not be written, we kindly ask you to return the review copy:<br />{$objectDescription}</p><p>Please send it to:<br />{$returnAddress}</p><p>Once you have sent it back, please let us know with one click:<br /><a href=\"{$returnSentUrl}\">{$returnSentUrl}</a></p><p>Thank you, and kind regards,<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrReturnSent.name"
+msgid "emails.brmReturnSent.name"
 msgstr "Review copy returned (to the publisher)"
 
-msgid "emails.ofrReturnSent.description"
+msgid "emails.brmReturnSent.description"
 msgstr "Tells the publisher contact that a review copy is on its way back."
 
-msgid "emails.ofrReturnSent.subject"
+msgid "emails.brmReturnSent.subject"
 msgstr "Review copy on its way back: {$objectDescription}"
 
-msgid "emails.ofrReturnSent.body"
+msgid "emails.brmReturnSent.body"
 msgstr "<p>Dear {$recipientName},</p><p>unfortunately, the review of the following work will not appear:<br />{$objectDescription}</p><p>The review copy you kindly provided has been sent back to you.</p><p>Once it has arrived, please confirm receipt with one click:<br /><a href=\"{$returnReceivedUrl}\">{$returnReceivedUrl}</a></p><p>Thank you again, and kind regards,<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrPublisherNotification.name"
+msgid "emails.brmPublisherNotification.name"
 msgstr "Review published (to the publisher)"
 
-msgid "emails.ofrPublisherNotification.description"
+msgid "emails.brmPublisherNotification.description"
 msgstr "Tells the publisher contact that the review has been published, if the publisher asked to be notified."
 
-msgid "emails.ofrPublisherNotification.subject"
+msgid "emails.brmPublisherNotification.subject"
 msgstr "Review published: {$objectDescription}"
 
-msgid "emails.ofrPublisherNotification.body"
+msgid "emails.brmPublisherNotification.body"
 msgstr "<p>Dear {$recipientName},</p><p>we are pleased to let you know that the review of the following work by {$reviewerName} has been published in {$contextName}:<br />{$objectDescription}</p><p><a href=\"{$reviewUrl}\">{$reviewUrl}</a></p><p>Thank you for providing the review copy, and kind regards,<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrCopyRequestReminder.name"
+msgid "emails.brmCopyRequestReminder.name"
 msgstr "Review copy request reminder (to the publisher)"
 
-msgid "emails.ofrCopyRequestReminder.description"
+msgid "emails.brmCopyRequestReminder.description"
 msgstr "Sent automatically to the publisher contact while a review copy request is unanswered."
 
-msgid "emails.ofrCopyRequestReminder.subject"
+msgid "emails.brmCopyRequestReminder.subject"
 msgstr "Reminder: request for a review copy: {$objectDescription}"
 
-msgid "emails.ofrCopyRequestReminder.body"
+msgid "emails.brmCopyRequestReminder.body"
 msgstr "<p>Dear {$recipientName},</p><p>we recently asked you for a review copy ({$copyType}) of the following work, which {$reviewerName} will review for {$contextName}:<br />{$objectDescription}</p><p>{$deliveryDetails}</p><p>If you have already sent it, please let us know with one click:<br /><a href=\"{$copySentUrl}\">{$copySentUrl}</a></p><p>Kind regards,<br />{$contextName}</p>"
 
-msgid "emails.ofrConfirmation.name"
+msgid "emails.brmConfirmation.name"
 msgstr "Review agreement confirmation (to the reviewer)"
 
-msgid "emails.ofrConfirmation.description"
+msgid "emails.brmConfirmation.description"
 msgstr "Sent automatically to the reviewer after accepting the review agreement, with a link to withdraw."
 
-msgid "emails.ofrConfirmation.subject"
+msgid "emails.brmConfirmation.subject"
 msgstr "Your review for {$contextName}: confirmation"
 
-msgid "emails.ofrConfirmation.body"
+msgid "emails.brmConfirmation.body"
 msgstr "<p>Dear {$recipientName},</p><p>thank you for agreeing to review the following work:<br />{$objectDescription}</p><p>{$reservationDetails}</p><p>If you find that you cannot write the review after all, please let us know as early as possible:<br /><a href=\"{$retractUrl}\">{$retractUrl}</a></p><p>Kind regards,<br />{$contextName}</p>"
 
-msgid "emails.ofrInvitationReserve.name"
+msgid "emails.brmInvitationReserve.name"
 msgstr "Invitation to review (direct reservation)"
 
-msgid "emails.ofrInvitationReserve.description"
+msgid "emails.brmInvitationReserve.description"
 msgstr "Sent by the book review editor to a person on the invitation list of a work with direct reservation, with a link to reserve the work or decline."
 
-msgid "emails.ofrInvitationReserve.subject"
+msgid "emails.brmInvitationReserve.subject"
 msgstr "Invitation to review: {$objectDescription}"
 
-msgid "emails.ofrInvitationReserve.body"
+msgid "emails.brmInvitationReserve.body"
 msgstr "<p>Dear {$recipientName},</p><p>we would like to invite you to review the following work for {$contextName}:<br />{$objectDescription}</p><p>If you would like to write the review, please accept the review agreement by <strong>{$invitationDeadline}</strong>. If you cannot write it, please let us know with the same link:<br /><a href=\"{$invitationUrl}\">{$invitationUrl}</a></p><p>Kind regards,<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrInvitationBid.name"
+msgid "emails.brmInvitationBid.name"
 msgstr "Invitation to apply for a review (bidding)"
 
-msgid "emails.ofrInvitationBid.description"
+msgid "emails.brmInvitationBid.description"
 msgstr "Sent by the book review editor to a person on the invitation list of a work offered for bidding, with a link to apply or decline."
 
-msgid "emails.ofrInvitationBid.subject"
+msgid "emails.brmInvitationBid.subject"
 msgstr "Invitation to apply for a review: {$objectDescription}"
 
-msgid "emails.ofrInvitationBid.body"
+msgid "emails.brmInvitationBid.body"
 msgstr "<p>Dear {$recipientName},</p><p>we would like to invite you to apply for the review of the following work for {$contextName}:<br />{$objectDescription}</p><p>The book review editor will choose among the applicants. If you are interested, please apply by <strong>{$invitationDeadline}</strong>. If you are not, please let us know with the same link:<br /><a href=\"{$invitationUrl}\">{$invitationUrl}</a></p><p>Kind regards,<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrInvitationDeclined.name"
+msgid "emails.brmInvitationDeclined.name"
 msgstr "Invitation declined or not answered (to the book review editor)"
 
-msgid "emails.ofrInvitationDeclined.description"
+msgid "emails.brmInvitationDeclined.description"
 msgstr "Sent automatically to the responsible book review editor when an invitee declines the invitation or does not answer in time."
 
-msgid "emails.ofrInvitationDeclined.subject"
+msgid "emails.brmInvitationDeclined.subject"
 msgstr "Invitation not accepted: {$objectDescription}"
 
-msgid "emails.ofrInvitationDeclined.body"
+msgid "emails.brmInvitationDeclined.body"
 msgstr "<p>Dear {$recipientName},</p><p>{$inviteeName} will not review the following work:<br />{$objectDescription}</p><p>{$declineReason}</p><p>You can invite someone else on the invitation page: <a href=\"{$invitationListUrl}\">{$invitationListUrl}</a></p>"
 
-msgid "emails.ofrInvitationReminder.name"
+msgid "emails.brmInvitationReminder.name"
 msgstr "Invitation reminder"
 
-msgid "emails.ofrInvitationReminder.description"
+msgid "emails.brmInvitationReminder.description"
 msgstr "Sent automatically to an invitee who has not answered, after the number of days set in the plugin settings."
 
-msgid "emails.ofrInvitationReminder.subject"
+msgid "emails.brmInvitationReminder.subject"
 msgstr "Reminder: invitation regarding {$objectDescription}"
 
-msgid "emails.ofrInvitationReminder.body"
+msgid "emails.brmInvitationReminder.body"
 msgstr "<p>Dear {$recipientName},</p><p>this is a friendly reminder of our invitation regarding the following work:<br />{$objectDescription}</p><p>Please let us know by <strong>{$invitationDeadline}</strong> whether you would like to take it on:<br /><a href=\"{$invitationUrl}\">{$invitationUrl}</a></p><p>Kind regards,<br />{$contextName}</p>"
 
-msgid "emails.ofrInvitationExhausted.name"
+msgid "emails.brmInvitationExhausted.name"
 msgstr "Invitation list exhausted (to the book review editor)"
 
-msgid "emails.ofrInvitationExhausted.description"
+msgid "emails.brmInvitationExhausted.description"
 msgstr "Sent automatically to the responsible book review editor when a sequential invitation round reaches the end of the list without a reservation."
 
-msgid "emails.ofrInvitationExhausted.subject"
+msgid "emails.brmInvitationExhausted.subject"
 msgstr "Invitation round without result: {$objectDescription}"
 
-msgid "emails.ofrInvitationExhausted.body"
+msgid "emails.brmInvitationExhausted.body"
 msgstr "<p>Dear {$recipientName},</p><p>everyone on the invitation list for the following work has declined or not answered:<br />{$objectDescription}</p><p>You can add more people and continue the round, or stop it: <a href=\"{$invitationListUrl}\">{$invitationListUrl}</a></p>"
 
-msgid "emails.ofrReviewEssayChanged.name"
+msgid "emails.brmReviewEssayChanged.name"
 msgstr "Review essay changed (to the reviewer)"
 
-msgid "emails.ofrReviewEssayChanged.description"
+msgid "emails.brmReviewEssayChanged.description"
 msgstr "Sent by the book review editor to the reviewer of a review essay when works are added to it or removed from it, or when the reviewer's agreement for one work becomes a review essay."
 
-msgid "emails.ofrReviewEssayChanged.subject"
+msgid "emails.brmReviewEssayChanged.subject"
 msgstr "Your review essay for {$journalName}: the list of works has changed"
 
-msgid "emails.ofrReviewEssayChanged.body"
+msgid "emails.brmReviewEssayChanged.body"
 msgstr "<p>Dear {$reviewerName},</p><p>the review essay you agreed to write now covers these works:<br />{$objectDescription}</p><p>Due date: {$dueDate}</p><p>If you have any questions, please contact us.</p><p>Kind regards,<br />{$journalName}</p>"

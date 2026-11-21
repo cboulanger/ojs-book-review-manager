@@ -1,18 +1,18 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/classes/ReservationLog.php
+ * @file plugins/generic/bookReviewManager/classes/ReservationLog.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ReservationLog
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief Audit trail of reservations, stored in OJS's event log and email log
  *  (associated with the object for review).
  */
 
-namespace APP\plugins\generic\objectsForReview\classes;
+namespace APP\plugins\generic\bookReviewManager\classes;
 
 use APP\facades\Repo;
 use Illuminate\Support\Facades\DB;
@@ -85,64 +85,64 @@ class ReservationLog {
 	const EVENT_ESSAY_DISSOLVED = 0x1F0F238;
 
 	const EVENT_MESSAGES = [
-		self::EVENT_RESERVED => 'plugins.generic.objectsForReview.history.event.reserved',
-		self::EVENT_CANCELLED_BY_REVIEWER => 'plugins.generic.objectsForReview.history.event.cancelledByReviewer',
-		self::EVENT_CANCELLED_BY_EDITOR => 'plugins.generic.objectsForReview.history.event.cancelledByEditor',
-		self::EVENT_ATTACHED => 'plugins.generic.objectsForReview.history.event.attached',
-		self::EVENT_BID => 'plugins.generic.objectsForReview.history.event.bid',
-		self::EVENT_BID_WITHDRAWN => 'plugins.generic.objectsForReview.history.event.bidWithdrawn',
-		self::EVENT_CONTRACT_OFFERED => 'plugins.generic.objectsForReview.history.event.contractOffered',
-		self::EVENT_CONTRACT_ACCEPTED => 'plugins.generic.objectsForReview.history.event.contractAccepted',
-		self::EVENT_CONTRACT_DECLINED => 'plugins.generic.objectsForReview.history.event.contractDeclined',
-		self::EVENT_CONTRACT_EXPIRED => 'plugins.generic.objectsForReview.history.event.contractExpired',
-		self::EVENT_CONTRACT_WITHDRAWN => 'plugins.generic.objectsForReview.history.event.contractWithdrawn',
-		self::EVENT_BIDDER_UNSUCCESSFUL => 'plugins.generic.objectsForReview.history.event.bidderUnsuccessful',
-		self::EVENT_BIDDING_REOPENED => 'plugins.generic.objectsForReview.history.event.biddingReopened',
-		self::EVENT_MODE_DIRECT => 'plugins.generic.objectsForReview.history.event.modeDirect',
-		self::EVENT_OFFER_CLOSED => 'plugins.generic.objectsForReview.history.event.offerClosed',
-		self::EVENT_OFFER_REOPENED => 'plugins.generic.objectsForReview.history.event.offerReopened',
-		self::EVENT_OFFER_HIDDEN => 'plugins.generic.objectsForReview.history.event.offerHidden',
-		self::EVENT_OFFER_SHOWN => 'plugins.generic.objectsForReview.history.event.offerShown',
-		self::EVENT_INVITEE_ADDED => 'plugins.generic.objectsForReview.history.event.inviteeAdded',
-		self::EVENT_INVITEE_CREATED => 'plugins.generic.objectsForReview.history.event.inviteeCreated',
-		self::EVENT_INVITEE_REMOVED => 'plugins.generic.objectsForReview.history.event.inviteeRemoved',
-		self::EVENT_INVITATION_LIST_REORDERED => 'plugins.generic.objectsForReview.history.event.invitationListReordered',
-		self::EVENT_INVITATION_SENT => 'plugins.generic.objectsForReview.history.event.invitationSent',
-		self::EVENT_INVITATION_DECLINED => 'plugins.generic.objectsForReview.history.event.invitationDeclined',
-		self::EVENT_INVITATION_EXPIRED => 'plugins.generic.objectsForReview.history.event.invitationExpired',
-		self::EVENT_RESERVED_VIA_INVITATION => 'plugins.generic.objectsForReview.history.event.reservedViaInvitation',
-		self::EVENT_BID_VIA_INVITATION => 'plugins.generic.objectsForReview.history.event.bidViaInvitation',
-		self::EVENT_INVITATIONS_ENDED => 'plugins.generic.objectsForReview.history.event.invitationsEnded',
-		self::EVENT_ROUND_STARTED => 'plugins.generic.objectsForReview.history.event.roundStarted',
-		self::EVENT_ROUND_STOPPED => 'plugins.generic.objectsForReview.history.event.roundStopped',
-		self::EVENT_ROUND_EXHAUSTED => 'plugins.generic.objectsForReview.history.event.roundExhausted',
-		self::EVENT_ROUND_COMPLETED => 'plugins.generic.objectsForReview.history.event.roundCompleted',
-		self::EVENT_INVITATION_WITHDRAWN => 'plugins.generic.objectsForReview.history.event.invitationWithdrawn',
-		self::EVENT_ROUND_CONTINUED => 'plugins.generic.objectsForReview.history.event.roundContinued',
-		self::EVENT_ROUND_STARTED_PARALLEL => 'plugins.generic.objectsForReview.history.event.roundStartedParallel',
-		self::EVENT_ROUND_FINISHED => 'plugins.generic.objectsForReview.history.event.roundFinished',
-		self::EVENT_IMPORTED => 'plugins.generic.objectsForReview.history.event.imported',
-		self::EVENT_ESSAY_MIRRORED => 'plugins.generic.objectsForReview.history.event.essayMirrored',
+		self::EVENT_RESERVED => 'plugins.generic.bookReviewManager.history.event.reserved',
+		self::EVENT_CANCELLED_BY_REVIEWER => 'plugins.generic.bookReviewManager.history.event.cancelledByReviewer',
+		self::EVENT_CANCELLED_BY_EDITOR => 'plugins.generic.bookReviewManager.history.event.cancelledByEditor',
+		self::EVENT_ATTACHED => 'plugins.generic.bookReviewManager.history.event.attached',
+		self::EVENT_BID => 'plugins.generic.bookReviewManager.history.event.bid',
+		self::EVENT_BID_WITHDRAWN => 'plugins.generic.bookReviewManager.history.event.bidWithdrawn',
+		self::EVENT_CONTRACT_OFFERED => 'plugins.generic.bookReviewManager.history.event.contractOffered',
+		self::EVENT_CONTRACT_ACCEPTED => 'plugins.generic.bookReviewManager.history.event.contractAccepted',
+		self::EVENT_CONTRACT_DECLINED => 'plugins.generic.bookReviewManager.history.event.contractDeclined',
+		self::EVENT_CONTRACT_EXPIRED => 'plugins.generic.bookReviewManager.history.event.contractExpired',
+		self::EVENT_CONTRACT_WITHDRAWN => 'plugins.generic.bookReviewManager.history.event.contractWithdrawn',
+		self::EVENT_BIDDER_UNSUCCESSFUL => 'plugins.generic.bookReviewManager.history.event.bidderUnsuccessful',
+		self::EVENT_BIDDING_REOPENED => 'plugins.generic.bookReviewManager.history.event.biddingReopened',
+		self::EVENT_MODE_DIRECT => 'plugins.generic.bookReviewManager.history.event.modeDirect',
+		self::EVENT_OFFER_CLOSED => 'plugins.generic.bookReviewManager.history.event.offerClosed',
+		self::EVENT_OFFER_REOPENED => 'plugins.generic.bookReviewManager.history.event.offerReopened',
+		self::EVENT_OFFER_HIDDEN => 'plugins.generic.bookReviewManager.history.event.offerHidden',
+		self::EVENT_OFFER_SHOWN => 'plugins.generic.bookReviewManager.history.event.offerShown',
+		self::EVENT_INVITEE_ADDED => 'plugins.generic.bookReviewManager.history.event.inviteeAdded',
+		self::EVENT_INVITEE_CREATED => 'plugins.generic.bookReviewManager.history.event.inviteeCreated',
+		self::EVENT_INVITEE_REMOVED => 'plugins.generic.bookReviewManager.history.event.inviteeRemoved',
+		self::EVENT_INVITATION_LIST_REORDERED => 'plugins.generic.bookReviewManager.history.event.invitationListReordered',
+		self::EVENT_INVITATION_SENT => 'plugins.generic.bookReviewManager.history.event.invitationSent',
+		self::EVENT_INVITATION_DECLINED => 'plugins.generic.bookReviewManager.history.event.invitationDeclined',
+		self::EVENT_INVITATION_EXPIRED => 'plugins.generic.bookReviewManager.history.event.invitationExpired',
+		self::EVENT_RESERVED_VIA_INVITATION => 'plugins.generic.bookReviewManager.history.event.reservedViaInvitation',
+		self::EVENT_BID_VIA_INVITATION => 'plugins.generic.bookReviewManager.history.event.bidViaInvitation',
+		self::EVENT_INVITATIONS_ENDED => 'plugins.generic.bookReviewManager.history.event.invitationsEnded',
+		self::EVENT_ROUND_STARTED => 'plugins.generic.bookReviewManager.history.event.roundStarted',
+		self::EVENT_ROUND_STOPPED => 'plugins.generic.bookReviewManager.history.event.roundStopped',
+		self::EVENT_ROUND_EXHAUSTED => 'plugins.generic.bookReviewManager.history.event.roundExhausted',
+		self::EVENT_ROUND_COMPLETED => 'plugins.generic.bookReviewManager.history.event.roundCompleted',
+		self::EVENT_INVITATION_WITHDRAWN => 'plugins.generic.bookReviewManager.history.event.invitationWithdrawn',
+		self::EVENT_ROUND_CONTINUED => 'plugins.generic.bookReviewManager.history.event.roundContinued',
+		self::EVENT_ROUND_STARTED_PARALLEL => 'plugins.generic.bookReviewManager.history.event.roundStartedParallel',
+		self::EVENT_ROUND_FINISHED => 'plugins.generic.bookReviewManager.history.event.roundFinished',
+		self::EVENT_IMPORTED => 'plugins.generic.bookReviewManager.history.event.imported',
+		self::EVENT_ESSAY_MIRRORED => 'plugins.generic.bookReviewManager.history.event.essayMirrored',
 		// Logged with the message essayStatus.<status>
-		self::EVENT_ESSAY_STATUS => 'plugins.generic.objectsForReview.history.event.essayStatus',
-		self::EVENT_ESSAY_CREATED => 'plugins.generic.objectsForReview.history.event.essayCreated',
+		self::EVENT_ESSAY_STATUS => 'plugins.generic.bookReviewManager.history.event.essayStatus',
+		self::EVENT_ESSAY_CREATED => 'plugins.generic.bookReviewManager.history.event.essayCreated',
 		// On the container logged with the message <key>.container, naming the work
-		self::EVENT_ESSAY_MEMBER_ADDED => 'plugins.generic.objectsForReview.history.event.essayMemberAdded',
-		self::EVENT_ESSAY_MEMBER_REMOVED => 'plugins.generic.objectsForReview.history.event.essayMemberRemoved',
-		self::EVENT_ESSAY_DISSOLVED => 'plugins.generic.objectsForReview.history.event.essayDissolved',
-		self::EVENT_LIST_DISCARDED => 'plugins.generic.objectsForReview.history.event.listDiscarded',
-		self::EVENT_COMPLETED => 'plugins.generic.objectsForReview.history.event.completed',
-		self::EVENT_COPY_REQUESTED => 'plugins.generic.objectsForReview.history.event.copyRequested',
-		self::EVENT_COPY_SENT_JOURNAL => 'plugins.generic.objectsForReview.history.event.copySentJournal',
-		self::EVENT_COPY_SENT_PUBLISHER => 'plugins.generic.objectsForReview.history.event.copySentPublisher',
-		self::EVENT_COPY_RECEIVED => 'plugins.generic.objectsForReview.history.event.copyReceived',
-		self::EVENT_COPY_REQUEST_WITHDRAWN => 'plugins.generic.objectsForReview.history.event.copyRequestWithdrawn',
-		self::EVENT_RETURN_REQUESTED_JOURNAL => 'plugins.generic.objectsForReview.history.event.returnRequestedJournal',
-		self::EVENT_RETURN_REQUESTED_PUBLISHER => 'plugins.generic.objectsForReview.history.event.returnRequestedPublisher',
-		self::EVENT_RETURN_SENT => 'plugins.generic.objectsForReview.history.event.returnSent',
-		self::EVENT_RETURNED_JOURNAL => 'plugins.generic.objectsForReview.history.event.returnedJournal',
-		self::EVENT_RETURNED_PUBLISHER => 'plugins.generic.objectsForReview.history.event.returnedPublisher',
-		self::EVENT_PUBLISHER_NOTIFIED => 'plugins.generic.objectsForReview.history.event.publisherNotified',
+		self::EVENT_ESSAY_MEMBER_ADDED => 'plugins.generic.bookReviewManager.history.event.essayMemberAdded',
+		self::EVENT_ESSAY_MEMBER_REMOVED => 'plugins.generic.bookReviewManager.history.event.essayMemberRemoved',
+		self::EVENT_ESSAY_DISSOLVED => 'plugins.generic.bookReviewManager.history.event.essayDissolved',
+		self::EVENT_LIST_DISCARDED => 'plugins.generic.bookReviewManager.history.event.listDiscarded',
+		self::EVENT_COMPLETED => 'plugins.generic.bookReviewManager.history.event.completed',
+		self::EVENT_COPY_REQUESTED => 'plugins.generic.bookReviewManager.history.event.copyRequested',
+		self::EVENT_COPY_SENT_JOURNAL => 'plugins.generic.bookReviewManager.history.event.copySentJournal',
+		self::EVENT_COPY_SENT_PUBLISHER => 'plugins.generic.bookReviewManager.history.event.copySentPublisher',
+		self::EVENT_COPY_RECEIVED => 'plugins.generic.bookReviewManager.history.event.copyReceived',
+		self::EVENT_COPY_REQUEST_WITHDRAWN => 'plugins.generic.bookReviewManager.history.event.copyRequestWithdrawn',
+		self::EVENT_RETURN_REQUESTED_JOURNAL => 'plugins.generic.bookReviewManager.history.event.returnRequestedJournal',
+		self::EVENT_RETURN_REQUESTED_PUBLISHER => 'plugins.generic.bookReviewManager.history.event.returnRequestedPublisher',
+		self::EVENT_RETURN_SENT => 'plugins.generic.bookReviewManager.history.event.returnSent',
+		self::EVENT_RETURNED_JOURNAL => 'plugins.generic.bookReviewManager.history.event.returnedJournal',
+		self::EVENT_RETURNED_PUBLISHER => 'plugins.generic.bookReviewManager.history.event.returnedPublisher',
+		self::EVENT_PUBLISHER_NOTIFIED => 'plugins.generic.bookReviewManager.history.event.publisherNotified',
 	];
 
 	/**
@@ -172,7 +172,7 @@ class ReservationLog {
 	 * Event data for a step taken through a one-click link: the actor's name is marked "via link".
 	 */
 	public static function viaLink(?User $actor): array {
-		return ['userFullName' => trim(($actor?->getFullName() ?? '') . ' (' . __('plugins.generic.objectsForReview.history.viaLink') . ')')];
+		return ['userFullName' => trim(($actor?->getFullName() ?? '') . ' (' . __('plugins.generic.bookReviewManager.history.viaLink') . ')')];
 	}
 
 	/**
@@ -223,8 +223,8 @@ class ReservationLog {
 				'date' => (string) $email->dateSent,
 				'id' => (int) $email->id,
 				'type' => 'email',
-				'label' => $type ? __($type->labelKey()) : __('plugins.generic.objectsForReview.history.email'),
-				'actor' => $email->senderId ? $email->senderFullName : __('plugins.generic.objectsForReview.history.system'),
+				'label' => $type ? __($type->labelKey()) : __('plugins.generic.bookReviewManager.history.email'),
+				'actor' => $email->senderId ? $email->senderFullName : __('plugins.generic.bookReviewManager.history.system'),
 				'recipients' => $email->recipients,
 				'subject' => $email->subject,
 				'body' => $email->body,

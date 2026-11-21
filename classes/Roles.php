@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/classes/Roles.php
+ * @file plugins/generic/bookReviewManager/classes/Roles.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Roles
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief The plugin's two user groups and who may use the backend pages.
  *
@@ -20,7 +20,7 @@
  *  settings. Managers can rename them under Users & Roles.
  */
 
-namespace APP\plugins\generic\objectsForReview\classes;
+namespace APP\plugins\generic\bookReviewManager\classes;
 
 use APP\core\Application;
 use APP\facades\Repo;
@@ -61,8 +61,8 @@ class Roles {
 		$locales = Application::get()->getRequest()->getSite()->getInstalledLocales();
 		$names = $abbrevs = [];
 		foreach ($locales as $locale) {
-			$names[$locale] = __('plugins.generic.objectsForReview.role.' . $group, [], $locale);
-			$abbrevs[$locale] = __('plugins.generic.objectsForReview.role.' . $group . '.abbrev', [], $locale);
+			$names[$locale] = __('plugins.generic.bookReviewManager.role.' . $group, [], $locale);
+			$abbrevs[$locale] = __('plugins.generic.bookReviewManager.role.' . $group . '.abbrev', [], $locale);
 		}
 		$userGroup = new UserGroup([
 			'roleId' => $roleId,

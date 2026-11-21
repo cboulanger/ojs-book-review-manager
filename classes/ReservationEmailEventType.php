@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/classes/ReservationEmailEventType.php
+ * @file plugins/generic/bookReviewManager/classes/ReservationEmailEventType.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @brief Email log event types for emails sent about a reservation.
  */
 
-namespace APP\plugins\generic\objectsForReview\classes;
+namespace APP\plugins\generic\bookReviewManager\classes;
 
 use PKP\log\core\EmailLogEventType;
 
@@ -40,28 +40,28 @@ enum ReservationEmailEventType: int implements EmailLogEventType
 	public function labelKey(): string
 	{
 		return match ($this) {
-			self::MESSAGE => 'plugins.generic.objectsForReview.history.email.message',
-			self::CANCELLED_BY_EDITOR => 'plugins.generic.objectsForReview.history.email.cancelledByEditor',
-			self::REMINDER => 'plugins.generic.objectsForReview.history.email.reminder',
-			self::CONTRACT_OFFER => 'plugins.generic.objectsForReview.history.email.contractOffer',
-			self::CONTRACT_OFFER_AGAIN => 'plugins.generic.objectsForReview.history.email.contractOfferAgain',
-			self::CONTRACT_REMINDER => 'plugins.generic.objectsForReview.history.email.contractReminder',
-			self::BID_UNSUCCESSFUL => 'plugins.generic.objectsForReview.history.email.bidUnsuccessful',
-			self::BID_NEW => 'plugins.generic.objectsForReview.history.email.bidNew',
-			self::CONTRACT_DECLINED => 'plugins.generic.objectsForReview.history.email.contractDeclined',
-			self::COPY_REQUEST => 'plugins.generic.objectsForReview.history.email.copyRequest',
-			self::COPY_SENT => 'plugins.generic.objectsForReview.history.email.copySent',
-			self::RETURN_REQUEST => 'plugins.generic.objectsForReview.history.email.returnRequest',
-			self::RETURN_SENT => 'plugins.generic.objectsForReview.history.email.returnSent',
-			self::PUBLISHER_NOTIFICATION => 'plugins.generic.objectsForReview.history.email.publisherNotification',
-			self::COPY_REQUEST_REMINDER => 'plugins.generic.objectsForReview.history.email.copyRequestReminder',
-			self::CONFIRMATION => 'plugins.generic.objectsForReview.history.email.confirmation',
-			self::INVITATION_RESERVE => 'plugins.generic.objectsForReview.history.email.invitationReserve',
-			self::INVITATION_BID => 'plugins.generic.objectsForReview.history.email.invitationBid',
-			self::INVITATION_DECLINED => 'plugins.generic.objectsForReview.history.email.invitationDeclined',
-			self::INVITATION_REMINDER => 'plugins.generic.objectsForReview.history.email.invitationReminder',
-			self::INVITATION_EXHAUSTED => 'plugins.generic.objectsForReview.history.email.invitationExhausted',
-			self::ESSAY_CHANGED => 'plugins.generic.objectsForReview.history.email.essayChanged',
+			self::MESSAGE => 'plugins.generic.bookReviewManager.history.email.message',
+			self::CANCELLED_BY_EDITOR => 'plugins.generic.bookReviewManager.history.email.cancelledByEditor',
+			self::REMINDER => 'plugins.generic.bookReviewManager.history.email.reminder',
+			self::CONTRACT_OFFER => 'plugins.generic.bookReviewManager.history.email.contractOffer',
+			self::CONTRACT_OFFER_AGAIN => 'plugins.generic.bookReviewManager.history.email.contractOfferAgain',
+			self::CONTRACT_REMINDER => 'plugins.generic.bookReviewManager.history.email.contractReminder',
+			self::BID_UNSUCCESSFUL => 'plugins.generic.bookReviewManager.history.email.bidUnsuccessful',
+			self::BID_NEW => 'plugins.generic.bookReviewManager.history.email.bidNew',
+			self::CONTRACT_DECLINED => 'plugins.generic.bookReviewManager.history.email.contractDeclined',
+			self::COPY_REQUEST => 'plugins.generic.bookReviewManager.history.email.copyRequest',
+			self::COPY_SENT => 'plugins.generic.bookReviewManager.history.email.copySent',
+			self::RETURN_REQUEST => 'plugins.generic.bookReviewManager.history.email.returnRequest',
+			self::RETURN_SENT => 'plugins.generic.bookReviewManager.history.email.returnSent',
+			self::PUBLISHER_NOTIFICATION => 'plugins.generic.bookReviewManager.history.email.publisherNotification',
+			self::COPY_REQUEST_REMINDER => 'plugins.generic.bookReviewManager.history.email.copyRequestReminder',
+			self::CONFIRMATION => 'plugins.generic.bookReviewManager.history.email.confirmation',
+			self::INVITATION_RESERVE => 'plugins.generic.bookReviewManager.history.email.invitationReserve',
+			self::INVITATION_BID => 'plugins.generic.bookReviewManager.history.email.invitationBid',
+			self::INVITATION_DECLINED => 'plugins.generic.bookReviewManager.history.email.invitationDeclined',
+			self::INVITATION_REMINDER => 'plugins.generic.bookReviewManager.history.email.invitationReminder',
+			self::INVITATION_EXHAUSTED => 'plugins.generic.bookReviewManager.history.email.invitationExhausted',
+			self::ESSAY_CHANGED => 'plugins.generic.bookReviewManager.history.email.essayChanged',
 		};
 	}
 }

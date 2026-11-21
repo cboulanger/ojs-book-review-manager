@@ -11,8 +11,8 @@ await page.fill('input[name=password]', 'ojsadmin');
 await Promise.all([page.waitForNavigation(), page.click('form#login button[type=submit], form#login .submit')]);
 
 // History is still available from the available objects list
-await page.goto(`${B}/manageObjectsForReview`);
-const gridRow = page.locator('#objectsForReviewGridContainer tr.gridRow', { hasText: 'A test book for reservations' });
+await page.goto(`${B}/manageBookReviews`);
+const gridRow = page.locator('#bookReviewManagerGridContainer tr.gridRow', { hasText: 'A test book for reservations' });
 await gridRow.waitFor({ timeout: 15000 });
 await gridRow.locator('a.show_extras').click();
 const histLink = page.locator('a[id*="-row-6-history"]');
@@ -23,7 +23,7 @@ await hist.waitFor({ timeout: 15000 });
 console.log('history:\n  ' + (await hist.locator('.ofrHistoryHead').allInnerTexts()).map(t => t.replace(/\s+/g, ' ')).join('\n  '));
 await page.screenshot({ path: OUT + 'manage-history2.png' });
 
-await page.goto(`${B}/manageObjectsForReview/settings`);
+await page.goto(`${B}/manageBookReviews/settings`);
 await page.locator('#orSettingsForm').waitFor();
 console.log('reminder days setting:', await page.locator('input[name=ofrReminderDays]').inputValue());
 await browser.close();

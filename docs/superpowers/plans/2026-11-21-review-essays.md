@@ -4,21 +4,21 @@
 
 **Goal:** One reviewer can review several works in one review essay. The steps with the reviewer move together, and the copy steps with each publisher stay per work.
 
-**Architecture:** A review essay is a *container* row in `objects_for_review` (`resource_type = 'reviewEssay'`). The container owns the offer, so the existing offer, bid, invitation and contract code runs on it unchanged. *Member* works point to it with the offer setting `bundleId`. On every member, the container's reviewer assignment is mirrored by a *mirror* assignment (setting `bundleAssignmentId`), which carries that work's copy status. The new class `BundleWorkflow` creates and syncs the mirrors.
+**Architecture:** A review essay is a *container* row in `brm_objects` (`resource_type = 'reviewEssay'`). The container owns the offer, so the existing offer, bid, invitation and contract code runs on it unchanged. *Member* works point to it with the offer setting `bundleId`. On every member, the container's reviewer assignment is mirrored by a *mirror* assignment (setting `bundleAssignmentId`), which carries that work's copy status. The new class `BundleWorkflow` creates and syncs the mirrors.
 
 **Tech Stack:** PHP 8.2, OJS 3.5 (PKP DAO and settings tables, Smarty templates, PKP grids and forms), PHPUnit 11.5 in the dev container, Node 20 (`node --test`) for the API client and the e2e tests.
 
-**Spec:** `docs/superpowers/specs/2026-11-21-review-essays-design.md` (also published as cboulanger/objectsForReview#4).
+**Spec:** `docs/superpowers/specs/2026-11-21-review-essays-design.md` (also published as cboulanger/bookReviewManager#4).
 
 ## Global Constraints
 
-- PHP files use tabs, the namespace `APP\plugins\generic\objectsForReview\classes` (or the matching subnamespace), and the existing file header style.
+- PHP files use tabs, the namespace `APP\plugins\generic\bookReviewManager\classes` (or the matching subnamespace), and the existing file header style.
 - There are no new tables, and `SCHEMA_VERSION` is not raised. Everything new is stored in the existing settings tables.
 - Every user-visible string goes into `locale/en/locale.po`, `locale/de/locale.po` and `locale/fi/locale.po`. Email templates go into `emailTemplates.xml` and `locale/{en,de,fi}/emails.po`. `tests/unit/php/LocaleTest.php` checks that the locales are complete.
 - In the interface, the word is "work" (not "object") and "review essay" (de: "Sammelrezension", fi: "kooste-arvio").
 - Run the tests against the worktree container:
   `OFR_CONTAINER=ojs-ofr-essays OJS_PORT=8081 OFR_E2E_OFFLINE=1 tests/run.sh <suite>`.
-  The container `ojs-ofr-essays` mounts this worktree. The user's container `ojs-objectsforreview` must not be touched.
+  The container `ojs-ofr-essays` mounts this worktree. The user's container `ojs-bookreviewmanager` must not be touched.
 - Every commit message ends with `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`.
 - Do not edit `api/SKILL.md`, `README.md` or anything under `skills/`. The user has uncommitted changes to these files in the main checkout. Task 9 handles the documentation.
 
@@ -36,11 +36,11 @@
 | `classes/Reservation.php` (modify) | Copy preference per work for containers |
 | `classes/ReservationReminder.php` (modify) | No due date reminders for mirrors |
 | `classes/ReservationLog.php` (modify) | New events |
-| `classes/ReservationEmailEventType.php`, `mailables/ObjectsForReviewEssayChanged.php`, `emailTemplates.xml` | The email `OFR_REVIEW_ESSAY_CHANGED` |
+| `classes/ReservationEmailEventType.php`, `mailables/ObjectsForReviewEssayChanged.php`, `emailTemplates.xml` | The email `BRM_REVIEW_ESSAY_CHANGED` |
 | `pages/ObjectsForReviewHandler.php`, `templates/frontend/*` | Public list and contract form |
 | `controllers/grid/*`, `controllers/grid/form/ReviewEssayForm.php` (create), `controllers/form/BundleMemberForm.php` (create), `templates/reviewEssayForm.tpl`, `templates/bundleMemberForm.tpl` | Backend "Available works" |
 | `pages/ObjectsForReviewManagementHandler.php`, `templates/management.tpl` | To-do and "Reviewers & bidders" |
-| `ObjectsForReviewPlugin.php`, `controllers/grid/ObjectsForReviewGridHandler.php`, `controllers/grid/form/ObjectsForReviewForm.php` | Submission and publication |
+| `BookReviewManagerPlugin.php`, `controllers/grid/ObjectsForReviewGridHandler.php`, `controllers/grid/form/ObjectsForReviewForm.php` | Submission and publication |
 | `api/ObjectsForReviewController.php`, `api/src/client.js`, `api/bin/ofr.js` | API |
 | `tests/unit/php/BundleWorkflowTest.php` (create), `tests/e2e/api/bundles.test.mjs` (create) | Tests |
 
@@ -105,12 +105,12 @@ Also add to `tests/unit/php/AssignmentWorkflowTest.php`, or to whichever test al
  * @brief Review essays: containers, members and mirror assignments (writes to the database).
  */
 
-namespace APP\plugins\generic\objectsForReview\tests\unit;
+namespace APP\plugins\generic\bookReviewManager\tests\unit;
 
-use APP\plugins\generic\objectsForReview\classes\Assignment;
-use APP\plugins\generic\objectsForReview\classes\AssignmentDAO;
-use APP\plugins\generic\objectsForReview\classes\ObjectForReview;
-use APP\plugins\generic\objectsForReview\classes\ObjectForReviewDAO;
+use APP\plugins\generic\bookReviewManager\classes\Assignment;
+use APP\plugins\generic\bookReviewManager\classes\AssignmentDAO;
+use APP\plugins\generic\bookReviewManager\classes\ObjectForReview;
+use APP\plugins\generic\bookReviewManager\classes\ObjectForReviewDAO;
 use PHPUnit\Framework\Attributes\Group;
 
 #[Group('db')]
@@ -235,7 +235,7 @@ Note: `setOfferSetting('resourceType', null)` above is a no-op, kept for readabi
 	 * @return ObjectForReview[]
 	 */
 	function getMembers(int $containerId): array {
-		$ids = DB::table('objects_for_review_settings')
+		$ids = DB::table('brm_object_settings')
 			->where('setting_name', 'bundleId')
 			->where('setting_value', (string) $containerId)
 			->pluck('object_id')->all();
@@ -305,7 +305,7 @@ Note: `setOfferSetting('resourceType', null)` above is a no-op, kept for readabi
   - `EVENT_ESSAY_MIRRORED` (`0x1F0F233`, "Review essay: {$essay} — the reviewer's agreement covers this work"), logged when a mirror is created;
   - `EVENT_ESSAY_STATUS` (`0x1F0F234`, "Review essay: {$essay} — status changed to {$status}"), logged for the other status changes.
 
-  The log data is `['essay' => $container->getTitle(), 'status' => __('plugins.generic.objectsForReview.assignment.status.' . $status)]`. Check how `getTranslatedMessage` interpolates the data from `logEvent`. If params are not interpolated, put the essay title into the `recipientName` field instead and use a fixed message.
+  The log data is `['essay' => $container->getTitle(), 'status' => __('plugins.generic.bookReviewManager.assignment.status.' . $status)]`. Check how `getTranslatedMessage` interpolates the data from `logEvent`. If params are not interpolated, put the essay title into the `recipientName` field instead and use a fixed message.
 
 - [ ] **Step 1: Write the failing tests** in `BundleWorkflowTest`. Use a helper `newEssay(array $memberTitles): array`, which returns `[$container, $members]`: it creates the container with `newWork`, sets its resource type, and sets `bundleId` and `bundlePosition` on the members.
 
@@ -496,7 +496,7 @@ New events: `EVENT_ESSAY_CREATED` (`0x1F0F235`), `EVENT_ESSAY_MEMBER_ADDED` (`0x
 - [ ] **Step 1: Write the failing tests:**
   - `testCreateFromFreshWorks`: two works without reviewers; the container exists, the members have `bundleId`, and the container's `hidden` is copied from the first work.
   - `testCreateTakesOverExistingReviewer`: work A has an `accepted` assignment with `dueDate` and `copyPreference=physical`; create the essay with `copyPreferences = [B => 'electronic']`. The container assignment is `accepted` with the same `dueDate`; A's assignment is now a mirror with `copyPreference=physical` and its copy status unchanged; B has a new mirror with `electronic`.
-  - `testCreateRefusesTwoReviewers`: `canCombine` returns `'plugins.generic.objectsForReview.reviewEssay.error.twoReviewers'`, and `create` throws.
+  - `testCreateRefusesTwoReviewers`: `canCombine` returns `'plugins.generic.bookReviewManager.reviewEssay.error.twoReviewers'`, and `create` throws.
   - `testCreateDiscardsOpenBids`: a work with a `bid` assignment; after `create`, the bid is `discarded`.
   - `testAddMemberWithReviewerCreatesMirror`.
   - `testRemoveMemberCancelsMirrorAndHidesWork`: the removed work is `hidden`, has no `bundleId`, its mirror is `cancelled` and no longer a mirror, and its copy status is kept.
@@ -505,7 +505,7 @@ New events: `EVENT_ESSAY_CREATED` (`0x1F0F235`), `EVENT_ESSAY_MEMBER_ADDED` (`0x
 - [ ] **Step 2: Run them.** Expected: FAIL.
 - [ ] **Step 3: Implement.**
 - [ ] **Step 4: Run all of `unit/php`.** Expected: PASS.
-- [ ] **Step 5: Add the dev helper `dev/make-review-essay.php`** for the manual checks in later tasks. It boots OJS the same way `tests/unit/php/bootstrap.php` does (require that file, or copy its boot lines). It creates two hidden works, "Essay test A" and "Essay test B", with random ISBNs and `creator = 'manager'`, in context 1, then calls `BundleWorkflow::create` with the title "Essay test", the editor = user `admin`, and `hidden = false` on the container. Finally, it prints `container=<id> members=<id>,<id>`. Run it with `podman exec ojs-ofr-essays php /var/www/html/plugins/generic/objectsForReview/dev/make-review-essay.php`.
+- [ ] **Step 5: Add the dev helper `dev/make-review-essay.php`** for the manual checks in later tasks. It boots OJS the same way `tests/unit/php/bootstrap.php` does (require that file, or copy its boot lines). It creates two hidden works, "Essay test A" and "Essay test B", with random ISBNs and `creator = 'manager'`, in context 1, then calls `BundleWorkflow::create` with the title "Essay test", the editor = user `admin`, and `hidden = false` on the container. Finally, it prints `container=<id> members=<id>,<id>`. Run it with `podman exec ojs-ofr-essays php /var/www/html/plugins/generic/bookReviewManager/dev/make-review-essay.php`.
 - [ ] **Step 6: Commit.**
   `git commit -m "Review essays: create, combine, add, remove and dissolve"`
 
@@ -538,7 +538,7 @@ New events: `EVENT_ESSAY_CREATED` (`0x1F0F235`), `EVENT_ESSAY_MEMBER_ADDED` (`0x
   - `contractTemplateData($request, $formState, $object = null)` assigns `reserveMembers` for a container.
   - Every `Reservation::validate(...)` call passes `BundleWorkflow::membersOf($object)`. This is a new tiny helper: it returns `[]` for a non-container, otherwise `getMembers`.
   - The reservation dialog (`templates/frontend/reserveDialog.tpl`) is rendered per object on the list page, so it needs the members per object. Pass `members` in the `gridData` row (Task 5 adds this), and in `reserveDialog.tpl` assign `reserveMembers` from the row before including `contractFields.tpl`. Read `reserveDialog.tpl` first to see how it includes the fields.
-- [ ] **Step 6: Run `unit/php`.** Then check the list page by hand. In `ojs-ofr-essays`, create an essay with `dev/make-review-essay.php` (Task 3, Step 5), and open `http://localhost:8081/index.php/test/for-review?reserve=<containerId>` as `bre` (password `ojsbre`). Check that two radio groups appear and that the address shows up when one of them is set to "physical".
+- [ ] **Step 6: Run `unit/php`.** Then check the list page by hand. In `ojs-ofr-essays`, create an essay with `dev/make-review-essay.php` (Task 3, Step 5), and open `http://localhost:8081/index.php/test/books-for-review?reserve=<containerId>` as `bre` (password `ojsbre`). Check that two radio groups appear and that the address shows up when one of them is set to "physical".
 - [ ] **Step 7: Commit.**
   `git commit -m "Review essays: copy preference per work in the agreement"`
 
@@ -547,7 +547,7 @@ New events: `EVENT_ESSAY_CREATED` (`0x1F0F235`), `EVENT_ESSAY_MEMBER_ADDED` (`0x
 ### Task 5: Public list, one-click links, submission and publication
 
 **Files:**
-- Modify: `pages/ObjectsForReviewHandler.php`, `templates/frontend/pages/forReview.tpl`, `ObjectsForReviewPlugin.php` (`completeOnPublish`, `addToSubmissionWizardSteps`, `addSubmissionDisplay`, `addSitemapURLs`), `controllers/grid/ObjectsForReviewGridHandler.php`, `controllers/grid/form/ObjectsForReviewForm.php`, `pages/ObjectsForReviewManagementHandler.php` (`reviewedWorks`)
+- Modify: `pages/ObjectsForReviewHandler.php`, `templates/frontend/pages/forReview.tpl`, `BookReviewManagerPlugin.php` (`completeOnPublish`, `addToSubmissionWizardSteps`, `addSubmissionDisplay`, `addSitemapURLs`), `controllers/grid/ObjectsForReviewGridHandler.php`, `controllers/grid/form/ObjectsForReviewForm.php`, `pages/ObjectsForReviewManagementHandler.php` (`reviewedWorks`)
 - Test: `tests/unit/php/BundleWorkflowTest.php` (for the helper), plus a manual check
 
 **Interfaces:**
@@ -585,7 +585,7 @@ New events: `EVENT_ESSAY_CREATED` (`0x1F0F235`), `EVENT_ESSAY_MEMBER_ADDED` (`0x
 ### Task 6: Backend: "Available works" grid and dialogs
 
 **Files:**
-- Modify: `controllers/grid/ObjectsForReviewManagementGridHandler.php`, `controllers/grid/ObjectsForReviewManagementGridRow.php`, `controllers/grid/ObjectsForReviewManagementGridCellProvider.php`, `classes/ReservationEmailEventType.php`, `emailTemplates.xml`, `locale/*/emails.po`, `locale/*/locale.po`, `ObjectsForReviewPlugin.php` (`addMailable`)
+- Modify: `controllers/grid/ObjectsForReviewManagementGridHandler.php`, `controllers/grid/ObjectsForReviewManagementGridRow.php`, `controllers/grid/ObjectsForReviewManagementGridCellProvider.php`, `classes/ReservationEmailEventType.php`, `emailTemplates.xml`, `locale/*/emails.po`, `locale/*/locale.po`, `BookReviewManagerPlugin.php` (`addMailable`)
 - Create: `controllers/grid/form/ReviewEssayForm.php`, `templates/reviewEssayForm.tpl`, `controllers/grid/form/BundleMemberForm.php`, `templates/bundleMemberForm.tpl`, `mailables/ObjectsForReviewEssayChanged.php`
 
 **Behaviour:**
@@ -598,12 +598,12 @@ New events: `EVENT_ESSAY_CREATED` (`0x1F0F235`), `EVENT_ESSAY_MEMBER_ADDED` (`0x
   - when exactly one of the selected works has a reviewer, a copy preference per other selected work: render a select per work, `copyPreferences[<id>]`, default `have`;
   - on edit: title, description and the offer settings only (members are managed through the row actions).
 
-  On save, `canCombine` runs on the selection, and errors are shown with `addError`. Then `BundleWorkflow::create`, and the offer settings are applied to the container afterwards. If a reviewer was taken over, the form sends the email `OFR_REVIEW_ESSAY_CHANGED` to them with `ReservationMailer::compose`/`send` (follow `controllers/form/ReservationEmailForm.php` for an editable email; the simplest acceptable version sends the template unedited and notes that in the confirmation).
+  On save, `canCombine` runs on the selection, and errors are shown with `addError`. Then `BundleWorkflow::create`, and the offer settings are applied to the container afterwards. If a reviewer was taken over, the form sends the email `BRM_REVIEW_ESSAY_CHANGED` to them with `ReservationMailer::compose`/`send` (follow `controllers/form/ReservationEmailForm.php` for an editable email; the simplest acceptable version sends the template unedited and notes that in the confirmation).
 - **Row actions on a container:** *Edit* (`ReviewEssayForm`), *Add work* (`BundleMemberForm` in add mode: a select of the works that may be combined, plus a copy preference if the essay has a reviewer), *Dissolve* (a confirmation that calls a new grid op `dissolveReviewEssay`, which runs `BundleWorkflow::dissolve` and returns a `JSONMessage(false, __($e->getMessage()))` on `InvalidArgumentException`), and the existing *Delete*, which dissolves first and is refused if there is a reviewer. The existing *Hide/Show* toggle stays.
 - **Row actions on a member:** *Edit* (the existing work form), and *Remove from review essay* (a confirmation that calls a new grid op `removeFromReviewEssay`). The existing *Delete* first removes the work from the essay and is refused if it is the last member. Members do not get the hide toggle or the invite button.
 - **Row action on a plain work:** *Add to review essay…* (`BundleMemberForm` in "choose essay" mode: a select of the containers that are not submitted).
 - **Register the new ops** in the constructor's `addRoleAssignment` list.
-- **Email `OFR_REVIEW_ESSAY_CHANGED`.**
+- **Email `BRM_REVIEW_ESSAY_CHANGED`.**
   - `ReservationEmailEventType::ESSAY_CHANGED = 0x1F0F116`, with a label key.
   - A mailable copied from `mailables/ObjectsForReviewConfirmation.php`, with the variables `{$reviewerName}`, `{$objectDescription}` (the container citation), `{$dueDate}` and `{$journalName}`.
   - The template text in en, de and fi: "The review essay you agreed to write now covers these works: … Due date: …". Register it like the other mailables in `addMailable`.
@@ -681,7 +681,7 @@ New events: `EVENT_ESSAY_CREATED` (`0x1F0F235`), `EVENT_ESSAY_MEMBER_ADDED` (`0x
 
 **Files:**
 - Modify: `docs/workflow.md`
-- Create: `docs/superpowers/followups/2026-11-21-review-essays-docs.md`. This lists the text to add to `README.md`, `api/SKILL.md` (moved to `skills/objects-for-review-api/SKILL.md` in the main checkout) and `skills/objects-for-review-email-import/SKILL.md`, which is uncommitted in the main checkout. The user applies it after merging, so their uncommitted rename does not conflict.
+- Create: `docs/superpowers/followups/2026-11-21-review-essays-docs.md`. This lists the text to add to `README.md`, `api/SKILL.md` (moved to `skills/book-review-manager-api/SKILL.md` in the main checkout) and `skills/book-review-manager-email-import/SKILL.md`, which is uncommitted in the main checkout. The user applies it after merging, so their uncommitted rename does not conflict.
 
 - [ ] **Step 1: `docs/workflow.md`.**
   - Add the section "### Review essays: one review of several works" after section 8 (and add it to the table of contents if there is one). It explains:

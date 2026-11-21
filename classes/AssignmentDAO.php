@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/classes/AssignmentDAO.php
+ * @file plugins/generic/bookReviewManager/classes/AssignmentDAO.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class AssignmentDAO
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief Operations for retrieving and modifying Assignment objects.
  */
 
-namespace APP\plugins\generic\objectsForReview\classes;
+namespace APP\plugins\generic\bookReviewManager\classes;
 
 use Illuminate\Support\Facades\DB;
 use PKP\core\Core;
@@ -19,8 +19,8 @@ use PKP\db\DAO;
 
 class AssignmentDAO extends DAO {
 
-	const TABLE = 'objects_for_review_assignments';
-	const SETTINGS_TABLE = 'objects_for_review_assignment_settings';
+	const TABLE = 'brm_assignments';
+	const SETTINGS_TABLE = 'brm_assignment_settings';
 
 	public function newDataObject(): Assignment {
 		return new Assignment();

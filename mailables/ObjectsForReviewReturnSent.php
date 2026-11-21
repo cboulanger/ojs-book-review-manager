@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/mailables/ObjectsForReviewReturnSent.php
+ * @file plugins/generic/bookReviewManager/mailables/ObjectsForReviewReturnSent.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
@@ -10,7 +10,7 @@
  * @brief Notice to the publisher contact that a review copy is on its way back.
  */
 
-namespace APP\plugins\generic\objectsForReview\mailables;
+namespace APP\plugins\generic\bookReviewManager\mailables;
 
 use APP\journal\Journal;
 use PKP\mail\Mailable;
@@ -23,9 +23,9 @@ class ObjectsForReviewReturnSent extends Mailable
     use Configurable;
     use Recipient;
 
-    protected static ?string $name = 'emails.ofrReturnSent.name';
-    protected static ?string $description = 'emails.ofrReturnSent.description';
-    protected static ?string $emailTemplateKey = 'OFR_RETURN_SENT';
+    protected static ?string $name = 'emails.brmReturnSent.name';
+    protected static ?string $description = 'emails.brmReturnSent.description';
+    protected static ?string $emailTemplateKey = 'BRM_RETURN_SENT';
     protected static array $fromRoleIds = [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR, self::FROM_SYSTEM];
     protected static array $toRoleIds = [Role::ROLE_ID_READER];
 

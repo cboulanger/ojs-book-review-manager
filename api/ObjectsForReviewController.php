@@ -1,38 +1,38 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/api/ObjectsForReviewController.php
+ * @file plugins/generic/bookReviewManager/api/ObjectsForReviewController.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ObjectsForReviewController
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief REST API of the plugin, for importing data from scripts (see api/SKILL.md):
  *  works offered for review (with DOI/ISBN lookup), reviewers and publisher
  *  contacts, review processes that are already under way, and review essays
  *  (one review of several works; see BundleWorkflow).
  *
- *  Served at /index.php/{journal}/api/v1/objectsForReview/... and authenticated
+ *  Served at /index.php/{journal}/api/v1/bookReviewManager/... and authenticated
  *  like the OJS API (Authorization: Bearer <API key>). Open to journal managers,
  *  site admins and book review editors. Imports never send emails.
  */
 
-namespace APP\plugins\generic\objectsForReview\api;
+namespace APP\plugins\generic\bookReviewManager\api;
 
 use APP\core\Application;
 use APP\facades\Repo;
-use APP\plugins\generic\objectsForReview\classes\Assignment;
-use APP\plugins\generic\objectsForReview\classes\AssignmentWorkflow;
-use APP\plugins\generic\objectsForReview\classes\BundleWorkflow;
-use APP\plugins\generic\objectsForReview\classes\CopyWorkflow;
-use APP\plugins\generic\objectsForReview\classes\CrossrefLookup;
-use APP\plugins\generic\objectsForReview\classes\IsbnLookup;
-use APP\plugins\generic\objectsForReview\classes\ObjectForReview;
-use APP\plugins\generic\objectsForReview\classes\ObjectForReviewDAO;
-use APP\plugins\generic\objectsForReview\classes\Reservation;
-use APP\plugins\generic\objectsForReview\classes\ReservationLog;
-use APP\plugins\generic\objectsForReview\classes\Roles;
+use APP\plugins\generic\bookReviewManager\classes\Assignment;
+use APP\plugins\generic\bookReviewManager\classes\AssignmentWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\BundleWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\CopyWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\CrossrefLookup;
+use APP\plugins\generic\bookReviewManager\classes\IsbnLookup;
+use APP\plugins\generic\bookReviewManager\classes\ObjectForReview;
+use APP\plugins\generic\bookReviewManager\classes\ObjectForReviewDAO;
+use APP\plugins\generic\bookReviewManager\classes\Reservation;
+use APP\plugins\generic\bookReviewManager\classes\ReservationLog;
+use APP\plugins\generic\bookReviewManager\classes\Roles;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -80,7 +80,7 @@ class ObjectsForReviewController extends PKPBaseController {
 	const BUNDLE_OFFER_FIELDS = ['assignmentMode', 'bidDeadline', 'responsibleEditorId', 'responsibleEditorEmail', 'hidden'];
 
 	/** Locale key prefix of the review essay errors of the API */
-	const BUNDLE_ERROR_PREFIX = 'plugins.generic.objectsForReview.reviewEssay.api.';
+	const BUNDLE_ERROR_PREFIX = 'plugins.generic.bookReviewManager.reviewEssay.api.';
 
 	const IDENTIFIER_TYPES = ['doi', 'issn', 'isbn', 'uri', 'urn', 'pmid', 'pmcid', 'purl', 'arxiv', 'ark', 'handle', 'uuid', 'ecli', 'accession', 'other'];
 
@@ -88,7 +88,7 @@ class ObjectsForReviewController extends PKPBaseController {
 	}
 
 	public function getHandlerPath(): string {
-		return 'objectsForReview';
+		return 'bookReviewManager';
 	}
 
 	public function getRouteGroupMiddleware(): array {
@@ -100,23 +100,23 @@ class ObjectsForReviewController extends PKPBaseController {
 	}
 
 	public function getGroupRoutes(): void {
-		Route::get('lookup', $this->lookup(...))->name('objectsForReview.lookup');
+		Route::get('lookup', $this->lookup(...))->name('bookReviewManager.lookup');
 
-		Route::get('objects', $this->getObjects(...))->name('objectsForReview.getObjects');
-		Route::post('objects', $this->addObject(...))->name('objectsForReview.addObject');
-		Route::get('objects/{objectId}', $this->getObject(...))->name('objectsForReview.getObject')->whereNumber('objectId');
-		Route::put('objects/{objectId}', $this->editObject(...))->name('objectsForReview.editObject')->whereNumber('objectId');
+		Route::get('objects', $this->getObjects(...))->name('bookReviewManager.getObjects');
+		Route::post('objects', $this->addObject(...))->name('bookReviewManager.addObject');
+		Route::get('objects/{objectId}', $this->getObject(...))->name('bookReviewManager.getObject')->whereNumber('objectId');
+		Route::put('objects/{objectId}', $this->editObject(...))->name('bookReviewManager.editObject')->whereNumber('objectId');
 
-		Route::get('objects/{objectId}/assignments', $this->getAssignments(...))->name('objectsForReview.getAssignments')->whereNumber('objectId');
-		Route::post('objects/{objectId}/assignments', $this->addAssignment(...))->name('objectsForReview.addAssignment')->whereNumber('objectId');
+		Route::get('objects/{objectId}/assignments', $this->getAssignments(...))->name('bookReviewManager.getAssignments')->whereNumber('objectId');
+		Route::post('objects/{objectId}/assignments', $this->addAssignment(...))->name('bookReviewManager.addAssignment')->whereNumber('objectId');
 
-		Route::post('bundles', $this->addBundle(...))->name('objectsForReview.addBundle');
-		Route::post('bundles/{bundleId}/members', $this->addBundleMember(...))->name('objectsForReview.addBundleMember')->whereNumber('bundleId');
-		Route::delete('bundles/{bundleId}/members/{objectId}', $this->removeBundleMember(...))->name('objectsForReview.removeBundleMember')
+		Route::post('bundles', $this->addBundle(...))->name('bookReviewManager.addBundle');
+		Route::post('bundles/{bundleId}/members', $this->addBundleMember(...))->name('bookReviewManager.addBundleMember')->whereNumber('bundleId');
+		Route::delete('bundles/{bundleId}/members/{objectId}', $this->removeBundleMember(...))->name('bookReviewManager.removeBundleMember')
 			->whereNumber('bundleId')->whereNumber('objectId');
 
-		Route::get('users', $this->getUsers(...))->name('objectsForReview.getUsers');
-		Route::post('users', $this->addUser(...))->name('objectsForReview.addUser');
+		Route::get('users', $this->getUsers(...))->name('bookReviewManager.getUsers');
+		Route::post('users', $this->addUser(...))->name('bookReviewManager.addUser');
 	}
 
 	public function authorize(PKPRequest $request, array &$args, array $roleAssignments): bool {
@@ -470,13 +470,13 @@ class ObjectsForReviewController extends PKPBaseController {
 		try {
 			$title = trim((string) ($input['title'] ?? ''));
 			if ($title === '') {
-				throw new ApiError(Response::HTTP_BAD_REQUEST, 'titleRequired', __('plugins.generic.objectsForReview.reviewEssay.titleRequired'));
+				throw new ApiError(Response::HTTP_BAD_REQUEST, 'titleRequired', __('plugins.generic.bookReviewManager.reviewEssay.titleRequired'));
 			}
 			$description = trim((string) ($input['description'] ?? ''));
 			$description = trim(strip_tags($description)) === '' ? null : $description;
 			$ids = $input['objectIds'] ?? null;
 			if (!is_array($ids) || !$ids) {
-				throw new ApiError(Response::HTTP_BAD_REQUEST, 'worksRequired', __('plugins.generic.objectsForReview.reviewEssay.worksRequired'));
+				throw new ApiError(Response::HTTP_BAD_REQUEST, 'worksRequired', __('plugins.generic.bookReviewManager.reviewEssay.worksRequired'));
 			}
 			// Unknown ids (or works of another journal) are refused by canCombine as not available
 			$works = array_map(fn ($id) => is_numeric($id) ? $this->getContextObject((int) $id) : null, array_values($ids));
@@ -892,7 +892,7 @@ class ObjectsForReviewController extends PKPBaseController {
 			try {
 				return [CrossrefLookup::lookup($normalized) + ['identifierType' => 'doi', 'source' => 'Crossref'], 'doi'];
 			} catch (\Exception $e) {
-				$notFound = $e->getMessage() === 'plugins.generic.objectsForReview.doiLookup.notFound';
+				$notFound = $e->getMessage() === 'plugins.generic.bookReviewManager.doiLookup.notFound';
 				throw new ApiError($notFound ? Response::HTTP_NOT_FOUND : Response::HTTP_BAD_GATEWAY,
 					$notFound ? 'doiNotFound' : 'lookupFailed', $notFound ? "DOI {$normalized} not found at Crossref." : 'The Crossref lookup failed.');
 			}

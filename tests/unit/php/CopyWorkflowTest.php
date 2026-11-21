@@ -1,10 +1,10 @@
 <?php
 
-namespace APP\plugins\generic\objectsForReview\tests\unit;
+namespace APP\plugins\generic\bookReviewManager\tests\unit;
 
 use APP\facades\Repo;
-use APP\plugins\generic\objectsForReview\classes\Assignment;
-use APP\plugins\generic\objectsForReview\classes\CopyWorkflow as C;
+use APP\plugins\generic\bookReviewManager\classes\Assignment;
+use APP\plugins\generic\bookReviewManager\classes\CopyWorkflow as C;
 
 /**
  * Review copy states and which steps are allowed. Return steps need a publisher

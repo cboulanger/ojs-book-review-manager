@@ -30,7 +30,7 @@ test('an accepted reviewer: the work is assigned, the copy is pending, nothing i
 
   const events = history(work.id);
   assert.equal(events.length, 1);
-  assert.equal(events[0].message, 'plugins.generic.objectsForReview.history.event.imported');
+  assert.equal(events[0].message, 'plugins.generic.bookReviewManager.history.event.imported');
   assert.equal(events[0].recipientName, reviewer.fullName);
   assert.equal(events[0].userFullName, sql("SELECT CONCAT(s1.setting_value, ' ', s2.setting_value) AS n FROM users u JOIN user_settings s1 ON s1.user_id = u.user_id AND s1.setting_name = 'givenName' JOIN user_settings s2 ON s2.user_id = u.user_id AND s2.setting_name = 'familyName' WHERE u.username = 'admin' LIMIT 1")[0].n);
 

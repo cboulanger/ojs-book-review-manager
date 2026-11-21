@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/classes/InvitationWorkflow.php
+ * @file plugins/generic/bookReviewManager/classes/InvitationWorkflow.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class InvitationWorkflow
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief Inviting particular people to review an object (issue #2). Each
  *  person on an object's invitation list is an assignment:
@@ -29,11 +29,11 @@
  *    or stops it.
  */
 
-namespace APP\plugins\generic\objectsForReview\classes;
+namespace APP\plugins\generic\bookReviewManager\classes;
 
 use APP\core\Application;
 use APP\facades\Repo;
-use APP\plugins\generic\objectsForReview\pages\ObjectsForReviewManagementHandler;
+use APP\plugins\generic\bookReviewManager\pages\ObjectsForReviewManagementHandler;
 use PKP\core\Core;
 use PKP\security\Role;
 use PKP\security\Validation;
@@ -319,7 +319,7 @@ class InvitationWorkflow {
 			'inviteeName' => htmlspecialchars($invitee?->getFullName() ?? ''),
 			'invitationListUrl' => self::listUrl($context, $object),
 			'declineReason' => $reason !== '' ? nl2br(htmlspecialchars($reason))
-				: __('plugins.generic.objectsForReview.contract.declined.noReason', [], $context->getPrimaryLocale()),
+				: __('plugins.generic.bookReviewManager.contract.declined.noReason', [], $context->getPrimaryLocale()),
 		]);
 	}
 
@@ -347,7 +347,7 @@ class InvitationWorkflow {
 		ReservationMailer::notifyEditor($plugin, $context, ReservationEmailEventType::INVITATION_DECLINED, $object, $assignment, [
 			'inviteeName' => htmlspecialchars($invitee?->getFullName() ?? ''),
 			'invitationListUrl' => self::listUrl($context, $object),
-			'declineReason' => __('plugins.generic.objectsForReview.invitation.expired', [], $context->getPrimaryLocale()),
+			'declineReason' => __('plugins.generic.bookReviewManager.invitation.expired', [], $context->getPrimaryLocale()),
 		]);
 	}
 

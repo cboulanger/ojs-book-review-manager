@@ -1,5 +1,5 @@
 {**
- * plugins/generic/objectsForReview/templates/inviteButton.tpl
+ * plugins/generic/bookReviewManager/templates/inviteButton.tpl
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *

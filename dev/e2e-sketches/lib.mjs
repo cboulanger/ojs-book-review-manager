@@ -23,13 +23,13 @@ export async function anonymous() {
 export const since = () => new Date().toISOString();
 /** Emails logged since a timestamp: [{to, subject, body}] (soft line breaks removed) */
 export function mails(from) {
-	const log = execSync(`podman logs --since ${from} ojs-objectsforreview 2>&1`, { maxBuffer: 50e6 }).toString()
+	const log = execSync(`podman logs --since ${from} ojs-bookreviewmanager 2>&1`, { maxBuffer: 50e6 }).toString()
 		.replace(/=\r?\n/g, '').replace(/=3D/g, '=');
 	return log.split(/production\.DEBUG: (?=From: )/).slice(1).map(m => m.split(/\n\S+ - - \[/)[0]).map(m => ({
 		to: (m.match(/\nTo: (.*)/) || [])[1], subject: (m.match(/\nSubject: (.*)/) || [])[1], body: m,
 	}));
 }
-export const linkIn = text => (text.match(/https?:\/\/[^\s"<>]*for-review\/link\/[0-9a-f]{48}/) || [])[0];
+export const linkIn = text => (text.match(/https?:\/\/[^\s"<>]*books-for-review\/link\/[0-9a-f]{48}/) || [])[0];
 export async function modalForm(page) {
 	const form = page.locator('#ofrReservationEmailForm');
 	await form.waitFor({ timeout: 15000 });

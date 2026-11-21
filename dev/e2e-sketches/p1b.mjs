@@ -1,10 +1,10 @@
 import { B, OUT, browser, login, anonymous, since, mails, linkIn, modalForm, bodyText } from './lib.mjs';
 const t0 = since();
-const objectRow = p => p.locator('#objects-for-review-table tr', { hasText: 'A bidding test book' });
+const objectRow = p => p.locator('#book-review-manager-table tr', { hasText: 'A bidding test book' });
 
 // Two bids
 const author = await login('author', 'ojsauthor');
-await author.goto(`${B}/for-review`);
+await author.goto(`${B}/books-for-review`);
 console.log('author sees:', (await objectRow(author).locator('td').last().innerText()).trim());
 await objectRow(author).locator('.ofrBidButton').click();
 await author.locator('#ofrBidDialog textarea[name=statement]').fill('I work on this topic and reviewed related books.');
@@ -12,13 +12,13 @@ await Promise.all([author.waitForNavigation(), author.locator('#ofrBidDialog but
 console.log('author after bid:', (await objectRow(author).locator('td').last().innerText()).replace(/\s+/g, ' ').trim());
 
 const r2 = await login('reviewer2', 'ojsreviewer2');
-await r2.goto(`${B}/for-review`);
+await r2.goto(`${B}/books-for-review`);
 await objectRow(r2).locator('.ofrBidButton').click();
 await Promise.all([r2.waitForNavigation(), r2.locator('#ofrBidDialog button[type=submit]').click()]);
 console.log('reviewer2 after bid:', (await objectRow(r2).locator('td').last().innerText()).replace(/\s+/g, ' ').trim());
 
 const anon = await anonymous();
-await anon.goto(`${B}/for-review`);
+await anon.goto(`${B}/books-for-review`);
 console.log('anonymous sees:', (await objectRow(anon).locator('td').last().innerText()).trim());
 
 const bidMails = mails(t0).filter(m => /New application/.test(m.subject));
@@ -26,7 +26,7 @@ console.log('BID_NEW mails:', bidMails.map(m => `${m.to} | ${m.subject}`));
 
 // Editor selects the author
 const bre = await login('bre', 'ojsbre');
-await bre.goto(`${B}/manageObjectsForReview/desk`);
+await bre.goto(`${B}/manageBookReviews/desk`);
 const item = bre.locator('.ofrDeskItem', { hasText: 'A bidding test book' });
 console.log('desk state:', (await item.locator('.ofrDeskState').innerText()).trim());
 console.log('bidders:', (await item.locator('.ofrBidders tbody tr').allInnerTexts()).map(t => t.replace(/\s+/g, ' ').slice(0, 120)));
@@ -41,15 +41,15 @@ console.log('body keeps placeholder:', body.includes('{$contractUrl}'), '| deadl
 await bre.screenshot({ path: OUT + 'p1-contract-offer-modal.png' });
 const t1 = since();
 await Promise.all([bre.waitForNavigation({ timeout: 20000 }), form.locator('button.submitFormButton').click()]);
-console.log('desk after offer:', (await bre.locator('.objectsForReviewManagement').innerText()).replace(/\s+/g, ' ').slice(0, 300));
+console.log('desk after offer:', (await bre.locator('.bookReviewManagerManagement').innerText()).replace(/\s+/g, ' ').slice(0, 300));
 
 const offerMail = mails(t1).find(m => /selected to review/.test(m.subject));
 const link = offerMail && linkIn(offerMail.body);
 console.log('offer mail to:', offerMail?.to, '| link:', link);
 
-await author.goto(`${B}/for-review`);
+await author.goto(`${B}/books-for-review`);
 console.log('author status:', (await objectRow(author).locator('td').last().innerText()).replace(/\s+/g, ' ').trim());
-await anon.goto(`${B}/for-review`);
+await anon.goto(`${B}/books-for-review`);
 console.log('anonymous status:', (await objectRow(anon).locator('td').last().innerText()).trim());
 
 // Anonymous visitor opens the link: nothing happens until confirmed
@@ -68,6 +68,6 @@ console.log('editor notified:', mails(t2).map(m => `${m.to} | ${m.subject}`));
 await anon2.goto(link);
 console.log('link reused:', await anon2.locator('h1').innerText());
 
-await author.goto(`${B}/for-review`);
+await author.goto(`${B}/books-for-review`);
 console.log('author status:', (await objectRow(author).locator('td').last().innerText()).replace(/\s+/g, ' ').trim());
 await browser.close();

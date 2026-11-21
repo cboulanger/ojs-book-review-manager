@@ -1,12 +1,12 @@
 <?php
 
-namespace APP\plugins\generic\objectsForReview\tests\unit;
+namespace APP\plugins\generic\bookReviewManager\tests\unit;
 
-use APP\plugins\generic\objectsForReview\api\ApiError;
-use APP\plugins\generic\objectsForReview\api\ObjectsForReviewController;
-use APP\plugins\generic\objectsForReview\classes\Assignment;
-use APP\plugins\generic\objectsForReview\classes\CopyWorkflow;
-use APP\plugins\generic\objectsForReview\classes\Reservation;
+use APP\plugins\generic\bookReviewManager\api\ApiError;
+use APP\plugins\generic\bookReviewManager\api\ObjectsForReviewController;
+use APP\plugins\generic\bookReviewManager\classes\Assignment;
+use APP\plugins\generic\bookReviewManager\classes\CopyWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\Reservation;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
@@ -22,7 +22,7 @@ class ApiControllerTest extends TestCase {
 	}
 
 	public function testRoutesAreUnderThePluginPath(): void {
-		$this->assertSame('objectsForReview', $this->controller->getHandlerPath());
+		$this->assertSame('bookReviewManager', $this->controller->getHandlerPath());
 		$middleware = $this->controller->getRouteGroupMiddleware();
 		$this->assertContains('has.user', $middleware);
 		$this->assertContains('has.context', $middleware);
@@ -99,10 +99,10 @@ class ApiControllerTest extends TestCase {
 	}
 
 	public function testResourceTypesMatchTheLookups(): void {
-		foreach (\APP\plugins\generic\objectsForReview\classes\CrossrefLookup::TYPE_MAP as $type => $uri) {
+		foreach (\APP\plugins\generic\bookReviewManager\classes\CrossrefLookup::TYPE_MAP as $type => $uri) {
 			$this->assertContains($uri, ObjectsForReviewController::RESOURCE_TYPES, $type);
 		}
-		$this->assertContains(\APP\plugins\generic\objectsForReview\classes\IsbnLookup::BOOK_TYPE, ObjectsForReviewController::RESOURCE_TYPES);
+		$this->assertContains(\APP\plugins\generic\bookReviewManager\classes\IsbnLookup::BOOK_TYPE, ObjectsForReviewController::RESOURCE_TYPES);
 		$this->assertContains(Reservation::COPY_HAVE, Reservation::COPY_PREFERENCES);
 	}
 }

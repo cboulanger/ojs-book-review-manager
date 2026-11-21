@@ -36,7 +36,7 @@ before(async () => {
     req.on('data', (chunk) => { raw += chunk; });
     req.on('end', () => {
       const u = new URL(req.url, 'http://x');
-      const path = u.pathname.replace(/^.*\/api\/v1\/objectsForReview/, '');
+      const path = u.pathname.replace(/^.*\/api\/v1\/bookReviewManager/, '');
       const body = raw ? JSON.parse(raw) : undefined;
       requests.push({ method: req.method, path, query: u.searchParams, body, auth: req.headers.authorization });
       const route = routes.find(([method, pattern]) => method === req.method && pattern.test(path));

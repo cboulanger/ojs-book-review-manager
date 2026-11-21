@@ -1,5 +1,5 @@
 {
-  "name": "objects-for-review-email-import-ner",
+  "name": "book-review-manager-email-import-ner",
   "private": true,
   "description": "Optional local NER pass (GLiNER multi PII) for eml.js index --ner",
   "license": "GPL-3.0-only",

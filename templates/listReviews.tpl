@@ -1,5 +1,5 @@
 {**
- * plugins/generic/objectsForReview/templates/listReviews.tpl
+ * plugins/generic/bookReviewManager/templates/listReviews.tpl
  *
  * Copyright (c) 2014-2019 Simon Fraser University
  * Copyright (c) 2003-2019 John Willinsky
@@ -7,15 +7,15 @@
  *
  * The included template that is hooked into Templates::Article::Main and Templates::Catalog::Book::Main.
  *}
-<div class="item objectsForReview">
+<div class="item bookReviewManager">
 	<div class="value">
-    {if $objectsForReview|@count == 1}
-  		<h3>{translate key="plugins.generic.objectsForReview.objectsForReviewData.singular"}</h3>
+    {if $bookReviewManager|@count == 1}
+  		<h3>{translate key="plugins.generic.bookReviewManager.bookReviewManagerData.singular"}</h3>
     {else}
-      <h3>{translate key="plugins.generic.objectsForReview.objectsForReviewData.plural"}</h3>
+      <h3>{translate key="plugins.generic.bookReviewManager.bookReviewManagerData.plural"}</h3>
     {/if}
 		<ul>
-			{foreach from=$objectsForReview item=objectForReview}
+			{foreach from=$bookReviewManager item=objectForReview}
 				<li>
           {$objectForReview.description|strip_unsafe_html}
           {$objectForReview.identifierType|escape}:

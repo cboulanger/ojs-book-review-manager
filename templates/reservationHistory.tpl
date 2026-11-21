@@ -1,5 +1,5 @@
 {**
- * plugins/generic/objectsForReview/templates/reservationHistory.tpl
+ * plugins/generic/bookReviewManager/templates/reservationHistory.tpl
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
@@ -26,7 +26,7 @@
 			{/foreach}
 		</ul>
 	{else}
-		<p>{translate key="plugins.generic.objectsForReview.history.empty"}</p>
+		<p>{translate key="plugins.generic.bookReviewManager.history.empty"}</p>
 	{/if}
 </div>
 <style>

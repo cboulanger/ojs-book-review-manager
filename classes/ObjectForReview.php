@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/classes/ObjectForReview.inc.php
+ * @file plugins/generic/bookReviewManager/classes/ObjectForReview.inc.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
@@ -13,7 +13,7 @@
  * Data object representing a ObjectForReview.
  */
 
-namespace APP\plugins\generic\objectsForReview\classes;
+namespace APP\plugins\generic\bookReviewManager\classes;
 
 class ObjectForReview extends \PKP\core\DataObject {
 

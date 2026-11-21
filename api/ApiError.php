@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/api/ApiError.php
+ * @file plugins/generic/bookReviewManager/api/ApiError.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ApiError
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  */
 
-namespace APP\plugins\generic\objectsForReview\api;
+namespace APP\plugins\generic\bookReviewManager\api;
 
 use Illuminate\Http\JsonResponse;
 

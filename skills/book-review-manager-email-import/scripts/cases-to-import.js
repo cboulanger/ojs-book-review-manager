@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Check a cases file against the import rules of the Objects for Review API and
+// Check a cases file against the import rules of the Book Review Manager API and
 // write the import file for `ofr import`.
 //
 //   cases-to-import.js cases.json --work <work dir> [--out import.json] [--today YYYY-MM-DD]

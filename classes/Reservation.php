@@ -1,19 +1,19 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/classes/Reservation.php
+ * @file plugins/generic/bookReviewManager/classes/Reservation.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class Reservation
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief Reservation terms: contract text, due date limits, delivery
  *  preferences, validation of the contract form and the contract data
  *  stored with an Assignment.
  */
 
-namespace APP\plugins\generic\objectsForReview\classes;
+namespace APP\plugins\generic\bookReviewManager\classes;
 
 use PKP\core\Core;
 use PKP\core\PKPString;
@@ -77,7 +77,7 @@ class Reservation {
 	public static function getContract($plugin, $context): string {
 		$contract = (array) $plugin->getSetting($context->getId(), 'ofrContract');
 		$text = ($contract[Locale::getLocale()] ?? null) ?: ($contract[$context->getPrimaryLocale()] ?? null);
-		return $text ?: __('plugins.generic.objectsForReview.contract.default');
+		return $text ?: __('plugins.generic.bookReviewManager.contract.default');
 	}
 
 	/**
@@ -92,14 +92,14 @@ class Reservation {
 		$data = array_fill_keys(self::FIELDS, null);
 
 		if (empty($input['acceptTerms'])) {
-			$errors['acceptTerms'] = 'plugins.generic.objectsForReview.reserve.error.acceptTerms';
+			$errors['acceptTerms'] = 'plugins.generic.bookReviewManager.reserve.error.acceptTerms';
 		}
 
 		$dueDate = \DateTimeImmutable::createFromFormat('!Y-m-d', (string) ($input['dueDate'] ?? ''));
 		if (!$dueDate || $dueDate->format('Y-m-d') !== ($input['dueDate'] ?? '')) {
-			$errors['dueDate'] = 'plugins.generic.objectsForReview.reserve.error.dueDate';
+			$errors['dueDate'] = 'plugins.generic.bookReviewManager.reserve.error.dueDate';
 		} elseif ($input['dueDate'] < $dueDateRange['min'] || $input['dueDate'] > $dueDateRange['max']) {
-			$errors['dueDate'] = 'plugins.generic.objectsForReview.reserve.error.dueDateRange';
+			$errors['dueDate'] = 'plugins.generic.bookReviewManager.reserve.error.dueDateRange';
 		} else {
 			$data['dueDate'] = $input['dueDate'];
 		}
@@ -110,7 +110,7 @@ class Reservation {
 			foreach ($members as $member) {
 				$preference = $given[$member->getId()] ?? null;
 				if (!is_string($preference) || !in_array($preference, self::COPY_PREFERENCES, true)) {
-					$errors['copyPreference'] = 'plugins.generic.objectsForReview.reserve.error.copyPreference';
+					$errors['copyPreference'] = 'plugins.generic.bookReviewManager.reserve.error.copyPreference';
 				} else {
 					$preferences[(int) $member->getId()] = $preference;
 				}
@@ -121,7 +121,7 @@ class Reservation {
 		} else {
 			$preference = (string) ($input['copyPreference'] ?? '');
 			if (!in_array($preference, self::COPY_PREFERENCES, true)) {
-				$errors['copyPreference'] = 'plugins.generic.objectsForReview.reserve.error.copyPreference';
+				$errors['copyPreference'] = 'plugins.generic.bookReviewManager.reserve.error.copyPreference';
 			} else {
 				$data['copyPreference'] = $preference;
 			}
@@ -132,16 +132,16 @@ class Reservation {
 			$data['shippingAddress'] = trim((string) ($input['shippingAddress'] ?? ''));
 			$data['phone'] = trim((string) ($input['phone'] ?? ''));
 			if ($data['shippingAddress'] === '') {
-				$errors['shippingAddress'] = 'plugins.generic.objectsForReview.reserve.error.shippingAddress';
+				$errors['shippingAddress'] = 'plugins.generic.bookReviewManager.reserve.error.shippingAddress';
 			}
 			if (!preg_match('/^\+?[0-9 ()\/.\-]{6,30}$/', $data['phone'])) {
-				$errors['phone'] = 'plugins.generic.objectsForReview.reserve.error.phone';
+				$errors['phone'] = 'plugins.generic.bookReviewManager.reserve.error.phone';
 			}
 		}
 		if (in_array(self::COPY_OTHER, $chosen, true)) {
 			$data['copyNote'] = trim((string) ($input['copyNote'] ?? ''));
 			if ($data['copyNote'] === '') {
-				$errors['copyNote'] = 'plugins.generic.objectsForReview.reserve.error.copyNote';
+				$errors['copyNote'] = 'plugins.generic.bookReviewManager.reserve.error.copyNote';
 			}
 		}
 
@@ -177,14 +177,14 @@ class Reservation {
 	 */
 	public static function getDisplayData(Assignment $object): array {
 		$preference = $object->getData('copyPreference');
-		$perWork = self::getPerWorkPreferences($object, fn ($key) => __('plugins.generic.objectsForReview.' . $key));
+		$perWork = self::getPerWorkPreferences($object, fn ($key) => __('plugins.generic.bookReviewManager.' . $key));
 		return [
 			'dateReserved' => $object->getData('dateReserved'),
 			'dueDate' => $object->getData('dueDate'),
 			'copyPreference' => $preference,
 			'copyPreferenceLabel' => $perWork
 				? implode("\n", array_map(fn ($row) => $row[0] . ': ' . $row[1], $perWork))
-				: ($preference ? __('plugins.generic.objectsForReview.reserve.copy.' . $preference) : null),
+				: ($preference ? __('plugins.generic.bookReviewManager.reserve.copy.' . $preference) : null),
 			'shippingAddress' => $object->getData('shippingAddress'),
 			'phone' => $object->getData('phone'),
 			'copyNote' => $object->getData('copyNote'),
@@ -197,7 +197,7 @@ class Reservation {
 	 */
 	public static function getEmailDetails(Assignment $object, $context, ?string $locale = null): string {
 		$locale = $locale ?? $context->getPrimaryLocale();
-		$t = fn ($key) => __('plugins.generic.objectsForReview.' . $key, [], $locale);
+		$t = fn ($key) => __('plugins.generic.bookReviewManager.' . $key, [], $locale);
 		$dateFormat = PKPString::convertStrftimeFormat($context->getLocalizedDateFormatShort($locale));
 		$preference = $object->getData('copyPreference');
 		$rows = [];
@@ -225,7 +225,7 @@ class Reservation {
 	 * The copy preferences per work of a review essay contract, while the
 	 * container assignment holds them (they move to the mirrors once the
 	 * reviewer is accepted).
-	 * @param callable $t Translates a key below plugins.generic.objectsForReview
+	 * @param callable $t Translates a key below plugins.generic.bookReviewManager
 	 * @return array [[citation, preference label], ...]
 	 */
 	protected static function getPerWorkPreferences(Assignment $object, callable $t): array {

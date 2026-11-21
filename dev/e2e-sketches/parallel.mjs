@@ -1,18 +1,18 @@
 import { B, browser, login, anonymous, since, mails, linkIn, modalForm, bodyText } from './lib.mjs';
 import { execSync } from 'node:child_process';
-const sql = q => execSync(`podman exec ojs-objectsforreview mysql -N ojs -e ${JSON.stringify(q)}`).toString().trim();
+const sql = q => execSync(`podman exec ojs-bookreviewmanager mysql -N ojs -e ${JSON.stringify(q)}`).toString().trim();
 const IMG = new URL('../../docs/images/', import.meta.url).pathname;
-const st = id => sql(`SELECT GROUP_CONCAT(CONCAT(u.username,':',a.status) ORDER BY a.assignment_id) FROM objects_for_review_assignments a JOIN users u USING(user_id) WHERE a.object_id=${id}`);
-const roundSettings = id => sql(`SELECT COUNT(*) FROM objects_for_review_settings WHERE object_id=${id} AND setting_name LIKE 'invitation%'`);
-const events = id => sql(`SELECT GROUP_CONCAT(REPLACE(message,'plugins.generic.objectsForReview.history.event.','') ORDER BY log_id SEPARATOR ', ') FROM event_log WHERE assoc_id=${id} AND assoc_type=${0x1F0F001}`);
+const st = id => sql(`SELECT GROUP_CONCAT(CONCAT(u.username,':',a.status) ORDER BY a.assignment_id) FROM brm_assignments a JOIN users u USING(user_id) WHERE a.object_id=${id}`);
+const roundSettings = id => sql(`SELECT COUNT(*) FROM brm_object_settings WHERE object_id=${id} AND setting_name LIKE 'invitation%'`);
+const events = id => sql(`SELECT GROUP_CONCAT(REPLACE(message,'plugins.generic.bookReviewManager.history.event.','') ORDER BY log_id SEPARATOR ', ') FROM event_log WHERE assoc_id=${id} AND assoc_type=${0x1F0F001}`);
 const out = [];
 const log = (...a) => { console.log(...a); };
 
 const bre = await login('bre', 'ojsbre');
 await bre.setViewportSize({ width: 1280, height: 900 });
 async function newOffer(title, mode, deadline) {
-	await bre.goto(`${B}/manageObjectsForReview`);
-	await bre.locator('#objectsForReviewGridContainer a[id*="addAvailableObjectForReview"]').click();
+	await bre.goto(`${B}/manageBookReviews`);
+	await bre.locator('#bookReviewManagerGridContainer a[id*="addAvailableObjectForReview"]').click();
 	const f = bre.locator('#availableObjectsForReviewForm');
 	await f.waitFor({ timeout: 15000 });
 	await bre.waitForTimeout(1500);
@@ -25,11 +25,11 @@ async function newOffer(title, mode, deadline) {
 	if (deadline) await f.locator('input[name=bidDeadline]').fill(deadline);
 	await f.locator('button.submitFormButton').click();
 	await bre.waitForTimeout(3000);
-	return sql(`SELECT object_id FROM objects_for_review_settings WHERE setting_name='title' AND setting_value LIKE '%${title}%' ORDER BY object_id DESC LIMIT 1`);
+	return sql(`SELECT object_id FROM brm_object_settings WHERE setting_name='title' AND setting_value LIKE '%${title}%' ORDER BY object_id DESC LIMIT 1`);
 }
 async function addPeople(id, queries) {
 	for (const q of queries) {
-		await bre.goto(`${B}/manageObjectsForReview/invite/${id}?q=${encodeURIComponent(q)}`);
+		await bre.goto(`${B}/manageBookReviews/invite/${id}?q=${encodeURIComponent(q)}`);
 		await Promise.all([bre.waitForNavigation(), bre.locator('button', { hasText: 'Add to list' }).first().click()]);
 	}
 }
@@ -46,12 +46,12 @@ let t = since();
 await Promise.all([bre.waitForNavigation({ timeout: 30000 }), form.locator('button.submitFormButton').click()]);
 let ms = mails(t);
 log('sent:', ms.map(m => `${m.to} | ${m.subject}`), '| deadline in mail:', ms.every(m => m.body.includes(deadline) || /\d/.test(m.body)));
-log('deadlines stored:', sql(`SELECT GROUP_CONCAT(DISTINCT s.setting_value) FROM objects_for_review_assignment_settings s JOIN objects_for_review_assignments a USING(assignment_id) WHERE a.object_id=${id} AND s.setting_name='invitationDeadline'`), '(bid deadline', deadline + ')');
+log('deadlines stored:', sql(`SELECT GROUP_CONCAT(DISTINCT s.setting_value) FROM brm_assignment_settings s JOIN brm_assignments a USING(assignment_id) WHERE a.object_id=${id} AND s.setting_name='invitationDeadline'`), '(bid deadline', deadline + ')');
 log('round box:', (await bre.locator('.ofrRound').innerText()).replace(/\s+/g, ' '));
 const links = { maria: linkFor(ms, 'maria.rossi'), jonas: linkFor(ms, 'reviewer2'), tom: linkFor(ms, 'tom.tester') };
 
 // To-do section
-await bre.goto(`${B}/manageObjectsForReview/desk`);
+await bre.goto(`${B}/manageBookReviews/desk`);
 log('To-do invitations:', (await bre.locator('h2', { hasText: /^Invitations$/ }).locator('xpath=following-sibling::table[1]').innerText()).replace(/\s+/g, ' ').slice(0, 400));
 await bre.screenshot({ path: IMG + 'todo-invitations.png', fullPage: true });
 
@@ -75,7 +75,7 @@ await Promise.all([bre.waitForNavigation(), bre.locator('button', { hasText: 'In
 log('invited new:', mails(t).map(m => `${m.to} | ${m.subject}`));
 
 // Select Maria: bidding closes, open invitations are withdrawn, the round ends
-await bre.goto(`${B}/manageObjectsForReview/desk`);
+await bre.goto(`${B}/manageBookReviews/desk`);
 await bre.locator('.ofrDeskItem', { hasText: 'Comparative Constitutionalism' }).locator('.ofrBidders tr', { hasText: 'Maria Rossi' }).locator('a', { hasText: 'Select and send contract' }).click();
 form = await modalForm(bre);
 await Promise.all([bre.waitForNavigation({ timeout: 20000 }), form.locator('button.submitFormButton').click()]);
@@ -104,7 +104,7 @@ await addPeople(id3, ['Becker', 'Rossi']);
 await bre.locator('a', { hasText: 'Start sequential round' }).click();
 form = await modalForm(bre);
 await Promise.all([bre.waitForNavigation({ timeout: 20000 }), form.locator('button.submitFormButton').click()]);
-await bre.goto(`${B}/manageObjectsForReview/desk`);
+await bre.goto(`${B}/manageBookReviews/desk`);
 const r3 = bre.locator('tr', { hasText: 'Law in Context' }).filter({ has: bre.locator('button', { hasText: 'Stop round' }) });
 log('To-do row:', (await r3.innerText()).replace(/\s+/g, ' ').slice(0, 220));
 await Promise.all([bre.waitForNavigation(), r3.locator('button', { hasText: 'Stop round' }).click()]);

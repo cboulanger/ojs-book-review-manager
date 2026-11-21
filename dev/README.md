@@ -34,12 +34,12 @@ Emails are not sent; they are written to the container log (`dev/ojs-dev.sh logs
 
 ```sh
 dev/ojs-dev.sh shell
-runuser -u www-data -- php lib/pkp/tools/scheduler.php test --name="APP\plugins\generic\objectsForReview\classes\ReservationReminder"
+runuser -u www-data -- php lib/pkp/tools/scheduler.php test --name="APP\plugins\generic\bookReviewManager\classes\ReservationReminder"
 ```
 
 Run it as `www-data`: as root it creates cache files that Apache can't write to afterwards (fix with `chown -R www-data:www-data cache`).
 
-To add the workflow accounts to an existing container: `php tools/devSetup.php users` (after copying `plugins/generic/objectsForReview/dev/devSetup.php` to `tools/`).
+To add the workflow accounts to an existing container: `php tools/devSetup.php users` (after copying `plugins/generic/bookReviewManager/dev/devSetup.php` to `tools/`).
 
 The plugin upgrades its own tables when it loads (`schemaVersion` plugin setting, see `ObjectsForReviewSchemaMigration::SCHEMA_VERSION`), so schema changes also reach existing installations.
 

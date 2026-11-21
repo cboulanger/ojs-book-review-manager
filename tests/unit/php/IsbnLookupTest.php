@@ -1,8 +1,8 @@
 <?php
 
-namespace APP\plugins\generic\objectsForReview\tests\unit;
+namespace APP\plugins\generic\bookReviewManager\tests\unit;
 
-use APP\plugins\generic\objectsForReview\classes\IsbnLookup;
+use APP\plugins\generic\bookReviewManager\classes\IsbnLookup;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 class IsbnLookupTest extends TestCase {

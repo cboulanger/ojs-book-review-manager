@@ -1,5 +1,5 @@
 {**
- * plugins/generic/objectsForReview/templates/reviewEssayForm.tpl
+ * plugins/generic/bookReviewManager/templates/reviewEssayForm.tpl
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
@@ -14,7 +14,7 @@
 	{rdelim});
 </script>
 
-{capture assign="actionUrl"}{url router=\PKP\core\PKPApplication::ROUTE_COMPONENT component="plugins.generic.objectsForReview.controllers.grid.ObjectsForReviewManagementGridHandler" op="updateReviewEssay" escape=false}{/capture}
+{capture assign="actionUrl"}{url router=\PKP\core\PKPApplication::ROUTE_COMPONENT component="plugins.generic.bookReviewManager.controllers.grid.ObjectsForReviewManagementGridHandler" op="updateReviewEssay" escape=false}{/capture}
 
 <form class="pkp_form" id="reviewEssayForm" method="post" action="{$actionUrl}">
 	{csrf}
@@ -23,18 +23,18 @@
 		<input type="hidden" name="objectId" value="{$containerId|escape}" />
 	{/if}
 	{fbvFormArea id="reviewEssayFormArea" class="border"}
-		{fbvFormSection label="plugins.generic.objectsForReview.reviewEssay.title" for="title" required=true}
+		{fbvFormSection label="plugins.generic.bookReviewManager.reviewEssay.title" for="title" required=true}
 			{fbvElement type="text" id="title" value=$title maxlength="255" inline=true multilingual=false size=$fbvStyles.size.LARGE}
 		{/fbvFormSection}
 
-		{fbvFormSection label="plugins.generic.objectsForReview.itemDescription" for="description"}
+		{fbvFormSection label="plugins.generic.bookReviewManager.itemDescription" for="description"}
 			{fbvElement type="textarea" multilingual=false name="description" id="description" value=$description rich=true height=$fbvStyles.height.SHORT}
 		{/fbvFormSection}
 
 		{if $containerId}
-			<p class="ofrHint">{translate key="plugins.generic.objectsForReview.reviewEssay.membersHint"}</p>
+			<p class="ofrHint">{translate key="plugins.generic.bookReviewManager.reviewEssay.membersHint"}</p>
 		{else}
-			{fbvFormSection label="plugins.generic.objectsForReview.reviewEssay.works" description="plugins.generic.objectsForReview.reviewEssay.works.description" for="objectIds" required=true}
+			{fbvFormSection label="plugins.generic.bookReviewManager.reviewEssay.works" description="plugins.generic.bookReviewManager.reviewEssay.works.description" for="objectIds" required=true}
 				{if $works}
 					<ul class="ofrEssayWorkChoice">
 						{foreach from=$works key=workId item=work}
@@ -42,11 +42,11 @@
 								<label>
 									<input type="checkbox" name="objectIds[]" value="{$workId|escape}"{if in_array($workId, $selectedIds)} checked="checked"{/if} />
 									{$work.citation|strip_unsafe_html}
-									{if $work.hasReviewer} <span class="ofrBadge">{translate key="plugins.generic.objectsForReview.reviewEssay.workHasReviewer"}</span>{/if}
+									{if $work.hasReviewer} <span class="ofrBadge">{translate key="plugins.generic.bookReviewManager.reviewEssay.workHasReviewer"}</span>{/if}
 								</label>
 								{if !$work.hasReviewer}
 									<div class="ofrEssayCopyPreference">
-										<label for="copyPreference-{$workId|escape}">{translate key="plugins.generic.objectsForReview.reviewEssay.copyPreference"}</label>
+										<label for="copyPreference-{$workId|escape}">{translate key="plugins.generic.bookReviewManager.reviewEssay.copyPreference"}</label>
 										<select id="copyPreference-{$workId|escape}" name="copyPreferences[{$workId|escape}]">
 											{html_options options=$copyPreferenceOptions selected=$work.copyPreference}
 										</select>
@@ -55,9 +55,9 @@
 							</li>
 						{/foreach}
 					</ul>
-					<p class="ofrHint ofrEssayCopyHint">{translate key="plugins.generic.objectsForReview.reviewEssay.copyPreferences.description"}</p>
+					<p class="ofrHint ofrEssayCopyHint">{translate key="plugins.generic.bookReviewManager.reviewEssay.copyPreferences.description"}</p>
 				{else}
-					<p>{translate key="plugins.generic.objectsForReview.reviewEssay.noWorks"}</p>
+					<p>{translate key="plugins.generic.bookReviewManager.reviewEssay.noWorks"}</p>
 				{/if}
 			{/fbvFormSection}
 			<script>
@@ -76,10 +76,10 @@
 			</script>
 
 			{fbvFormSection list=true}
-				{fbvElement type="checkbox" id="hidden" value="1" checked=$hidden label="plugins.generic.objectsForReview.reviewEssay.hidden"}
+				{fbvElement type="checkbox" id="hidden" value="1" checked=$hidden label="plugins.generic.bookReviewManager.reviewEssay.hidden"}
 			{/fbvFormSection}
-			<p class="ofrHint">{translate key="plugins.generic.objectsForReview.reviewEssay.endsBidsNotice"}</p>
-			<p class="ofrHint">{translate key="plugins.generic.objectsForReview.reviewEssay.emailNotice"}</p>
+			<p class="ofrHint">{translate key="plugins.generic.bookReviewManager.reviewEssay.endsBidsNotice"}</p>
+			<p class="ofrHint">{translate key="plugins.generic.bookReviewManager.reviewEssay.emailNotice"}</p>
 		{/if}
 	{/fbvFormArea}
 

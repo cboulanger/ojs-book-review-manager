@@ -1,5 +1,5 @@
 {**
- * plugins/generic/objectsForReview/templates/reviewObjectsForReview.tpl
+ * plugins/generic/bookReviewManager/templates/reviewObjectsForReview.tpl
  *
  * Copyright (c) 2014-2026 Simon Fraser University
  * Copyright (c) 2003-2026 John Willinsky
@@ -10,11 +10,11 @@
  *}
 <div class="submissionWizard__reviewPanel">
     <div class="submissionWizard__reviewPanel__header">
-        <h3 id="review-plugin-objects-for-review">
-            {translate key="plugins.generic.objectsForReview.submissionWizard.name"}
+        <h3 id="review-plugin-book-review-manager">
+            {translate key="plugins.generic.bookReviewManager.submissionWizard.name"}
         </h3>
         <pkp-button
-            aria-describedby="review-plugin-objects-for-review"
+            aria-describedby="review-plugin-book-review-manager"
             class="submissionWizard__reviewPanel__edit"
             @click="openStep('{$step.id}')"
         >
@@ -26,13 +26,13 @@
             <thead>
                 <tr>
                     <th>
-                        {translate key="plugins.generic.objectsForReview.objectsForReviewTitle"}
+                        {translate key="plugins.generic.bookReviewManager.bookReviewManagerTitle"}
                     </th>
                 </tr>
             </thead>
             <tbody>
                 <tr
-                    v-for="objectForReview in objectsForReview"
+                    v-for="objectForReview in bookReviewManager"
                     :key="objectForReview.id"
                     class="submissionWizard__reviewPanel__item__value"
                 >

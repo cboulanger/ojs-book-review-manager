@@ -1,13 +1,13 @@
 <?php
 
-namespace APP\plugins\generic\objectsForReview\tests\unit;
+namespace APP\plugins\generic\bookReviewManager\tests\unit;
 
-use APP\plugins\generic\objectsForReview\classes\ActionLink;
+use APP\plugins\generic\bookReviewManager\classes\ActionLink;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Framework\Attributes\Group;
 
 /**
- * One-click links: hashed, expiring, single use. Writes to objects_for_review_links
+ * One-click links: hashed, expiring, single use. Writes to brm_links
  * with an assignment id no real assignment has, and removes the rows afterwards.
  */
 #[Group('db')]

@@ -11,7 +11,7 @@
  * Usage:
  *   php tools/devSetup.php install         Install OJS (database + config.inc.php)
  *   php tools/devSetup.php journal         Create the test journal and an author account
- *   php tools/devSetup.php enable-plugin   Install and enable objectsForReview in all journals
+ *   php tools/devSetup.php enable-plugin   Install and enable bookReviewManager in all journals
  *
  * Settings are read from environment variables (see Containerfile).
  */
@@ -166,12 +166,12 @@ class DevSetupTool extends \PKP\cliTool\CommandLineTool
 	{
 		$context = Application::getContextDAO()->getByPath(devEnv('OJS_JOURNAL_PATH', 'test'));
 		\PKP\plugins\PluginRegistry::loadCategory('generic', true, $context->getId());
-		$plugin = \PKP\plugins\PluginRegistry::getPlugin('generic', 'ObjectsForReviewPlugin');
-		$editorGroupId = \APP\plugins\generic\objectsForReview\classes\Roles::getGroupId($plugin, $context->getId(), 'bookReviewEditor');
+		$plugin = \PKP\plugins\PluginRegistry::getPlugin('generic', 'BookReviewManagerPlugin');
+		$editorGroupId = \APP\plugins\generic\bookReviewManager\classes\Roles::getGroupId($plugin, $context->getId(), 'bookReviewEditor');
 		$authorGroupId = UserGroup::withContextIds([$context->getId()])->withRoleIds([Role::ROLE_ID_AUTHOR])->isDefault(true)->firstOrFail()->userGroupId;
 		$this->createUser($context, 'bre', 'ojsbre', 'Book Review', 'Editor', 'bre@example.org', $editorGroupId);
 		$this->createUser($context, 'reviewer2', 'ojsreviewer2', 'Second', 'Reviewer', 'reviewer2@example.org', $authorGroupId);
-		$publisherGroupId = \APP\plugins\generic\objectsForReview\classes\Roles::getGroupId($plugin, $context->getId(), 'publisherContact');
+		$publisherGroupId = \APP\plugins\generic\bookReviewManager\classes\Roles::getGroupId($plugin, $context->getId(), 'publisherContact');
 		$this->createUser($context, 'publisher', 'ojspublisher', 'Paula', 'Publisher', 'publisher@example.org', $publisherGroupId,
 			'Test Press', "Test Press\nReview Copies\nPublisher Lane 5\n54321 Press Town");
 	}
@@ -201,15 +201,15 @@ class DevSetupTool extends \PKP\cliTool\CommandLineTool
 	}
 
 	/**
-	 * Enable objectsForReview in every journal (the schema is installed by installPluginVersion.php).
+	 * Enable bookReviewManager in every journal (the schema is installed by installPluginVersion.php).
 	 */
 	protected function enablePlugin()
 	{
 		$pluginSettingsDao = DAORegistry::getDAO('PluginSettingsDAO');
 		$contexts = Application::getContextDAO()->getAll();
 		while ($context = $contexts->next()) {
-			$pluginSettingsDao->updateSetting($context->getId(), 'objectsforreviewplugin', 'enabled', true, 'bool');
-			echo "Enabled objectsForReview in journal '{$context->getPath()}'.\n";
+			$pluginSettingsDao->updateSetting($context->getId(), 'bookreviewmanagerplugin', 'enabled', true, 'bool');
+			echo "Enabled bookReviewManager in journal '{$context->getPath()}'.\n";
 		}
 	}
 }

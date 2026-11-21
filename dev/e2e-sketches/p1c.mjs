@@ -1,5 +1,5 @@
 import { B, OUT, browser, login, anonymous, since, mails, linkIn, modalForm, bodyText } from './lib.mjs';
-const objectRow = p => p.locator('#objects-for-review-table tr', { hasText: 'A bidding test book' });
+const objectRow = p => p.locator('#book-review-manager-table tr', { hasText: 'A bidding test book' });
 const status = async p => (await objectRow(p).locator('td').last().innerText()).replace(/\s+/g, ' ').trim();
 
 const offerMail = mails(new Date(Date.now() - 30 * 60e3).toISOString()).filter(m => /selected to review/.test(m.subject)).pop();
@@ -26,13 +26,13 @@ await anon.goto(link);
 console.log('link reused:', await anon.locator('h1').innerText());
 
 const author = await login('author', 'ojsauthor');
-await author.goto(`${B}/for-review`);
+await author.goto(`${B}/books-for-review`);
 console.log('author status:', await status(author));
 
 // Editor: notify the unsuccessful bidder
 const bre = await login('bre', 'ojsbre');
-await bre.goto(`${B}/manageObjectsForReview/desk`);
-console.log('desk:', (await bre.locator('.objectsForReviewManagement').innerText()).replace(/\s+/g, ' ').slice(0, 260));
+await bre.goto(`${B}/manageBookReviews/desk`);
+console.log('desk:', (await bre.locator('.bookReviewManagerManagement').innerText()).replace(/\s+/g, ' ').slice(0, 260));
 await bre.locator('.ofrTable tr', { hasText: 'A bidding test book' }).locator('a', { hasText: 'Notify bidders' }).click();
 const form = await modalForm(bre);
 console.log('to:', await form.locator('.ofrRecipient').allInnerTexts(), '| send email checked:', await form.locator('input[name=sendEmail]').isChecked());
@@ -43,12 +43,12 @@ await Promise.all([bre.waitForNavigation({ timeout: 20000 }), form.locator('butt
 const unsucc = mails(t3);
 console.log('unsuccessful mails:', unsucc.map(m => `${m.to} | ${m.subject}`));
 console.log('personalised:', /Dear Second Reviewer/.test(unsucc[0]?.body), '| leave link:', !!linkIn(unsucc[0]?.body || ''));
-console.log('desk now:', (await bre.locator('.objectsForReviewManagement').innerText()).replace(/\s+/g, ' ').slice(0, 120));
+console.log('desk now:', (await bre.locator('.bookReviewManagerManagement').innerText()).replace(/\s+/g, ' ').slice(0, 120));
 
 const r2 = await login('reviewer2', 'ojsreviewer2');
-await r2.goto(`${B}/for-review`);
+await r2.goto(`${B}/books-for-review`);
 console.log('reviewer2 status:', await status(r2));
-await bre.goto(`${B}/manageObjectsForReview/assignments?status=all`);
+await bre.goto(`${B}/manageBookReviews/assignments?status=all`);
 console.log('assignments page:', (await bre.locator('.ofrTable tbody tr').allInnerTexts()).filter(t => t.includes('bidding test')).map(t => t.replace(/\s+/g, ' ').slice(0, 160)));
 await bre.screenshot({ path: OUT + 'p1-assignments.png', fullPage: true });
 await browser.close();

@@ -8,7 +8,7 @@ function mockFetch(routes) {
   const calls = [];
   const fetch = async (url, init) => {
     const u = new URL(url);
-    const path = u.pathname.replace(/^.*\/api\/v1\/objectsForReview/, '');
+    const path = u.pathname.replace(/^.*\/api\/v1\/bookReviewManager/, '');
     calls.push({ method: init.method, path, query: Object.fromEntries(u.searchParams), headers: init.headers,
       body: init.body ? JSON.parse(init.body) : undefined });
     const route = routes.find(([method, p]) => method === init.method && (typeof p === 'string' ? p === path : p.test(path)));
@@ -36,8 +36,8 @@ test('builds the API URL and sends the token as Bearer header or query parameter
   await client(fetch, { tokenInQuery: true }).listObjects();
   assert.equal(calls[1].query.apiToken, 'T');
   assert.equal(calls[1].headers.Authorization, undefined);
-  assert.equal(new ObjectsForReviewClient({ url: 'https://x/index.php/j/api/v1/objectsForReview', token: 'T' }).apiUrl,
-    'https://x/index.php/j/api/v1/objectsForReview');
+  assert.equal(new ObjectsForReviewClient({ url: 'https://x/index.php/j/api/v1/bookReviewManager', token: 'T' }).apiUrl,
+    'https://x/index.php/j/api/v1/bookReviewManager');
 });
 
 test('errors carry status and code', async () => {
@@ -76,7 +76,7 @@ test('review essays: create, add and remove works', async () => {
 
 test('review essays: rule violations carry code and reason', async () => {
   const { fetch } = mockFetch([['POST', '/bundles', 409, { error: 'cannot_combine', errorMessage: 'Only one reviewer.',
-    reason: 'plugins.generic.objectsForReview.reviewEssay.error.twoReviewers' }]]);
+    reason: 'plugins.generic.bookReviewManager.reviewEssay.error.twoReviewers' }]]);
   await assert.rejects(client(fetch).createBundle({ title: 'E', objectIds: [1, 2] }), (error) => {
     assert.equal(error.status, 409);
     assert.equal(error.code, 'cannot_combine');

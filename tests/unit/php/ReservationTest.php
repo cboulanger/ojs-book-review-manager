@@ -1,9 +1,9 @@
 <?php
 
-namespace APP\plugins\generic\objectsForReview\tests\unit;
+namespace APP\plugins\generic\bookReviewManager\tests\unit;
 
-use APP\plugins\generic\objectsForReview\classes\Assignment;
-use APP\plugins\generic\objectsForReview\classes\Reservation;
+use APP\plugins\generic\bookReviewManager\classes\Assignment;
+use APP\plugins\generic\bookReviewManager\classes\Reservation;
 
 class ReservationTest extends TestCase {
 
@@ -30,11 +30,11 @@ class ReservationTest extends TestCase {
 	public function testDueDateFormatAndRange(): void {
 		foreach (['2027-3-1', '01.03.2027', '2027-02-30', ''] as $bad) {
 			[$errors] = Reservation::validate($this->valid(['dueDate' => $bad]), $this->range);
-			$this->assertSame('plugins.generic.objectsForReview.reserve.error.dueDate', $errors['dueDate'] ?? null, $bad);
+			$this->assertSame('plugins.generic.bookReviewManager.reserve.error.dueDate', $errors['dueDate'] ?? null, $bad);
 		}
 		foreach (['2027-01-01', '2027-06-02'] as $outside) {
 			[$errors] = Reservation::validate($this->valid(['dueDate' => $outside]), $this->range);
-			$this->assertSame('plugins.generic.objectsForReview.reserve.error.dueDateRange', $errors['dueDate'] ?? null, $outside);
+			$this->assertSame('plugins.generic.bookReviewManager.reserve.error.dueDateRange', $errors['dueDate'] ?? null, $outside);
 		}
 		foreach (['2027-01-02', '2027-06-01'] as $edge) {
 			[$errors] = Reservation::validate($this->valid(['dueDate' => $edge]), $this->range);
@@ -132,7 +132,7 @@ class ReservationTest extends TestCase {
 		$members = [$this->object(['objectId' => 5]), $this->object(['objectId' => 6])];
 		foreach ([['5' => 'have'], ['5' => 'have', '6' => 'pdf'], [], null] as $preferences) {
 			[$errors, $data] = Reservation::validate($this->valid(['copyPreferences' => $preferences]), $this->range, $members);
-			$this->assertSame('plugins.generic.objectsForReview.reserve.error.copyPreference', $errors['copyPreference'] ?? null, json_encode($preferences));
+			$this->assertSame('plugins.generic.bookReviewManager.reserve.error.copyPreference', $errors['copyPreference'] ?? null, json_encode($preferences));
 			$this->assertNull($data['copyPreferences']);
 		}
 		[$errors] = Reservation::validate($this->valid(['copyPreferences' => ['5' => 'physical']]), $this->range, $members);
@@ -155,7 +155,7 @@ class ReservationTest extends TestCase {
 		$assignment = $this->assignment(Assignment::STATUS_ACCEPTED, ['copyPreferences' => [999999901 => 'physical', 999999902 => 'have']]);
 		$label = (string) Reservation::getDisplayData($assignment)['copyPreferenceLabel'];
 		$this->assertCount(2, explode("\n", $label));
-		$this->assertStringContainsString(__('plugins.generic.objectsForReview.reserve.copy.physical'), $label);
-		$this->assertStringContainsString(__('plugins.generic.objectsForReview.reserve.copy.have'), $label);
+		$this->assertStringContainsString(__('plugins.generic.bookReviewManager.reserve.copy.physical'), $label);
+		$this->assertStringContainsString(__('plugins.generic.bookReviewManager.reserve.copy.have'), $label);
 	}
 }

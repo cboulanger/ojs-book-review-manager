@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/classes/ReservationReminder.php
+ * @file plugins/generic/bookReviewManager/classes/ReservationReminder.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ReservationReminder
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief Daily task:
  *  - remind reviewers a configurable number of days before their review is due,
@@ -16,7 +16,7 @@
  *  Emails are recorded in the audit trail.
  */
 
-namespace APP\plugins\generic\objectsForReview\classes;
+namespace APP\plugins\generic\bookReviewManager\classes;
 
 use APP\core\Application;
 use APP\facades\Repo;
@@ -31,19 +31,19 @@ class ReservationReminder extends ScheduledTask {
 	 * @copydoc ScheduledTask::getName()
 	 */
 	public function getName(): string {
-		return __('plugins.generic.objectsForReview.reminder.taskName');
+		return __('plugins.generic.bookReviewManager.reminder.taskName');
 	}
 
 	/**
 	 * @copydoc ScheduledTask::executeActions()
 	 */
 	protected function executeActions(): bool {
-		$plugin = PluginRegistry::getPlugin('generic', 'ObjectsForReviewPlugin');
+		$plugin = PluginRegistry::getPlugin('generic', 'BookReviewManagerPlugin');
 		$pluginSettingsDao = DAORegistry::getDAO('PluginSettingsDAO');
 
 		$contexts = Application::getContextDAO()->getAll(true);
 		while ($context = $contexts->next()) {
-			if (!$pluginSettingsDao->getSetting($context->getId(), 'objectsforreviewplugin', 'enabled')) {
+			if (!$pluginSettingsDao->getSetting($context->getId(), 'bookreviewmanagerplugin', 'enabled')) {
 				continue;
 			}
 			ReservationMailer::ensureTemplates($plugin, $context->getId());
@@ -52,7 +52,7 @@ class ReservationReminder extends ScheduledTask {
 				'publisherReminders' => $this->sendPublisherReminders($plugin, $context),
 			] + $this->processInvitations($plugin, $context) + $this->processContractOffers($plugin, $context);
 			if (array_sum($counts)) {
-				$this->addExecutionLogEntry(__('plugins.generic.objectsForReview.reminder.sent', $counts + ['context' => $context->getLocalizedName()]));
+				$this->addExecutionLogEntry(__('plugins.generic.bookReviewManager.reminder.sent', $counts + ['context' => $context->getLocalizedName()]));
 			}
 		}
 		return true;

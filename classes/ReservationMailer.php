@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/classes/ReservationMailer.php
+ * @file plugins/generic/bookReviewManager/classes/ReservationMailer.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ReservationMailer
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief Emails about an object for review (to bidders and reviewers, and
  *  notices to the responsible book review editor), based on editable email
@@ -17,20 +17,20 @@
  *  placeholders in the editable text and are filled in by send().
  */
 
-namespace APP\plugins\generic\objectsForReview\classes;
+namespace APP\plugins\generic\bookReviewManager\classes;
 
 use APP\core\Application;
 use APP\facades\Repo;
-use APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewBidNew;
-use APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewBidUnsuccessful;
-use APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewCancelByEditor;
-use APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewContractDeclined;
-use APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewContractOffer;
-use APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewContractOfferAgain;
-use APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewContractReminder;
-use APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewMessage;
-use APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewReminder;
-use APP\plugins\generic\objectsForReview\pages\ObjectsForReviewManagementHandler;
+use APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewBidNew;
+use APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewBidUnsuccessful;
+use APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewCancelByEditor;
+use APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewContractDeclined;
+use APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewContractOffer;
+use APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewContractOfferAgain;
+use APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewContractReminder;
+use APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewMessage;
+use APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewReminder;
+use APP\plugins\generic\bookReviewManager\pages\ObjectsForReviewManagementHandler;
 use Illuminate\Support\Facades\Mail;
 use PKP\core\PKPString;
 use PKP\user\User;
@@ -47,19 +47,19 @@ class ReservationMailer {
 		ReservationEmailEventType::BID_UNSUCCESSFUL->value => ObjectsForReviewBidUnsuccessful::class,
 		ReservationEmailEventType::BID_NEW->value => ObjectsForReviewBidNew::class,
 		ReservationEmailEventType::CONTRACT_DECLINED->value => ObjectsForReviewContractDeclined::class,
-		ReservationEmailEventType::COPY_REQUEST->value => \APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewCopyRequest::class,
-		ReservationEmailEventType::COPY_SENT->value => \APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewCopySent::class,
-		ReservationEmailEventType::RETURN_REQUEST->value => \APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewReturnRequest::class,
-		ReservationEmailEventType::RETURN_SENT->value => \APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewReturnSent::class,
-		ReservationEmailEventType::PUBLISHER_NOTIFICATION->value => \APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewPublisherNotification::class,
-		ReservationEmailEventType::COPY_REQUEST_REMINDER->value => \APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewCopyRequestReminder::class,
-		ReservationEmailEventType::CONFIRMATION->value => \APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewConfirmation::class,
-		ReservationEmailEventType::INVITATION_RESERVE->value => \APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewInvitationReserve::class,
-		ReservationEmailEventType::INVITATION_BID->value => \APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewInvitationBid::class,
-		ReservationEmailEventType::INVITATION_DECLINED->value => \APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewInvitationDeclined::class,
-		ReservationEmailEventType::INVITATION_REMINDER->value => \APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewInvitationReminder::class,
-		ReservationEmailEventType::INVITATION_EXHAUSTED->value => \APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewInvitationExhausted::class,
-		ReservationEmailEventType::ESSAY_CHANGED->value => \APP\plugins\generic\objectsForReview\mailables\ObjectsForReviewEssayChanged::class,
+		ReservationEmailEventType::COPY_REQUEST->value => \APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewCopyRequest::class,
+		ReservationEmailEventType::COPY_SENT->value => \APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewCopySent::class,
+		ReservationEmailEventType::RETURN_REQUEST->value => \APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewReturnRequest::class,
+		ReservationEmailEventType::RETURN_SENT->value => \APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewReturnSent::class,
+		ReservationEmailEventType::PUBLISHER_NOTIFICATION->value => \APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewPublisherNotification::class,
+		ReservationEmailEventType::COPY_REQUEST_REMINDER->value => \APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewCopyRequestReminder::class,
+		ReservationEmailEventType::CONFIRMATION->value => \APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewConfirmation::class,
+		ReservationEmailEventType::INVITATION_RESERVE->value => \APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewInvitationReserve::class,
+		ReservationEmailEventType::INVITATION_BID->value => \APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewInvitationBid::class,
+		ReservationEmailEventType::INVITATION_DECLINED->value => \APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewInvitationDeclined::class,
+		ReservationEmailEventType::INVITATION_REMINDER->value => \APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewInvitationReminder::class,
+		ReservationEmailEventType::INVITATION_EXHAUSTED->value => \APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewInvitationExhausted::class,
+		ReservationEmailEventType::ESSAY_CHANGED->value => \APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewEssayChanged::class,
 	];
 
 	/** Placeholders filled in by send(), per recipient */
@@ -111,7 +111,7 @@ class ReservationMailer {
 			'contractDeadline' => $formatDate($assignment?->getData('contractDeadline')),
 			'contextName' => htmlspecialchars($context->getLocalizedName($locale)),
 			'senderName' => htmlspecialchars($sender ? $sender->getFullName() : $context->getData('contactName')),
-			'forReviewUrl' => $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $context->getPath(), 'for-review'),
+			'forReviewUrl' => $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $context->getPath(), \APP\plugins\generic\bookReviewManager\pages\ObjectsForReviewHandler::PAGE),
 			'deskUrl' => $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $context->getPath(),
 				ObjectsForReviewManagementHandler::PAGE, 'desk'),
 		];
@@ -151,7 +151,7 @@ class ReservationMailer {
 			$url = ActionLink::url($context, ActionLink::create($assignment->getId(), $action, $expires));
 			$late[$variable] = $url;
 			if (!str_contains($body, '{$' . $variable . '}')) {
-				$label = __('plugins.generic.objectsForReview.' . $labelKey, [], $context->getPrimaryLocale());
+				$label = __('plugins.generic.bookReviewManager.' . $labelKey, [], $context->getPrimaryLocale());
 				$body .= '<p>' . htmlspecialchars($label) . ':<br /><a href="{$' . $variable . '}">{$' . $variable . '}</a></p>';
 			}
 		}

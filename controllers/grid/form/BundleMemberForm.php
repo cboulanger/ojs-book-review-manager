@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/controllers/grid/form/BundleMemberForm.php
+ * @file plugins/generic/bookReviewManager/controllers/grid/form/BundleMemberForm.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class BundleMemberForm
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief Add a work to a review essay that is not submitted yet:
  *  - add mode (row action of a review essay): choose the work;
@@ -15,16 +15,16 @@
  *  preference for the work, and the reviewer is emailed.
  */
 
-namespace APP\plugins\generic\objectsForReview\controllers\grid\form;
+namespace APP\plugins\generic\bookReviewManager\controllers\grid\form;
 
 use APP\core\Application;
-use APP\plugins\generic\objectsForReview\classes\Assignment;
-use APP\plugins\generic\objectsForReview\classes\AssignmentWorkflow;
-use APP\plugins\generic\objectsForReview\classes\BundleWorkflow;
-use APP\plugins\generic\objectsForReview\classes\ObjectForReview;
-use APP\plugins\generic\objectsForReview\classes\ObjectForReviewDAO;
-use APP\plugins\generic\objectsForReview\classes\Reservation;
-use APP\plugins\generic\objectsForReview\classes\ReservationMailer;
+use APP\plugins\generic\bookReviewManager\classes\Assignment;
+use APP\plugins\generic\bookReviewManager\classes\AssignmentWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\BundleWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\ObjectForReview;
+use APP\plugins\generic\bookReviewManager\classes\ObjectForReviewDAO;
+use APP\plugins\generic\bookReviewManager\classes\Reservation;
+use APP\plugins\generic\bookReviewManager\classes\ReservationMailer;
 use APP\template\TemplateManager;
 use PKP\form\validation\FormValidatorCSRF;
 use PKP\form\validation\FormValidatorCustom;
@@ -56,9 +56,9 @@ class BundleMemberForm extends \PKP\form\Form {
 		$this->work = $container ? null : $work;
 
 		$this->addCheck(new FormValidatorCustom($this, $this->getMode() === self::MODE_ADD ? 'workId' : 'containerId', 'required',
-			'plugins.generic.objectsForReview.reviewEssay.selectRequired',
+			'plugins.generic.bookReviewManager.reviewEssay.selectRequired',
 			fn ($id) => isset(($this->getMode() === self::MODE_ADD ? $this->getWorks() : $this->getContainers())[(int) $id])));
-		$this->addCheck(new FormValidatorCustom($this, 'copyPreference', 'optional', 'plugins.generic.objectsForReview.reviewEssay.selectRequired',
+		$this->addCheck(new FormValidatorCustom($this, 'copyPreference', 'optional', 'plugins.generic.bookReviewManager.reviewEssay.selectRequired',
 			fn ($preference) => in_array($preference, Reservation::COPY_PREFERENCES, true)));
 		$this->addCheck(new FormValidatorPost($this));
 		$this->addCheck(new FormValidatorCSRF($this));

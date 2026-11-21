@@ -17,18 +17,18 @@ const iso = d => d.toISOString().slice(0, 10);
 const addMonths = n => { const d = new Date(); d.setHours(12); d.setMonth(d.getMonth() + n); return iso(d); };
 
 async function saveSettings(admin, def, max) {
-	await admin.goto(`${B}/manageObjectsForReview/settings`);
+	await admin.goto(`${B}/manageBookReviews/settings`);
 	const form = admin.locator('#orSettingsForm');
 	await form.waitFor();
 	await form.locator('input[name=ofrDueMonthsDefault]').fill(String(def));
 	await form.locator('input[name=ofrDueMonthsMax]').fill(String(max));
 	await form.locator('button.submitFormButton').click();
 	await admin.waitForTimeout(2500);
-	return (await admin.locator('#objectsForReviewSettingsContainer').innerText()).replace(/\s+/g, ' ');
+	return (await admin.locator('#bookReviewManagerSettingsContainer').innerText()).replace(/\s+/g, ' ');
 }
 
 const admin = await login('admin', 'ojsadmin');
-await admin.goto(`${B}/manageObjectsForReview/settings`);
+await admin.goto(`${B}/manageBookReviews/settings`);
 await admin.locator('#orSettingsForm').waitFor();
 console.log('defaults shown:', await admin.locator('input[name=ofrDueMonthsDefault]').inputValue(), await admin.locator('input[name=ofrDueMonthsMax]').inputValue());
 console.log('contract prefilled (de):', (await admin.evaluate(() => {
@@ -41,7 +41,7 @@ console.log('invalid (5 > 2) error shown:', /ganze Monatszahlen/.test(invalid));
 await saveSettings(admin, 1, 2);
 
 const author = await login('author', 'ojsauthor');
-await author.goto(`${B}/for-review`);
+await author.goto(`${B}/books-for-review`);
 const btn = author.locator('.ofrReserveButton[data-object-id="6"]');
 await btn.click();
 const due = author.locator('#ofrReserveDialog input[name=dueDate]');

@@ -1,5 +1,5 @@
 {**
- * plugins/generic/objectsForReview/templates/frontend/pages/forReview.tpl
+ * plugins/generic/bookReviewManager/templates/frontend/pages/forReview.tpl
  *
  * Copyright (c) 2014-2019 Simon Fraser University
  * Copyright (c) 2003-2019 John Willinsky
@@ -8,32 +8,32 @@
  * The template used for listing available objects for review
  *}
 
-{include file="frontend/components/header.tpl" pageTitle="plugins.generic.objectsForReview.frontendTitle"}
+{include file="frontend/components/header.tpl" pageTitle="plugins.generic.bookReviewManager.frontendTitle"}
 
 <script type="text/javascript">
   window.addEventListener('DOMContentLoaded', function(){ldelim}
-    new Tablesort(document.getElementById('objects-for-review-table'));
+    new Tablesort(document.getElementById('book-review-manager-table'));
   {rdelim});
 </script>
 
-<div class="page objectsForReview">
-  {include file="frontend/components/breadcrumbs.tpl" currentTitleKey="plugins.generic.objectsForReview.frontendTitle"}
+<div class="page bookReviewManager">
+  {include file="frontend/components/breadcrumbs.tpl" currentTitleKey="plugins.generic.bookReviewManager.frontendTitle"}
 
   <p>{$instructions|strip_unsafe_html}</p>
 
   {if !$currentUser}
-    <p>{translate key='plugins.generic.objectsForReview.logInToReserve'}</p>
+    <p>{translate key='plugins.generic.bookReviewManager.logInToReserve'}</p>
   {/if}
 
-		<table id="objects-for-review-table" style="width:100%">
+		<table id="book-review-manager-table" style="width:100%">
       <tr data-sort-method='none'>
-        <th>{translate key="plugins.generic.objectsForReview.itemTitle"}</th>
-        <th>{translate key="plugins.generic.objectsForReview.itemAuthors"}</th>
-        <th>{translate key="plugins.generic.objectsForReview.itemPublisher"}</th>
-        <th>{translate key="plugins.generic.objectsForReview.itemYearShort"}</th>
+        <th>{translate key="plugins.generic.bookReviewManager.itemTitle"}</th>
+        <th>{translate key="plugins.generic.bookReviewManager.itemAuthors"}</th>
+        <th>{translate key="plugins.generic.bookReviewManager.itemPublisher"}</th>
+        <th>{translate key="plugins.generic.bookReviewManager.itemYearShort"}</th>
         <th></th> 
       </tr>
-			{foreach from=$objectsForReview item=objectForReview}
+			{foreach from=$bookReviewManager item=objectForReview}
       <tr>
 				<td data-sort="{$objectForReview.title|escape}">
             {$objectForReview.title|escape}
@@ -48,13 +48,13 @@
                       {$member.citation|escape}
                     {/if}
                     {if $member.copyStatus && $member.copyStatus != 'notNeeded' && $member.copyStatus != 'received'}
-                      <span class="ofrMyStatus ofrCopyStatus">{translate key="plugins.generic.objectsForReview.copy.reviewerStatus.`$member.copyStatus`"}</span>
+                      <span class="ofrMyStatus ofrCopyStatus">{translate key="plugins.generic.bookReviewManager.copy.reviewerStatus.`$member.copyStatus`"}</span>
                     {/if}
                     {if $member.copyStatus == 'sent'}
                       <form class="pkp_form" method="post" action="{url op="confirmReceipt"}">
                         {csrf}
                         <input type="hidden" name="objectId" value="{$member.id|escape}" />
-                        <button type="submit" class="pkp_button ofrReceivedButton">{translate key='plugins.generic.objectsForReview.copy.confirmReceipt'}</button>
+                        <button type="submit" class="pkp_button ofrReceivedButton">{translate key='plugins.generic.bookReviewManager.copy.confirmReceipt'}</button>
                       </form>
                     {/if}
                   </li>
@@ -87,52 +87,52 @@
           {if $o.myStatus == 'accepted'}
             {* The current user's reservation: due date and cancel button *}
             {if $o.dueDate}
-              <p class="ofrDueDate">{translate key="plugins.generic.objectsForReview.reserve.yourDueDate" dueDate=$o.dueDate|date_format:$dateFormatShort}</p>
+              <p class="ofrDueDate">{translate key="plugins.generic.bookReviewManager.reserve.yourDueDate" dueDate=$o.dueDate|date_format:$dateFormatShort}</p>
             {/if}
             {if $o.copyStatus && $o.copyStatus != 'notNeeded' && $o.copyStatus != 'received'}
-              <p class="ofrMyStatus ofrCopyStatus">{translate key="plugins.generic.objectsForReview.copy.reviewerStatus.`$o.copyStatus`"}</p>
+              <p class="ofrMyStatus ofrCopyStatus">{translate key="plugins.generic.bookReviewManager.copy.reviewerStatus.`$o.copyStatus`"}</p>
             {/if}
             {if $o.copyStatus == 'sent'}
               <form class="pkp_form" method="post" action="{url op="confirmReceipt"}">
                 {csrf}
                 <input type="hidden" name="objectId" value="{$o.objectId|escape}" />
-                <button type="submit" class="pkp_button ofrReceivedButton">{translate key='plugins.generic.objectsForReview.copy.confirmReceipt'}</button>
+                <button type="submit" class="pkp_button ofrReceivedButton">{translate key='plugins.generic.bookReviewManager.copy.confirmReceipt'}</button>
               </form>
             {/if}
-            <form class="pkp_form" id="cancelObjectForm-{$o.objectId|escape}" method="post" action="{url op="cancelObject"}" onsubmit="return confirm('{translate|escape:"javascript"|escape key="plugins.generic.objectsForReview.cancel.confirm"}');">
+            <form class="pkp_form" id="cancelObjectForm-{$o.objectId|escape}" method="post" action="{url op="cancelObject"}" onsubmit="return confirm('{translate|escape:"javascript"|escape key="plugins.generic.bookReviewManager.cancel.confirm"}');">
               {csrf}
               <input type="hidden" name="objectId" value="{$o.objectId|escape}" />
-              <button type="submit" id="cancelObject-{$o.objectId|escape}" class="pkp_button pkp_button_offset">{translate key='plugins.generic.objectsForReview.cancel'}</button>
+              <button type="submit" id="cancelObject-{$o.objectId|escape}" class="pkp_button pkp_button_offset">{translate key='plugins.generic.bookReviewManager.cancel'}</button>
             </form>
           {elseif $o.myStatus == 'offered'}
             {* Selected bidder: respond to the contract offer *}
-            <p class="ofrMyStatus">{translate key="plugins.generic.objectsForReview.bid.selected" deadline=$o.contractDeadline|date_format:$dateFormatShort}</p>
-            <a class="pkp_button ofrRespondButton" href="{url op="contract" objectId=$o.objectId}">{translate key="plugins.generic.objectsForReview.bid.respond"}</a>
+            <p class="ofrMyStatus">{translate key="plugins.generic.bookReviewManager.bid.selected" deadline=$o.contractDeadline|date_format:$dateFormatShort}</p>
+            <a class="pkp_button ofrRespondButton" href="{url op="contract" objectId=$o.objectId}">{translate key="plugins.generic.bookReviewManager.bid.respond"}</a>
           {elseif $o.myStatus == 'bid' || $o.myStatus == 'unsuccessful'}
             {* The current user's bid *}
-            <p class="ofrMyStatus">{if $o.myStatus == 'bid'}{translate key="plugins.generic.objectsForReview.bid.yours" date=$o.myDate|date_format:$dateFormatShort}{else}{translate key="plugins.generic.objectsForReview.bid.unsuccessful"}{/if}</p>
-            <form class="pkp_form" method="post" action="{url op="withdrawBid"}" onsubmit="return confirm('{translate|escape:"javascript"|escape key="plugins.generic.objectsForReview.bid.withdraw.confirm"}');">
+            <p class="ofrMyStatus">{if $o.myStatus == 'bid'}{translate key="plugins.generic.bookReviewManager.bid.yours" date=$o.myDate|date_format:$dateFormatShort}{else}{translate key="plugins.generic.bookReviewManager.bid.unsuccessful"}{/if}</p>
+            <form class="pkp_form" method="post" action="{url op="withdrawBid"}" onsubmit="return confirm('{translate|escape:"javascript"|escape key="plugins.generic.bookReviewManager.bid.withdraw.confirm"}');">
               {csrf}
               <input type="hidden" name="objectId" value="{$o.objectId|escape}" />
-              <button type="submit" class="pkp_button pkp_button_offset ofrWithdrawButton">{translate key='plugins.generic.objectsForReview.bid.withdraw'}</button>
+              <button type="submit" class="pkp_button pkp_button_offset ofrWithdrawButton">{translate key='plugins.generic.bookReviewManager.bid.withdraw'}</button>
             </form>
           {elseif $o.reservable}
             {if $currentUser}
-              <a class="pkp_button ofrReserveButton" id="reserveObject-{$o.objectId|escape}" href="{url op="index" reserve=$o.objectId}" data-object-id="{$o.objectId|escape}" data-description="{$o.citation|strip_tags|escape}"{if $o.members} data-review-essay="1"{/if}>{translate key='plugins.generic.objectsForReview.reserve'}</a>
+              <a class="pkp_button ofrReserveButton" id="reserveObject-{$o.objectId|escape}" href="{url op="index" reserve=$o.objectId}" data-object-id="{$o.objectId|escape}" data-description="{$o.citation|strip_tags|escape}"{if $o.members} data-review-essay="1"{/if}>{translate key='plugins.generic.bookReviewManager.reserve'}</a>
             {else}
-              {translate key='plugins.generic.objectsForReview.objectAvailable'}
+              {translate key='plugins.generic.bookReviewManager.objectAvailable'}
             {/if}
           {elseif $o.biddingOpen}
-            {if $o.bidDeadline}<p class="ofrBidDeadline">{translate key="plugins.generic.objectsForReview.bid.deadline" deadline=$o.bidDeadline|date_format:$dateFormatShort}</p>{/if}
+            {if $o.bidDeadline}<p class="ofrBidDeadline">{translate key="plugins.generic.bookReviewManager.bid.deadline" deadline=$o.bidDeadline|date_format:$dateFormatShort}</p>{/if}
             {if $currentUser}
-              <button type="button" class="pkp_button ofrBidButton" data-object-id="{$o.objectId|escape}" data-description="{$o.citation|strip_tags|escape}">{translate key='plugins.generic.objectsForReview.bid'}</button>
+              <button type="button" class="pkp_button ofrBidButton" data-object-id="{$o.objectId|escape}" data-description="{$o.citation|strip_tags|escape}">{translate key='plugins.generic.bookReviewManager.bid'}</button>
             {else}
-              {translate key='plugins.generic.objectsForReview.bid.open'}
+              {translate key='plugins.generic.bookReviewManager.bid.open'}
             {/if}
           {elseif $o.state == 'selection' || $o.state == 'contractOffered'}
-            {translate key='plugins.generic.objectsForReview.bid.closed'}
+            {translate key='plugins.generic.bookReviewManager.bid.closed'}
           {else}
-            {translate key='plugins.generic.objectsForReview.objectReserved'}
+            {translate key='plugins.generic.bookReviewManager.objectReserved'}
           {/if}
         </td>
         </tr>
@@ -144,16 +144,16 @@
 				<form method="post" action="{url op="bid"}">
 					{csrf}
 					<input type="hidden" name="objectId" value="" />
-					<h2 id="ofrBidDialogTitle">{translate key="plugins.generic.objectsForReview.bid.title"}</h2>
+					<h2 id="ofrBidDialogTitle">{translate key="plugins.generic.bookReviewManager.bid.title"}</h2>
 					<p class="ofrReserveObject"></p>
-					<p>{translate key="plugins.generic.objectsForReview.bid.description"}</p>
+					<p>{translate key="plugins.generic.bookReviewManager.bid.description"}</p>
 					<div class="ofrField">
-						<label for="ofrStatement">{translate key="plugins.generic.objectsForReview.bid.statement"}</label>
+						<label for="ofrStatement">{translate key="plugins.generic.bookReviewManager.bid.statement"}</label>
 						<textarea id="ofrStatement" name="statement" rows="5" maxlength="{$maxStatementLength|escape}"></textarea>
-						<p class="ofrHint">{translate key="plugins.generic.objectsForReview.bid.statement.hint"}</p>
+						<p class="ofrHint">{translate key="plugins.generic.bookReviewManager.bid.statement.hint"}</p>
 					</div>
 					<div class="ofrButtons">
-						<button type="submit" class="pkp_button">{translate key="plugins.generic.objectsForReview.bid.submit"}</button>
+						<button type="submit" class="pkp_button">{translate key="plugins.generic.bookReviewManager.bid.submit"}</button>
 						<button type="button" class="pkp_button pkp_button_offset ofrCancel">{translate key="common.cancel"}</button>
 					</div>
 				</form>

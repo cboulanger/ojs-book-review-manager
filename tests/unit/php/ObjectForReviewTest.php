@@ -1,9 +1,9 @@
 <?php
 
-namespace APP\plugins\generic\objectsForReview\tests\unit;
+namespace APP\plugins\generic\bookReviewManager\tests\unit;
 
-use APP\plugins\generic\objectsForReview\classes\Assignment;
-use APP\plugins\generic\objectsForReview\classes\ObjectForReview;
+use APP\plugins\generic\bookReviewManager\classes\Assignment;
+use APP\plugins\generic\bookReviewManager\classes\ObjectForReview;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 class ObjectForReviewTest extends TestCase {

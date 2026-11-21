@@ -1,4 +1,4 @@
-# Setting up the Objects for Review plugin
+# Setting up the Book Review Manager plugin
 
 For journal managers and site administrators. To install the plugin, see the [README](../README.md#installation). For daily work with the plugin, see [The review workflow](workflow.md).
 
@@ -14,7 +14,7 @@ For journal managers and site administrators. To install the plugin, see the [RE
 
 ## Enable the plugin
 
-Under *Website Settings › Plugins › Generic Plugins*, enable **Objects for Review** (in German: *Rezensionsangebote*). Enabling it:
+Under *Website Settings › Plugins › Generic Plugins*, enable **Book Review Manager**. Enabling it:
 
 - creates two user groups in the journal: **Book review editor** and **Publisher contact**;
 - installs the email templates (templates added by later versions are installed when they are first needed);
@@ -53,7 +53,7 @@ The alternative is to set `task_runner = On` in the `[schedule]` section of `con
 To run the task once by hand, for example to test it:
 
 ```sh
-php lib/pkp/tools/scheduler.php test --name="APP\plugins\generic\objectsForReview\classes\ReservationReminder"
+php lib/pkp/tools/scheduler.php test --name="APP\plugins\generic\bookReviewManager\classes\ReservationReminder"
 ```
 
 ## Book review editors
@@ -105,35 +105,35 @@ All emails are editable under *Settings › Emails*. They are in English, German
 
 | Template | Sent to | When |
 | --- | --- | --- |
-| `OFR_NEW_RESERVATION` | book review editor | A work was reserved or a contract accepted |
-| `OFR_CANCEL_RESERVATION` | book review editor | A reviewer withdrew from a review |
-| `OFR_BID_NEW` | book review editor | A new application arrived |
-| `OFR_CONTRACT_DECLINED` | book review editor | A selected bidder declined, or the offer expired |
-| `OFR_CONTRACT_OFFER` | selected bidder | The editor chose them (with the agreement link) |
-| `OFR_CONTRACT_OFFER_AGAIN` | bidder on the waiting list | The work is available again and the editor chose them |
-| `OFR_CONTRACT_OFFER_REMINDER` | selected bidder | Automatic reminder before the answer deadline |
-| `OFR_BID_UNSUCCESSFUL` | other bidders | Someone else was chosen; they stay on the list |
-| `OFR_CONFIRMATION` | reviewer | Automatic confirmation after accepting the agreement, with the "I cannot write this review" link |
-| `OFR_REMINDER` | reviewer | Automatic reminder before the due date |
-| `OFR_MESSAGE` | reviewer or bidder | A free message from the editor |
-| `OFR_CANCEL_BY_EDITOR` | reviewer | The editor cancelled the reservation |
-| `OFR_COPY_REQUEST` | publisher contact | Request for a review copy, with the delivery details and a "copy sent" link |
-| `OFR_COPY_REQUEST_REMINDER` | publisher contact | Automatic reminder of an unanswered copy request |
-| `OFR_COPY_SENT` | reviewer | The copy is on its way, with a "received" link |
-| `OFR_RETURN_REQUEST` | reviewer | Please return the printed copy, with the return address and a "sent back" link |
-| `OFR_RETURN_SENT` | publisher contact | The copy is on its way back, with a "returned copy arrived" link |
-| `OFR_PUBLISHER_NOTIFICATION` | publisher contact | The review has been published |
-| `OFR_INVITATION_RESERVE` | invitee | Invitation to review a work with direct reservation (with the invitation link) |
-| `OFR_INVITATION_BID` | invitee | Invitation to apply for the review of a work offered for bidding (with the invitation link) |
-| `OFR_INVITATION_DECLINED` | book review editor | An invitee declined, or did not answer by the deadline (not during sequential rounds) |
-| `OFR_INVITATION_REMINDER` | invitee | Automatic reminder of an unanswered invitation (if set up) |
-| `OFR_INVITATION_EXHAUSTED` | book review editor | A sequential round reached the end of the list without a reservation |
+| `BRM_NEW_RESERVATION` | book review editor | A work was reserved or a contract accepted |
+| `BRM_CANCEL_RESERVATION` | book review editor | A reviewer withdrew from a review |
+| `BRM_BID_NEW` | book review editor | A new application arrived |
+| `BRM_CONTRACT_DECLINED` | book review editor | A selected bidder declined, or the offer expired |
+| `BRM_CONTRACT_OFFER` | selected bidder | The editor chose them (with the agreement link) |
+| `BRM_CONTRACT_OFFER_AGAIN` | bidder on the waiting list | The work is available again and the editor chose them |
+| `BRM_CONTRACT_OFFER_REMINDER` | selected bidder | Automatic reminder before the answer deadline |
+| `BRM_BID_UNSUCCESSFUL` | other bidders | Someone else was chosen; they stay on the list |
+| `BRM_CONFIRMATION` | reviewer | Automatic confirmation after accepting the agreement, with the "I cannot write this review" link |
+| `BRM_REMINDER` | reviewer | Automatic reminder before the due date |
+| `BRM_MESSAGE` | reviewer or bidder | A free message from the editor |
+| `BRM_CANCEL_BY_EDITOR` | reviewer | The editor cancelled the reservation |
+| `BRM_COPY_REQUEST` | publisher contact | Request for a review copy, with the delivery details and a "copy sent" link |
+| `BRM_COPY_REQUEST_REMINDER` | publisher contact | Automatic reminder of an unanswered copy request |
+| `BRM_COPY_SENT` | reviewer | The copy is on its way, with a "received" link |
+| `BRM_RETURN_REQUEST` | reviewer | Please return the printed copy, with the return address and a "sent back" link |
+| `BRM_RETURN_SENT` | publisher contact | The copy is on its way back, with a "returned copy arrived" link |
+| `BRM_PUBLISHER_NOTIFICATION` | publisher contact | The review has been published |
+| `BRM_INVITATION_RESERVE` | invitee | Invitation to review a work with direct reservation (with the invitation link) |
+| `BRM_INVITATION_BID` | invitee | Invitation to apply for the review of a work offered for bidding (with the invitation link) |
+| `BRM_INVITATION_DECLINED` | book review editor | An invitee declined, or did not answer by the deadline (not during sequential rounds) |
+| `BRM_INVITATION_REMINDER` | invitee | Automatic reminder of an unanswered invitation (if set up) |
+| `BRM_INVITATION_EXHAUSTED` | book review editor | A sequential round reached the end of the list without a reservation |
 
 Some values are only filled in when an email is sent: the one-click links (`{$contractUrl}`, `{$copySentUrl}`, `{$receivedUrl}`, `{$returnSentUrl}`, `{$returnReceivedUrl}`, `{$retractUrl}`, `{$removeUrl}`, `{$invitationUrl}`), the recipient's name (`{$recipientName}`) and the return address (`{$returnAddress}`). Keep these placeholders when editing a template. Contract offers and invitations can't be sent without their link placeholder; in the other emails, a missing link is added at the end.
 
 ## The public page
 
-The list of works offered for review is at `https://<your-journal>/for-review`. To add it to the journal's menu, go to *Website Settings › Navigation*, add a menu item of the type **Works for review**, and place it in the primary navigation menu.
+The list of works offered for review is at `https://<your-journal>/books-for-review`. To add it to the journal's menu, go to *Website Settings › Navigation*, add a menu item of the type **Works for review**, and place it in the primary navigation menu.
 
 ## One-click links
 

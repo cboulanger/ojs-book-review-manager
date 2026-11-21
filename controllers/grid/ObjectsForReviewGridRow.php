@@ -1,19 +1,19 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/controllers/grid/ObjectsForReviewGridRow.inc.php
+ * @file plugins/generic/bookReviewManager/controllers/grid/ObjectsForReviewGridRow.inc.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ObjectsForReviewGridRow
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief Handle ObjectsForReview grid row requests.
  */
 
-namespace APP\plugins\generic\objectsForReview\controllers\grid;
+namespace APP\plugins\generic\bookReviewManager\controllers\grid;
 
 use PKP\controllers\grid\GridRow;
 use PKP\linkAction\LinkAction;

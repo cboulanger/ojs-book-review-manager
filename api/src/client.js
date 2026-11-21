@@ -1,5 +1,5 @@
 /**
- * Client for the REST API of the OJS Objects for Review plugin
+ * Client for the REST API of the OJS Book Review Manager plugin
  * (served by api/ObjectsForReviewController.php).
  *
  *   import { ObjectsForReviewClient } from './src/client.js';
@@ -60,7 +60,7 @@ export class ObjectsForReviewClient {
   /**
    * @param {object} options
    * @param {string} options.url Journal URL, e.g. https://example.org/index.php/journal
-   *   (or the API URL itself: .../api/v1/objectsForReview)
+   *   (or the API URL itself: .../api/v1/bookReviewManager)
    * @param {string} options.token API key from the user profile (OJS: Profile › API Key)
    * @param {boolean} [options.tokenInQuery] Send the token as ?apiToken= instead of the
    *   Authorization header (for servers that strip the header)
@@ -71,7 +71,7 @@ export class ObjectsForReviewClient {
     if (!url) throw new Error('url is required (journal URL, e.g. https://example.org/index.php/journal)');
     if (!token) throw new Error('token is required (API key from the OJS user profile)');
     const base = url.replace(/\/+$/, '');
-    this.apiUrl = /\/api\/v\d+\/objectsForReview$/.test(base) ? base : `${base}/api/v1/objectsForReview`;
+    this.apiUrl = /\/api\/v\d+\/bookReviewManager$/.test(base) ? base : `${base}/api/v1/bookReviewManager`;
     this.token = token;
     this.tokenInQuery = tokenInQuery;
     this.timeout = timeout;

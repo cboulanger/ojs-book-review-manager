@@ -1,22 +1,22 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/controllers/grid/form/ObjectsForReviewForm.inc.php
+ * @file plugins/generic/bookReviewManager/controllers/grid/form/ObjectsForReviewForm.inc.php
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ObjectsForReviewForm
- * @ingroup controllers_grid_objectsForReview
+ * @ingroup controllers_grid_bookReviewManager
  *
  * Form for adding/editing an objectForReview
  *
  */
-namespace APP\plugins\generic\objectsForReview\controllers\grid\form;
+namespace APP\plugins\generic\bookReviewManager\controllers\grid\form;
 
-use APP\plugins\generic\objectsForReview\classes\ObjectsForReviewDAO;
-use APP\plugins\generic\objectsForReview\ObjectsForReviewPlugin;
+use APP\plugins\generic\bookReviewManager\classes\ObjectsForReviewDAO;
+use APP\plugins\generic\bookReviewManager\BookReviewManagerPlugin;
 use APP\template\TemplateManager;
 use PKP\db\DAORegistry;
 
@@ -30,29 +30,29 @@ class ObjectsForReviewForm extends \PKP\form\Form {
     /** @var string objectId */
     public $objectId;
 
-	/** @var ObjectsForReviewPlugin */
+	/** @var BookReviewManagerPlugin */
 	var $plugin;
 
 	/**
 	 * Constructor
-	 * @param $objectsForReviewPlugin ObjectsForReviewPlugin
+	 * @param $bookReviewManagerPlugin BookReviewManagerPlugin
 	 * @param $contextId int Context ID
 	 * @param $submissionId int Submission ID
 	 * @param $objectId int (optional) Review ID
 	 */
-	function __construct($objectsForReviewPlugin, $contextId, $submissionId, $objectId = null) {
-		parent::__construct($objectsForReviewPlugin->getTemplateResource('editObjectForReviewForm.tpl'));
+	function __construct($bookReviewManagerPlugin, $contextId, $submissionId, $objectId = null) {
+		parent::__construct($bookReviewManagerPlugin->getTemplateResource('editObjectForReviewForm.tpl'));
 
 		$this->contextId = $contextId;
 		$this->submissionId = $submissionId;
 		$this->objectId = $objectId;
-		$this->plugin = $objectsForReviewPlugin;
+		$this->plugin = $bookReviewManagerPlugin;
 
 		// Add form checks
-		$this->addCheck(new \PKP\form\validation\FormValidator($this, 'identifierType', 'required', 'plugins.generic.objectsForReview.identifierTypeRequired'));
-		$this->addCheck(new \PKP\form\validation\FormValidator($this, 'resourceType', 'required', 'plugins.generic.objectsForReview.resourceTypeRequired'));
-		$this->addCheck(new \PKP\form\validation\FormValidator($this, 'title', 'required', 'plugins.generic.objectsForReview.titleRequired'));
-		$this->addCheck(new \PKP\form\validation\FormValidator($this, 'identifier', 'required', 'plugins.generic.objectsForReview.identifierRequired'));
+		$this->addCheck(new \PKP\form\validation\FormValidator($this, 'identifierType', 'required', 'plugins.generic.bookReviewManager.identifierTypeRequired'));
+		$this->addCheck(new \PKP\form\validation\FormValidator($this, 'resourceType', 'required', 'plugins.generic.bookReviewManager.resourceTypeRequired'));
+		$this->addCheck(new \PKP\form\validation\FormValidator($this, 'title', 'required', 'plugins.generic.bookReviewManager.titleRequired'));
+		$this->addCheck(new \PKP\form\validation\FormValidator($this, 'identifier', 'required', 'plugins.generic.bookReviewManager.identifierRequired'));
 		$this->addCheck(new \PKP\form\validation\FormValidatorPost($this));
 		$this->addCheck(new \PKP\form\validation\FormValidatorCSRF($this));
 
@@ -64,7 +64,7 @@ class ObjectsForReviewForm extends \PKP\form\Form {
 	function initData() {
 		$this->setData('submissionId', $this->submissionId);
 		if ($this->objectId) {
-			$objectForReviewDao = DAORegistry::getDAO('ObjectForReviewDAO');
+			$objectForReviewDao = DAORegistry::getDAO('BookReviewManagerObjectDAO');
 			$objectForReview = $objectForReviewDao->getById($this->objectId, $this->submissionId);
 			if (!$objectForReview) {
 				throw new \Exception('Object for review not found in this submission.');
@@ -97,12 +97,12 @@ class ObjectsForReviewForm extends \PKP\form\Form {
 		$context = $request->getContext();
 
 		// Get reserved objects for review
-		$objectForReviewDao = DAORegistry::getDAO('ObjectForReviewDAO');
-		$objectsForReview = $objectForReviewDao->getByUserId($currentUser->getId(), NULL, true);
+		$objectForReviewDao = DAORegistry::getDAO('BookReviewManagerObjectDAO');
+		$bookReviewManager = $objectForReviewDao->getByUserId($currentUser->getId(), NULL, true);
 
-		if ($objectsForReview){
+		if ($bookReviewManager){
 			$reservedObjects = array();
-			while ($objectForReview = $objectsForReview->next()) {
+			while ($objectForReview = $bookReviewManager->next()) {
 				// The works of a review essay are attached with the essay
 				if ($objectForReview->isBundleMember()) {
 					continue;
@@ -136,7 +136,7 @@ class ObjectsForReviewForm extends \PKP\form\Form {
 	 */
 	function execute(...$functionArgs) {
 		$objectId = $this->objectId;
-		$objectForReviewDao = DAORegistry::getDAO('ObjectForReviewDAO');
+		$objectForReviewDao = DAORegistry::getDAO('BookReviewManagerObjectDAO');
 
 		if ($objectId) {
 			// Load and update an existing objectForReview
@@ -197,17 +197,17 @@ class ObjectsForReviewForm extends \PKP\form\Form {
 	 */
 	function _getResourceTypes($uri = null) {
 		$resourceTypes = array(
-				'http://purl.org/coar/resource_type/c_2f33' => 'plugins.generic.objectsForReview.COAR.book',
-				'http://purl.org/coar/resource_type/c_3248' => 'plugins.generic.objectsForReview.COAR.bookPart',
-				'http://purl.org/coar/resource_type/c_6501' => 'plugins.generic.objectsForReview.COAR.journalArticle',
-				'http://purl.org/coar/resource_type/c_5794' => 'plugins.generic.objectsForReview.COAR.conferencePaper',
-				'http://purl.org/coar/resource_type/c_46ec' => 'plugins.generic.objectsForReview.COAR.thesis',
-				'http://purl.org/coar/resource_type/c_816b' => 'plugins.generic.objectsForReview.COAR.preprint',
-				'http://purl.org/coar/resource_type/c_7ad9' => 'plugins.generic.objectsForReview.COAR.website',
-				'http://purl.org/coar/resource_type/c_ddb1' => 'plugins.generic.objectsForReview.COAR.dataset',
-				'http://purl.org/coar/resource_type/c_ddb1' => 'plugins.generic.objectsForReview.COAR.software',
-				'http://purl.org/coar/resource_type/c_12cc' => 'plugins.generic.objectsForReview.COAR.cartographicMaterial',
-				'http://purl.org/coar/resource_type/c_18cc' => 'plugins.generic.objectsForReview.COAR.sound'
+				'http://purl.org/coar/resource_type/c_2f33' => 'plugins.generic.bookReviewManager.COAR.book',
+				'http://purl.org/coar/resource_type/c_3248' => 'plugins.generic.bookReviewManager.COAR.bookPart',
+				'http://purl.org/coar/resource_type/c_6501' => 'plugins.generic.bookReviewManager.COAR.journalArticle',
+				'http://purl.org/coar/resource_type/c_5794' => 'plugins.generic.bookReviewManager.COAR.conferencePaper',
+				'http://purl.org/coar/resource_type/c_46ec' => 'plugins.generic.bookReviewManager.COAR.thesis',
+				'http://purl.org/coar/resource_type/c_816b' => 'plugins.generic.bookReviewManager.COAR.preprint',
+				'http://purl.org/coar/resource_type/c_7ad9' => 'plugins.generic.bookReviewManager.COAR.website',
+				'http://purl.org/coar/resource_type/c_ddb1' => 'plugins.generic.bookReviewManager.COAR.dataset',
+				'http://purl.org/coar/resource_type/c_ddb1' => 'plugins.generic.bookReviewManager.COAR.software',
+				'http://purl.org/coar/resource_type/c_12cc' => 'plugins.generic.bookReviewManager.COAR.cartographicMaterial',
+				'http://purl.org/coar/resource_type/c_18cc' => 'plugins.generic.bookReviewManager.COAR.sound'
 		);
 		if ($uri){
 			return $resourceTypes[$uri];

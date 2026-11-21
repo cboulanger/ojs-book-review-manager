@@ -1,19 +1,19 @@
 /**
- * @file plugins/generic/objectsForReview/js/ObjectsForReviewGridHandler.js
+ * @file plugins/generic/bookReviewManager/js/ObjectsForReviewGridHandler.js
  *
  * Copyright (c) 2014-2021 Simon Fraser University
  * Copyright (c) 2000-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ObjectsForReviewGridHandler
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  */
 (function($) {
 
 	/** @type {Object} */
-	$.pkp.plugins.generic.objectsForReview =
-		$.pkp.plugins.generic.objectsForReview ||
+	$.pkp.plugins.generic.bookReviewManager =
+		$.pkp.plugins.generic.bookReviewManager ||
 		{ js: { } };
 
 	/**
@@ -25,12 +25,12 @@
 	 *  attached to.
 	 * @param {Object} options Grid handler configuration.
 	 */
-	$.pkp.plugins.generic.objectsForReview.ObjectsForReviewGridHandler =
+	$.pkp.plugins.generic.bookReviewManager.ObjectsForReviewGridHandler =
 			function($grid, options) {
 		this.parent($grid, options);
 	};
 	$.pkp.classes.Helper.inherits(
-			$.pkp.plugins.generic.objectsForReview.ObjectsForReviewGridHandler,
+			$.pkp.plugins.generic.bookReviewManager.ObjectsForReviewGridHandler,
 			$.pkp.controllers.grid.GridHandler);
 
 	//
@@ -49,7 +49,7 @@
 	 *  @param {Boolean=} opt_fetchedAlready Flag that subclasses can send
 	 *  telling that a fetch operation was already handled there.
 	 */
-	$.pkp.plugins.generic.objectsForReview.ObjectsForReviewGridHandler.prototype.refreshGridHandler =
+	$.pkp.plugins.generic.bookReviewManager.ObjectsForReviewGridHandler.prototype.refreshGridHandler =
 			function(sourceElement, event, opt_elementId, opt_fetchedAlready) {
 		var params;
 

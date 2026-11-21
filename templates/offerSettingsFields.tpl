@@ -1,5 +1,5 @@
 {**
- * plugins/generic/objectsForReview/templates/offerSettingsFields.tpl
+ * plugins/generic/bookReviewManager/templates/offerSettingsFields.tpl
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
@@ -9,16 +9,16 @@
  * $formId: id of the enclosing form (shows the bid deadline only for bidding)
  * $areaId: id of the form area
  *}
-{fbvFormArea id=$areaId title="plugins.generic.objectsForReview.offer.title"}
-	{fbvFormSection label="plugins.generic.objectsForReview.offer.mode" description="plugins.generic.objectsForReview.offer.mode.description" for="assignmentMode"}
+{fbvFormArea id=$areaId title="plugins.generic.bookReviewManager.offer.title"}
+	{fbvFormSection label="plugins.generic.bookReviewManager.offer.mode" description="plugins.generic.bookReviewManager.offer.mode.description" for="assignmentMode"}
 		{fbvElement type="select" id="assignmentMode" from=$assignmentModes selected=$assignmentMode translate=false size=$fbvStyles.size.MEDIUM}
 	{/fbvFormSection}
 
-	{fbvFormSection label="plugins.generic.objectsForReview.offer.bidDeadline" description="plugins.generic.objectsForReview.offer.bidDeadline.description" for="bidDeadline" class="ofrBidDeadlineSection"}
+	{fbvFormSection label="plugins.generic.bookReviewManager.offer.bidDeadline" description="plugins.generic.bookReviewManager.offer.bidDeadline.description" for="bidDeadline" class="ofrBidDeadlineSection"}
 		<input type="date" id="bidDeadline" name="bidDeadline" value="{$bidDeadline|escape}" />
 	{/fbvFormSection}
 
-	{fbvFormSection label="plugins.generic.objectsForReview.offer.responsibleEditor" description="plugins.generic.objectsForReview.offer.responsibleEditor.description" for="responsibleEditorId"}
+	{fbvFormSection label="plugins.generic.bookReviewManager.offer.responsibleEditor" description="plugins.generic.bookReviewManager.offer.responsibleEditor.description" for="responsibleEditorId"}
 		{fbvElement type="select" id="responsibleEditorId" from=$bookReviewEditors selected=$responsibleEditorId translate=false size=$fbvStyles.size.MEDIUM}
 	{/fbvFormSection}
 	<script>

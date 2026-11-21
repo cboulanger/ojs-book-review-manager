@@ -68,7 +68,7 @@ test('members: rules give review_essay_rule, unknown essays 404', async () => {
   await assert.rejects(admin().addBundleMember(bundle.id, other.works[0].id), (error) => {
     assert.equal(error.status, 409);
     assert.equal(error.code, 'review_essay_rule');
-    assert.equal(error.body.reason, 'plugins.generic.objectsForReview.reviewEssay.error.notAvailable');
+    assert.equal(error.body.reason, 'plugins.generic.bookReviewManager.reviewEssay.error.notAvailable');
     assert.ok(error.body.errorMessage && !error.body.errorMessage.startsWith('plugins.'), 'the message is translated');
     return true;
   });
@@ -181,7 +181,7 @@ test('import with copy statuses: a mirror whose copy has arrived keeps no delive
   const container = await admin().getObject(bundle.id);
   const personal = (work) => {
     const mirror = container.members.find((m) => m.id === work.id).assignments.find((m) => m.bundleAssignmentId === assignment.id);
-    const rows = sql(`SELECT setting_name FROM objects_for_review_assignment_settings WHERE assignment_id = ${Number(mirror.id)}
+    const rows = sql(`SELECT setting_name FROM brm_assignment_settings WHERE assignment_id = ${Number(mirror.id)}
       AND setting_name IN ('shippingAddress', 'phone') AND setting_value <> ''`);
     return rows.map((row) => row.setting_name).sort();
   };
@@ -195,7 +195,7 @@ test('PUT objects: the resource type of an essay cannot change, and a work canno
   await assert.rejects(admin().updateObject(bundle.id, { resourceType: book }), (error) => {
     assert.equal(error.status, 409);
     assert.equal(error.code, 'review_essay_rule');
-    assert.equal(error.body.reason, 'plugins.generic.objectsForReview.reviewEssay.error.resourceType');
+    assert.equal(error.body.reason, 'plugins.generic.bookReviewManager.reviewEssay.error.resourceType');
     assert.ok(error.body.errorMessage && !error.body.errorMessage.startsWith('plugins.'), 'the message is translated');
     return true;
   });
@@ -238,7 +238,7 @@ test('combining two works that each have a reviewer gives cannot_combine', async
   await assert.rejects(admin().createBundle({ title: 'E2E', objectIds: [a.id, b.id] }), (error) => {
     assert.equal(error.status, 409);
     assert.equal(error.code, 'cannot_combine');
-    assert.equal(error.body.reason, 'plugins.generic.objectsForReview.reviewEssay.error.twoReviewers');
+    assert.equal(error.body.reason, 'plugins.generic.bookReviewManager.reviewEssay.error.twoReviewers');
     return true;
   });
   assert.equal((await admin().getObject(a.id)).bundleId, null);

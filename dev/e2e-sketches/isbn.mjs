@@ -9,7 +9,7 @@ await page.fill('input[name=username]', 'admin');
 await page.fill('input[name=password]', 'ojsadmin');
 await Promise.all([page.waitForNavigation(), page.click('form#login button[type=submit], form#login .submit')]);
 
-await page.goto(`${B}/manageObjectsForReview`);
+await page.goto(`${B}/manageBookReviews`);
 await page.locator('a[id*="addAvailableObjectForReview"]').click();
 const form = page.locator('#availableObjectsForReviewForm');
 await form.waitFor();
@@ -33,10 +33,10 @@ console.log({ identifier: await v('identifier'), resourceType: await v('resource
 await form.locator('button.submitFormButton').click();
 await form.waitFor({ state: 'detached', timeout: 15000 });
 
-await page.goto(`${B}/for-review`);
+await page.goto(`${B}/books-for-review`);
 const links = await page.locator('a[href*="worldcat.org"]').evaluateAll(as => as.map(a => `${a.textContent.trim()} -> ${a.href} (target=${a.target})`));
 console.log('public worldcat links:\n  ' + links.join('\n  '));
 
-await page.goto(`${B}/manageObjectsForReview/reservations`);
+await page.goto(`${B}/manageBookReviews/reservations`);
 console.log('backend worldcat links:', await page.locator('a[href*="worldcat.org"]').count());
 await browser.close();

@@ -11,1792 +11,1792 @@ msgstr ""
 "PO-Revision-Date: 2021-02-21T14:12:01+02:00\n"
 "Language: \n"
 
-msgid "plugins.generic.objectsForReview.displayName"
-msgstr "Rezensionsangebote"
+msgid "plugins.generic.bookReviewManager.displayName"
+msgstr "Book Review Manager"
 
-msgid "plugins.generic.objectsForReview.description"
-msgstr "Erfasst rezensierte Objekte bei Einreichungen."
+msgid "plugins.generic.bookReviewManager.description"
+msgstr "Verwaltet Rezensionsangebote: Angebote, Reservierungen und Einladungen, Rezensionsexemplare, Verträge und die veröffentlichten Rezensionen."
 
-msgid "plugins.generic.objectsForReview.tabTitle"
+msgid "plugins.generic.bookReviewManager.tabTitle"
 msgstr "Rezensionen"
 
-msgid "plugins.generic.objectsForReview.managementLink"
+msgid "plugins.generic.bookReviewManager.managementLink"
 msgstr "Rezensionen"
 
-msgid "plugins.generic.objectsForReview.management.gridTitle"
+msgid "plugins.generic.bookReviewManager.management.gridTitle"
 msgstr "Angebotene Werke"
 
-msgid "plugins.generic.objectsForReview.addAvailableObjectForReview"
+msgid "plugins.generic.bookReviewManager.addAvailableObjectForReview"
 msgstr "Werk hinzufügen"
 
-msgid "plugins.generic.objectsForReview.userName"
+msgid "plugins.generic.bookReviewManager.userName"
 msgstr "Reserviert für Benutzer"
 
-msgid "plugins.generic.objectsForReview.settings.displayInToc.display"
+msgid "plugins.generic.bookReviewManager.settings.displayInToc.display"
 msgstr "Rezensierte Werke im Inhaltsverzeichnis anzeigen"
 
-msgid "plugins.generic.objectsForReview.settings.displayOptions"
+msgid "plugins.generic.bookReviewManager.settings.displayOptions"
 msgstr "Anzeigeoptionen"
 
-msgid "plugins.generic.objectsForReview.settings.displayAsSubtitle"
+msgid "plugins.generic.bookReviewManager.settings.displayAsSubtitle"
 msgstr "Rezensierte Werke im Untertitelfeld des Artikels anzeigen"
 
-msgid "plugins.generic.objectsForReview.settings.displayAsList"
+msgid "plugins.generic.bookReviewManager.settings.displayAsList"
 msgstr "Eine Liste rezensierter Werke unterhalb des Abstracts anzeigen"
 
-msgid "plugins.generic.objectsForReview.settings.onlyReserved"
+msgid "plugins.generic.bookReviewManager.settings.onlyReserved"
 msgstr "Nur von der Redaktion angelegte Werke zulassen"
 
-msgid "plugins.generic.objectsForReview.settings.notifyEmail"
+msgid "plugins.generic.bookReviewManager.settings.notifyEmail"
 msgstr "E-Mail für Benachrichtigungen über Reservierungen und Stornierungen"
 
-msgid "plugins.generic.objectsForReview.settings.notifyEmail.description"
+msgid "plugins.generic.bookReviewManager.settings.notifyEmail.description"
 msgstr "Wenn keine E-Mail-Adresse angegeben wird, wird stattdessen die primäre Kontakt-E-Mail verwendet"
 
-msgid "plugins.generic.objectsForReview.settings.instructions"
+msgid "plugins.generic.bookReviewManager.settings.instructions"
 msgstr "Öffentliche Anweisungen"
 
-msgid "plugins.generic.objectsForReview.settings.instructions.description"
+msgid "plugins.generic.bookReviewManager.settings.instructions.description"
 msgstr "Diese Anweisungen sind auf der öffentlichen OFR-Seite sichtbar"
 
-msgid "plugins.generic.objectsForReview.navMenuItem.description"
+msgid "plugins.generic.bookReviewManager.navMenuItem.description"
 msgstr "Link zur öffentlichen Seite der Rezensionsangebote"
 
-msgid "plugins.generic.objectsForReview.navMenuItem"
+msgid "plugins.generic.bookReviewManager.navMenuItem"
 msgstr "Rezensionsangebote"
 
-msgid "plugins.generic.objectsForReview.objectsForReviewTitle"
+msgid "plugins.generic.bookReviewManager.bookReviewManagerTitle"
 msgstr "In dieser Einreichung rezensierte Werke"
 
-msgid "plugins.generic.objectsForReview.addObjectForReview"
+msgid "plugins.generic.bookReviewManager.addObjectForReview"
 msgstr "Rezensiertes Werk hinzufügen"
 
-msgid "plugins.generic.objectsForReview.noReservedObjects"
+msgid "plugins.generic.bookReviewManager.noReservedObjects"
 msgstr "Keine für Sie reservierten Werke"
 
-msgid "plugins.generic.objectsForReview.submissionWizard.name"
+msgid "plugins.generic.bookReviewManager.submissionWizard.name"
 msgstr "Rezensierte Werke"
 
-msgid "plugins.generic.objectsForReview.itemIdentifierType"
+msgid "plugins.generic.bookReviewManager.itemIdentifierType"
 msgstr "Verweis-Typ"
 
-msgid "plugins.generic.objectsForReview.resourceType"
+msgid "plugins.generic.bookReviewManager.resourceType"
 msgstr "Ressourcentyp"
 
-msgid "plugins.generic.objectsForReview.itemIdentifier"
+msgid "plugins.generic.bookReviewManager.itemIdentifier"
 msgstr "Verweis"
 
-msgid "plugins.generic.objectsForReview.itemDescription"
+msgid "plugins.generic.bookReviewManager.itemDescription"
 msgstr "Beschreibung"
 
-msgid "plugins.generic.objectsForReview.itemAuthors"
+msgid "plugins.generic.bookReviewManager.itemAuthors"
 msgstr "Autor/innen"
 
-msgid "plugins.generic.objectsForReview.itemTitle"
+msgid "plugins.generic.bookReviewManager.itemTitle"
 msgstr "Titel"
 
-msgid "plugins.generic.objectsForReview.itemDescription.description"
+msgid "plugins.generic.bookReviewManager.itemDescription.description"
 msgstr "Optional. Wird in der Liste der angebotenen Werke unter dem Titel angezeigt."
 
-msgid "plugins.generic.objectsForReview.itemPublisher"
+msgid "plugins.generic.bookReviewManager.itemPublisher"
 msgstr "Verlag"
 
-msgid "plugins.generic.objectsForReview.itemYear"
+msgid "plugins.generic.bookReviewManager.itemYear"
 msgstr "Erscheinungsjahr"
 
-msgid "plugins.generic.objectsForReview.noneCreated"
+msgid "plugins.generic.bookReviewManager.noneCreated"
 msgstr "Diese Einreichung hat keine rezensierten Werke."
 
-msgid "plugins.generic.objectsForReview.objectsForReviewData.addReservedObject"
+msgid "plugins.generic.bookReviewManager.bookReviewManagerData.addReservedObject"
 msgstr "Dieses Werk auswählen"
 
-msgid "plugins.generic.objectsForReview.notifyDefaultName"
+msgid "plugins.generic.bookReviewManager.notifyDefaultName"
 msgstr "OFR-Kontakt"
 
-msgid "plugins.generic.objectsForReview.objectsForReviewData.singular"
+msgid "plugins.generic.bookReviewManager.bookReviewManagerData.singular"
 msgstr "Rezensiertes Werk"
 
-msgid "plugins.generic.objectsForReview.objectsForReviewData.plural"
+msgid "plugins.generic.bookReviewManager.bookReviewManagerData.plural"
 msgstr "Rezensierte Werke"
 
-msgid "plugins.generic.objectsForReview.frontendTitle"
+msgid "plugins.generic.bookReviewManager.frontendTitle"
 msgstr "Rezensionsangebote"
 
-msgid "plugins.generic.objectsForReview.reserve"
+msgid "plugins.generic.bookReviewManager.reserve"
 msgstr "Zur Rezension anbieten"
 
-msgid "plugins.generic.objectsForReview.cancel"
+msgid "plugins.generic.bookReviewManager.cancel"
 msgstr "Angebot zur Rezension zurückziehen"
 
-msgid "plugins.generic.objectsForReview.reserve.confirm"
+msgid "plugins.generic.bookReviewManager.reserve.confirm"
 msgstr "Das ausgewählte Werk wird für Sie reserviert. Sobald Sie bereit sind, können Sie Ihren Rezensionsartikel einreichen."
 
-msgid "plugins.generic.objectsForReview.cancel.confirm"
+msgid "plugins.generic.bookReviewManager.cancel.confirm"
 msgstr "Möchten Sie Ihre Rezension für dieses Werk wirklich abbrechen?"
 
-msgid "plugins.generic.objectsForReview.objectAvailable"
+msgid "plugins.generic.bookReviewManager.objectAvailable"
 msgstr "Zur Rezension verfügbar"
 
-msgid "plugins.generic.objectsForReview.objectReserved"
+msgid "plugins.generic.bookReviewManager.objectReserved"
 msgstr "Zur Rezension reserviert"
 
-msgid "plugins.generic.objectsForReview.logInToReserve"
+msgid "plugins.generic.bookReviewManager.logInToReserve"
 msgstr "Um ein Werk zur Rezension zu reservieren, melden Sie sich bitte an."
 
-msgid "plugins.generic.objectsForReview.COAR.book"
+msgid "plugins.generic.bookReviewManager.COAR.book"
 msgstr "Buch"
 
-msgid "plugins.generic.objectsForReview.COAR.bookPart"
+msgid "plugins.generic.bookReviewManager.COAR.bookPart"
 msgstr "Buchteil"
 
-msgid "plugins.generic.objectsForReview.COAR.journalArticle"
+msgid "plugins.generic.bookReviewManager.COAR.journalArticle"
 msgstr "Zeitschriftenartikel"
 
-msgid "plugins.generic.objectsForReview.COAR.conferencePaper"
+msgid "plugins.generic.bookReviewManager.COAR.conferencePaper"
 msgstr "Konferenzbeitrag"
 
-msgid "plugins.generic.objectsForReview.COAR.thesis"
+msgid "plugins.generic.bookReviewManager.COAR.thesis"
 msgstr "Abschlussarbeit"
 
-msgid "plugins.generic.objectsForReview.COAR.preprint"
+msgid "plugins.generic.bookReviewManager.COAR.preprint"
 msgstr "Preprint"
 
-msgid "plugins.generic.objectsForReview.COAR.website"
+msgid "plugins.generic.bookReviewManager.COAR.website"
 msgstr "Webseite"
 
-msgid "plugins.generic.objectsForReview.COAR.dataset"
+msgid "plugins.generic.bookReviewManager.COAR.dataset"
 msgstr "Datensatz"
 
-msgid "plugins.generic.objectsForReview.COAR.software"
+msgid "plugins.generic.bookReviewManager.COAR.software"
 msgstr "Software"
 
-msgid "plugins.generic.objectsForReview.COAR.cartographicMaterial"
+msgid "plugins.generic.bookReviewManager.COAR.cartographicMaterial"
 msgstr "Kartografisches Material"
 
-msgid "plugins.generic.objectsForReview.COAR.sound"
+msgid "plugins.generic.bookReviewManager.COAR.sound"
 msgstr "Tonaufnahme"
-msgid "plugins.generic.objectsForReview.doiLookup.button"
+msgid "plugins.generic.bookReviewManager.doiLookup.button"
 msgstr "DOI nachschlagen"
 
-msgid "plugins.generic.objectsForReview.doiLookup.loading"
+msgid "plugins.generic.bookReviewManager.doiLookup.loading"
 msgstr "Metadaten werden bei Crossref abgerufen…"
 
-msgid "plugins.generic.objectsForReview.doiLookup.done"
+msgid "plugins.generic.bookReviewManager.doiLookup.done"
 msgstr "Metadaten von Crossref übernommen. Bitte prüfen Sie die Felder vor dem Speichern."
 
-msgid "plugins.generic.objectsForReview.doiLookup.failed"
+msgid "plugins.generic.bookReviewManager.doiLookup.failed"
 msgstr "Die Abfrage bei Crossref ist fehlgeschlagen. Bitte versuchen Sie es später erneut oder geben Sie die Metadaten manuell ein."
 
-msgid "plugins.generic.objectsForReview.doiLookup.notFound"
+msgid "plugins.generic.bookReviewManager.doiLookup.notFound"
 msgstr "Diese DOI wurde bei Crossref nicht gefunden. Möglicherweise ist sie bei einer anderen Registrierungsagentur (z. B. DataCite) registriert; bitte geben Sie die Metadaten manuell ein."
 
-msgid "plugins.generic.objectsForReview.doiLookup.invalid"
+msgid "plugins.generic.bookReviewManager.doiLookup.invalid"
 msgstr "Bitte geben Sie eine gültige DOI ein, z. B. 10.1000/xyz123."
 
-msgid "plugins.generic.objectsForReview.doiLookup.editorSuffix"
+msgid "plugins.generic.bookReviewManager.doiLookup.editorSuffix"
 msgstr "Hrsg."
 
-msgid "plugins.generic.objectsForReview.itemYearShort"
+msgid "plugins.generic.bookReviewManager.itemYearShort"
 msgstr "Jahr"
 
-msgid "plugins.generic.objectsForReview.menu.available"
+msgid "plugins.generic.bookReviewManager.menu.available"
 msgstr "Angebotene Werke"
 
-msgid "plugins.generic.objectsForReview.menu.reservations"
+msgid "plugins.generic.bookReviewManager.menu.reservations"
 msgstr "Reservierungen"
 
-msgid "plugins.generic.objectsForReview.menu.reviewedWorks"
+msgid "plugins.generic.bookReviewManager.menu.reviewedWorks"
 msgstr "Rezensierte Werke"
 
-msgid "plugins.generic.objectsForReview.menu.settings"
+msgid "plugins.generic.bookReviewManager.menu.settings"
 msgstr "Einstellungen"
 
-msgid "plugins.generic.objectsForReview.menu.publicPage"
+msgid "plugins.generic.bookReviewManager.menu.publicPage"
 msgstr "Öffentliche Seite"
 
-msgid "plugins.generic.objectsForReview.column.object"
+msgid "plugins.generic.bookReviewManager.column.object"
 msgstr "Werk"
 
-msgid "plugins.generic.objectsForReview.column.reservedBy"
+msgid "plugins.generic.bookReviewManager.column.reservedBy"
 msgstr "Reserviert von"
 
-msgid "plugins.generic.objectsForReview.column.submission"
+msgid "plugins.generic.bookReviewManager.column.submission"
 msgstr "Einreichung"
 
-msgid "plugins.generic.objectsForReview.filter.allUsers"
+msgid "plugins.generic.bookReviewManager.filter.allUsers"
 msgstr "Alle Personen"
 
-msgid "plugins.generic.objectsForReview.filter.apply"
+msgid "plugins.generic.bookReviewManager.filter.apply"
 msgstr "Filtern"
 
-msgid "plugins.generic.objectsForReview.reservations.none"
+msgid "plugins.generic.bookReviewManager.reservations.none"
 msgstr "Derzeit sind keine Werke reserviert."
 
-msgid "plugins.generic.objectsForReview.reviewedWorks.none"
+msgid "plugins.generic.bookReviewManager.reviewedWorks.none"
 msgstr "Bisher wurden keinen Einreichungen Werke zugeordnet."
 
-msgid "plugins.generic.objectsForReview.reserve.title"
+msgid "plugins.generic.bookReviewManager.reserve.title"
 msgstr "Zur Rezension reservieren"
 
-msgid "plugins.generic.objectsForReview.reserve.contract"
+msgid "plugins.generic.bookReviewManager.reserve.contract"
 msgstr "Bedingungen der Reservierung"
 
-msgid "plugins.generic.objectsForReview.reserve.acceptTerms"
+msgid "plugins.generic.bookReviewManager.reserve.acceptTerms"
 msgstr "Ich habe die Bedingungen gelesen und stimme ihnen zu."
 
-msgid "plugins.generic.objectsForReview.reserve.dueDate"
+msgid "plugins.generic.bookReviewManager.reserve.dueDate"
 msgstr "Abgabetermin der Rezension"
 
-msgid "plugins.generic.objectsForReview.reserve.dueDate.hint"
+msgid "plugins.generic.bookReviewManager.reserve.dueDate.hint"
 msgstr "Sie verpflichten sich, Ihre Rezension bis zu diesem Datum einzureichen (spätestens {$maxDate})."
 
-msgid "plugins.generic.objectsForReview.reserve.copy"
+msgid "plugins.generic.bookReviewManager.reserve.copy"
 msgstr "Bezug des Werks"
 
-msgid "plugins.generic.objectsForReview.reserve.copyPerWork"
+msgid "plugins.generic.bookReviewManager.reserve.copyPerWork"
 msgstr "Bezug der Werke der Sammelrezension (eine Angabe je Werk)"
 
-msgid "plugins.generic.objectsForReview.reserve.copy.have"
+msgid "plugins.generic.bookReviewManager.reserve.copy.have"
 msgstr "Ich habe das Werk bereits"
 
-msgid "plugins.generic.objectsForReview.reserve.copy.physical"
+msgid "plugins.generic.bookReviewManager.reserve.copy.physical"
 msgstr "Ich bevorzuge ein gedrucktes Exemplar"
 
-msgid "plugins.generic.objectsForReview.reserve.copy.electronic"
+msgid "plugins.generic.bookReviewManager.reserve.copy.electronic"
 msgstr "Ich bevorzuge ein elektronisches Exemplar"
 
-msgid "plugins.generic.objectsForReview.reserve.copy.other"
+msgid "plugins.generic.bookReviewManager.reserve.copy.other"
 msgstr "Sonstiges"
 
-msgid "plugins.generic.objectsForReview.reserve.shippingAddress"
+msgid "plugins.generic.bookReviewManager.reserve.shippingAddress"
 msgstr "Lieferadresse"
 
-msgid "plugins.generic.objectsForReview.reserve.phone"
+msgid "plugins.generic.bookReviewManager.reserve.phone"
 msgstr "Telefonnummer"
 
-msgid "plugins.generic.objectsForReview.reserve.phone.hint"
+msgid "plugins.generic.bookReviewManager.reserve.phone.hint"
 msgstr "Wird vom Lieferdienst benötigt."
 
-msgid "plugins.generic.objectsForReview.reserve.copyNote"
+msgid "plugins.generic.bookReviewManager.reserve.copyNote"
 msgstr "Bitte erläutern"
 
-msgid "plugins.generic.objectsForReview.reserve.submit"
+msgid "plugins.generic.bookReviewManager.reserve.submit"
 msgstr "Verbindlich reservieren"
 
-msgid "plugins.generic.objectsForReview.reserve.yourDueDate"
+msgid "plugins.generic.bookReviewManager.reserve.yourDueDate"
 msgstr "Ihre Rezension ist fällig am {$dueDate}."
 
-msgid "plugins.generic.objectsForReview.reserve.error.summary"
+msgid "plugins.generic.bookReviewManager.reserve.error.summary"
 msgstr "Bitte korrigieren Sie Folgendes:"
 
-msgid "plugins.generic.objectsForReview.reserve.error.acceptTerms"
+msgid "plugins.generic.bookReviewManager.reserve.error.acceptTerms"
 msgstr "Sie müssen den Bedingungen der Reservierung zustimmen."
 
-msgid "plugins.generic.objectsForReview.reserve.error.dueDate"
+msgid "plugins.generic.bookReviewManager.reserve.error.dueDate"
 msgstr "Bitte geben Sie einen gültigen Abgabetermin an."
 
-msgid "plugins.generic.objectsForReview.reserve.error.dueDateRange"
+msgid "plugins.generic.bookReviewManager.reserve.error.dueDateRange"
 msgstr "Der Abgabetermin muss in der Zukunft und innerhalb des erlaubten Zeitraums liegen."
 
-msgid "plugins.generic.objectsForReview.reserve.error.copyPreference"
+msgid "plugins.generic.bookReviewManager.reserve.error.copyPreference"
 msgstr "Bitte wählen Sie, wie Sie das Werk beziehen."
 
-msgid "plugins.generic.objectsForReview.reserve.error.shippingAddress"
+msgid "plugins.generic.bookReviewManager.reserve.error.shippingAddress"
 msgstr "Bitte geben Sie eine Lieferadresse an."
 
-msgid "plugins.generic.objectsForReview.reserve.error.phone"
+msgid "plugins.generic.bookReviewManager.reserve.error.phone"
 msgstr "Bitte geben Sie eine gültige Telefonnummer an."
 
-msgid "plugins.generic.objectsForReview.reserve.error.copyNote"
+msgid "plugins.generic.bookReviewManager.reserve.error.copyNote"
 msgstr "Bitte erläutern Sie, wie Sie das Werk beziehen."
 
-msgid "plugins.generic.objectsForReview.column.dates"
+msgid "plugins.generic.bookReviewManager.column.dates"
 msgstr "Termine"
 
-msgid "plugins.generic.objectsForReview.column.reservedOn"
+msgid "plugins.generic.bookReviewManager.column.reservedOn"
 msgstr "Reserviert"
 
-msgid "plugins.generic.objectsForReview.settings.contract"
+msgid "plugins.generic.bookReviewManager.settings.contract"
 msgstr "Bedingungen der Reservierung"
 
-msgid "plugins.generic.objectsForReview.settings.contract.description"
+msgid "plugins.generic.bookReviewManager.settings.contract.description"
 msgstr "Wird im Reservierungsdialog angezeigt; Rezensierende müssen diesen Bedingungen zustimmen."
 
-msgid "plugins.generic.objectsForReview.settings.dueMonths"
+msgid "plugins.generic.bookReviewManager.settings.dueMonths"
 msgstr "Abgabetermin der Rezension"
 
-msgid "plugins.generic.objectsForReview.settings.dueMonths.description"
+msgid "plugins.generic.bookReviewManager.settings.dueMonths.description"
 msgstr "Monate nach der Reservierung"
 
-msgid "plugins.generic.objectsForReview.settings.dueMonthsDefault"
+msgid "plugins.generic.bookReviewManager.settings.dueMonthsDefault"
 msgstr "Voreinstellung"
 
-msgid "plugins.generic.objectsForReview.settings.dueMonthsMax"
+msgid "plugins.generic.bookReviewManager.settings.dueMonthsMax"
 msgstr "Höchstens"
 
-msgid "plugins.generic.objectsForReview.settings.dueMonths.invalid"
+msgid "plugins.generic.bookReviewManager.settings.dueMonths.invalid"
 msgstr "Bitte ganze Monatszahlen angeben (höchstens 24); die Voreinstellung darf das Maximum nicht überschreiten."
 
-msgid "plugins.generic.objectsForReview.contract.default"
+msgid "plugins.generic.bookReviewManager.contract.default"
 msgstr "<p>Mit der Reservierung dieses Werks stimmen Sie folgenden Bedingungen zu:</p><ul><li>Sie verfassen eine Rezension des Werks und reichen sie bis zu dem von Ihnen gewählten Abgabetermin bei der Zeitschrift ein.</li><li>Wenn Sie den Termin nicht einhalten können, informieren Sie die Redaktion so früh wie möglich.</li><li>Wenn Sie die Reservierung stornieren oder keine Rezension einreichen, kann die Redaktion Sie bitten, ein erhaltenes Rezensionsexemplar zurückzusenden.</li><li>Ihre Rezension durchläuft das übliche redaktionelle Verfahren der Zeitschrift; die Einreichung garantiert keine Veröffentlichung.</li></ul>"
 
-msgid "plugins.generic.objectsForReview.isbnLookup.button"
+msgid "plugins.generic.bookReviewManager.isbnLookup.button"
 msgstr "ISBN nachschlagen"
 
-msgid "plugins.generic.objectsForReview.isbnLookup.loading"
+msgid "plugins.generic.bookReviewManager.isbnLookup.loading"
 msgstr "Metadaten werden abgerufen (Crossref, Open Library)…"
 
-msgid "plugins.generic.objectsForReview.isbnLookup.done"
+msgid "plugins.generic.bookReviewManager.isbnLookup.done"
 msgstr "Metadaten von {$source} übernommen. Bitte prüfen Sie die Felder vor dem Speichern."
 
-msgid "plugins.generic.objectsForReview.isbnLookup.failed"
+msgid "plugins.generic.bookReviewManager.isbnLookup.failed"
 msgstr "Die Abfrage ist fehlgeschlagen. Bitte versuchen Sie es später erneut oder geben Sie die Metadaten manuell ein."
 
-msgid "plugins.generic.objectsForReview.isbnLookup.notFound"
+msgid "plugins.generic.bookReviewManager.isbnLookup.notFound"
 msgstr "Zu dieser ISBN wurden keine Metadaten gefunden (durchsucht: Crossref, Open Library). Bitte geben Sie die Metadaten manuell ein."
 
-msgid "plugins.generic.objectsForReview.isbnLookup.invalid"
+msgid "plugins.generic.bookReviewManager.isbnLookup.invalid"
 msgstr "Bitte geben Sie eine gültige ISBN-10 oder ISBN-13 ein, z. B. 978-3-658-45780-8."
 
-msgid "plugins.generic.objectsForReview.history"
+msgid "plugins.generic.bookReviewManager.history"
 msgstr "Verlauf"
 
-msgid "plugins.generic.objectsForReview.history.empty"
+msgid "plugins.generic.bookReviewManager.history.empty"
 msgstr "Noch keine Einträge."
 
-msgid "plugins.generic.objectsForReview.history.system"
+msgid "plugins.generic.bookReviewManager.history.system"
 msgstr "automatisch"
 
-msgid "plugins.generic.objectsForReview.history.email"
+msgid "plugins.generic.bookReviewManager.history.email"
 msgstr "E-Mail"
 
-msgid "plugins.generic.objectsForReview.history.email.message"
+msgid "plugins.generic.bookReviewManager.history.email.message"
 msgstr "E-Mail an die rezensierende Person"
 
-msgid "plugins.generic.objectsForReview.history.email.cancelledByEditor"
+msgid "plugins.generic.bookReviewManager.history.email.cancelledByEditor"
 msgstr "Benachrichtigung über die Aufhebung gesendet"
 
-msgid "plugins.generic.objectsForReview.history.email.reminder"
+msgid "plugins.generic.bookReviewManager.history.email.reminder"
 msgstr "Erinnerung gesendet"
 
-msgid "plugins.generic.objectsForReview.history.event.reserved"
+msgid "plugins.generic.bookReviewManager.history.event.reserved"
 msgstr "Reserviert von {$recipientName}, fällig am {$reviewDueDate}"
 
-msgid "plugins.generic.objectsForReview.history.event.cancelledByReviewer"
+msgid "plugins.generic.bookReviewManager.history.event.cancelledByReviewer"
 msgstr "Reservierung storniert von {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.cancelledByEditor"
+msgid "plugins.generic.bookReviewManager.history.event.cancelledByEditor"
 msgstr "Reservierung von {$recipientName} durch die Redaktion aufgehoben"
 
-msgid "plugins.generic.objectsForReview.history.event.attached"
+msgid "plugins.generic.bookReviewManager.history.event.attached"
 msgstr "Von {$recipientName} der Einreichung #{$submissionId} zugeordnet"
 
-msgid "plugins.generic.objectsForReview.reservations.email"
+msgid "plugins.generic.bookReviewManager.reservations.email"
 msgstr "E-Mail senden"
 
-msgid "plugins.generic.objectsForReview.reservations.email.submit"
+msgid "plugins.generic.bookReviewManager.reservations.email.submit"
 msgstr "Senden"
 
-msgid "plugins.generic.objectsForReview.reservations.cancel"
+msgid "plugins.generic.bookReviewManager.reservations.cancel"
 msgstr "Reservierung aufheben"
 
-msgid "plugins.generic.objectsForReview.reservations.cancel.description"
+msgid "plugins.generic.bookReviewManager.reservations.cancel.description"
 msgstr "Die Reservierung von {$reviewer} aufheben? Das Werk wird danach wieder zur Rezension angeboten."
 
-msgid "plugins.generic.objectsForReview.reservations.cancel.sendEmail"
+msgid "plugins.generic.bookReviewManager.reservations.cancel.sendEmail"
 msgstr "Rezensierende Person per E-Mail benachrichtigen"
 
-msgid "plugins.generic.objectsForReview.reservations.cancel.submit"
+msgid "plugins.generic.bookReviewManager.reservations.cancel.submit"
 msgstr "Reservierung aufheben"
 
-msgid "plugins.generic.objectsForReview.reservations.notReserved"
+msgid "plugins.generic.bookReviewManager.reservations.notReserved"
 msgstr "Dieses Werk ist nicht (mehr) reserviert."
 
-msgid "plugins.generic.objectsForReview.reservations.subjectRequired"
+msgid "plugins.generic.bookReviewManager.reservations.subjectRequired"
 msgstr "Bitte geben Sie einen Betreff ein."
 
-msgid "plugins.generic.objectsForReview.reservations.bodyRequired"
+msgid "plugins.generic.bookReviewManager.reservations.bodyRequired"
 msgstr "Bitte geben Sie eine Nachricht ein."
 
-msgid "plugins.generic.objectsForReview.column.reminderSent"
+msgid "plugins.generic.bookReviewManager.column.reminderSent"
 msgstr "Erinnerung gesendet"
 
-msgid "plugins.generic.objectsForReview.settings.reminderDays"
+msgid "plugins.generic.bookReviewManager.settings.reminderDays"
 msgstr "Erinnerung"
 
-msgid "plugins.generic.objectsForReview.settings.reminderDays.description"
+msgid "plugins.generic.bookReviewManager.settings.reminderDays.description"
 msgstr "Tage vor dem Abgabetermin, an dem Rezensierende automatisch erinnert werden (0: keine Erinnerung)"
 
-msgid "plugins.generic.objectsForReview.settings.reminderDays.invalid"
+msgid "plugins.generic.bookReviewManager.settings.reminderDays.invalid"
 msgstr "Bitte geben Sie eine ganze Zahl von Tagen zwischen 0 und 90 ein."
 
-msgid "plugins.generic.objectsForReview.reminder.taskName"
+msgid "plugins.generic.bookReviewManager.reminder.taskName"
 msgstr "Rezensionen: tägliche Erinnerungen"
 
-msgid "plugins.generic.objectsForReview.reminder.sent"
+msgid "plugins.generic.bookReviewManager.reminder.sent"
 msgstr "Für {$context}: {$reminders} Erinnerung(en) an Fälligkeiten, {$contractReminders} Erinnerung(en) an Vertragsangebote, {$expired} abgelaufene(s) Vertragsangebot(e), {$publisherReminders} Erinnerung(en) an Verlage, {$expiredInvitations} abgelaufene Einladung(en), {$invitationReminders} Erinnerung(en) an Einladungen."
 
-msgid "plugins.generic.objectsForReview.identifierTypeRequired"
+msgid "plugins.generic.bookReviewManager.identifierTypeRequired"
 msgstr "Bitte wählen Sie einen Identifikatortyp."
 
-msgid "plugins.generic.objectsForReview.resourceTypeRequired"
+msgid "plugins.generic.bookReviewManager.resourceTypeRequired"
 msgstr "Bitte wählen Sie einen Ressourcentyp."
 
-msgid "plugins.generic.objectsForReview.titleRequired"
+msgid "plugins.generic.bookReviewManager.titleRequired"
 msgstr "Bitte geben Sie einen Titel ein."
 
-msgid "plugins.generic.objectsForReview.identifierRequired"
+msgid "plugins.generic.bookReviewManager.identifierRequired"
 msgstr "Bitte geben Sie einen Identifikator ein."
 
-msgid "plugins.generic.objectsForReview.role.bookReviewEditor"
+msgid "plugins.generic.bookReviewManager.role.bookReviewEditor"
 msgstr "Rezensionsredakteur:in"
 
-msgid "plugins.generic.objectsForReview.role.bookReviewEditor.abbrev"
+msgid "plugins.generic.bookReviewManager.role.bookReviewEditor.abbrev"
 msgstr "RR"
 
-msgid "plugins.generic.objectsForReview.role.publisherContact"
+msgid "plugins.generic.bookReviewManager.role.publisherContact"
 msgstr "Verlagskontakt"
 
-msgid "plugins.generic.objectsForReview.role.publisherContact.abbrev"
+msgid "plugins.generic.bookReviewManager.role.publisherContact.abbrev"
 msgstr "VK"
 
-msgid "plugins.generic.objectsForReview.menu.desk"
+msgid "plugins.generic.bookReviewManager.menu.desk"
 msgstr "Aufgaben"
 
-msgid "plugins.generic.objectsForReview.menu.assignments"
+msgid "plugins.generic.bookReviewManager.menu.assignments"
 msgstr "Rezensent:innen & Bewerbungen"
 
-msgid "plugins.generic.objectsForReview.assignments.none"
+msgid "plugins.generic.bookReviewManager.assignments.none"
 msgstr "Keine Einträge mit diesem Status."
 
-msgid "plugins.generic.objectsForReview.status.active"
+msgid "plugins.generic.bookReviewManager.status.active"
 msgstr "Aktuell (angeboten oder reserviert)"
 
-msgid "plugins.generic.objectsForReview.status.all"
+msgid "plugins.generic.bookReviewManager.status.all"
 msgstr "Alle"
 
-msgid "plugins.generic.objectsForReview.status.bid"
+msgid "plugins.generic.bookReviewManager.status.bid"
 msgstr "Bewerbung"
 
-msgid "plugins.generic.objectsForReview.status.unsuccessful"
+msgid "plugins.generic.bookReviewManager.status.unsuccessful"
 msgstr "Nicht ausgewählt (auf der Liste)"
 
-msgid "plugins.generic.objectsForReview.status.offered"
+msgid "plugins.generic.bookReviewManager.status.offered"
 msgstr "Vertrag angeboten"
 
-msgid "plugins.generic.objectsForReview.status.accepted"
+msgid "plugins.generic.bookReviewManager.status.accepted"
 msgstr "Reserviert"
 
-msgid "plugins.generic.objectsForReview.status.submitted"
+msgid "plugins.generic.bookReviewManager.status.submitted"
 msgstr "Rezension eingereicht"
 
-msgid "plugins.generic.objectsForReview.status.completed"
+msgid "plugins.generic.bookReviewManager.status.completed"
 msgstr "Rezension veröffentlicht"
 
-msgid "plugins.generic.objectsForReview.status.withdrawn"
+msgid "plugins.generic.bookReviewManager.status.withdrawn"
 msgstr "Bewerbung zurückgezogen"
 
-msgid "plugins.generic.objectsForReview.status.declined"
+msgid "plugins.generic.bookReviewManager.status.declined"
 msgstr "Vertrag abgelehnt"
 
-msgid "plugins.generic.objectsForReview.status.expired"
+msgid "plugins.generic.bookReviewManager.status.expired"
 msgstr "Vertragsangebot abgelaufen"
 
-msgid "plugins.generic.objectsForReview.status.retracted"
+msgid "plugins.generic.bookReviewManager.status.retracted"
 msgstr "Von der Rezensentin/dem Rezensenten storniert"
 
-msgid "plugins.generic.objectsForReview.status.cancelled"
+msgid "plugins.generic.bookReviewManager.status.cancelled"
 msgstr "Von der Redaktion storniert"
 
-msgid "plugins.generic.objectsForReview.status.discarded"
+msgid "plugins.generic.bookReviewManager.status.discarded"
 msgstr "Liste geschlossen"
 
-msgid "plugins.generic.objectsForReview.offerState.open"
+msgid "plugins.generic.bookReviewManager.offerState.open"
 msgstr "Offen"
 
-msgid "plugins.generic.objectsForReview.offerState.selection"
+msgid "plugins.generic.bookReviewManager.offerState.selection"
 msgstr "Auswahl ausstehend"
 
-msgid "plugins.generic.objectsForReview.offerState.contractOffered"
+msgid "plugins.generic.bookReviewManager.offerState.contractOffered"
 msgstr "Vertrag angeboten"
 
-msgid "plugins.generic.objectsForReview.offerState.assigned"
+msgid "plugins.generic.bookReviewManager.offerState.assigned"
 msgstr "Reserviert"
 
-msgid "plugins.generic.objectsForReview.offerState.submitted"
+msgid "plugins.generic.bookReviewManager.offerState.submitted"
 msgstr "Rezension eingereicht"
 
-msgid "plugins.generic.objectsForReview.offerState.closed"
+msgid "plugins.generic.bookReviewManager.offerState.closed"
 msgstr "Geschlossen"
 
-msgid "plugins.generic.objectsForReview.offerState.bidCount"
+msgid "plugins.generic.bookReviewManager.offerState.bidCount"
 msgstr "{$number} Bewerbungen"
 
-msgid "plugins.generic.objectsForReview.offer.title"
+msgid "plugins.generic.bookReviewManager.offer.title"
 msgstr "Angebot"
 
-msgid "plugins.generic.objectsForReview.offer.mode"
+msgid "plugins.generic.bookReviewManager.offer.mode"
 msgstr "Vergabe"
 
-msgid "plugins.generic.objectsForReview.offer.mode.description"
+msgid "plugins.generic.bookReviewManager.offer.mode.description"
 msgstr "Direkte Reservierung: Wer zuerst den Bedingungen zustimmt, erhält die Rezension. Bewerbung: Interessierte bewerben sich, und die Rezensionsredaktion wählt aus."
 
-msgid "plugins.generic.objectsForReview.offer.mode.direct"
+msgid "plugins.generic.bookReviewManager.offer.mode.direct"
 msgstr "Direkte Reservierung"
 
-msgid "plugins.generic.objectsForReview.offer.mode.bidding"
+msgid "plugins.generic.bookReviewManager.offer.mode.bidding"
 msgstr "Bewerbung"
 
-msgid "plugins.generic.objectsForReview.offer.modeRequired"
+msgid "plugins.generic.bookReviewManager.offer.modeRequired"
 msgstr "Bitte wählen Sie die Art der Vergabe."
 
-msgid "plugins.generic.objectsForReview.offer.bidDeadline"
+msgid "plugins.generic.bookReviewManager.offer.bidDeadline"
 msgstr "Bewerbungsfrist"
 
-msgid "plugins.generic.objectsForReview.offer.bidDeadline.description"
+msgid "plugins.generic.bookReviewManager.offer.bidDeadline.description"
 msgstr "Optional. Bewerbungen sind bis zum Ende dieses Tages möglich."
 
-msgid "plugins.generic.objectsForReview.offer.bidDeadlineInvalid"
+msgid "plugins.generic.bookReviewManager.offer.bidDeadlineInvalid"
 msgstr "Bitte geben Sie ein gültiges Datum ein."
 
-msgid "plugins.generic.objectsForReview.offer.responsibleEditor"
+msgid "plugins.generic.bookReviewManager.offer.responsibleEditor"
 msgstr "Zuständige Rezensionsredaktion"
 
-msgid "plugins.generic.objectsForReview.offer.responsibleEditor.description"
+msgid "plugins.generic.bookReviewManager.offer.responsibleEditor.description"
 msgstr "Erhält die Benachrichtigungen zu diesem Angebot. Rezensionsredakteur:innen sind Benutzer:innen der Gruppe „Rezensionsredakteur:in“ (Benutzer:innen & Rollen)."
 
-msgid "plugins.generic.objectsForReview.offer.noEditor"
+msgid "plugins.generic.bookReviewManager.offer.noEditor"
 msgstr "— keine (Benachrichtigungsadresse aus den Einstellungen) —"
 
-msgid "plugins.generic.objectsForReview.offer.editorInvalid"
+msgid "plugins.generic.bookReviewManager.offer.editorInvalid"
 msgstr "Bitte wählen Sie eine Rezensionsredakteurin oder einen Rezensionsredakteur."
 
-msgid "plugins.generic.objectsForReview.bid"
+msgid "plugins.generic.bookReviewManager.bid"
 msgstr "Bewerben"
 
-msgid "plugins.generic.objectsForReview.bid.title"
+msgid "plugins.generic.bookReviewManager.bid.title"
 msgstr "Für die Rezension bewerben"
 
-msgid "plugins.generic.objectsForReview.bid.description"
+msgid "plugins.generic.bookReviewManager.bid.description"
 msgstr "Die Rezensionsredaktion wählt unter den Bewerbungen aus. Wenn Sie ausgewählt werden, erhalten Sie eine E-Mail mit einem Link zur Rezensionsvereinbarung."
 
-msgid "plugins.generic.objectsForReview.bid.statement"
+msgid "plugins.generic.bookReviewManager.bid.statement"
 msgstr "Begründung"
 
-msgid "plugins.generic.objectsForReview.bid.statement.hint"
+msgid "plugins.generic.bookReviewManager.bid.statement.hint"
 msgstr "Optional: Warum Sie dieses Werk rezensieren möchten und Ihre Expertise."
 
-msgid "plugins.generic.objectsForReview.bid.submit"
+msgid "plugins.generic.bookReviewManager.bid.submit"
 msgstr "Bewerbung absenden"
 
-msgid "plugins.generic.objectsForReview.bid.open"
+msgid "plugins.generic.bookReviewManager.bid.open"
 msgstr "Bewerbung möglich"
 
-msgid "plugins.generic.objectsForReview.bid.closed"
+msgid "plugins.generic.bookReviewManager.bid.closed"
 msgstr "Auswahl läuft"
 
-msgid "plugins.generic.objectsForReview.bid.deadline"
+msgid "plugins.generic.bookReviewManager.bid.deadline"
 msgstr "Bewerbung bis {$deadline}"
 
-msgid "plugins.generic.objectsForReview.bid.yours"
+msgid "plugins.generic.bookReviewManager.bid.yours"
 msgstr "Sie haben sich am {$date} beworben."
 
-msgid "plugins.generic.objectsForReview.bid.unsuccessful"
+msgid "plugins.generic.bookReviewManager.bid.unsuccessful"
 msgstr "Eine andere Person rezensiert dieses Werk. Sie bleiben auf der Liste, falls die Rezension nicht zustande kommt."
 
-msgid "plugins.generic.objectsForReview.bid.withdraw"
+msgid "plugins.generic.bookReviewManager.bid.withdraw"
 msgstr "Bewerbung zurückziehen"
 
-msgid "plugins.generic.objectsForReview.bid.withdraw.confirm"
+msgid "plugins.generic.bookReviewManager.bid.withdraw.confirm"
 msgstr "Möchten Sie Ihre Bewerbung zurückziehen?"
 
-msgid "plugins.generic.objectsForReview.bid.selected"
+msgid "plugins.generic.bookReviewManager.bid.selected"
 msgstr "Sie wurden ausgewählt. Bitte antworten Sie bis {$deadline}."
 
-msgid "plugins.generic.objectsForReview.bid.respond"
+msgid "plugins.generic.bookReviewManager.bid.respond"
 msgstr "Auf das Angebot antworten"
 
-msgid "plugins.generic.objectsForReview.backToList"
+msgid "plugins.generic.bookReviewManager.backToList"
 msgstr "Zurück zur Liste der Rezensionsangebote"
 
-msgid "plugins.generic.objectsForReview.contract.title"
+msgid "plugins.generic.bookReviewManager.contract.title"
 msgstr "Rezensionsvereinbarung"
 
-msgid "plugins.generic.objectsForReview.contract.intro"
+msgid "plugins.generic.bookReviewManager.contract.intro"
 msgstr "Liebe:r {$name}, Sie wurden für die Rezension dieses Werks ausgewählt. Bitte nehmen Sie die Vereinbarung bis {$deadline} an oder teilen Sie uns mit, wenn Sie die Rezension nicht schreiben können."
 
-msgid "plugins.generic.objectsForReview.contract.accept"
+msgid "plugins.generic.bookReviewManager.contract.accept"
 msgstr "Vereinbarung annehmen"
 
-msgid "plugins.generic.objectsForReview.contract.decline"
+msgid "plugins.generic.bookReviewManager.contract.decline"
 msgstr "Ich kann diese Rezension nicht schreiben"
 
-msgid "plugins.generic.objectsForReview.contract.declineReason"
+msgid "plugins.generic.bookReviewManager.contract.declineReason"
 msgstr "Grund (optional)"
 
-msgid "plugins.generic.objectsForReview.contract.decline.submit"
+msgid "plugins.generic.bookReviewManager.contract.decline.submit"
 msgstr "Angebot ablehnen"
 
-msgid "plugins.generic.objectsForReview.contract.declined.noReason"
+msgid "plugins.generic.bookReviewManager.contract.declined.noReason"
 msgstr "Kein Grund angegeben."
 
-msgid "plugins.generic.objectsForReview.contract.expired"
+msgid "plugins.generic.bookReviewManager.contract.expired"
 msgstr "Das Angebot wurde nicht fristgerecht beantwortet."
 
-msgid "plugins.generic.objectsForReview.leave.title"
+msgid "plugins.generic.bookReviewManager.leave.title"
 msgstr "Von der Liste streichen"
 
-msgid "plugins.generic.objectsForReview.leave.description"
+msgid "plugins.generic.bookReviewManager.leave.description"
 msgstr "Liebe:r {$name}, möchten Sie von der Bewerbungsliste für dieses Werk gestrichen werden? Sie werden dazu nicht mehr kontaktiert."
 
-msgid "plugins.generic.objectsForReview.leave.submit"
+msgid "plugins.generic.bookReviewManager.leave.submit"
 msgstr "Mich von der Liste streichen"
 
-msgid "plugins.generic.objectsForReview.link.invalid.title"
+msgid "plugins.generic.bookReviewManager.link.invalid.title"
 msgstr "Link nicht mehr gültig"
 
-msgid "plugins.generic.objectsForReview.link.invalid"
+msgid "plugins.generic.bookReviewManager.link.invalid"
 msgstr "Dieser Link ist abgelaufen oder wurde bereits verwendet. Bitte wenden Sie sich bei Fragen an die Redaktion."
 
-msgid "plugins.generic.objectsForReview.response.accepted.title"
+msgid "plugins.generic.bookReviewManager.response.accepted.title"
 msgstr "Vielen Dank!"
 
-msgid "plugins.generic.objectsForReview.response.accepted"
+msgid "plugins.generic.bookReviewManager.response.accepted"
 msgstr "Sie haben die Rezensionsvereinbarung angenommen. Ihre Rezension ist am {$dueDate} fällig."
 
-msgid "plugins.generic.objectsForReview.response.declined.title"
+msgid "plugins.generic.bookReviewManager.response.declined.title"
 msgstr "Angebot abgelehnt"
 
-msgid "plugins.generic.objectsForReview.response.declined"
+msgid "plugins.generic.bookReviewManager.response.declined"
 msgstr "Danke für Ihre Rückmeldung. Die Redaktion wurde informiert."
 
-msgid "plugins.generic.objectsForReview.response.left.title"
+msgid "plugins.generic.bookReviewManager.response.left.title"
 msgstr "Von der Liste gestrichen"
 
-msgid "plugins.generic.objectsForReview.response.left"
+msgid "plugins.generic.bookReviewManager.response.left"
 msgstr "Sie wurden von der Bewerbungsliste für dieses Werk gestrichen."
 
-msgid "plugins.generic.objectsForReview.desk.empty"
+msgid "plugins.generic.bookReviewManager.desk.empty"
 msgstr "Derzeit gibt es nichts zu tun."
 
-msgid "plugins.generic.objectsForReview.desk.selection"
+msgid "plugins.generic.bookReviewManager.desk.selection"
 msgstr "Rezensent:in auswählen"
 
-msgid "plugins.generic.objectsForReview.desk.biddingOpen"
+msgid "plugins.generic.bookReviewManager.desk.biddingOpen"
 msgstr "Bewerbung läuft."
 
-msgid "plugins.generic.objectsForReview.desk.biddingClosed"
+msgid "plugins.generic.bookReviewManager.desk.biddingClosed"
 msgstr "Bewerbung geschlossen."
 
-msgid "plugins.generic.objectsForReview.desk.deadlinePassed"
+msgid "plugins.generic.bookReviewManager.desk.deadlinePassed"
 msgstr "Die Bewerbungsfrist ({$deadline}) ist abgelaufen."
 
-msgid "plugins.generic.objectsForReview.desk.dropout.declined"
+msgid "plugins.generic.bookReviewManager.desk.dropout.declined"
 msgstr "{$name} hat den Vertrag am {$date} abgelehnt."
 
-msgid "plugins.generic.objectsForReview.desk.dropout.expired"
+msgid "plugins.generic.bookReviewManager.desk.dropout.expired"
 msgstr "Das Vertragsangebot an {$name} ist am {$date} abgelaufen."
 
-msgid "plugins.generic.objectsForReview.desk.dropout.retracted"
+msgid "plugins.generic.bookReviewManager.desk.dropout.retracted"
 msgstr "{$name} hat die Reservierung am {$date} storniert."
 
-msgid "plugins.generic.objectsForReview.desk.dropout.cancelled"
+msgid "plugins.generic.bookReviewManager.desk.dropout.cancelled"
 msgstr "Die Redaktion hat die Vergabe an {$name} am {$date} storniert."
 
-msgid "plugins.generic.objectsForReview.desk.noBidders"
+msgid "plugins.generic.bookReviewManager.desk.noBidders"
 msgstr "Es sind keine Bewerber:innen mehr auf der Liste."
 
-msgid "plugins.generic.objectsForReview.desk.reviewCount"
+msgid "plugins.generic.bookReviewManager.desk.reviewCount"
 msgstr "Rezensionen für diese Zeitschrift: {$number}"
 
-msgid "plugins.generic.objectsForReview.desk.onList"
+msgid "plugins.generic.bookReviewManager.desk.onList"
 msgstr "Auf der Liste (bereits über andere Auswahl informiert)"
 
-msgid "plugins.generic.objectsForReview.desk.select"
+msgid "plugins.generic.bookReviewManager.desk.select"
 msgstr "Auswählen und Vertrag senden"
 
-msgid "plugins.generic.objectsForReview.desk.offers"
+msgid "plugins.generic.bookReviewManager.desk.offers"
 msgstr "Warten auf Antwort zum Vertragsangebot"
 
-msgid "plugins.generic.objectsForReview.desk.unsuccessful"
+msgid "plugins.generic.bookReviewManager.desk.unsuccessful"
 msgstr "Nicht ausgewählte Bewerber:innen benachrichtigen"
 
-msgid "plugins.generic.objectsForReview.desk.closed"
+msgid "plugins.generic.bookReviewManager.desk.closed"
 msgstr "Geschlossene Angebote"
 
-msgid "plugins.generic.objectsForReview.desk.notPossible"
+msgid "plugins.generic.bookReviewManager.desk.notPossible"
 msgstr "Dieser Schritt ist im aktuellen Stand des Angebots nicht möglich."
 
-msgid "plugins.generic.objectsForReview.desk.reopenBidding"
+msgid "plugins.generic.bookReviewManager.desk.reopenBidding"
 msgstr "Bewerbung wieder öffnen"
 
-msgid "plugins.generic.objectsForReview.desk.reopenBidding.confirm"
+msgid "plugins.generic.bookReviewManager.desk.reopenBidding.confirm"
 msgstr "Bewerbung für dieses Werk wieder öffnen? Bewerber:innen auf der Liste bleiben darauf."
 
-msgid "plugins.generic.objectsForReview.desk.switchToDirect"
+msgid "plugins.generic.bookReviewManager.desk.switchToDirect"
 msgstr "Auf direkte Reservierung umstellen"
 
-msgid "plugins.generic.objectsForReview.desk.switchToDirect.confirm"
+msgid "plugins.generic.bookReviewManager.desk.switchToDirect.confirm"
 msgstr "Dieses Angebot auf direkte Reservierung umstellen? Wer zuerst auf der öffentlichen Seite zustimmt, erhält die Rezension."
 
-msgid "plugins.generic.objectsForReview.desk.closeOffer"
+msgid "plugins.generic.bookReviewManager.desk.closeOffer"
 msgstr "Angebot schließen"
 
-msgid "plugins.generic.objectsForReview.desk.closeOffer.confirm"
+msgid "plugins.generic.bookReviewManager.desk.closeOffer.confirm"
 msgstr "Dieses Angebot schließen? Es wird von der öffentlichen Seite entfernt und die Bewerbungsliste verworfen."
 
-msgid "plugins.generic.objectsForReview.desk.reopenOffer"
+msgid "plugins.generic.bookReviewManager.desk.reopenOffer"
 msgstr "Angebot wieder öffnen"
 
-msgid "plugins.generic.objectsForReview.desk.reopenOffer.confirm"
+msgid "plugins.generic.bookReviewManager.desk.reopenOffer.confirm"
 msgstr "Dieses Werk wieder zur Rezension anbieten?"
 
-msgid "plugins.generic.objectsForReview.column.bidder"
+msgid "plugins.generic.bookReviewManager.column.bidder"
 msgstr "Bewerber:in"
 
-msgid "plugins.generic.objectsForReview.column.bidDate"
+msgid "plugins.generic.bookReviewManager.column.bidDate"
 msgstr "Beworben am"
 
-msgid "plugins.generic.objectsForReview.column.selectedBidder"
+msgid "plugins.generic.bookReviewManager.column.selectedBidder"
 msgstr "Ausgewählt"
 
-msgid "plugins.generic.objectsForReview.column.offeredOn"
+msgid "plugins.generic.bookReviewManager.column.offeredOn"
 msgstr "Angeboten am"
 
-msgid "plugins.generic.objectsForReview.column.answerBy"
+msgid "plugins.generic.bookReviewManager.column.answerBy"
 msgstr "Antwort bis"
 
-msgid "plugins.generic.objectsForReview.column.remainingBidders"
+msgid "plugins.generic.bookReviewManager.column.remainingBidders"
 msgstr "Weitere Bewerber:innen"
 
-msgid "plugins.generic.objectsForReview.column.person"
+msgid "plugins.generic.bookReviewManager.column.person"
 msgstr "Person"
 
-msgid "plugins.generic.objectsForReview.contractOffer.description"
+msgid "plugins.generic.bookReviewManager.contractOffer.description"
 msgstr "{$reviewer} für die Rezension auswählen. Die Bewerbung wird geschlossen, und {$reviewer} erhält die folgende E-Mail mit einem Link zur Rezensionsvereinbarung."
 
-msgid "plugins.generic.objectsForReview.contractOffer.linkHint"
+msgid "plugins.generic.bookReviewManager.contractOffer.linkHint"
 msgstr "{$contractUrl} wird beim Versand durch den persönlichen Link zur Vereinbarung ersetzt."
 
-msgid "plugins.generic.objectsForReview.contractOffer.linkRequired"
+msgid "plugins.generic.bookReviewManager.contractOffer.linkRequired"
 msgstr "Die E-Mail muss {$contractUrl} enthalten, den Link zur Vereinbarung."
 
-msgid "plugins.generic.objectsForReview.contractOffer.submit"
+msgid "plugins.generic.bookReviewManager.contractOffer.submit"
 msgstr "Auswählen und senden"
 
-msgid "plugins.generic.objectsForReview.contractOffer.cancel"
+msgid "plugins.generic.bookReviewManager.contractOffer.cancel"
 msgstr "Angebot zurückziehen"
 
-msgid "plugins.generic.objectsForReview.contractOffer.cancel.description"
+msgid "plugins.generic.bookReviewManager.contractOffer.cancel.description"
 msgstr "Das Vertragsangebot an {$reviewer} zurückziehen? Danach können Sie eine andere Person auswählen."
 
-msgid "plugins.generic.objectsForReview.unsuccessful.action"
+msgid "plugins.generic.bookReviewManager.unsuccessful.action"
 msgstr "Bewerber:innen benachrichtigen"
 
-msgid "plugins.generic.objectsForReview.unsuccessful.description"
+msgid "plugins.generic.bookReviewManager.unsuccessful.description"
 msgstr "Diesen Bewerber:innen mitteilen, dass eine andere Person das Werk rezensiert. Sie bleiben auf der Liste, falls die Rezension nicht zustande kommt."
 
-msgid "plugins.generic.objectsForReview.unsuccessful.linkHint"
+msgid "plugins.generic.bookReviewManager.unsuccessful.linkHint"
 msgstr "Jede:r Bewerber:in erhält eine persönliche E-Mail: {$recipientName} und {$removeUrl} (Link zum Verlassen der Liste) werden beim Versand eingesetzt."
 
-msgid "plugins.generic.objectsForReview.unsuccessful.submit"
+msgid "plugins.generic.bookReviewManager.unsuccessful.submit"
 msgstr "Benachrichtigen"
 
-msgid "plugins.generic.objectsForReview.history.email.contractOffer"
+msgid "plugins.generic.bookReviewManager.history.email.contractOffer"
 msgstr "Vertragsangebot gesendet"
 
-msgid "plugins.generic.objectsForReview.history.email.contractOfferAgain"
+msgid "plugins.generic.bookReviewManager.history.email.contractOfferAgain"
 msgstr "Vertragsangebot gesendet (nach Ausfall)"
 
-msgid "plugins.generic.objectsForReview.history.email.contractReminder"
+msgid "plugins.generic.bookReviewManager.history.email.contractReminder"
 msgstr "Erinnerung an das Vertragsangebot gesendet"
 
-msgid "plugins.generic.objectsForReview.history.email.bidUnsuccessful"
+msgid "plugins.generic.bookReviewManager.history.email.bidUnsuccessful"
 msgstr "Bewerber:in benachrichtigt: nicht ausgewählt"
 
-msgid "plugins.generic.objectsForReview.history.email.bidNew"
+msgid "plugins.generic.bookReviewManager.history.email.bidNew"
 msgstr "Redaktion über neue Bewerbung informiert"
 
-msgid "plugins.generic.objectsForReview.history.email.contractDeclined"
+msgid "plugins.generic.bookReviewManager.history.email.contractDeclined"
 msgstr "Redaktion informiert: Vertrag abgelehnt oder abgelaufen"
 
-msgid "plugins.generic.objectsForReview.history.event.bid"
+msgid "plugins.generic.bookReviewManager.history.event.bid"
 msgstr "{$recipientName} hat sich beworben"
 
-msgid "plugins.generic.objectsForReview.history.event.bidWithdrawn"
+msgid "plugins.generic.bookReviewManager.history.event.bidWithdrawn"
 msgstr "{$recipientName} hat die Bewerbung zurückgezogen"
 
-msgid "plugins.generic.objectsForReview.history.event.contractOffered"
+msgid "plugins.generic.bookReviewManager.history.event.contractOffered"
 msgstr "Vertrag an {$recipientName} angeboten; Bewerbung geschlossen"
 
-msgid "plugins.generic.objectsForReview.history.event.contractAccepted"
+msgid "plugins.generic.bookReviewManager.history.event.contractAccepted"
 msgstr "Vertrag von {$recipientName} angenommen, fällig {$reviewDueDate}"
 
-msgid "plugins.generic.objectsForReview.history.event.contractDeclined"
+msgid "plugins.generic.bookReviewManager.history.event.contractDeclined"
 msgstr "Vertrag von {$recipientName} abgelehnt"
 
-msgid "plugins.generic.objectsForReview.history.event.contractExpired"
+msgid "plugins.generic.bookReviewManager.history.event.contractExpired"
 msgstr "Vertragsangebot an {$recipientName} abgelaufen"
 
-msgid "plugins.generic.objectsForReview.history.event.contractWithdrawn"
+msgid "plugins.generic.bookReviewManager.history.event.contractWithdrawn"
 msgstr "Vertragsangebot an {$recipientName} von der Redaktion zurückgezogen"
 
-msgid "plugins.generic.objectsForReview.history.event.bidderUnsuccessful"
+msgid "plugins.generic.bookReviewManager.history.event.bidderUnsuccessful"
 msgstr "{$recipientName} benachrichtigt: nicht ausgewählt (bleibt auf der Liste)"
 
-msgid "plugins.generic.objectsForReview.history.event.biddingReopened"
+msgid "plugins.generic.bookReviewManager.history.event.biddingReopened"
 msgstr "Bewerbung wieder geöffnet"
 
-msgid "plugins.generic.objectsForReview.history.event.modeDirect"
+msgid "plugins.generic.bookReviewManager.history.event.modeDirect"
 msgstr "Auf direkte Reservierung umgestellt"
 
-msgid "plugins.generic.objectsForReview.history.event.offerClosed"
+msgid "plugins.generic.bookReviewManager.history.event.offerClosed"
 msgstr "Angebot geschlossen"
 
-msgid "plugins.generic.objectsForReview.history.event.offerReopened"
+msgid "plugins.generic.bookReviewManager.history.event.offerReopened"
 msgstr "Angebot wieder geöffnet"
 
-msgid "plugins.generic.objectsForReview.history.event.listDiscarded"
+msgid "plugins.generic.bookReviewManager.history.event.listDiscarded"
 msgstr "Bewerbungsliste verworfen ({$recipientCount})"
 
-msgid "plugins.generic.objectsForReview.history.event.completed"
+msgid "plugins.generic.bookReviewManager.history.event.completed"
 msgstr "Rezension von {$recipientName} veröffentlicht"
 
-msgid "plugins.generic.objectsForReview.history.event.imported"
+msgid "plugins.generic.bookReviewManager.history.event.imported"
 msgstr "Über die API importiert: {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.essayMirrored"
+msgid "plugins.generic.bookReviewManager.history.event.essayMirrored"
 msgstr "Sammelrezension: {$recipientName} — die Vereinbarung mit der Rezensentin/dem Rezensenten umfasst dieses Werk"
 
-msgid "plugins.generic.objectsForReview.history.event.essayStatus"
+msgid "plugins.generic.bookReviewManager.history.event.essayStatus"
 msgstr "Sammelrezension: {$recipientName} — Status geändert"
 
-msgid "plugins.generic.objectsForReview.history.event.essayStatus.accepted"
+msgid "plugins.generic.bookReviewManager.history.event.essayStatus.accepted"
 msgstr "Sammelrezension: {$recipientName} — Status geändert zu Reserviert"
 
-msgid "plugins.generic.objectsForReview.history.event.essayStatus.submitted"
+msgid "plugins.generic.bookReviewManager.history.event.essayStatus.submitted"
 msgstr "Sammelrezension: {$recipientName} — Status geändert zu Rezension eingereicht"
 
-msgid "plugins.generic.objectsForReview.history.event.essayStatus.completed"
+msgid "plugins.generic.bookReviewManager.history.event.essayStatus.completed"
 msgstr "Sammelrezension: {$recipientName} — Status geändert zu Rezension veröffentlicht"
 
-msgid "plugins.generic.objectsForReview.history.event.essayStatus.retracted"
+msgid "plugins.generic.bookReviewManager.history.event.essayStatus.retracted"
 msgstr "Sammelrezension: {$recipientName} — Status geändert zu Von der Rezensentin/dem Rezensenten storniert"
 
-msgid "plugins.generic.objectsForReview.history.event.essayStatus.cancelled"
+msgid "plugins.generic.bookReviewManager.history.event.essayStatus.cancelled"
 msgstr "Sammelrezension: {$recipientName} — Status geändert zu Von der Redaktion storniert"
 
-msgid "plugins.generic.objectsForReview.history.event.essayCreated"
+msgid "plugins.generic.bookReviewManager.history.event.essayCreated"
 msgstr "Sammelrezension angelegt: {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.essayMemberAdded"
+msgid "plugins.generic.bookReviewManager.history.event.essayMemberAdded"
 msgstr "Sammelrezension: {$recipientName} — Werk zur Sammelrezension hinzugefügt"
 
-msgid "plugins.generic.objectsForReview.history.event.essayMemberAdded.container"
+msgid "plugins.generic.bookReviewManager.history.event.essayMemberAdded.container"
 msgstr "Werk zur Sammelrezension hinzugefügt: {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.essayMemberRemoved"
+msgid "plugins.generic.bookReviewManager.history.event.essayMemberRemoved"
 msgstr "Sammelrezension: {$recipientName} — Werk aus der Sammelrezension entfernt"
 
-msgid "plugins.generic.objectsForReview.history.event.essayMemberRemoved.container"
+msgid "plugins.generic.bookReviewManager.history.event.essayMemberRemoved.container"
 msgstr "Werk aus der Sammelrezension entfernt: {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.essayDissolved"
+msgid "plugins.generic.bookReviewManager.history.event.essayDissolved"
 msgstr "Sammelrezension: {$recipientName} — aufgelöst, das Werk wird wieder einzeln angeboten"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.notAvailable"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.notAvailable"
 msgstr "Dieses Werk kann nicht Teil einer Sammelrezension sein: Es gehört bereits zu einer Sammelrezension, ist einer Einreichung zugeordnet oder sein Angebot ist geschlossen."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.twoReviewers"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.twoReviewers"
 msgstr "Nur eines der Werke darf eine Rezensentin/einen Rezensenten haben: Eine Sammelrezension hat eine Rezensentin/einen Rezensenten."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.pending"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.pending"
 msgstr "Für eines der Werke läuft ein Vertragsangebot oder eine Einladungsrunde. Warten Sie das Ende ab oder ziehen Sie es zuerst zurück."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.lastMember"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.lastMember"
 msgstr "Das letzte Werk einer Sammelrezension kann nicht entfernt werden. Lösen Sie stattdessen die Sammelrezension auf."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.hasReviewer"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.hasReviewer"
 msgstr "Eine Sammelrezension mit Rezensentin/Rezensent kann nicht aufgelöst werden."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.submitted"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.submitted"
 msgstr "Die Sammelrezension ist eingereicht: Ihre Werke können nicht mehr geändert werden."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.pendingEssay"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.pendingEssay"
 msgstr "Für diese Sammelrezension läuft ein Vertragsangebot."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.error.resourceType"
+msgid "plugins.generic.bookReviewManager.reviewEssay.error.resourceType"
 msgstr "Der Ressourcentyp einer Sammelrezension kann nicht geändert werden. Lösen Sie die Sammelrezension stattdessen auf."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.api.notFound"
+msgid "plugins.generic.bookReviewManager.reviewEssay.api.notFound"
 msgstr "Es gibt keine Sammelrezension mit dieser ID."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.api.workNotFound"
+msgid "plugins.generic.bookReviewManager.reviewEssay.api.workNotFound"
 msgstr "Es gibt kein Werk mit dieser ID."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.api.memberOfReviewEssay"
+msgid "plugins.generic.bookReviewManager.reviewEssay.api.memberOfReviewEssay"
 msgstr "Dieses Werk gehört zur Sammelrezension {$bundleId}: Importieren Sie den Rezensenten stattdessen für die Sammelrezension."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.api.invalidCopies"
+msgid "plugins.generic.bookReviewManager.reviewEssay.api.invalidCopies"
 msgstr "copies (eine Liste von Einträgen mit objectId) und copyPreferences (nach Werk-ID) dürfen nur Werke der Sammelrezension nennen, jedes Werk höchstens einmal."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.api.invalidCopyPreference"
+msgid "plugins.generic.bookReviewManager.reviewEssay.api.invalidCopyPreference"
 msgstr "copyPreference muss einer dieser Werte sein: {$values}."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.api.invalidCopyStatus"
+msgid "plugins.generic.bookReviewManager.reviewEssay.api.invalidCopyStatus"
 msgstr "copyStatus muss einer dieser Werte sein: {$values}."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.api.shippingAddressRequired"
+msgid "plugins.generic.bookReviewManager.reviewEssay.api.shippingAddressRequired"
 msgstr "shippingAddress ist erforderlich, wenn ein gedrucktes Exemplar eines Werks noch nicht verschickt wurde."
 
-msgid "plugins.generic.objectsForReview.history.email.essayChanged"
+msgid "plugins.generic.bookReviewManager.history.email.essayChanged"
 msgstr "Rezensent:in informiert: Die Werke der Sammelrezension haben sich geändert"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.create"
+msgid "plugins.generic.bookReviewManager.reviewEssay.create"
 msgstr "Sammelrezension anlegen"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.label"
+msgid "plugins.generic.bookReviewManager.reviewEssay.label"
 msgstr "Sammelrezension:"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.memberOf"
+msgid "plugins.generic.bookReviewManager.reviewEssay.memberOf"
 msgstr "(Sammelrezension: {$title})"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.title"
+msgid "plugins.generic.bookReviewManager.reviewEssay.title"
 msgstr "Titel der Sammelrezension"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.titleRequired"
+msgid "plugins.generic.bookReviewManager.reviewEssay.titleRequired"
 msgstr "Bitte geben Sie einen Titel für die Sammelrezension ein."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.works"
+msgid "plugins.generic.bookReviewManager.reviewEssay.works"
 msgstr "Werke"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.works.description"
+msgid "plugins.generic.bookReviewManager.reviewEssay.works.description"
 msgstr "Werke, die schon zu einer Sammelrezension gehören, einer Einreichung zugeordnet sind oder für die ein Vertragsangebot oder eine Einladungsrunde läuft, werden nicht angezeigt. Höchstens eines der ausgewählten Werke darf eine Rezensentin/einen Rezensenten haben: Diese Person schreibt dann die Sammelrezension."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.worksRequired"
+msgid "plugins.generic.bookReviewManager.reviewEssay.worksRequired"
 msgstr "Bitte wählen Sie mindestens ein Werk aus."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.noWorks"
+msgid "plugins.generic.bookReviewManager.reviewEssay.noWorks"
 msgstr "Es gibt keine Werke, die zu einer Sammelrezension zusammengefasst werden können."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.workHasReviewer"
+msgid "plugins.generic.bookReviewManager.reviewEssay.workHasReviewer"
 msgstr "hat Rezensent:in"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.copyPreference"
+msgid "plugins.generic.bookReviewManager.reviewEssay.copyPreference"
 msgstr "Zugang der Rezensentin/des Rezensenten zu diesem Werk"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.copyPreference.description"
+msgid "plugins.generic.bookReviewManager.reviewEssay.copyPreference.description"
 msgstr "Die Sammelrezension hat eine Rezensentin/einen Rezensenten. Wählen Sie, wie diese Person Zugang zum hinzugefügten Werk erhält."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.copyPreferences.description"
+msgid "plugins.generic.bookReviewManager.reviewEssay.copyPreferences.description"
 msgstr "Die Rezensentin/der Rezensent des ausgewählten Werks mit „hat Rezensent:in“ übernimmt die Sammelrezension. Wählen Sie für jedes andere Werk, wie diese Person Zugang erhält."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.hidden"
+msgid "plugins.generic.bookReviewManager.reviewEssay.hidden"
 msgstr "Sammelrezension vorerst in der öffentlichen Liste verbergen"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.emailNotice"
+msgid "plugins.generic.bookReviewManager.reviewEssay.emailNotice"
 msgstr "Hat die Sammelrezension eine Rezensentin/einen Rezensenten, wird diese Person mit der E-Mail „Sammelrezension geändert“ informiert (Text der Vorlage, ohne Bearbeitung)."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.endsBidsNotice"
+msgid "plugins.generic.bookReviewManager.reviewEssay.endsBidsNotice"
 msgstr "Offene Bewerbungen und Einladungen zu den ausgewählten Werken werden beendet, wenn die Sammelrezension angelegt wird. Die Bewerberinnen/Bewerber und Eingeladenen erhalten keine E-Mail, ihre Links funktionieren nicht mehr."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.membersHint"
+msgid "plugins.generic.bookReviewManager.reviewEssay.membersHint"
 msgstr "Werke werden mit den Aktionen in der Liste zur Sammelrezension hinzugefügt und aus ihr entfernt."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.created"
+msgid "plugins.generic.bookReviewManager.reviewEssay.created"
 msgstr "Die Sammelrezension wurde angelegt."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.saved"
+msgid "plugins.generic.bookReviewManager.reviewEssay.saved"
 msgstr "Die Sammelrezension wurde gespeichert."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.workAdded"
+msgid "plugins.generic.bookReviewManager.reviewEssay.workAdded"
 msgstr "Das Werk wurde zur Sammelrezension hinzugefügt."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.workRemoved"
+msgid "plugins.generic.bookReviewManager.reviewEssay.workRemoved"
 msgstr "Das Werk wurde aus der Sammelrezension entfernt. Es wird wieder einzeln angeboten, zunächst verborgen."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.reviewerEmailed"
+msgid "plugins.generic.bookReviewManager.reviewEssay.reviewerEmailed"
 msgstr "Die Rezensentin/der Rezensent wurde per E-Mail informiert (Text der Vorlage, unbearbeitet)."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.selectRequired"
+msgid "plugins.generic.bookReviewManager.reviewEssay.selectRequired"
 msgstr "Bitte treffen Sie eine gültige Auswahl."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.essay"
+msgid "plugins.generic.bookReviewManager.reviewEssay.essay"
 msgstr "Sammelrezension"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.work"
+msgid "plugins.generic.bookReviewManager.reviewEssay.work"
 msgstr "Werk"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.noWorksToAdd"
+msgid "plugins.generic.bookReviewManager.reviewEssay.noWorksToAdd"
 msgstr "Es gibt keine Werke, die zur Sammelrezension hinzugefügt werden können."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.noEssays"
+msgid "plugins.generic.bookReviewManager.reviewEssay.noEssays"
 msgstr "Es gibt keine Sammelrezension, zu der dieses Werk hinzugefügt werden kann."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.addWork"
+msgid "plugins.generic.bookReviewManager.reviewEssay.addWork"
 msgstr "Werk hinzufügen"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.addToEssay"
+msgid "plugins.generic.bookReviewManager.reviewEssay.addToEssay"
 msgstr "Zu Sammelrezension hinzufügen…"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.dissolve"
+msgid "plugins.generic.bookReviewManager.reviewEssay.dissolve"
 msgstr "Auflösen"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.dissolve.confirm"
+msgid "plugins.generic.bookReviewManager.reviewEssay.dissolve.confirm"
 msgstr "Diese Sammelrezension auflösen? Ihre Werke werden wieder einzeln angeboten, zunächst verborgen."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.remove"
+msgid "plugins.generic.bookReviewManager.reviewEssay.remove"
 msgstr "Aus Sammelrezension entfernen"
 
-msgid "plugins.generic.objectsForReview.reviewEssay.remove.confirm"
+msgid "plugins.generic.bookReviewManager.reviewEssay.remove.confirm"
 msgstr "Dieses Werk aus der Sammelrezension entfernen? Es wird wieder einzeln angeboten, zunächst verborgen. Hat die Sammelrezension eine Rezensentin/einen Rezensenten, wird diese Person mit der E-Mail „Sammelrezension geändert“ informiert (Text der Vorlage, ohne Bearbeitung)."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.delete.confirmEssay"
+msgid "plugins.generic.bookReviewManager.reviewEssay.delete.confirmEssay"
 msgstr "Diese Sammelrezension löschen? Sie wird zuerst aufgelöst: Ihre Werke bleiben in der Liste und werden wieder einzeln angeboten, zunächst verborgen. Eine Sammelrezension mit Rezensent:in kann nicht gelöscht werden."
 
-msgid "plugins.generic.objectsForReview.reviewEssay.delete.confirmWork"
+msgid "plugins.generic.bookReviewManager.reviewEssay.delete.confirmWork"
 msgstr "Dieses Werk löschen? Es wird zuerst aus seiner Sammelrezension entfernt (die Rezensentin/der Rezensent der Sammelrezension wird gegebenenfalls per E-Mail informiert). Das letzte Werk einer Sammelrezension kann nicht gelöscht werden."
 
-msgid "plugins.generic.objectsForReview.settings.defaultMode"
+msgid "plugins.generic.bookReviewManager.settings.defaultMode"
 msgstr "Standard-Vergabe für neue Angebote"
 
-msgid "plugins.generic.objectsForReview.settings.defaultMode.description"
+msgid "plugins.generic.bookReviewManager.settings.defaultMode.description"
 msgstr "Kann für jedes Angebot geändert werden."
 
-msgid "plugins.generic.objectsForReview.settings.defaultEditor"
+msgid "plugins.generic.bookReviewManager.settings.defaultEditor"
 msgstr "Standardmäßig zuständige Rezensionsredaktion"
 
-msgid "plugins.generic.objectsForReview.settings.defaultEditor.description"
+msgid "plugins.generic.bookReviewManager.settings.defaultEditor.description"
 msgstr "Für neue Angebote. Ist niemand festgelegt, wird zuständig, wer als Rezensionsredakteur:in das Angebot anlegt."
 
-msgid "plugins.generic.objectsForReview.settings.defaultEditor.none"
+msgid "plugins.generic.bookReviewManager.settings.defaultEditor.none"
 msgstr "— niemand —"
 
-msgid "plugins.generic.objectsForReview.settings.contractDays"
+msgid "plugins.generic.bookReviewManager.settings.contractDays"
 msgstr "Vertragsangebote"
 
-msgid "plugins.generic.objectsForReview.settings.contractDays.description"
+msgid "plugins.generic.bookReviewManager.settings.contractDays.description"
 msgstr "Tage, die eine ausgewählte Person zur Annahme der Vereinbarung hat, und nach wie vielen Tagen eine Erinnerung gesendet wird (0: keine Erinnerung)."
 
-msgid "plugins.generic.objectsForReview.settings.contractDays.deadline"
+msgid "plugins.generic.bookReviewManager.settings.contractDays.deadline"
 msgstr "Tage bis zur Antwort"
 
-msgid "plugins.generic.objectsForReview.settings.contractDays.reminder"
+msgid "plugins.generic.bookReviewManager.settings.contractDays.reminder"
 msgstr "Erinnerung nach (Tagen)"
 
-msgid "plugins.generic.objectsForReview.settings.contractDays.invalid"
+msgid "plugins.generic.bookReviewManager.settings.contractDays.invalid"
 msgstr "Bitte geben Sie die Antwortfrist (1–90 Tage) und eine Erinnerung vor Fristende an."
 
-msgid "plugins.generic.objectsForReview.desk.declineReason"
+msgid "plugins.generic.bookReviewManager.desk.declineReason"
 msgstr "Grund"
 
-msgid "plugins.generic.objectsForReview.copy.status.notNeeded"
+msgid "plugins.generic.bookReviewManager.copy.status.notNeeded"
 msgstr "Kein Exemplar nötig"
 
-msgid "plugins.generic.objectsForReview.copy.status.pending"
+msgid "plugins.generic.bookReviewManager.copy.status.pending"
 msgstr "Exemplar zu organisieren"
 
-msgid "plugins.generic.objectsForReview.copy.status.requested"
+msgid "plugins.generic.bookReviewManager.copy.status.requested"
 msgstr "Beim Verlag angefordert"
 
-msgid "plugins.generic.objectsForReview.copy.status.sent"
+msgid "plugins.generic.bookReviewManager.copy.status.sent"
 msgstr "Versandt"
 
-msgid "plugins.generic.objectsForReview.copy.status.received"
+msgid "plugins.generic.bookReviewManager.copy.status.received"
 msgstr "Bei der Rezensentin/dem Rezensenten eingegangen"
 
-msgid "plugins.generic.objectsForReview.copy.status.returnRequested"
+msgid "plugins.generic.bookReviewManager.copy.status.returnRequested"
 msgstr "Rücksendung angefordert"
 
-msgid "plugins.generic.objectsForReview.copy.status.returnSent"
+msgid "plugins.generic.bookReviewManager.copy.status.returnSent"
 msgstr "Zurückgeschickt"
 
-msgid "plugins.generic.objectsForReview.copy.status.returned"
+msgid "plugins.generic.bookReviewManager.copy.status.returned"
 msgstr "Zurückerhalten"
 
-msgid "plugins.generic.objectsForReview.copy.by.journal"
+msgid "plugins.generic.bookReviewManager.copy.by.journal"
 msgstr "von der Zeitschrift"
 
-msgid "plugins.generic.objectsForReview.copy.by.publisher"
+msgid "plugins.generic.bookReviewManager.copy.by.publisher"
 msgstr "vom Verlag"
 
-msgid "plugins.generic.objectsForReview.copy.to.journal"
+msgid "plugins.generic.bookReviewManager.copy.to.journal"
 msgstr "an die Zeitschrift"
 
-msgid "plugins.generic.objectsForReview.copy.to.publisher"
+msgid "plugins.generic.bookReviewManager.copy.to.publisher"
 msgstr "an den Verlag"
 
-msgid "plugins.generic.objectsForReview.copy.type.physical"
+msgid "plugins.generic.bookReviewManager.copy.type.physical"
 msgstr "gedrucktes Exemplar"
 
-msgid "plugins.generic.objectsForReview.copy.type.electronic"
+msgid "plugins.generic.bookReviewManager.copy.type.electronic"
 msgstr "elektronisches Exemplar"
 
-msgid "plugins.generic.objectsForReview.copy.type.have"
+msgid "plugins.generic.bookReviewManager.copy.type.have"
 msgstr "kein Exemplar nötig"
 
-msgid "plugins.generic.objectsForReview.copy.type.other"
+msgid "plugins.generic.bookReviewManager.copy.type.other"
 msgstr "siehe Anmerkung"
 
-msgid "plugins.generic.objectsForReview.copy.source.journal"
+msgid "plugins.generic.bookReviewManager.copy.source.journal"
 msgstr "von der Zeitschrift"
 
-msgid "plugins.generic.objectsForReview.copy.source.publisher"
+msgid "plugins.generic.bookReviewManager.copy.source.publisher"
 msgstr "vom Verlag"
 
-msgid "plugins.generic.objectsForReview.copy.delivery.physical"
+msgid "plugins.generic.bookReviewManager.copy.delivery.physical"
 msgstr "Bitte senden Sie ein gedrucktes Exemplar an:"
 
-msgid "plugins.generic.objectsForReview.copy.delivery.electronic"
+msgid "plugins.generic.bookReviewManager.copy.delivery.electronic"
 msgstr "Bitte senden Sie ein elektronisches Exemplar an:"
 
-msgid "plugins.generic.objectsForReview.copy.step.requestCopy"
+msgid "plugins.generic.bookReviewManager.copy.step.requestCopy"
 msgstr "Exemplar beim Verlag anfordern"
 
-msgid "plugins.generic.objectsForReview.copy.step.requestCopy.description"
+msgid "plugins.generic.bookReviewManager.copy.step.requestCopy.description"
 msgstr "{$publisher} um ein Exemplar für {$reviewer} bitten. Die E-Mail enthält die Lieferdaten."
 
-msgid "plugins.generic.objectsForReview.copy.step.sendFromStock"
+msgid "plugins.generic.bookReviewManager.copy.step.sendFromStock"
 msgstr "Exemplar aus dem Bestand senden"
 
-msgid "plugins.generic.objectsForReview.copy.step.sendFromStock.description"
+msgid "plugins.generic.bookReviewManager.copy.step.sendFromStock.description"
 msgstr "Festhalten, dass die Zeitschrift ihr Exemplar an {$reviewer} geschickt hat."
 
-msgid "plugins.generic.objectsForReview.copy.step.publisherSent"
+msgid "plugins.generic.bookReviewManager.copy.step.publisherSent"
 msgstr "Verlag hat das Exemplar geschickt"
 
-msgid "plugins.generic.objectsForReview.copy.step.publisherSent.description"
+msgid "plugins.generic.bookReviewManager.copy.step.publisherSent.description"
 msgstr "Festhalten, dass der Verlag das Exemplar an {$reviewer} geschickt hat."
 
-msgid "plugins.generic.objectsForReview.copy.step.markReceived"
+msgid "plugins.generic.bookReviewManager.copy.step.markReceived"
 msgstr "Als erhalten markieren"
 
-msgid "plugins.generic.objectsForReview.copy.step.markReceived.description"
+msgid "plugins.generic.bookReviewManager.copy.step.markReceived.description"
 msgstr "Festhalten, dass {$reviewer} das Exemplar erhalten hat. Lieferadresse und Telefonnummer werden gelöscht."
 
-msgid "plugins.generic.objectsForReview.copy.step.withdrawRequest"
+msgid "plugins.generic.bookReviewManager.copy.step.withdrawRequest"
 msgstr "Anforderung zurückziehen"
 
-msgid "plugins.generic.objectsForReview.copy.step.withdrawRequest.description"
+msgid "plugins.generic.bookReviewManager.copy.step.withdrawRequest.description"
 msgstr "Festhalten, dass das Exemplar nicht mehr benötigt wird. Bitte informieren Sie {$publisher}."
 
-msgid "plugins.generic.objectsForReview.copy.step.requestReturn"
+msgid "plugins.generic.bookReviewManager.copy.step.requestReturn"
 msgstr "Rücksendung anfordern"
 
-msgid "plugins.generic.objectsForReview.copy.step.requestReturn.description"
+msgid "plugins.generic.bookReviewManager.copy.step.requestReturn.description"
 msgstr "Von {$reviewer} wird keine Rezension kommen: Rücksendung des gedruckten Exemplars anfordern. Eine laufende Reservierung wird aufgehoben."
 
-msgid "plugins.generic.objectsForReview.copy.step.returnSent"
+msgid "plugins.generic.bookReviewManager.copy.step.returnSent"
 msgstr "Exemplar wurde zurückgeschickt"
 
-msgid "plugins.generic.objectsForReview.copy.step.returnSent.description"
+msgid "plugins.generic.bookReviewManager.copy.step.returnSent.description"
 msgstr "Festhalten, dass {$reviewer} das Exemplar zurückgeschickt hat."
 
-msgid "plugins.generic.objectsForReview.copy.step.returned"
+msgid "plugins.generic.bookReviewManager.copy.step.returned"
 msgstr "Exemplar ist zurück"
 
-msgid "plugins.generic.objectsForReview.copy.step.returned.description"
+msgid "plugins.generic.bookReviewManager.copy.step.returned.description"
 msgstr "Festhalten, dass das Exemplar zurück ist. Ein an die Zeitschrift zurückgegebenes Exemplar steht für die nächste Rezension bereit."
 
-msgid "plugins.generic.objectsForReview.copy.step.notifyPublisher"
+msgid "plugins.generic.bookReviewManager.copy.step.notifyPublisher"
 msgstr "Verlag benachrichtigen"
 
-msgid "plugins.generic.objectsForReview.copy.step.notifyPublisher.description"
+msgid "plugins.generic.bookReviewManager.copy.step.notifyPublisher.description"
 msgstr "{$publisher} mitteilen, dass die Rezension von {$reviewer} erschienen ist."
 
-msgid "plugins.generic.objectsForReview.copy.returnTarget"
+msgid "plugins.generic.bookReviewManager.copy.returnTarget"
 msgstr "Zurück an"
 
-msgid "plugins.generic.objectsForReview.copy.returnTargetRequired"
+msgid "plugins.generic.bookReviewManager.copy.returnTargetRequired"
 msgstr "Bitte wählen Sie, wohin das Exemplar zurückgeht."
 
-msgid "plugins.generic.objectsForReview.copy.returnAddressHint"
+msgid "plugins.generic.bookReviewManager.copy.returnAddressHint"
 msgstr "{$returnAddress} wird beim Versand durch die oben gewählte Adresse ersetzt."
 
-msgid "plugins.generic.objectsForReview.copy.journalHoldsCopy"
+msgid "plugins.generic.bookReviewManager.copy.journalHoldsCopy"
 msgstr "Exemplar im Bestand der Zeitschrift"
 
-msgid "plugins.generic.objectsForReview.copy.noSource"
+msgid "plugins.generic.bookReviewManager.copy.noSource"
 msgstr "Kein Verlagskontakt und kein Exemplar der Zeitschrift: Angebot bearbeiten"
 
-msgid "plugins.generic.objectsForReview.copy.reviewerStatus.pending"
+msgid "plugins.generic.bookReviewManager.copy.reviewerStatus.pending"
 msgstr "Die Redaktion organisiert ein Exemplar für Sie."
 
-msgid "plugins.generic.objectsForReview.copy.reviewerStatus.requested"
+msgid "plugins.generic.bookReviewManager.copy.reviewerStatus.requested"
 msgstr "Ein Exemplar wurde beim Verlag angefordert."
 
-msgid "plugins.generic.objectsForReview.copy.reviewerStatus.sent"
+msgid "plugins.generic.bookReviewManager.copy.reviewerStatus.sent"
 msgstr "Ein Exemplar wurde an Sie geschickt."
 
-msgid "plugins.generic.objectsForReview.copy.reviewerStatus.returnRequested"
+msgid "plugins.generic.bookReviewManager.copy.reviewerStatus.returnRequested"
 msgstr "Bitte schicken Sie das Exemplar zurück."
 
-msgid "plugins.generic.objectsForReview.copy.reviewerStatus.returnSent"
+msgid "plugins.generic.bookReviewManager.copy.reviewerStatus.returnSent"
 msgstr "Exemplar zurückgeschickt."
 
-msgid "plugins.generic.objectsForReview.copy.reviewerStatus.returned"
+msgid "plugins.generic.bookReviewManager.copy.reviewerStatus.returned"
 msgstr "Exemplar zurückerhalten."
 
-msgid "plugins.generic.objectsForReview.copy.confirmReceipt"
+msgid "plugins.generic.bookReviewManager.copy.confirmReceipt"
 msgstr "Ich habe das Exemplar erhalten"
 
-msgid "plugins.generic.objectsForReview.desk.copies"
+msgid "plugins.generic.bookReviewManager.desk.copies"
 msgstr "Rezensionsexemplare"
 
-msgid "plugins.generic.objectsForReview.desk.notifications"
+msgid "plugins.generic.bookReviewManager.desk.notifications"
 msgstr "Verlage über erschienene Rezensionen informieren"
 
-msgid "plugins.generic.objectsForReview.column.copy"
+msgid "plugins.generic.bookReviewManager.column.copy"
 msgstr "Exemplar"
 
-msgid "plugins.generic.objectsForReview.column.copySource"
+msgid "plugins.generic.bookReviewManager.column.copySource"
 msgstr "Bezugsquelle"
 
-msgid "plugins.generic.objectsForReview.column.reviewer"
+msgid "plugins.generic.bookReviewManager.column.reviewer"
 msgstr "Rezensent:in"
 
-msgid "plugins.generic.objectsForReview.offer.copyTitle"
+msgid "plugins.generic.bookReviewManager.offer.copyTitle"
 msgstr "Rezensionsexemplar"
 
-msgid "plugins.generic.objectsForReview.offer.publisherContact"
+msgid "plugins.generic.bookReviewManager.offer.publisherContact"
 msgstr "Verlagskontakt"
 
-msgid "plugins.generic.objectsForReview.offer.publisherContact.description"
+msgid "plugins.generic.bookReviewManager.offer.publisherContact.description"
 msgstr "Die Person beim Verlag, die Rezensionsexemplare bereitstellt. Verlagskontakte sind Benutzer:innen der Gruppe „Verlagskontakt“ (Benutzer:innen & Rollen); sie müssen sich nicht anmelden."
 
-msgid "plugins.generic.objectsForReview.offer.noPublisherContact"
+msgid "plugins.generic.bookReviewManager.offer.noPublisherContact"
 msgstr "— keiner —"
 
-msgid "plugins.generic.objectsForReview.offer.noPublisherContacts"
+msgid "plugins.generic.bookReviewManager.offer.noPublisherContacts"
 msgstr "Noch keine Verlagskontakte. Legen Sie sie unter Benutzer:innen & Rollen in der Gruppe „Verlagskontakt“ mit Postanschrift an."
 
-msgid "plugins.generic.objectsForReview.offer.journalHoldsCopy"
+msgid "plugins.generic.bookReviewManager.offer.journalHoldsCopy"
 msgstr "Die Zeitschrift hat ein Exemplar dieses Werks"
 
-msgid "plugins.generic.objectsForReview.offer.returnRequired"
+msgid "plugins.generic.bookReviewManager.offer.returnRequired"
 msgstr "Gedruckte Exemplare müssen zurückgeschickt werden, wenn keine Rezension zustande kommt"
 
-msgid "plugins.generic.objectsForReview.offer.notifyPublisher"
+msgid "plugins.generic.bookReviewManager.offer.notifyPublisher"
 msgstr "Der Verlag möchte über die Veröffentlichung der Rezension informiert werden"
 
-msgid "plugins.generic.objectsForReview.offer.publisherContactInvalid"
+msgid "plugins.generic.bookReviewManager.offer.publisherContactInvalid"
 msgstr "Bitte wählen Sie einen Verlagskontakt."
 
-msgid "plugins.generic.objectsForReview.offer.editorAddressRequired"
+msgid "plugins.generic.bookReviewManager.offer.editorAddressRequired"
 msgstr "Exemplare aus dem Bestand gehen an die zuständige Rezensionsredaktion zurück: Bitte wählen Sie eine Person, die eine Postanschrift in ihrem Profil hinterlegt hat."
 
-msgid "plugins.generic.objectsForReview.offer.publisherAddressRequired"
+msgid "plugins.generic.bookReviewManager.offer.publisherAddressRequired"
 msgstr "Exemplare gehen gegebenenfalls an den Verlagskontakt zurück: Dessen Postanschrift muss im Profil hinterlegt sein."
 
-msgid "plugins.generic.objectsForReview.offer.notifyNeedsContact"
+msgid "plugins.generic.bookReviewManager.offer.notifyNeedsContact"
 msgstr "Bitte wählen Sie den Verlagskontakt, der informiert werden soll."
 
-msgid "plugins.generic.objectsForReview.history.email.copyRequest"
+msgid "plugins.generic.bookReviewManager.history.email.copyRequest"
 msgstr "Exemplar beim Verlag angefordert"
 
-msgid "plugins.generic.objectsForReview.history.email.copySent"
+msgid "plugins.generic.bookReviewManager.history.email.copySent"
 msgstr "Rezensent:in über den Versand informiert"
 
-msgid "plugins.generic.objectsForReview.history.email.returnRequest"
+msgid "plugins.generic.bookReviewManager.history.email.returnRequest"
 msgstr "Rücksendung des Exemplars angefordert"
 
-msgid "plugins.generic.objectsForReview.history.email.returnSent"
+msgid "plugins.generic.bookReviewManager.history.email.returnSent"
 msgstr "Verlag über die Rücksendung informiert"
 
-msgid "plugins.generic.objectsForReview.history.email.publisherNotification"
+msgid "plugins.generic.bookReviewManager.history.email.publisherNotification"
 msgstr "Verlag über die erschienene Rezension informiert"
 
-msgid "plugins.generic.objectsForReview.history.event.copyRequested"
+msgid "plugins.generic.bookReviewManager.history.event.copyRequested"
 msgstr "Exemplar für {$recipientName} beim Verlag angefordert"
 
-msgid "plugins.generic.objectsForReview.history.event.copySentJournal"
+msgid "plugins.generic.bookReviewManager.history.event.copySentJournal"
 msgstr "Exemplar von der Zeitschrift an {$recipientName} geschickt"
 
-msgid "plugins.generic.objectsForReview.history.event.copySentPublisher"
+msgid "plugins.generic.bookReviewManager.history.event.copySentPublisher"
 msgstr "Exemplar vom Verlag an {$recipientName} geschickt"
 
-msgid "plugins.generic.objectsForReview.history.event.copyReceived"
+msgid "plugins.generic.bookReviewManager.history.event.copyReceived"
 msgstr "Exemplar bei {$recipientName} eingegangen"
 
-msgid "plugins.generic.objectsForReview.history.event.copyRequestWithdrawn"
+msgid "plugins.generic.bookReviewManager.history.event.copyRequestWithdrawn"
 msgstr "Exemplaranforderung für {$recipientName} zurückgezogen"
 
-msgid "plugins.generic.objectsForReview.history.event.returnRequestedJournal"
+msgid "plugins.generic.bookReviewManager.history.event.returnRequestedJournal"
 msgstr "Rücksendung des Exemplars an die Zeitschrift bei {$recipientName} angefordert"
 
-msgid "plugins.generic.objectsForReview.history.event.returnRequestedPublisher"
+msgid "plugins.generic.bookReviewManager.history.event.returnRequestedPublisher"
 msgstr "Rücksendung des Exemplars an den Verlag bei {$recipientName} angefordert"
 
-msgid "plugins.generic.objectsForReview.history.event.returnSent"
+msgid "plugins.generic.bookReviewManager.history.event.returnSent"
 msgstr "Exemplar von {$recipientName} zurückgeschickt"
 
-msgid "plugins.generic.objectsForReview.history.event.returnedJournal"
+msgid "plugins.generic.bookReviewManager.history.event.returnedJournal"
 msgstr "Exemplar zurück bei der Zeitschrift (von {$recipientName})"
 
-msgid "plugins.generic.objectsForReview.history.event.returnedPublisher"
+msgid "plugins.generic.bookReviewManager.history.event.returnedPublisher"
 msgstr "Exemplar zurück beim Verlag (von {$recipientName})"
 
-msgid "plugins.generic.objectsForReview.history.event.publisherNotified"
+msgid "plugins.generic.bookReviewManager.history.event.publisherNotified"
 msgstr "Verlag über die Rezension von {$recipientName} informiert"
 
-msgid "plugins.generic.objectsForReview.link.copySent"
+msgid "plugins.generic.bookReviewManager.link.copySent"
 msgstr "Ich habe das Exemplar verschickt"
 
-msgid "plugins.generic.objectsForReview.link.copySent.title"
+msgid "plugins.generic.bookReviewManager.link.copySent.title"
 msgstr "Rezensionsexemplar verschickt"
 
-msgid "plugins.generic.objectsForReview.link.copySent.description"
+msgid "plugins.generic.bookReviewManager.link.copySent.description"
 msgstr "Bitte bestätigen Sie, dass Sie das Rezensionsexemplar an {$reviewer} geschickt haben. {$reviewer} wird informiert."
 
-msgid "plugins.generic.objectsForReview.link.copySent.submit"
+msgid "plugins.generic.bookReviewManager.link.copySent.submit"
 msgstr "Bestätigen: Exemplar verschickt"
 
-msgid "plugins.generic.objectsForReview.link.copySent.done"
+msgid "plugins.generic.bookReviewManager.link.copySent.done"
 msgstr "Vielen Dank! Wir haben festgehalten, dass das Exemplar unterwegs ist."
 
-msgid "plugins.generic.objectsForReview.link.received"
+msgid "plugins.generic.bookReviewManager.link.received"
 msgstr "Ich habe das Exemplar erhalten"
 
-msgid "plugins.generic.objectsForReview.link.received.title"
+msgid "plugins.generic.bookReviewManager.link.received.title"
 msgstr "Rezensionsexemplar erhalten"
 
-msgid "plugins.generic.objectsForReview.link.received.description"
+msgid "plugins.generic.bookReviewManager.link.received.description"
 msgstr "Bitte bestätigen Sie, dass das Rezensionsexemplar angekommen ist. Ihre Lieferadresse und Telefonnummer werden dann gelöscht."
 
-msgid "plugins.generic.objectsForReview.link.received.submit"
+msgid "plugins.generic.bookReviewManager.link.received.submit"
 msgstr "Eingang bestätigen"
 
-msgid "plugins.generic.objectsForReview.link.received.done"
+msgid "plugins.generic.bookReviewManager.link.received.done"
 msgstr "Vielen Dank! Wir haben festgehalten, dass Sie das Exemplar erhalten haben."
 
-msgid "plugins.generic.objectsForReview.link.returnSent"
+msgid "plugins.generic.bookReviewManager.link.returnSent"
 msgstr "Ich habe das Exemplar zurückgeschickt"
 
-msgid "plugins.generic.objectsForReview.link.returnSent.title"
+msgid "plugins.generic.bookReviewManager.link.returnSent.title"
 msgstr "Rezensionsexemplar zurückgeschickt"
 
-msgid "plugins.generic.objectsForReview.link.returnSent.description"
+msgid "plugins.generic.bookReviewManager.link.returnSent.description"
 msgstr "Bitte bestätigen Sie, dass Sie das Rezensionsexemplar zurückgeschickt haben."
 
-msgid "plugins.generic.objectsForReview.link.returnSent.submit"
+msgid "plugins.generic.bookReviewManager.link.returnSent.submit"
 msgstr "Bestätigen: Exemplar zurückgeschickt"
 
-msgid "plugins.generic.objectsForReview.link.returnSent.done"
+msgid "plugins.generic.bookReviewManager.link.returnSent.done"
 msgstr "Vielen Dank! Wir haben festgehalten, dass das Exemplar zurückgeschickt wurde."
 
-msgid "plugins.generic.objectsForReview.link.returnReceived"
+msgid "plugins.generic.bookReviewManager.link.returnReceived"
 msgstr "Das zurückgeschickte Exemplar ist angekommen"
 
-msgid "plugins.generic.objectsForReview.link.returnReceived.title"
+msgid "plugins.generic.bookReviewManager.link.returnReceived.title"
 msgstr "Zurückgeschicktes Exemplar erhalten"
 
-msgid "plugins.generic.objectsForReview.link.returnReceived.description"
+msgid "plugins.generic.bookReviewManager.link.returnReceived.description"
 msgstr "Bitte bestätigen Sie, dass das von {$reviewer} zurückgeschickte Rezensionsexemplar angekommen ist."
 
-msgid "plugins.generic.objectsForReview.link.returnReceived.submit"
+msgid "plugins.generic.bookReviewManager.link.returnReceived.submit"
 msgstr "Eingang bestätigen"
 
-msgid "plugins.generic.objectsForReview.link.returnReceived.done"
+msgid "plugins.generic.bookReviewManager.link.returnReceived.done"
 msgstr "Vielen Dank! Wir haben festgehalten, dass das Exemplar wieder bei Ihnen ist."
 
-msgid "plugins.generic.objectsForReview.link.retract"
+msgid "plugins.generic.bookReviewManager.link.retract"
 msgstr "Ich kann diese Rezension nicht schreiben"
 
-msgid "plugins.generic.objectsForReview.link.retract.title"
+msgid "plugins.generic.bookReviewManager.link.retract.title"
 msgstr "Von der Rezension zurücktreten"
 
-msgid "plugins.generic.objectsForReview.link.retract.description"
+msgid "plugins.generic.bookReviewManager.link.retract.description"
 msgstr "Liebe:r {$reviewer}, möchten Sie von der Rezension dieses Werks zurücktreten? Die Redaktion wird informiert. Falls Sie ein gedrucktes Exemplar erhalten haben, kann sie Sie um Rücksendung bitten."
 
-msgid "plugins.generic.objectsForReview.link.retract.submit"
+msgid "plugins.generic.bookReviewManager.link.retract.submit"
 msgstr "Von der Rezension zurücktreten"
 
-msgid "plugins.generic.objectsForReview.link.retract.done"
+msgid "plugins.generic.bookReviewManager.link.retract.done"
 msgstr "Sie sind von der Rezension zurückgetreten. Die Redaktion wurde informiert."
 
-msgid "plugins.generic.objectsForReview.response.done.title"
+msgid "plugins.generic.bookReviewManager.response.done.title"
 msgstr "Vielen Dank!"
 
-msgid "plugins.generic.objectsForReview.history.viaLink"
+msgid "plugins.generic.bookReviewManager.history.viaLink"
 msgstr "per E-Mail-Link"
 
-msgid "plugins.generic.objectsForReview.history.email.copyRequestReminder"
+msgid "plugins.generic.bookReviewManager.history.email.copyRequestReminder"
 msgstr "Verlag an die Exemplaranforderung erinnert"
 
-msgid "plugins.generic.objectsForReview.history.email.confirmation"
+msgid "plugins.generic.bookReviewManager.history.email.confirmation"
 msgstr "Bestätigung an Rezensent:in gesendet"
 
-msgid "plugins.generic.objectsForReview.desk.overdue"
+msgid "plugins.generic.bookReviewManager.desk.overdue"
 msgstr "Überfällige Rezensionen"
 
-msgid "plugins.generic.objectsForReview.copy.reminders"
+msgid "plugins.generic.bookReviewManager.copy.reminders"
 msgstr "{$number} Erinnerung(en) an den Verlag, zuletzt am {$date}"
 
-msgid "plugins.generic.objectsForReview.settings.publisherReminderDays"
+msgid "plugins.generic.bookReviewManager.settings.publisherReminderDays"
 msgstr "Erinnerungen an Verlage"
 
-msgid "plugins.generic.objectsForReview.settings.publisherReminderDays.description"
+msgid "plugins.generic.bookReviewManager.settings.publisherReminderDays.description"
 msgstr "Tage, nach denen eine unbeantwortete Exemplaranforderung beim Verlagskontakt wiederholt wird, und der Abstand zwischen Erinnerungen (0: keine Erinnerungen)."
 
-msgid "plugins.generic.objectsForReview.settings.publisherReminderDays.invalid"
+msgid "plugins.generic.bookReviewManager.settings.publisherReminderDays.invalid"
 msgstr "Bitte geben Sie eine Anzahl von Tagen zwischen 0 und 90 ein."
 
-msgid "plugins.generic.objectsForReview.hide"
+msgid "plugins.generic.bookReviewManager.hide"
 msgstr "Verbergen"
 
-msgid "plugins.generic.objectsForReview.show"
+msgid "plugins.generic.bookReviewManager.show"
 msgstr "Anzeigen"
 
-msgid "plugins.generic.objectsForReview.hidden"
+msgid "plugins.generic.bookReviewManager.hidden"
 msgstr "Verborgen"
 
-msgid "plugins.generic.objectsForReview.history.event.offerHidden"
+msgid "plugins.generic.bookReviewManager.history.event.offerHidden"
 msgstr "Aus der öffentlichen Liste genommen"
 
-msgid "plugins.generic.objectsForReview.history.event.offerShown"
+msgid "plugins.generic.bookReviewManager.history.event.offerShown"
 msgstr "Wieder in der öffentlichen Liste angezeigt"
 
-msgid "plugins.generic.objectsForReview.status.listed"
+msgid "plugins.generic.bookReviewManager.status.listed"
 msgstr "Auf der Einladungsliste"
 
-msgid "plugins.generic.objectsForReview.status.invited"
+msgid "plugins.generic.bookReviewManager.status.invited"
 msgstr "Eingeladen"
 
-msgid "plugins.generic.objectsForReview.status.invitationDeclined"
+msgid "plugins.generic.bookReviewManager.status.invitationDeclined"
 msgstr "Einladung abgelehnt"
 
-msgid "plugins.generic.objectsForReview.status.invitationExpired"
+msgid "plugins.generic.bookReviewManager.status.invitationExpired"
 msgstr "Einladung unbeantwortet"
 
-msgid "plugins.generic.objectsForReview.history.email.invitationReserve"
+msgid "plugins.generic.bookReviewManager.history.email.invitationReserve"
 msgstr "Einladung zur Rezension"
 
-msgid "plugins.generic.objectsForReview.history.email.invitationBid"
+msgid "plugins.generic.bookReviewManager.history.email.invitationBid"
 msgstr "Einladung zur Bewerbung"
 
-msgid "plugins.generic.objectsForReview.history.email.invitationDeclined"
+msgid "plugins.generic.bookReviewManager.history.email.invitationDeclined"
 msgstr "Redaktion benachrichtigt: Einladung abgelehnt oder unbeantwortet"
 
-msgid "plugins.generic.objectsForReview.history.event.inviteeAdded"
+msgid "plugins.generic.bookReviewManager.history.event.inviteeAdded"
 msgstr "{$recipientName} zur Einladungsliste hinzugefügt"
 
-msgid "plugins.generic.objectsForReview.history.event.inviteeCreated"
+msgid "plugins.generic.bookReviewManager.history.event.inviteeCreated"
 msgstr "Konto für {$recipientName} angelegt"
 
-msgid "plugins.generic.objectsForReview.history.event.inviteeRemoved"
+msgid "plugins.generic.bookReviewManager.history.event.inviteeRemoved"
 msgstr "{$recipientName} von der Einladungsliste entfernt"
 
-msgid "plugins.generic.objectsForReview.history.event.invitationListReordered"
+msgid "plugins.generic.bookReviewManager.history.event.invitationListReordered"
 msgstr "Reihenfolge der Einladungsliste geändert"
 
-msgid "plugins.generic.objectsForReview.history.event.invitationSent"
+msgid "plugins.generic.bookReviewManager.history.event.invitationSent"
 msgstr "Einladung an {$recipientName} gesendet (Antwort bis {$reviewDueDate})"
 
-msgid "plugins.generic.objectsForReview.history.event.invitationDeclined"
+msgid "plugins.generic.bookReviewManager.history.event.invitationDeclined"
 msgstr "{$recipientName} hat die Einladung abgelehnt"
 
-msgid "plugins.generic.objectsForReview.history.event.invitationExpired"
+msgid "plugins.generic.bookReviewManager.history.event.invitationExpired"
 msgstr "{$recipientName} hat nicht rechtzeitig auf die Einladung geantwortet"
 
-msgid "plugins.generic.objectsForReview.history.event.reservedViaInvitation"
+msgid "plugins.generic.bookReviewManager.history.event.reservedViaInvitation"
 msgstr "Reserviert von {$recipientName} (Einladung), fällig am {$reviewDueDate}"
 
-msgid "plugins.generic.objectsForReview.history.event.bidViaInvitation"
+msgid "plugins.generic.bookReviewManager.history.event.bidViaInvitation"
 msgstr "Bewerbung von {$recipientName} (Einladung)"
 
-msgid "plugins.generic.objectsForReview.history.event.invitationsEnded"
+msgid "plugins.generic.bookReviewManager.history.event.invitationsEnded"
 msgstr "{$recipientCount} offene Einladung(en) beendet"
 
-msgid "plugins.generic.objectsForReview.invitation.expired"
+msgid "plugins.generic.bookReviewManager.invitation.expired"
 msgstr "Die Einladung wurde nicht bis zur Frist beantwortet."
 
-msgid "plugins.generic.objectsForReview.invitation.linkRequired"
+msgid "plugins.generic.bookReviewManager.invitation.linkRequired"
 msgstr "Die E-Mail muss den Platzhalter {$invitationUrl} für den Einladungslink enthalten."
 
-msgid "plugins.generic.objectsForReview.invitation.linkHint"
+msgid "plugins.generic.bookReviewManager.invitation.linkHint"
 msgstr "{$invitationUrl} wird beim Versand durch den persönlichen Einladungslink ersetzt."
 
-msgid "plugins.generic.objectsForReview.invitation.send"
+msgid "plugins.generic.bookReviewManager.invitation.send"
 msgstr "Einladung senden"
 
-msgid "plugins.generic.objectsForReview.invitation.sendAgain"
+msgid "plugins.generic.bookReviewManager.invitation.sendAgain"
 msgstr "Erneut einladen"
 
-msgid "plugins.generic.objectsForReview.invitation.send.description.reserve"
+msgid "plugins.generic.bookReviewManager.invitation.send.description.reserve"
 msgstr "{$name} zur Rezension dieses Werks einladen. Reservierung oder Absage ist bis zum {$deadline} möglich."
 
-msgid "plugins.generic.objectsForReview.invitation.send.description.bid"
+msgid "plugins.generic.bookReviewManager.invitation.send.description.bid"
 msgstr "{$name} einladen, sich um diese Rezension zu bewerben. Bewerbung oder Absage ist bis zum {$deadline} möglich."
 
-msgid "plugins.generic.objectsForReview.invitation.title"
+msgid "plugins.generic.bookReviewManager.invitation.title"
 msgstr "Rezensent:innen einladen"
 
-msgid "plugins.generic.objectsForReview.invitation.inviteReviewers"
+msgid "plugins.generic.bookReviewManager.invitation.inviteReviewers"
 msgstr "Rezensent:innen einladen"
 
-msgid "plugins.generic.objectsForReview.invitation.kind.reserve"
+msgid "plugins.generic.bookReviewManager.invitation.kind.reserve"
 msgstr "Eingeladene können das Werk reservieren (wer zuerst kommt)"
 
-msgid "plugins.generic.objectsForReview.invitation.kind.bid"
+msgid "plugins.generic.bookReviewManager.invitation.kind.bid"
 msgstr "Eingeladene können sich bewerben; Sie wählen unter Aufgaben aus"
 
-msgid "plugins.generic.objectsForReview.invitation.manualNote"
+msgid "plugins.generic.bookReviewManager.invitation.manualNote"
 msgstr "Senden Sie jede Einladung einzeln mit „Einladung senden“. Heute gesendete Einladungen können bis zum {$deadline} beantwortet werden."
 
-msgid "plugins.generic.objectsForReview.invitation.notPossible"
+msgid "plugins.generic.bookReviewManager.invitation.notPossible"
 msgstr "Im aktuellen Zustand des Angebots können keine Einladungen gesendet werden: Es muss für Reservierungen oder Bewerbungen offen sein."
 
-msgid "plugins.generic.objectsForReview.invitation.list"
+msgid "plugins.generic.bookReviewManager.invitation.list"
 msgstr "Einladungsliste"
 
-msgid "plugins.generic.objectsForReview.invitation.person"
+msgid "plugins.generic.bookReviewManager.invitation.person"
 msgstr "Person"
 
-msgid "plugins.generic.objectsForReview.invitation.drag"
+msgid "plugins.generic.bookReviewManager.invitation.drag"
 msgstr "Zum Umsortieren ziehen"
 
-msgid "plugins.generic.objectsForReview.invitation.reservationCount"
+msgid "plugins.generic.bookReviewManager.invitation.reservationCount"
 msgstr "Aktuelle Reservierungen: {$number}"
 
-msgid "plugins.generic.objectsForReview.invitation.sentOn"
+msgid "plugins.generic.bookReviewManager.invitation.sentOn"
 msgstr "Eingeladen am {$date}"
 
-msgid "plugins.generic.objectsForReview.invitation.up"
+msgid "plugins.generic.bookReviewManager.invitation.up"
 msgstr "Nach oben"
 
-msgid "plugins.generic.objectsForReview.invitation.down"
+msgid "plugins.generic.bookReviewManager.invitation.down"
 msgstr "Nach unten"
 
-msgid "plugins.generic.objectsForReview.invitation.remove"
+msgid "plugins.generic.bookReviewManager.invitation.remove"
 msgstr "Entfernen"
 
-msgid "plugins.generic.objectsForReview.invitation.empty"
+msgid "plugins.generic.bookReviewManager.invitation.empty"
 msgstr "Noch niemand auf der Liste. Fügen Sie unten Personen aus dem Adressbuch oder als neue Nutzer:innen hinzu."
 
-msgid "plugins.generic.objectsForReview.invitation.addressBook"
+msgid "plugins.generic.bookReviewManager.invitation.addressBook"
 msgstr "Aus dem Adressbuch hinzufügen"
 
-msgid "plugins.generic.objectsForReview.invitation.search"
+msgid "plugins.generic.bookReviewManager.invitation.search"
 msgstr "Name, E-Mail oder Institution"
 
-msgid "plugins.generic.objectsForReview.invitation.add"
+msgid "plugins.generic.bookReviewManager.invitation.add"
 msgstr "Zur Liste hinzufügen"
 
-msgid "plugins.generic.objectsForReview.invitation.cannotAdd"
+msgid "plugins.generic.bookReviewManager.invitation.cannotAdd"
 msgstr "Bereits auf der Liste oder mit Bewerbung bzw. Reservierung"
 
-msgid "plugins.generic.objectsForReview.invitation.noResults"
+msgid "plugins.generic.bookReviewManager.invitation.noResults"
 msgstr "Keine Nutzer:innen dieser Zeitschrift gefunden."
 
-msgid "plugins.generic.objectsForReview.invitation.new"
+msgid "plugins.generic.bookReviewManager.invitation.new"
 msgstr "Neue Person hinzufügen"
 
-msgid "plugins.generic.objectsForReview.invitation.new.description"
+msgid "plugins.generic.bookReviewManager.invitation.new.description"
 msgstr "Legt ein Nutzerkonto in der Gruppe Autor:in dieser Zeitschrift an, damit die Person die Rezension einreichen kann. Es wird keine E-Mail gesendet; die Person erhält nur die Einladung. Gibt es bereits ein Konto mit dieser E-Mail-Adresse, wird dieses verwendet."
 
-msgid "plugins.generic.objectsForReview.invitation.new.givenName"
+msgid "plugins.generic.bookReviewManager.invitation.new.givenName"
 msgstr "Vorname"
 
-msgid "plugins.generic.objectsForReview.invitation.new.familyName"
+msgid "plugins.generic.bookReviewManager.invitation.new.familyName"
 msgstr "Nachname"
 
-msgid "plugins.generic.objectsForReview.invitation.new.email"
+msgid "plugins.generic.bookReviewManager.invitation.new.email"
 msgstr "E-Mail"
 
-msgid "plugins.generic.objectsForReview.invitation.new.affiliation"
+msgid "plugins.generic.bookReviewManager.invitation.new.affiliation"
 msgstr "Institution"
 
-msgid "plugins.generic.objectsForReview.invitation.new.submit"
+msgid "plugins.generic.bookReviewManager.invitation.new.submit"
 msgstr "Anlegen und zur Liste hinzufügen"
 
-msgid "plugins.generic.objectsForReview.invitation.new.givenNameRequired"
+msgid "plugins.generic.bookReviewManager.invitation.new.givenNameRequired"
 msgstr "Bitte geben Sie den Vornamen ein."
 
-msgid "plugins.generic.objectsForReview.invitation.new.familyNameRequired"
+msgid "plugins.generic.bookReviewManager.invitation.new.familyNameRequired"
 msgstr "Bitte geben Sie den Nachnamen ein."
 
-msgid "plugins.generic.objectsForReview.invitation.new.emailInvalid"
+msgid "plugins.generic.bookReviewManager.invitation.new.emailInvalid"
 msgstr "Bitte geben Sie eine gültige E-Mail-Adresse ein."
 
-msgid "plugins.generic.objectsForReview.invitation.new.alreadyOnList"
+msgid "plugins.generic.bookReviewManager.invitation.new.alreadyOnList"
 msgstr "Diese Person ist bereits auf der Liste oder hat sich für dieses Werk beworben bzw. es reserviert."
 
-msgid "plugins.generic.objectsForReview.invitation.page.title.reserve"
+msgid "plugins.generic.bookReviewManager.invitation.page.title.reserve"
 msgstr "Einladung zur Rezension"
 
-msgid "plugins.generic.objectsForReview.invitation.page.title.bid"
+msgid "plugins.generic.bookReviewManager.invitation.page.title.bid"
 msgstr "Einladung zur Bewerbung um eine Rezension"
 
-msgid "plugins.generic.objectsForReview.invitation.page.intro.reserve"
+msgid "plugins.generic.bookReviewManager.invitation.page.intro.reserve"
 msgstr "Liebe/r {$name}, Sie wurden eingeladen, dieses Werk zu rezensieren. Um anzunehmen, stimmen Sie bitte bis zum {$deadline} den Bedingungen unten zu, oder teilen Sie uns mit, dass Sie die Rezension nicht schreiben können."
 
-msgid "plugins.generic.objectsForReview.invitation.page.intro.bid"
+msgid "plugins.generic.bookReviewManager.invitation.page.intro.bid"
 msgstr "Liebe/r {$name}, Sie wurden eingeladen, sich um die Rezension dieses Werks zu bewerben. Bitte bewerben Sie sich bis zum {$deadline}, oder teilen Sie uns mit, dass Sie kein Interesse haben."
 
-msgid "plugins.generic.objectsForReview.invitation.page.editor"
+msgid "plugins.generic.bookReviewManager.invitation.page.editor"
 msgstr "Einladung von {$name}"
 
-msgid "plugins.generic.objectsForReview.invitation.page.decline"
+msgid "plugins.generic.bookReviewManager.invitation.page.decline"
 msgstr "Ich kann dieses Werk nicht rezensieren"
 
-msgid "plugins.generic.objectsForReview.invitation.page.decline.submit"
+msgid "plugins.generic.bookReviewManager.invitation.page.decline.submit"
 msgstr "Einladung ablehnen"
 
-msgid "plugins.generic.objectsForReview.response.applied.title"
+msgid "plugins.generic.bookReviewManager.response.applied.title"
 msgstr "Bewerbung eingegangen"
 
-msgid "plugins.generic.objectsForReview.response.applied"
+msgid "plugins.generic.bookReviewManager.response.applied"
 msgstr "Vielen Dank! Die Rezensionsredaktion wählt unter den Bewerbungen aus. Wenn Sie ausgewählt werden, erhalten Sie eine E-Mail mit einem Link zur Rezensionsvereinbarung."
 
-msgid "plugins.generic.objectsForReview.response.invitationDeclined.title"
+msgid "plugins.generic.bookReviewManager.response.invitationDeclined.title"
 msgstr "Einladung abgelehnt"
 
-msgid "plugins.generic.objectsForReview.response.invitationDeclined"
+msgid "plugins.generic.bookReviewManager.response.invitationDeclined"
 msgstr "Vielen Dank für Ihre Rückmeldung. Die Redaktion wurde informiert."
 
-msgid "plugins.generic.objectsForReview.response.invitationClosed.title"
+msgid "plugins.generic.bookReviewManager.response.invitationClosed.title"
 msgstr "Einladung nicht mehr offen"
 
-msgid "plugins.generic.objectsForReview.response.invitationClosed"
+msgid "plugins.generic.bookReviewManager.response.invitationClosed"
 msgstr "Dieses Werk ist nicht mehr zur Rezension verfügbar, oder die Einladung ist beendet. Bei Fragen wenden Sie sich bitte an die Redaktion."
 
-msgid "plugins.generic.objectsForReview.settings.invitationDays"
+msgid "plugins.generic.bookReviewManager.settings.invitationDays"
 msgstr "Einladungen"
 
-msgid "plugins.generic.objectsForReview.settings.invitationDays.description"
+msgid "plugins.generic.bookReviewManager.settings.invitationDays.description"
 msgstr "Tage, die Eingeladene für ihre Antwort haben, und nach wie vielen Tagen sie erinnert werden (0: keine Erinnerung). Einladungen zur Bewerbung für ein Angebot mit Bewerbungsfrist verwenden diese Frist."
 
-msgid "plugins.generic.objectsForReview.settings.invitationDays.invalid"
+msgid "plugins.generic.bookReviewManager.settings.invitationDays.invalid"
 msgstr "Bitte geben Sie eine Anzahl von Tagen zwischen 1 und 90 ein."
 
-msgid "plugins.generic.objectsForReview.status.invitationWithdrawn"
+msgid "plugins.generic.bookReviewManager.status.invitationWithdrawn"
 msgstr "Einladung zurückgezogen"
 
-msgid "plugins.generic.objectsForReview.history.email.invitationReminder"
+msgid "plugins.generic.bookReviewManager.history.email.invitationReminder"
 msgstr "Erinnerung an die Einladung"
 
-msgid "plugins.generic.objectsForReview.history.email.invitationExhausted"
+msgid "plugins.generic.bookReviewManager.history.email.invitationExhausted"
 msgstr "Redaktion benachrichtigt: Einladungsliste ausgeschöpft"
 
-msgid "plugins.generic.objectsForReview.history.event.roundStarted"
+msgid "plugins.generic.bookReviewManager.history.event.roundStarted"
 msgstr "Fortlaufende Einladungsrunde gestartet"
 
-msgid "plugins.generic.objectsForReview.history.event.roundStopped"
+msgid "plugins.generic.bookReviewManager.history.event.roundStopped"
 msgstr "Einladungsrunde beendet"
 
-msgid "plugins.generic.objectsForReview.history.event.roundExhausted"
+msgid "plugins.generic.bookReviewManager.history.event.roundExhausted"
 msgstr "Einladungsrunde hat das Ende der Liste erreicht"
 
-msgid "plugins.generic.objectsForReview.history.event.roundCompleted"
+msgid "plugins.generic.bookReviewManager.history.event.roundCompleted"
 msgstr "Einladungsrunde beendet: reserviert von {$recipientName}"
 
-msgid "plugins.generic.objectsForReview.history.event.invitationWithdrawn"
+msgid "plugins.generic.bookReviewManager.history.event.invitationWithdrawn"
 msgstr "Einladung an {$recipientName} zurückgezogen"
 
-msgid "plugins.generic.objectsForReview.history.event.roundContinued"
+msgid "plugins.generic.bookReviewManager.history.event.roundContinued"
 msgstr "Einladungsrunde fortgesetzt"
 
-msgid "plugins.generic.objectsForReview.invitation.round.description"
+msgid "plugins.generic.bookReviewManager.invitation.round.description"
 msgstr "Startet eine fortlaufende Runde. Zuerst wird {$name} eingeladen. Jede Absage oder nicht innerhalb von {$days} Tagen beantwortete Einladung lädt automatisch die nächste Person auf der Liste mit diesem Text ein, bis jemand das Werk reserviert."
 
-msgid "plugins.generic.objectsForReview.invitation.round.hint"
+msgid "plugins.generic.bookReviewManager.invitation.round.hint"
 msgstr "{$recipientName}, {$invitationDeadline} und {$invitationUrl} werden für jede Person beim Versand ihrer Einladung eingesetzt."
 
-msgid "plugins.generic.objectsForReview.invitation.round.start"
+msgid "plugins.generic.bookReviewManager.invitation.round.start"
 msgstr "Fortlaufende Runde starten"
 
-msgid "plugins.generic.objectsForReview.invitation.round.hideOffer"
+msgid "plugins.generic.bookReviewManager.invitation.round.hideOffer"
 msgstr "Während der Einladungsrunde aus der öffentlichen Liste nehmen"
 
-msgid "plugins.generic.objectsForReview.invitation.round.explain.reserve"
+msgid "plugins.generic.bookReviewManager.invitation.round.explain.reserve"
 msgstr "Lädt die wartenden Personen auf der Liste automatisch nacheinander ein."
 
-msgid "plugins.generic.objectsForReview.invitation.round.running"
+msgid "plugins.generic.bookReviewManager.invitation.round.running"
 msgstr "Fortlaufende Runde, gestartet am {$date} von {$name}"
 
-msgid "plugins.generic.objectsForReview.invitation.round.exhausted"
+msgid "plugins.generic.bookReviewManager.invitation.round.exhausted"
 msgstr "Die Runde hat das Ende der Liste ohne Reservierung erreicht. Fügen Sie weitere Personen hinzu und setzen Sie die Runde fort, oder beenden Sie sie."
 
-msgid "plugins.generic.objectsForReview.invitation.round.current"
+msgid "plugins.generic.bookReviewManager.invitation.round.current"
 msgstr "Derzeit eingeladen: {$name} (Antwort bis {$deadline})"
 
-msgid "plugins.generic.objectsForReview.invitation.round.next"
+msgid "plugins.generic.bookReviewManager.invitation.round.next"
 msgstr "Als Nächstes: {$name} ({$number} wartend)"
 
-msgid "plugins.generic.objectsForReview.invitation.round.noneWaiting"
+msgid "plugins.generic.bookReviewManager.invitation.round.noneWaiting"
 msgstr "Niemand sonst wartet auf der Liste."
 
-msgid "plugins.generic.objectsForReview.invitation.round.continue"
+msgid "plugins.generic.bookReviewManager.invitation.round.continue"
 msgstr "Runde fortsetzen"
 
-msgid "plugins.generic.objectsForReview.invitation.round.stop"
+msgid "plugins.generic.bookReviewManager.invitation.round.stop"
 msgstr "Runde beenden"
 
-msgid "plugins.generic.objectsForReview.invitation.round.stop.confirm"
+msgid "plugins.generic.bookReviewManager.invitation.round.stop.confirm"
 msgstr "Runde beenden? Die offene Einladung wird zurückgezogen, und niemand weiteres wird eingeladen."
 
-msgid "plugins.generic.objectsForReview.settings.invitationDays.reminderInvalid"
+msgid "plugins.generic.bookReviewManager.settings.invitationDays.reminderInvalid"
 msgstr "Bitte geben Sie an, nach wie vielen Tagen Eingeladene erinnert werden (0: keine Erinnerung); es müssen weniger Tage sein als die Antwortfrist."
 
-msgid "plugins.generic.objectsForReview.history.event.roundStartedParallel"
+msgid "plugins.generic.bookReviewManager.history.event.roundStartedParallel"
 msgstr "Einladungen an alle auf der Liste gesendet (alle gleichzeitig)"
 
-msgid "plugins.generic.objectsForReview.history.event.roundFinished"
+msgid "plugins.generic.bookReviewManager.history.event.roundFinished"
 msgstr "Einladungsrunde abgeschlossen: alle haben geantwortet"
 
-msgid "plugins.generic.objectsForReview.invitation.round.descriptionParallel"
+msgid "plugins.generic.bookReviewManager.invitation.round.descriptionParallel"
 msgstr "Lädt alle wartenden Personen auf der Liste ({$number}) gleichzeitig ein, sich um diese Rezension zu bewerben, bis zum {$deadline}. Sie wählen unter Aufgaben aus den Bewerbungen aus."
 
-msgid "plugins.generic.objectsForReview.invitation.round.startParallel"
+msgid "plugins.generic.bookReviewManager.invitation.round.startParallel"
 msgstr "Alle auf der Liste einladen"
 
-msgid "plugins.generic.objectsForReview.invitation.round.explain.bid"
+msgid "plugins.generic.bookReviewManager.invitation.round.explain.bid"
 msgstr "Sendet die Einladung zur Bewerbung gleichzeitig an alle wartenden Personen auf der Liste."
 
-msgid "plugins.generic.objectsForReview.invitation.round.runningParallel"
+msgid "plugins.generic.bookReviewManager.invitation.round.runningParallel"
 msgstr "Einladungen an alle gesendet am {$date} von {$name}"
 
-msgid "plugins.generic.objectsForReview.invitation.round.parallelCounts"
+msgid "plugins.generic.bookReviewManager.invitation.round.parallelCounts"
 msgstr "Antwort ausstehend: {$invited} · geantwortet: {$answered}"
 
-msgid "plugins.generic.objectsForReview.invitation.round.newPeople"
+msgid "plugins.generic.bookReviewManager.invitation.round.newPeople"
 msgstr "{$number} seitdem hinzugefügt, noch nicht eingeladen"
 
-msgid "plugins.generic.objectsForReview.invitation.round.inviteNew"
+msgid "plugins.generic.bookReviewManager.invitation.round.inviteNew"
 msgstr "Neue Personen einladen"
 
-msgid "plugins.generic.objectsForReview.invitation.round.stop.confirmParallel"
+msgid "plugins.generic.bookReviewManager.invitation.round.stop.confirmParallel"
 msgstr "Runde beenden? Offene Einladungen werden zurückgezogen."
 
-msgid "plugins.generic.objectsForReview.invitation.round.exhaustedShort"
+msgid "plugins.generic.bookReviewManager.invitation.round.exhaustedShort"
 msgstr "Ende der Liste ohne Reservierung erreicht"
 
-msgid "plugins.generic.objectsForReview.desk.invitations"
+msgid "plugins.generic.bookReviewManager.desk.invitations"
 msgstr "Einladungen"
 
-msgid "plugins.generic.objectsForReview.invitation.mode"
+msgid "plugins.generic.bookReviewManager.invitation.mode"
 msgstr "Verfahren"
 
-msgid "plugins.generic.objectsForReview.invitation.mode.sequential"
+msgid "plugins.generic.bookReviewManager.invitation.mode.sequential"
 msgstr "Fortlaufende Runde"
 
-msgid "plugins.generic.objectsForReview.invitation.mode.parallel"
+msgid "plugins.generic.bookReviewManager.invitation.mode.parallel"
 msgstr "Alle gleichzeitig"
 
-msgid "plugins.generic.objectsForReview.invitation.mode.manual"
+msgid "plugins.generic.bookReviewManager.invitation.mode.manual"
 msgstr "Einzeln gesendet"
 
-msgid "plugins.generic.objectsForReview.invitation.inviteMore"
+msgid "plugins.generic.bookReviewManager.invitation.inviteMore"
 msgstr "Weitere einladen"
 
-msgid "plugins.generic.objectsForReview.invitation.openPage"
+msgid "plugins.generic.bookReviewManager.invitation.openPage"
 msgstr "Einladungsseite"
 
-msgid "plugins.generic.objectsForReview.management.noneCreated"
+msgid "plugins.generic.bookReviewManager.management.noneCreated"
 msgstr "Bisher wurden keine Werke angeboten."
 
-msgid "plugins.generic.objectsForReview.workflow.tabLabel"
+msgid "plugins.generic.bookReviewManager.workflow.tabLabel"
 msgstr "Rezensierte Werke"
 
-msgid "plugins.generic.objectsForReview.invitation.search.hint"
+msgid "plugins.generic.bookReviewManager.invitation.search.hint"
 msgstr "Lassen Sie das Feld leer, um die Nutzer:innen dieser Zeitschrift alphabetisch aufzulisten."

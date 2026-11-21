@@ -1,6 +1,6 @@
 ---
-name: objects-for-review-email-import
-description: Use when book review processes (review copies, reviewer agreements, deadlines, submitted reviews) exist only as email correspondence and should be migrated into the OJS "Objects for Review" plugin, especially when mails are exported as .eml files (eM Client, Thunderbird, Outlook, Apple Mail) and personal data must not reach the AI model.
+name: book-review-manager-email-import
+description: Use when book review processes (review copies, reviewer agreements, deadlines, submitted reviews) exist only as email correspondence and should be migrated into the OJS "Book Review Manager" plugin, especially when mails are exported as .eml files (eM Client, Thunderbird, Outlook, Apple Mail) and personal data must not reach the AI model.
 ---
 
 # Importing review processes from exported emails
@@ -9,7 +9,7 @@ description: Use when book review processes (review copies, reviewer agreements,
 
 ## Overview
 
-You reconstruct the state of each review process from a folder tree of `.eml` files, write a cases file, and import it through the Objects for Review API (skill `objects-for-review-api`, client `api/bin/ofr.js`).
+You reconstruct the state of each review process from a folder tree of `.eml` files, write a cases file, and import it through the Book Review Manager API (skill `book-review-manager-api`, client `api/bin/ofr.js`).
 
 **Core principle: you only ever see pseudonyms.** `scripts/eml.js` replaces every person locally with a stable token (`P0012`). That covers names, email addresses, phone numbers and postal-address lines, in headers, subjects, folder names, attachment names and body text. The real values and the mail file paths are kept in `<work>/private.json`. `scripts/cases-to-import.js` puts them back only in the import file.
 
@@ -53,7 +53,7 @@ NER is not perfect: it can miss inflected or unusual names (e.g. a genitive "Luh
 
 4. **Read each case**: `show <work> <folder>` (one folder per case) or `show <work> <thread>`. Use `threads --folder X`, `grep <work> REGEX` and `people <work>` to find things. Thread grouping uses Message-ID references, plus the same subject with a shared correspondent. One thread can cover several books, and one book can span several threads.
    If a reviewer agreed to review several books in one text (one thread or folder about several books, one deadline), that is a **review essay**: one review of several works. Ask the user if unsure.
-5. **Write `<work>/cases.json`** in the import format (skill `objects-for-review-api`, section 4), with tokens for people and bookkeeping fields starting with `_`:
+5. **Write `<work>/cases.json`** in the import format (skill `book-review-manager-api`, section 4), with tokens for people and bookkeeping fields starting with `_`:
 
    ```json
    {

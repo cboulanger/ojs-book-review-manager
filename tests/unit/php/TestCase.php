@@ -4,10 +4,10 @@
  * Base class of the plugin's PHP unit tests: factories for data objects and a fake plugin.
  */
 
-namespace APP\plugins\generic\objectsForReview\tests\unit;
+namespace APP\plugins\generic\bookReviewManager\tests\unit;
 
-use APP\plugins\generic\objectsForReview\classes\Assignment;
-use APP\plugins\generic\objectsForReview\classes\ObjectForReview;
+use APP\plugins\generic\bookReviewManager\classes\Assignment;
+use APP\plugins\generic\bookReviewManager\classes\ObjectForReview;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase {
 
@@ -58,7 +58,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase {
 }
 
 /**
- * Stands in for ObjectsForReviewPlugin where only its settings are used.
+ * Stands in for BookReviewManagerPlugin where only its settings are used.
  */
 class FakePlugin {
 	public array $updated = [];

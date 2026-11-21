@@ -8,10 +8,10 @@ import { execFileSync } from 'node:child_process';
 import { randomBytes } from 'node:crypto';
 
 export const PODMAN = process.env.PODMAN ?? 'podman';
-export const CONTAINER = process.env.OFR_CONTAINER ?? 'ojs-objectsforreview';
+export const CONTAINER = process.env.OFR_CONTAINER ?? 'ojs-bookreviewmanager';
 export const JOURNAL_URL = (process.env.OFR_E2E_URL ?? `http://localhost:${process.env.OJS_PORT ?? 8080}/index.php/test`).replace(/\/+$/, '');
 export const OJS_DIR = '/var/www/html';
-export const PLUGIN_IN_CONTAINER = `${OJS_DIR}/plugins/generic/objectsForReview`;
+export const PLUGIN_IN_CONTAINER = `${OJS_DIR}/plugins/generic/bookReviewManager`;
 
 /** Tests that need Crossref or Open Library are skipped with OFR_E2E_OFFLINE=1 */
 export const OFFLINE = ['1', 'true', 'yes'].includes(String(process.env.OFR_E2E_OFFLINE ?? '').toLowerCase());

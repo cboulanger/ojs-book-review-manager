@@ -10,7 +10,7 @@ import { ObjectsForReviewClient, OfrApiError } from '../../../api/src/client.js'
 import { JOURNAL_URL, apiKey, email, isbn13 } from '../../lib/ojs.mjs';
 
 export { JOURNAL_URL };
-export const API_URL = `${JOURNAL_URL}/api/v1/objectsForReview`;
+export const API_URL = `${JOURNAL_URL}/api/v1/bookReviewManager`;
 
 const clients = new Map();
 

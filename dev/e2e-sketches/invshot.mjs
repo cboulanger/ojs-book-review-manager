@@ -1,12 +1,12 @@
 import { B, browser, login } from './lib.mjs';
 import { execSync } from 'node:child_process';
-const id = execSync(`podman exec ojs-objectsforreview mysql -N ojs -e "SELECT object_id FROM objects_for_review_settings WHERE setting_name='title' AND setting_value LIKE '%Rule of Law%' LIMIT 1"`).toString().trim();
+const id = execSync(`podman exec ojs-bookreviewmanager mysql -N ojs -e "SELECT object_id FROM brm_object_settings WHERE setting_name='title' AND setting_value LIKE '%Rule of Law%' LIMIT 1"`).toString().trim();
 const bre = await login('bre', 'ojsbre');
 await bre.setViewportSize({ width: 1280, height: 900 });
-await bre.goto(`${B}/manageObjectsForReview/invite/${id}?q=Test`);
+await bre.goto(`${B}/manageBookReviews/invite/${id}?q=Test`);
 await bre.screenshot({ path: new URL('../../docs/images/invite-page.png', import.meta.url).pathname, fullPage: true });
 console.log('menu current:', await bre.locator('nav [aria-current="page"], .app__navItem--isCurrent, a.-isActive').allInnerTexts().catch(() => []));
-await bre.goto(`${B.replace('/en', '/de')}/manageObjectsForReview/invite/${id}`);
-const text = await bre.locator('.objectsForReviewManagement').innerText();
+await bre.goto(`${B.replace('/en', '/de')}/manageBookReviews/invite/${id}`);
+const text = await bre.locator('.bookReviewManagerManagement').innerText();
 console.log('de untranslated keys:', (text.match(/##[^#]+##/g) || []), '| de heading:', await bre.locator('h1.app__pageHeading').innerText());
 await browser.close();

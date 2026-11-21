@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/mailables/ObjectsForReviewContractDeclined.php
+ * @file plugins/generic/bookReviewManager/mailables/ObjectsForReviewContractDeclined.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
@@ -11,7 +11,7 @@
  *  Sent from the journal contact (no Sender trait, so from() can be used).
  */
 
-namespace APP\plugins\generic\objectsForReview\mailables;
+namespace APP\plugins\generic\bookReviewManager\mailables;
 
 use APP\journal\Journal;
 use PKP\mail\Mailable;
@@ -24,9 +24,9 @@ class ObjectsForReviewContractDeclined extends Mailable
     use Configurable;
     use Recipient;
 
-    protected static ?string $name = 'emails.ofrContractDeclined.name';
-    protected static ?string $description = 'emails.ofrContractDeclined.description';
-    protected static ?string $emailTemplateKey = 'OFR_CONTRACT_DECLINED';
+    protected static ?string $name = 'emails.brmContractDeclined.name';
+    protected static ?string $description = 'emails.brmContractDeclined.description';
+    protected static ?string $emailTemplateKey = 'BRM_CONTRACT_DECLINED';
     protected static array $fromRoleIds = [self::FROM_SYSTEM];
     protected static array $toRoleIds = [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR];
 

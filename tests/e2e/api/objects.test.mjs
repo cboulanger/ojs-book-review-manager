@@ -180,7 +180,7 @@ test('a book review editor creating a work is responsible for it unless a defaul
 test('hidden works are not on the public list', async () => {
   const hidden = await newWork({ title: `Hidden ${uid()}` });
   const visible = await newWork({ title: `Visible ${uid()}`, hidden: false });
-  const page = await (await fetch(`${JOURNAL_URL}/for-review`)).text();
+  const page = await (await fetch(`${JOURNAL_URL}/books-for-review`)).text();
   assert.ok(page.includes(visible.title), 'visible work listed');
   assert.ok(!page.includes(hidden.title), 'hidden work not listed');
   await admin().updateObject(visible.id, { hidden: true });

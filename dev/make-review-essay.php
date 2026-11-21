@@ -8,7 +8,7 @@
  * @brief Dev helper: creates a review essay "Essay test" with two new works
  *  ("Essay test A" and "Essay test B") in journal 1, for manual checks.
  *
- *  podman exec ojs-ofr-essays php /var/www/html/plugins/generic/objectsForReview/dev/make-review-essay.php
+ *  podman exec ojs-ofr-essays php /var/www/html/plugins/generic/bookReviewManager/dev/make-review-essay.php
  *
  *  Prints: container=<id> members=<id>,<id>
  */
@@ -26,8 +26,8 @@ $application->getRequest()->setRouter($router);
 \PKP\facades\Locale::setLocale('en');
 
 use APP\facades\Repo;
-use APP\plugins\generic\objectsForReview\classes\BundleWorkflow;
-use APP\plugins\generic\objectsForReview\classes\ObjectForReviewDAO;
+use APP\plugins\generic\bookReviewManager\classes\BundleWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\ObjectForReviewDAO;
 
 const CONTEXT_ID = 1;
 

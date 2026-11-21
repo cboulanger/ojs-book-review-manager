@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/classes/AssignmentWorkflow.php
+ * @file plugins/generic/bookReviewManager/classes/AssignmentWorkflow.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class AssignmentWorkflow
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief Who writes the review of an object: direct reservation, or bidding
  *  with a contract offer to the bidder selected by the book review editor.
@@ -21,7 +21,7 @@
  *  keep working unchanged.
  */
 
-namespace APP\plugins\generic\objectsForReview\classes;
+namespace APP\plugins\generic\bookReviewManager\classes;
 
 use APP\facades\Repo;
 use PKP\core\Core;
@@ -173,7 +173,7 @@ class AssignmentWorkflow {
 		ReservationLog::logEvent($object, $viaInvitation ? ReservationLog::EVENT_RESERVED_VIA_INVITATION : ReservationLog::EVENT_RESERVED,
 			$user, $user, ['reviewDueDate' => $data['dueDate']]);
 		InvitationWorkflow::onReserved($object, $assignment);
-		$plugin->notifyEditor($user, $object, 'OFR_NEW_RESERVATION', Reservation::getEmailDetails($assignment, $context));
+		$plugin->notifyEditor($user, $object, 'BRM_NEW_RESERVATION', Reservation::getEmailDetails($assignment, $context));
 		self::sendConfirmation($plugin, $context, $object, $assignment, $user);
 		return $assignment;
 	}
@@ -274,7 +274,7 @@ class AssignmentWorkflow {
 		$reviewer = Repo::user()->get($assignment->getUserId(), true);
 		ReservationLog::logEvent($object, ReservationLog::EVENT_CONTRACT_ACCEPTED, $reviewer, $reviewer, ['reviewDueDate' => $data['dueDate']]);
 		InvitationWorkflow::onReserved($object, $assignment);
-		$plugin->notifyEditor($reviewer, $object, 'OFR_NEW_RESERVATION', Reservation::getEmailDetails($assignment, $context));
+		$plugin->notifyEditor($reviewer, $object, 'BRM_NEW_RESERVATION', Reservation::getEmailDetails($assignment, $context));
 		self::sendConfirmation($plugin, $context, $object, $assignment, $reviewer);
 	}
 
@@ -293,7 +293,7 @@ class AssignmentWorkflow {
 		ReservationMailer::notifyEditor($plugin, $context, ReservationEmailEventType::CONTRACT_DECLINED, $object, $assignment, [
 			'reviewerName' => htmlspecialchars($reviewer?->getFullName() ?? ''),
 			'declineReason' => $reason !== '' ? nl2br(htmlspecialchars($reason))
-				: __('plugins.generic.objectsForReview.contract.declined.noReason', [], $context->getPrimaryLocale()),
+				: __('plugins.generic.bookReviewManager.contract.declined.noReason', [], $context->getPrimaryLocale()),
 		]);
 	}
 
@@ -308,7 +308,7 @@ class AssignmentWorkflow {
 		ReservationLog::logEvent($object, ReservationLog::EVENT_CONTRACT_EXPIRED, null, $reviewer);
 		ReservationMailer::notifyEditor($plugin, $context, ReservationEmailEventType::CONTRACT_DECLINED, $object, $assignment, [
 			'reviewerName' => htmlspecialchars($reviewer?->getFullName() ?? ''),
-			'declineReason' => __('plugins.generic.objectsForReview.contract.expired', [], $context->getPrimaryLocale()),
+			'declineReason' => __('plugins.generic.bookReviewManager.contract.expired', [], $context->getPrimaryLocale()),
 		]);
 	}
 
@@ -340,7 +340,7 @@ class AssignmentWorkflow {
 		ActionLink::invalidate($assignment->getId());
 		self::syncReviewer($object);
 		ReservationLog::logEvent($object, ReservationLog::EVENT_CANCELLED_BY_REVIEWER, $user, $user, $viaLink ? ReservationLog::viaLink($user) : []);
-		$plugin->notifyEditor($user, $object, 'OFR_CANCEL_RESERVATION');
+		$plugin->notifyEditor($user, $object, 'BRM_CANCEL_RESERVATION');
 		self::syncBundle($object);
 	}
 

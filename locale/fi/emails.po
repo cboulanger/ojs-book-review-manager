@@ -11,10 +11,10 @@ msgstr ""
 "PO-Revision-Date: 2021-02-21T14:15:29+02:00\n"
 "Language: \n"
 
-msgid "emails.ofrNewReservation.subject"
+msgid "emails.brmNewReservation.subject"
 msgstr "Uusi arvioinnin kohde varattu"
 
-msgid "emails.ofrNewReservation.body"
+msgid "emails.brmNewReservation.body"
 msgstr ""
 "\n"
 "\t\t\n"
@@ -25,16 +25,16 @@ msgstr ""
 "\t\t\n"
 "\t\t"
 
-msgid "emails.ofrNewReservation.description"
+msgid "emails.brmNewReservation.description"
 msgstr "This email template is used to notify the editor for a reserved OFR item."
 
-msgid "emails.ofrNewReservation.name"
+msgid "emails.brmNewReservation.name"
 msgstr "Notify the editor for a reserved OFR item."
 
-msgid "emails.ofrCancelReservation.subject"
+msgid "emails.brmCancelReservation.subject"
 msgstr "Arviointi peruttu"
 
-msgid "emails.ofrCancelReservation.body"
+msgid "emails.brmCancelReservation.body"
 msgstr ""
 "\n"
 "\t\t\n"
@@ -44,271 +44,271 @@ msgstr ""
 "\t\t\n"
 "\t\t"
 
-msgid "emails.ofrCancelReservation.description"
+msgid "emails.brmCancelReservation.description"
 msgstr "This email template is used to notify the editor for a cancelled OFR item reservation."
 
-msgid "emails.ofrCancelReservation.name"
+msgid "emails.brmCancelReservation.name"
 msgstr "Notify the editor for a cancelled OFR item reservation."
-msgid "emails.ofrMessage.name"
+msgid "emails.brmMessage.name"
 msgstr "Viesti varauksen tehneelle arvioijalle"
 
-msgid "emails.ofrMessage.description"
+msgid "emails.brmMessage.description"
 msgstr "Toimitus lähettää tämän henkilölle, joka on varannut julkaisun arvioitavaksi."
 
-msgid "emails.ofrMessage.subject"
+msgid "emails.brmMessage.subject"
 msgstr "Varaamasi arvioitava julkaisu ({$contextName})"
 
-msgid "emails.ofrMessage.body"
+msgid "emails.brmMessage.body"
 msgstr "<p>Hyvä {$recipientName},</p><p>koskien julkaisua, jonka olet varannut arvioitavaksi:<br />{$objectDescription}<br />Arviosi määräpäivä: {$dueDate}</p><p></p><p>Ystävällisin terveisin<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrCancelByEditor.name"
+msgid "emails.brmCancelByEditor.name"
 msgstr "Toimitus perui varauksen"
 
-msgid "emails.ofrCancelByEditor.description"
+msgid "emails.brmCancelByEditor.description"
 msgstr "Ilmoittaa julkaisun arvioitavaksi varanneelle henkilölle, että toimitus on perunut varauksen."
 
-msgid "emails.ofrCancelByEditor.subject"
+msgid "emails.brmCancelByEditor.subject"
 msgstr "Varauksesi on peruttu ({$contextName})"
 
-msgid "emails.ofrCancelByEditor.body"
+msgid "emails.brmCancelByEditor.body"
 msgstr "<p>Hyvä {$recipientName},</p><p>koska emme ole kuulleet sinusta, olemme peruneet seuraavan julkaisun arviointivarauksesi:<br />{$objectDescription}</p><p>Jos sinulla on kysyttävää, ota meihin yhteyttä.</p><p>Ystävällisin terveisin<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrReminder.name"
+msgid "emails.brmReminder.name"
 msgstr "Muistutus ennen määräpäivää"
 
-msgid "emails.ofrReminder.description"
+msgid "emails.brmReminder.description"
 msgstr "Lähetetään automaattisesti julkaisun arvioitavaksi varanneelle henkilölle asetettavan määrän päiviä ennen määräpäivää."
 
-msgid "emails.ofrReminder.subject"
+msgid "emails.brmReminder.subject"
 msgstr "Muistutus: arviosi määräpäivä on {$dueDate}"
 
-msgid "emails.ofrReminder.body"
+msgid "emails.brmReminder.body"
 msgstr "<p>Hyvä {$recipientName},</p><p>muistutamme ystävällisesti, että seuraavan julkaisun arviosi määräpäivä on <strong>{$dueDate}</strong>:<br />{$objectDescription}</p><p>Jos tarvitset lisää aikaa, ota yhteyttä toimitukseen mahdollisimman pian.</p><p>Jos et sittenkään voi kirjoittaa arviota, ilmoita siitä:<br /><a href=\"{$retractUrl}\">{$retractUrl}</a></p><p>Ystävällisin terveisin<br />{$contextName}</p>"
 
-msgid "emails.ofrContractOffer.name"
+msgid "emails.brmContractOffer.name"
 msgstr "Arviointisopimus: sopimustarjous"
 
-msgid "emails.ofrContractOffer.description"
+msgid "emails.brmContractOffer.description"
 msgstr "Lähetetään kirja-arvioiden toimittajan valitsemalle hakijalle, ja siinä on linkki arviointisopimukseen."
 
-msgid "emails.ofrContractOffer.subject"
+msgid "emails.brmContractOffer.subject"
 msgstr "Sinut on valittu arvioijaksi"
 
-msgid "emails.ofrContractOffer.body"
+msgid "emails.brmContractOffer.body"
 msgstr "<p>Hyvä {$recipientName},</p><p>kiitos kiinnostuksestasi. Tarjoamme sinulle mielellämme seuraavan teoksen arvioinnin:<br />{$objectDescription}</p><p>Hyväksy arviointisopimus tai hylkää tarjous viimeistään <strong>{$contractDeadline}</strong>:<br /><a href=\"{$contractUrl}\">{$contractUrl}</a></p><p>Ystävällisin terveisin<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrContractOfferAgain.name"
+msgid "emails.brmContractOfferAgain.name"
 msgstr "Arviointisopimus: tarjous peruutuksen jälkeen"
 
-msgid "emails.ofrContractOfferAgain.description"
+msgid "emails.brmContractOfferAgain.description"
 msgstr "Lähetetään listalla olevalle hakijalle, kun aiemmin valittu arvioija on perunut."
 
-msgid "emails.ofrContractOfferAgain.subject"
+msgid "emails.brmContractOfferAgain.subject"
 msgstr "Hakemasi teoksen arviointi on jälleen vapaana"
 
-msgid "emails.ofrContractOfferAgain.body"
+msgid "emails.brmContractOfferAgain.body"
 msgstr "<p>Hyvä {$recipientName},</p><p>hait seuraavan teoksen arvioijaksi:<br />{$objectDescription}</p><p>Arviointi on jälleen vapaana, ja tarjoamme sitä mielellämme sinulle. Jos olet yhä kiinnostunut, hyväksy arviointisopimus viimeistään <strong>{$contractDeadline}</strong> tai hylkää tarjous:<br /><a href=\"{$contractUrl}\">{$contractUrl}</a></p><p>Ystävällisin terveisin<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrContractReminder.name"
+msgid "emails.brmContractReminder.name"
 msgstr "Muistutus sopimustarjouksesta"
 
-msgid "emails.ofrContractReminder.description"
+msgid "emails.brmContractReminder.description"
 msgstr "Lähetetään automaattisesti valitulle hakijalle, joka ei ole vielä vastannut sopimustarjoukseen."
 
-msgid "emails.ofrContractReminder.subject"
+msgid "emails.brmContractReminder.subject"
 msgstr "Muistutus: vastaa arviointitarjoukseen viimeistään {$contractDeadline}"
 
-msgid "emails.ofrContractReminder.body"
+msgid "emails.brmContractReminder.body"
 msgstr "<p>Hyvä {$recipientName},</p><p>muistutamme ystävällisesti, että olemme tarjonneet sinulle seuraavan teoksen arviointia:<br />{$objectDescription}</p><p>Hyväksy arviointisopimus tai hylkää tarjous viimeistään <strong>{$contractDeadline}</strong>:<br /><a href=\"{$contractUrl}\">{$contractUrl}</a></p><p>Ystävällisin terveisin<br />{$contextName}</p>"
 
-msgid "emails.ofrBidUnsuccessful.name"
+msgid "emails.brmBidUnsuccessful.name"
 msgstr "Hakijaa ei valittu"
 
-msgid "emails.ofrBidUnsuccessful.description"
+msgid "emails.brmBidUnsuccessful.description"
 msgstr "Lähetetään muille hakijoille, kun sopimus on hyväksytty. He pysyvät listalla siltä varalta, ettei arviota synny."
 
-msgid "emails.ofrBidUnsuccessful.subject"
+msgid "emails.brmBidUnsuccessful.subject"
 msgstr "Hakemuksesi arvioijaksi"
 
-msgid "emails.ofrBidUnsuccessful.body"
+msgid "emails.brmBidUnsuccessful.body"
 msgstr "<p>Hyvä {$recipientName},</p><p>kiitos hakemuksestasi seuraavan teoksen arvioijaksi:<br />{$objectDescription}</p><p>Annoimme arvioinnin tällä kertaa toiselle hakijalle. Pidämme sinut listallamme ja voimme ottaa yhteyttä, jos arviota ei synny.</p><p>Jos haluat mieluummin, että sinut poistetaan listalta, käytä tätä linkkiä:<br /><a href=\"{$removeUrl}\">{$removeUrl}</a></p><p>Ystävällisin terveisin<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrBidNew.name"
+msgid "emails.brmBidNew.name"
 msgstr "Uusi hakemus (kirja-arvioiden toimittajalle)"
 
-msgid "emails.ofrBidNew.description"
+msgid "emails.brmBidNew.description"
 msgstr "Lähetetään automaattisesti vastuulliselle kirja-arvioiden toimittajalle, kun joku hakee arvioijaksi."
 
-msgid "emails.ofrBidNew.subject"
+msgid "emails.brmBidNew.subject"
 msgstr "Uusi hakemus arvioijaksi: {$objectDescription}"
 
-msgid "emails.ofrBidNew.body"
+msgid "emails.brmBidNew.body"
 msgstr "<p>Hyvä {$recipientName},</p><p>{$bidderName} on hakenut seuraavan teoksen arvioijaksi:<br />{$objectDescription}</p><p>Perustelut:<br />{$bidStatement}</p><p>Voit valita hakijoiden joukosta täällä: <a href=\"{$deskUrl}\">{$deskUrl}</a></p>"
 
-msgid "emails.ofrContractDeclined.name"
+msgid "emails.brmContractDeclined.name"
 msgstr "Sopimus hylätty tai vanhentunut (kirja-arvioiden toimittajalle)"
 
-msgid "emails.ofrContractDeclined.description"
+msgid "emails.brmContractDeclined.description"
 msgstr "Lähetetään automaattisesti vastuulliselle kirja-arvioiden toimittajalle, kun valittu hakija hylkää sopimustarjouksen tai ei vastaa ajoissa."
 
-msgid "emails.ofrContractDeclined.subject"
+msgid "emails.brmContractDeclined.subject"
 msgstr "Arviointitarjousta ei hyväksytty: {$objectDescription}"
 
-msgid "emails.ofrContractDeclined.body"
+msgid "emails.brmContractDeclined.body"
 msgstr "<p>Hyvä {$recipientName},</p><p>{$reviewerName} ei hyväksynyt tarjousta arvioida seuraava teos:<br />{$objectDescription}</p><p>{$declineReason}</p><p>Valitse toinen hakija tai avaa haku uudelleen: <a href=\"{$deskUrl}\">{$deskUrl}</a></p>"
 
-msgid "emails.ofrCopyRequest.name"
+msgid "emails.brmCopyRequest.name"
 msgstr "Arvostelukappaleen pyyntö (kustantajalle)"
 
-msgid "emails.ofrCopyRequest.description"
+msgid "emails.brmCopyRequest.description"
 msgstr "Kirja-arvioiden toimittaja lähettää kustantajan yhteyshenkilölle; sisältää toimitusosoitteen (painettu kappale) tai arvioijan sähköpostin (sähköinen kappale)."
 
-msgid "emails.ofrCopyRequest.subject"
+msgid "emails.brmCopyRequest.subject"
 msgstr "Pyyntö arvostelukappaleesta: {$objectDescription}"
 
-msgid "emails.ofrCopyRequest.body"
+msgid "emails.brmCopyRequest.body"
 msgstr "<p>Hyvä {$recipientName},</p><p>{$reviewerName} arvioi seuraavan teoksen lehteen {$contextName}:<br />{$objectDescription}</p><p>Olisimme kiitollisia, jos voisitte toimittaa arvostelukappaleen ({$copyType}).</p><p>{$deliveryDetails}</p><p>Kun olette lähettäneet kappaleen, ilmoittakaa siitä yhdellä napsautuksella:<br /><a href=\"{$copySentUrl}\">{$copySentUrl}</a></p><p>Lämmin kiitos ja ystävällisin terveisin<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrCopySent.name"
+msgid "emails.brmCopySent.name"
 msgstr "Arvostelukappale lähetetty (arvioijalle)"
 
-msgid "emails.ofrCopySent.description"
+msgid "emails.brmCopySent.description"
 msgstr "Ilmoittaa arvioijalle, että lehti tai kustantaja on lähettänyt arvostelukappaleen."
 
-msgid "emails.ofrCopySent.subject"
+msgid "emails.brmCopySent.subject"
 msgstr "Arvostelukappaleesi on matkalla"
 
-msgid "emails.ofrCopySent.body"
+msgid "emails.brmCopySent.body"
 msgstr "<p>Hyvä {$recipientName},</p><p>sinulle on lähetetty {$copySource} arvostelukappale ({$copyType}) seuraavasta teoksesta:<br />{$objectDescription}</p><p>Arviosi määräpäivä on {$dueDate}.</p><p>Kun se on saapunut, vahvista vastaanotto yhdellä napsautuksella:<br /><a href=\"{$receivedUrl}\">{$receivedUrl}</a></p><p>Ystävällisin terveisin<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrReturnRequest.name"
+msgid "emails.brmReturnRequest.name"
 msgstr "Arvostelukappaleen palautus (arvioijalle)"
 
-msgid "emails.ofrReturnRequest.description"
+msgid "emails.brmReturnRequest.description"
 msgstr "Pyytää arvioijaa palauttamaan painetun kappaleen, kun arviota ei kirjoiteta; sisältää palautusosoitteen."
 
-msgid "emails.ofrReturnRequest.subject"
+msgid "emails.brmReturnRequest.subject"
 msgstr "Palauta arvostelukappale"
 
-msgid "emails.ofrReturnRequest.body"
+msgid "emails.brmReturnRequest.body"
 msgstr "<p>Hyvä {$recipientName},</p><p>koska seuraavan teoksen arviota ei kirjoiteta, pyydämme sinua palauttamaan arvostelukappaleen:<br />{$objectDescription}</p><p>Lähetä se osoitteeseen:<br />{$returnAddress}</p><p>Kun olet lähettänyt sen takaisin, ilmoita siitä yhdellä napsautuksella:<br /><a href=\"{$returnSentUrl}\">{$returnSentUrl}</a></p><p>Kiitos ja ystävällisin terveisin<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrReturnSent.name"
+msgid "emails.brmReturnSent.name"
 msgstr "Arvostelukappale palautettu (kustantajalle)"
 
-msgid "emails.ofrReturnSent.description"
+msgid "emails.brmReturnSent.description"
 msgstr "Ilmoittaa kustantajan yhteyshenkilölle, että arvostelukappale on palautumassa."
 
-msgid "emails.ofrReturnSent.subject"
+msgid "emails.brmReturnSent.subject"
 msgstr "Arvostelukappale palautumassa: {$objectDescription}"
 
-msgid "emails.ofrReturnSent.body"
+msgid "emails.brmReturnSent.body"
 msgstr "<p>Hyvä {$recipientName},</p><p>valitettavasti seuraavan teoksen arviota ei julkaista:<br />{$objectDescription}</p><p>Ystävällisesti toimittamanne arvostelukappale on lähetetty teille takaisin.</p><p>Kun se on saapunut, vahvistakaa vastaanotto yhdellä napsautuksella:<br /><a href=\"{$returnReceivedUrl}\">{$returnReceivedUrl}</a></p><p>Kiitos vielä ja ystävällisin terveisin<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrPublisherNotification.name"
+msgid "emails.brmPublisherNotification.name"
 msgstr "Arvio julkaistu (kustantajalle)"
 
-msgid "emails.ofrPublisherNotification.description"
+msgid "emails.brmPublisherNotification.description"
 msgstr "Ilmoittaa kustantajan yhteyshenkilölle arvion julkaisusta, jos kustantaja on sitä pyytänyt."
 
-msgid "emails.ofrPublisherNotification.subject"
+msgid "emails.brmPublisherNotification.subject"
 msgstr "Arvio julkaistu: {$objectDescription}"
 
-msgid "emails.ofrPublisherNotification.body"
+msgid "emails.brmPublisherNotification.body"
 msgstr "<p>Hyvä {$recipientName},</p><p>meillä on ilo kertoa, että arvioijan {$reviewerName} arvio seuraavasta teoksesta on julkaistu lehdessä {$contextName}:<br />{$objectDescription}</p><p><a href=\"{$reviewUrl}\">{$reviewUrl}</a></p><p>Kiitos arvostelukappaleesta ja ystävällisin terveisin<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrCopyRequestReminder.name"
+msgid "emails.brmCopyRequestReminder.name"
 msgstr "Muistutus kappalepyynnöstä (kustantajalle)"
 
-msgid "emails.ofrCopyRequestReminder.description"
+msgid "emails.brmCopyRequestReminder.description"
 msgstr "Lähetetään automaattisesti kustantajan yhteyshenkilölle, kun kappalepyyntöön ei ole vastattu."
 
-msgid "emails.ofrCopyRequestReminder.subject"
+msgid "emails.brmCopyRequestReminder.subject"
 msgstr "Muistutus: pyyntö arvostelukappaleesta: {$objectDescription}"
 
-msgid "emails.ofrCopyRequestReminder.body"
+msgid "emails.brmCopyRequestReminder.body"
 msgstr "<p>Hyvä {$recipientName},</p><p>pyysimme hiljattain arvostelukappaletta ({$copyType}) seuraavasta teoksesta, jonka {$reviewerName} arvioi lehteen {$contextName}:<br />{$objectDescription}</p><p>{$deliveryDetails}</p><p>Jos olette jo lähettäneet sen, ilmoittakaa siitä yhdellä napsautuksella:<br /><a href=\"{$copySentUrl}\">{$copySentUrl}</a></p><p>Ystävällisin terveisin<br />{$contextName}</p>"
 
-msgid "emails.ofrConfirmation.name"
+msgid "emails.brmConfirmation.name"
 msgstr "Arviointisopimuksen vahvistus (arvioijalle)"
 
-msgid "emails.ofrConfirmation.description"
+msgid "emails.brmConfirmation.description"
 msgstr "Lähetetään automaattisesti arvioijalle arviointisopimuksen hyväksymisen jälkeen; sisältää linkin luopumiseen."
 
-msgid "emails.ofrConfirmation.subject"
+msgid "emails.brmConfirmation.subject"
 msgstr "Arviosi lehteen {$contextName}: vahvistus"
 
-msgid "emails.ofrConfirmation.body"
+msgid "emails.brmConfirmation.body"
 msgstr "<p>Hyvä {$recipientName},</p><p>kiitos, että lupauduit arvioimaan seuraavan teoksen:<br />{$objectDescription}</p><p>{$reservationDetails}</p><p>Jos huomaat, ettet sittenkään voi kirjoittaa arviota, ilmoita siitä mahdollisimman pian:<br /><a href=\"{$retractUrl}\">{$retractUrl}</a></p><p>Ystävällisin terveisin<br />{$contextName}</p>"
 
-msgid "emails.ofrInvitationReserve.name"
+msgid "emails.brmInvitationReserve.name"
 msgstr "Kutsu arvioijaksi (suora varaus)"
 
-msgid "emails.ofrInvitationReserve.description"
+msgid "emails.brmInvitationReserve.description"
 msgstr "Kirja-arvioiden toimittaja lähettää tämän suoraan varattavan teoksen kutsulistalla olevalle henkilölle. Viestissä on linkki teoksen varaamiseen tai kieltäytymiseen."
 
-msgid "emails.ofrInvitationReserve.subject"
+msgid "emails.brmInvitationReserve.subject"
 msgstr "Kutsu arvioijaksi: {$objectDescription}"
 
-msgid "emails.ofrInvitationReserve.body"
+msgid "emails.brmInvitationReserve.body"
 msgstr "<p>Hyvä {$recipientName},</p><p>kutsumme sinut arvioimaan seuraavan teoksen julkaisuun {$contextName}:<br />{$objectDescription}</p><p>Jos haluat kirjoittaa arvion, hyväksy arviointisopimus viimeistään <strong>{$invitationDeadline}</strong>. Jos et voi kirjoittaa arviota, ilmoita siitä samalla linkillä:<br /><a href=\"{$invitationUrl}\">{$invitationUrl}</a></p><p>Ystävällisin terveisin<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrInvitationBid.name"
+msgid "emails.brmInvitationBid.name"
 msgstr "Kutsu hakemaan arvioijaksi (hakumenettely)"
 
-msgid "emails.ofrInvitationBid.description"
+msgid "emails.brmInvitationBid.description"
 msgstr "Kirja-arvioiden toimittaja lähettää tämän haettavana olevan teoksen kutsulistalla olevalle henkilölle. Viestissä on linkki hakemiseen tai kieltäytymiseen."
 
-msgid "emails.ofrInvitationBid.subject"
+msgid "emails.brmInvitationBid.subject"
 msgstr "Kutsu hakemaan arvioijaksi: {$objectDescription}"
 
-msgid "emails.ofrInvitationBid.body"
+msgid "emails.brmInvitationBid.body"
 msgstr "<p>Hyvä {$recipientName},</p><p>kutsumme sinut hakemaan seuraavan teoksen arvioijaksi julkaisuun {$contextName}:<br />{$objectDescription}</p><p>Kirja-arvioiden toimittaja valitsee arvioijan hakijoiden joukosta. Jos olet kiinnostunut, hae viimeistään <strong>{$invitationDeadline}</strong>. Jos et ole, ilmoita siitä samalla linkillä:<br /><a href=\"{$invitationUrl}\">{$invitationUrl}</a></p><p>Ystävällisin terveisin<br />{$senderName}<br />{$contextName}</p>"
 
-msgid "emails.ofrInvitationDeclined.name"
+msgid "emails.brmInvitationDeclined.name"
 msgstr "Kutsusta kieltäydytty tai siihen ei vastattu (kirja-arvioiden toimittajalle)"
 
-msgid "emails.ofrInvitationDeclined.description"
+msgid "emails.brmInvitationDeclined.description"
 msgstr "Lähetetään automaattisesti vastuulliselle kirja-arvioiden toimittajalle, kun kutsuttu kieltäytyy tai ei vastaa määräaikaan mennessä."
 
-msgid "emails.ofrInvitationDeclined.subject"
+msgid "emails.brmInvitationDeclined.subject"
 msgstr "Kutsua ei hyväksytty: {$objectDescription}"
 
-msgid "emails.ofrInvitationDeclined.body"
+msgid "emails.brmInvitationDeclined.body"
 msgstr "<p>Hyvä {$recipientName},</p><p>{$inviteeName} ei arvioi seuraavaa teosta:<br />{$objectDescription}</p><p>{$declineReason}</p><p>Voit kutsua jonkun muun kutsusivulla: <a href=\"{$invitationListUrl}\">{$invitationListUrl}</a></p>"
 
-msgid "emails.ofrInvitationReminder.name"
+msgid "emails.brmInvitationReminder.name"
 msgstr "Kutsumuistutus"
 
-msgid "emails.ofrInvitationReminder.description"
+msgid "emails.brmInvitationReminder.description"
 msgstr "Lähetetään automaattisesti kutsutulle, joka ei ole vastannut, lisäosan asetuksissa määritetyn päivämäärän kuluttua."
 
-msgid "emails.ofrInvitationReminder.subject"
+msgid "emails.brmInvitationReminder.subject"
 msgstr "Muistutus: kutsu koskien teosta {$objectDescription}"
 
-msgid "emails.ofrInvitationReminder.body"
+msgid "emails.brmInvitationReminder.body"
 msgstr "<p>Hyvä {$recipientName},</p><p>muistutamme ystävällisesti kutsustamme, joka koskee seuraavaa teosta:<br />{$objectDescription}</p><p>Kerro meille viimeistään <strong>{$invitationDeadline}</strong>, haluatko ottaa sen vastaan:<br /><a href=\"{$invitationUrl}\">{$invitationUrl}</a></p><p>Ystävällisin terveisin<br />{$contextName}</p>"
 
-msgid "emails.ofrInvitationExhausted.name"
+msgid "emails.brmInvitationExhausted.name"
 msgstr "Kutsulista käyty läpi (kirja-arvioiden toimittajalle)"
 
-msgid "emails.ofrInvitationExhausted.description"
+msgid "emails.brmInvitationExhausted.description"
 msgstr "Lähetetään automaattisesti vastuulliselle kirja-arvioiden toimittajalle, kun peräkkäinen kutsukierros saavuttaa listan lopun ilman varausta."
 
-msgid "emails.ofrInvitationExhausted.subject"
+msgid "emails.brmInvitationExhausted.subject"
 msgstr "Kutsukierros ilman tulosta: {$objectDescription}"
 
-msgid "emails.ofrInvitationExhausted.body"
+msgid "emails.brmInvitationExhausted.body"
 msgstr "<p>Hyvä {$recipientName},</p><p>kaikki seuraavan teoksen kutsulistalla olevat ovat kieltäytyneet tai jättäneet vastaamatta:<br />{$objectDescription}</p><p>Voit lisätä henkilöitä ja jatkaa kierrosta tai lopettaa sen: <a href=\"{$invitationListUrl}\">{$invitationListUrl}</a></p>"
 
-msgid "emails.ofrReviewEssayChanged.name"
+msgid "emails.brmReviewEssayChanged.name"
 msgstr "Kooste-arvio muuttunut (arvioijalle)"
 
-msgid "emails.ofrReviewEssayChanged.description"
+msgid "emails.brmReviewEssayChanged.description"
 msgstr "Kirja-arvioiden toimittaja lähettää tämän kooste-arvion arvioijalle, kun arvioon lisätään teoksia tai siitä poistetaan teoksia, tai kun yhden teoksen arviointisopimuksesta tulee kooste-arvio."
 
-msgid "emails.ofrReviewEssayChanged.subject"
+msgid "emails.brmReviewEssayChanged.subject"
 msgstr "Kooste-arviosi lehteen {$journalName}: teosluettelo on muuttunut"
 
-msgid "emails.ofrReviewEssayChanged.body"
+msgid "emails.brmReviewEssayChanged.body"
 msgstr "<p>Hyvä {$reviewerName},</p><p>kooste-arvio, jonka lupauduit kirjoittamaan, kattaa nyt seuraavat teokset:<br />{$objectDescription}</p><p>Määräpäivä: {$dueDate}</p><p>Jos sinulla on kysyttävää, ota meihin yhteyttä.</p><p>Ystävällisin terveisin<br />{$journalName}</p>"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE emails SYSTEM "../../../lib/pkp/dtd/emailTemplates.dtd">
 <!--
-  * plugins/generic/objectsForReview/emailTemplates.xml
+  * plugins/generic/bookReviewManager/emailTemplates.xml
   *
   * Copyright (c) 2013-2021 Simon Fraser University
   * Copyright (c) 2003-2021 John Willinsky
@@ -10,28 +10,28 @@
   * Email templates XML file.
   -->
 <emails>
-  <email key="OFR_NEW_RESERVATION" subject="emails.ofrNewReservation.subject" name="emails.ofrNewReservation.name" body="emails.ofrNewReservation.body"/>
-  <email key="OFR_CANCEL_RESERVATION" subject="emails.ofrCancelReservation.subject" name="emails.ofrCancelReservation.name" body="emails.ofrCancelReservation.body"/>
-  <email key="OFR_MESSAGE" subject="emails.ofrMessage.subject" name="emails.ofrMessage.name" body="emails.ofrMessage.body"/>
-  <email key="OFR_CANCEL_BY_EDITOR" subject="emails.ofrCancelByEditor.subject" name="emails.ofrCancelByEditor.name" body="emails.ofrCancelByEditor.body"/>
-  <email key="OFR_REMINDER" subject="emails.ofrReminder.subject" name="emails.ofrReminder.name" body="emails.ofrReminder.body"/>
-  <email key="OFR_CONTRACT_OFFER" subject="emails.ofrContractOffer.subject" name="emails.ofrContractOffer.name" body="emails.ofrContractOffer.body"/>
-  <email key="OFR_CONTRACT_OFFER_AGAIN" subject="emails.ofrContractOfferAgain.subject" name="emails.ofrContractOfferAgain.name" body="emails.ofrContractOfferAgain.body"/>
-  <email key="OFR_CONTRACT_OFFER_REMINDER" subject="emails.ofrContractReminder.subject" name="emails.ofrContractReminder.name" body="emails.ofrContractReminder.body"/>
-  <email key="OFR_BID_UNSUCCESSFUL" subject="emails.ofrBidUnsuccessful.subject" name="emails.ofrBidUnsuccessful.name" body="emails.ofrBidUnsuccessful.body"/>
-  <email key="OFR_BID_NEW" subject="emails.ofrBidNew.subject" name="emails.ofrBidNew.name" body="emails.ofrBidNew.body"/>
-  <email key="OFR_CONTRACT_DECLINED" subject="emails.ofrContractDeclined.subject" name="emails.ofrContractDeclined.name" body="emails.ofrContractDeclined.body"/>
-  <email key="OFR_COPY_REQUEST" subject="emails.ofrCopyRequest.subject" name="emails.ofrCopyRequest.name" body="emails.ofrCopyRequest.body"/>
-  <email key="OFR_COPY_SENT" subject="emails.ofrCopySent.subject" name="emails.ofrCopySent.name" body="emails.ofrCopySent.body"/>
-  <email key="OFR_RETURN_REQUEST" subject="emails.ofrReturnRequest.subject" name="emails.ofrReturnRequest.name" body="emails.ofrReturnRequest.body"/>
-  <email key="OFR_RETURN_SENT" subject="emails.ofrReturnSent.subject" name="emails.ofrReturnSent.name" body="emails.ofrReturnSent.body"/>
-  <email key="OFR_PUBLISHER_NOTIFICATION" subject="emails.ofrPublisherNotification.subject" name="emails.ofrPublisherNotification.name" body="emails.ofrPublisherNotification.body"/>
-  <email key="OFR_COPY_REQUEST_REMINDER" subject="emails.ofrCopyRequestReminder.subject" name="emails.ofrCopyRequestReminder.name" body="emails.ofrCopyRequestReminder.body"/>
-  <email key="OFR_INVITATION_RESERVE" subject="emails.ofrInvitationReserve.subject" name="emails.ofrInvitationReserve.name" body="emails.ofrInvitationReserve.body"/>
-  <email key="OFR_INVITATION_BID" subject="emails.ofrInvitationBid.subject" name="emails.ofrInvitationBid.name" body="emails.ofrInvitationBid.body"/>
-  <email key="OFR_INVITATION_DECLINED" subject="emails.ofrInvitationDeclined.subject" name="emails.ofrInvitationDeclined.name" body="emails.ofrInvitationDeclined.body"/>
-  <email key="OFR_INVITATION_REMINDER" subject="emails.ofrInvitationReminder.subject" name="emails.ofrInvitationReminder.name" body="emails.ofrInvitationReminder.body"/>
-  <email key="OFR_INVITATION_EXHAUSTED" subject="emails.ofrInvitationExhausted.subject" name="emails.ofrInvitationExhausted.name" body="emails.ofrInvitationExhausted.body"/>
-  <email key="OFR_CONFIRMATION" subject="emails.ofrConfirmation.subject" name="emails.ofrConfirmation.name" body="emails.ofrConfirmation.body"/>
-  <email key="OFR_REVIEW_ESSAY_CHANGED" subject="emails.ofrReviewEssayChanged.subject" name="emails.ofrReviewEssayChanged.name" body="emails.ofrReviewEssayChanged.body"/>
+  <email key="BRM_NEW_RESERVATION" subject="emails.brmNewReservation.subject" name="emails.brmNewReservation.name" body="emails.brmNewReservation.body"/>
+  <email key="BRM_CANCEL_RESERVATION" subject="emails.brmCancelReservation.subject" name="emails.brmCancelReservation.name" body="emails.brmCancelReservation.body"/>
+  <email key="BRM_MESSAGE" subject="emails.brmMessage.subject" name="emails.brmMessage.name" body="emails.brmMessage.body"/>
+  <email key="BRM_CANCEL_BY_EDITOR" subject="emails.brmCancelByEditor.subject" name="emails.brmCancelByEditor.name" body="emails.brmCancelByEditor.body"/>
+  <email key="BRM_REMINDER" subject="emails.brmReminder.subject" name="emails.brmReminder.name" body="emails.brmReminder.body"/>
+  <email key="BRM_CONTRACT_OFFER" subject="emails.brmContractOffer.subject" name="emails.brmContractOffer.name" body="emails.brmContractOffer.body"/>
+  <email key="BRM_CONTRACT_OFFER_AGAIN" subject="emails.brmContractOfferAgain.subject" name="emails.brmContractOfferAgain.name" body="emails.brmContractOfferAgain.body"/>
+  <email key="BRM_CONTRACT_OFFER_REMINDER" subject="emails.brmContractReminder.subject" name="emails.brmContractReminder.name" body="emails.brmContractReminder.body"/>
+  <email key="BRM_BID_UNSUCCESSFUL" subject="emails.brmBidUnsuccessful.subject" name="emails.brmBidUnsuccessful.name" body="emails.brmBidUnsuccessful.body"/>
+  <email key="BRM_BID_NEW" subject="emails.brmBidNew.subject" name="emails.brmBidNew.name" body="emails.brmBidNew.body"/>
+  <email key="BRM_CONTRACT_DECLINED" subject="emails.brmContractDeclined.subject" name="emails.brmContractDeclined.name" body="emails.brmContractDeclined.body"/>
+  <email key="BRM_COPY_REQUEST" subject="emails.brmCopyRequest.subject" name="emails.brmCopyRequest.name" body="emails.brmCopyRequest.body"/>
+  <email key="BRM_COPY_SENT" subject="emails.brmCopySent.subject" name="emails.brmCopySent.name" body="emails.brmCopySent.body"/>
+  <email key="BRM_RETURN_REQUEST" subject="emails.brmReturnRequest.subject" name="emails.brmReturnRequest.name" body="emails.brmReturnRequest.body"/>
+  <email key="BRM_RETURN_SENT" subject="emails.brmReturnSent.subject" name="emails.brmReturnSent.name" body="emails.brmReturnSent.body"/>
+  <email key="BRM_PUBLISHER_NOTIFICATION" subject="emails.brmPublisherNotification.subject" name="emails.brmPublisherNotification.name" body="emails.brmPublisherNotification.body"/>
+  <email key="BRM_COPY_REQUEST_REMINDER" subject="emails.brmCopyRequestReminder.subject" name="emails.brmCopyRequestReminder.name" body="emails.brmCopyRequestReminder.body"/>
+  <email key="BRM_INVITATION_RESERVE" subject="emails.brmInvitationReserve.subject" name="emails.brmInvitationReserve.name" body="emails.brmInvitationReserve.body"/>
+  <email key="BRM_INVITATION_BID" subject="emails.brmInvitationBid.subject" name="emails.brmInvitationBid.name" body="emails.brmInvitationBid.body"/>
+  <email key="BRM_INVITATION_DECLINED" subject="emails.brmInvitationDeclined.subject" name="emails.brmInvitationDeclined.name" body="emails.brmInvitationDeclined.body"/>
+  <email key="BRM_INVITATION_REMINDER" subject="emails.brmInvitationReminder.subject" name="emails.brmInvitationReminder.name" body="emails.brmInvitationReminder.body"/>
+  <email key="BRM_INVITATION_EXHAUSTED" subject="emails.brmInvitationExhausted.subject" name="emails.brmInvitationExhausted.name" body="emails.brmInvitationExhausted.body"/>
+  <email key="BRM_CONFIRMATION" subject="emails.brmConfirmation.subject" name="emails.brmConfirmation.name" body="emails.brmConfirmation.body"/>
+  <email key="BRM_REVIEW_ESSAY_CHANGED" subject="emails.brmReviewEssayChanged.subject" name="emails.brmReviewEssayChanged.name" body="emails.brmReviewEssayChanged.body"/>
 </emails>

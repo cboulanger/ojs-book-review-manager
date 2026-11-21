@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/mailables/ObjectsForReviewCopySent.php
+ * @file plugins/generic/bookReviewManager/mailables/ObjectsForReviewCopySent.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
@@ -10,7 +10,7 @@
  * @brief Notice to the reviewer that a review copy has been sent.
  */
 
-namespace APP\plugins\generic\objectsForReview\mailables;
+namespace APP\plugins\generic\bookReviewManager\mailables;
 
 use APP\journal\Journal;
 use PKP\mail\Mailable;
@@ -23,9 +23,9 @@ class ObjectsForReviewCopySent extends Mailable
     use Configurable;
     use Recipient;
 
-    protected static ?string $name = 'emails.ofrCopySent.name';
-    protected static ?string $description = 'emails.ofrCopySent.description';
-    protected static ?string $emailTemplateKey = 'OFR_COPY_SENT';
+    protected static ?string $name = 'emails.brmCopySent.name';
+    protected static ?string $description = 'emails.brmCopySent.description';
+    protected static ?string $emailTemplateKey = 'BRM_COPY_SENT';
     protected static array $fromRoleIds = [Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR, self::FROM_SYSTEM];
     protected static array $toRoleIds = [Role::ROLE_ID_READER, Role::ROLE_ID_AUTHOR];
 

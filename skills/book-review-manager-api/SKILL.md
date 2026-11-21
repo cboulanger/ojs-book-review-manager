@@ -1,11 +1,11 @@
 ---
-name: objects-for-review-api
-description: Import data into the OJS "Objects for Review" plugin with an API key — works offered for review (looked up by DOI or ISBN), reviewers and publisher contacts, and review processes already under way (bids, contract offers, accepted reservations, submitted or published reviews), and review essays (one review of several works). Use when asked to add books to a journal's review list, bulk-import review copies or reviewers, migrate book review bookkeeping (spreadsheets, another system) into OJS, or script the Objects for Review plugin.
+name: book-review-manager-api
+description: Import data into the OJS "Book Review Manager" plugin with an API key — works offered for review (looked up by DOI or ISBN), reviewers and publisher contacts, and review processes already under way (bids, contract offers, accepted reservations, submitted or published reviews), and review essays (one review of several works). Use when asked to add books to a journal's review list, bulk-import review copies or reviewers, migrate book review bookkeeping (spreadsheets, another system) into OJS, or script the Book Review Manager plugin.
 ---
 
-# Objects for Review API client
+# Book Review Manager API client
 
-The plugin serves a REST API at `<journal URL>/api/v1/objectsForReview/`. The client code lives in the plugin's `api/` folder (paths below are relative to the plugin root):
+The plugin serves a REST API at `<journal URL>/api/v1/bookReviewManager/`. The client code lives in the plugin's `api/` folder (paths below are relative to the plugin root):
 
 | Path | Contents |
 | --- | --- |
@@ -14,7 +14,7 @@ The plugin serves a REST API at `<journal URL>/api/v1/objectsForReview/`. The cl
 | `api/examples/import.example.json` | Template for bulk imports |
 | `api/ObjectsForReviewController.php` | The server side (part of the plugin) |
 
-To migrate review processes that only exist as email correspondence, use the `objects-for-review-email-import` skill (`skills/objects-for-review-email-import/`), which produces the import file described here.
+To migrate review processes that only exist as email correspondence, use the `book-review-manager-email-import` skill (`skills/book-review-manager-email-import/`), which produces the import file described here.
 
 **Imports never send emails** and create no one-click links. Every imported reviewer or bidder gets an entry ("Imported through the API") in the work's history.
 
@@ -33,7 +33,7 @@ For the user who runs the imports:
 On the machine that runs the client:
 
 ```sh
-cd plugins/generic/objectsForReview/api    # or a copy of the api/ folder anywhere
+cd plugins/generic/bookReviewManager/api    # or a copy of the api/ folder anywhere
 export OFR_URL=https://example.org/index.php/journalpath
 export OFR_TOKEN_FILE=~/.ofr-token          # or OFR_TOKEN=<key>
 node bin/ofr.js users --role bookReviewEditor   # connection test
@@ -210,7 +210,7 @@ Methods: `lookup({doi|isbn})`, `listObjects()`, `findObject({doi|isbn|identifier
 
 ## 6. HTTP API reference
 
-Base: `<journal URL>/api/v1/objectsForReview`, header `Authorization: Bearer <key>`, JSON bodies.
+Base: `<journal URL>/api/v1/bookReviewManager`, header `Authorization: Bearer <key>`, JSON bodies.
 
 | Method and path | |
 | --- | --- |
@@ -234,7 +234,7 @@ Review essays add:
 - 400 `titleRequired`, `worksRequired`, `invalidCopies` (`copies` or `copyPreferences` name a work outside the essay, or one twice; or `copies` is given for an assignment of a work that is not a review essay), `invalidCopyPreference`, `invalidCopyStatus`, `shippingAddressRequired`, `invalidResourceType` (`PUT objects/{id}` with `resourceType: reviewEssay`: an essay is created with `POST bundles`);
 - 404 `bundleNotFound` (no review essay with this id), `objectNotFound`;
 - 409 `cannot_combine` (`POST bundles`) and `review_essay_rule` (adding or removing a work, or changing the `resourceType` of an essay), each with `reason`, one of:
-  - `plugins.generic.objectsForReview.reviewEssay.error.notAvailable` (a work is already in an essay, attached to a submission, closed, or an essay itself; or the id is unknown),
+  - `plugins.generic.bookReviewManager.reviewEssay.error.notAvailable` (a work is already in an essay, attached to a submission, closed, or an essay itself; or the id is unknown),
   - `...error.twoReviewers` (more than one work has a reviewer, or the work to add has one),
   - `...error.pending` (a contract offer or an invitation round is pending for a work),
   - `...error.lastMember` (the last work can't be removed),

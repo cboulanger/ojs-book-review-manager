@@ -1,5 +1,5 @@
 {**
- * plugins/generic/objectsForReview/templates/bundleMemberForm.tpl
+ * plugins/generic/bookReviewManager/templates/bundleMemberForm.tpl
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
@@ -15,7 +15,7 @@
 	{rdelim});
 </script>
 
-{capture assign="actionUrl"}{url router=\PKP\core\PKPApplication::ROUTE_COMPONENT component="plugins.generic.objectsForReview.controllers.grid.ObjectsForReviewManagementGridHandler" op="updateBundleMember" escape=false}{/capture}
+{capture assign="actionUrl"}{url router=\PKP\core\PKPApplication::ROUTE_COMPONENT component="plugins.generic.bookReviewManager.controllers.grid.ObjectsForReviewManagementGridHandler" op="updateBundleMember" escape=false}{/capture}
 
 <form class="pkp_form" id="bundleMemberForm" method="post" action="{$actionUrl}">
 	{csrf}
@@ -27,31 +27,31 @@
 	{/if}
 	{fbvFormArea id="bundleMemberFormArea"}
 		{if $mode == 'add'}
-			<p><strong>{translate key="plugins.generic.objectsForReview.reviewEssay.essay"}:</strong> {$essayCitation|strip_unsafe_html}</p>
+			<p><strong>{translate key="plugins.generic.bookReviewManager.reviewEssay.essay"}:</strong> {$essayCitation|strip_unsafe_html}</p>
 			{if $options}
-				{fbvFormSection label="plugins.generic.objectsForReview.reviewEssay.work" for="workId" required=true}
+				{fbvFormSection label="plugins.generic.bookReviewManager.reviewEssay.work" for="workId" required=true}
 					<select id="workId" name="workId" class="ofrEssayChoice">
 						{html_options options=$options selected=$workId|default:''}
 					</select>
 				{/fbvFormSection}
 			{else}
-				<p>{translate key="plugins.generic.objectsForReview.reviewEssay.noWorksToAdd"}</p>
+				<p>{translate key="plugins.generic.bookReviewManager.reviewEssay.noWorksToAdd"}</p>
 			{/if}
 		{else}
-			<p><strong>{translate key="plugins.generic.objectsForReview.reviewEssay.work"}:</strong> {$workCitation|strip_unsafe_html}</p>
+			<p><strong>{translate key="plugins.generic.bookReviewManager.reviewEssay.work"}:</strong> {$workCitation|strip_unsafe_html}</p>
 			{if $options}
-				{fbvFormSection label="plugins.generic.objectsForReview.reviewEssay.essay" for="containerId" required=true}
+				{fbvFormSection label="plugins.generic.bookReviewManager.reviewEssay.essay" for="containerId" required=true}
 					<select id="containerId" name="containerId" class="ofrEssayChoice">
 						{html_options options=$options selected=$containerId|default:''}
 					</select>
 				{/fbvFormSection}
 			{else}
-				<p>{translate key="plugins.generic.objectsForReview.reviewEssay.noEssays"}</p>
+				<p>{translate key="plugins.generic.bookReviewManager.reviewEssay.noEssays"}</p>
 			{/if}
 		{/if}
 
 		{if $options && $reviewerEssayIds}
-			{fbvFormSection label="plugins.generic.objectsForReview.reviewEssay.copyPreference" description="plugins.generic.objectsForReview.reviewEssay.copyPreference.description" for="copyPreference" class="ofrEssayCopyPreference"}
+			{fbvFormSection label="plugins.generic.bookReviewManager.reviewEssay.copyPreference" description="plugins.generic.bookReviewManager.reviewEssay.copyPreference.description" for="copyPreference" class="ofrEssayCopyPreference"}
 				<select id="copyPreference" name="copyPreference">
 					{html_options options=$copyPreferenceOptions selected=$copyPreference|default:'have'}
 				</select>
@@ -70,7 +70,7 @@
 				</script>
 			{/if}
 		{/if}
-		<p class="ofrHint">{translate key="plugins.generic.objectsForReview.reviewEssay.emailNotice"}</p>
+		<p class="ofrHint">{translate key="plugins.generic.bookReviewManager.reviewEssay.emailNotice"}</p>
 	{/fbvFormArea}
 
 	{if $options}

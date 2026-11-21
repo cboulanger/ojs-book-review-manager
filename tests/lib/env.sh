@@ -2,17 +2,17 @@
 #
 # Environment (defaults match dev/ojs-dev.sh):
 #   PODMAN          podman (docker works too)
-#   OFR_CONTAINER   ojs-objectsforreview
+#   OFR_CONTAINER   ojs-bookreviewmanager
 #   OFR_E2E_URL     http://localhost:${OJS_PORT:-8080}/index.php/test   journal URL for E2E tests
 
 TESTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PLUGIN_DIR="$(dirname "$TESTS_DIR")"
 PODMAN="${PODMAN:-podman}"
-OFR_CONTAINER="${OFR_CONTAINER:-ojs-objectsforreview}"
+OFR_CONTAINER="${OFR_CONTAINER:-ojs-bookreviewmanager}"
 OFR_E2E_URL="${OFR_E2E_URL:-http://localhost:${OJS_PORT:-8080}/index.php/test}"
 # Where the plugin is mounted in the container (see dev/ojs-dev.sh)
 OJS_DIR=/var/www/html
-PLUGIN_IN_CONTAINER="$OJS_DIR/plugins/generic/objectsForReview"
+PLUGIN_IN_CONTAINER="$OJS_DIR/plugins/generic/bookReviewManager"
 # Pinned test tools (also installed by dev/Containerfile)
 PHPUNIT_VERSION=11.5.46
 

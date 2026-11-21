@@ -1,29 +1,29 @@
 <?php
 
 /**
- * @file plugins/generic/objectsForReview/controllers/grid/form/ReviewEssayForm.php
+ * @file plugins/generic/bookReviewManager/controllers/grid/form/ReviewEssayForm.php
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ReviewEssayForm
- * @ingroup plugins_generic_objectsForReview
+ * @ingroup plugins_generic_bookReviewManager
  *
  * @brief Create a review essay from works of the "Available works" list, or edit
  *  its title, description and offer settings (its works are managed with the
  *  row actions, see BundleMemberForm).
  */
 
-namespace APP\plugins\generic\objectsForReview\controllers\grid\form;
+namespace APP\plugins\generic\bookReviewManager\controllers\grid\form;
 
 use APP\core\Application;
-use APP\plugins\generic\objectsForReview\classes\AssignmentWorkflow;
-use APP\plugins\generic\objectsForReview\classes\BundleWorkflow;
-use APP\plugins\generic\objectsForReview\classes\InvitationWorkflow;
-use APP\plugins\generic\objectsForReview\classes\ObjectForReview;
-use APP\plugins\generic\objectsForReview\classes\ObjectForReviewDAO;
-use APP\plugins\generic\objectsForReview\classes\Reservation;
-use APP\plugins\generic\objectsForReview\classes\ReservationMailer;
-use APP\plugins\generic\objectsForReview\classes\Roles;
+use APP\plugins\generic\bookReviewManager\classes\AssignmentWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\BundleWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\InvitationWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\ObjectForReview;
+use APP\plugins\generic\bookReviewManager\classes\ObjectForReviewDAO;
+use APP\plugins\generic\bookReviewManager\classes\Reservation;
+use APP\plugins\generic\bookReviewManager\classes\ReservationMailer;
+use APP\plugins\generic\bookReviewManager\classes\Roles;
 use APP\template\TemplateManager;
 use PKP\form\validation\FormValidatorCSRF;
 use PKP\form\validation\FormValidatorCustom;
@@ -45,16 +45,16 @@ class ReviewEssayForm extends \PKP\form\Form {
 		$this->context = $context;
 		$this->container = $container;
 
-		$this->addCheck(new FormValidatorCustom($this, 'title', 'required', 'plugins.generic.objectsForReview.reviewEssay.titleRequired',
+		$this->addCheck(new FormValidatorCustom($this, 'title', 'required', 'plugins.generic.bookReviewManager.reviewEssay.titleRequired',
 			fn ($title) => trim((string) $title) !== ''));
 		if (!$container) {
-			$this->addCheck(new FormValidatorCustom($this, 'objectIds', 'required', 'plugins.generic.objectsForReview.reviewEssay.worksRequired',
+			$this->addCheck(new FormValidatorCustom($this, 'objectIds', 'required', 'plugins.generic.bookReviewManager.reviewEssay.worksRequired',
 				fn ($ids) => is_array($ids) && count($ids) > 0));
 		}
-		$this->addCheck(new FormValidatorInSet($this, 'assignmentMode', 'required', 'plugins.generic.objectsForReview.offer.modeRequired', ObjectForReview::MODES));
-		$this->addCheck(new FormValidatorCustom($this, 'bidDeadline', 'optional', 'plugins.generic.objectsForReview.offer.bidDeadlineInvalid',
+		$this->addCheck(new FormValidatorInSet($this, 'assignmentMode', 'required', 'plugins.generic.bookReviewManager.offer.modeRequired', ObjectForReview::MODES));
+		$this->addCheck(new FormValidatorCustom($this, 'bidDeadline', 'optional', 'plugins.generic.bookReviewManager.offer.bidDeadlineInvalid',
 			fn ($date) => ($d = \DateTimeImmutable::createFromFormat('!Y-m-d', (string) $date)) && $d->format('Y-m-d') === $date));
-		$this->addCheck(new FormValidatorCustom($this, 'responsibleEditorId', 'optional', 'plugins.generic.objectsForReview.offer.editorInvalid',
+		$this->addCheck(new FormValidatorCustom($this, 'responsibleEditorId', 'optional', 'plugins.generic.bookReviewManager.offer.editorInvalid',
 			fn ($id) => isset(Roles::getMembers($this->plugin, (int) $this->context->getId(), Roles::EDITOR)[(int) $id])));
 		$this->addCheck(new FormValidatorPost($this));
 		$this->addCheck(new FormValidatorCSRF($this));
@@ -168,7 +168,7 @@ class ReviewEssayForm extends \PKP\form\Form {
 	public static function copyPreferenceOptions(): array {
 		$options = [];
 		foreach (Reservation::COPY_PREFERENCES as $preference) {
-			$options[$preference] = __('plugins.generic.objectsForReview.reserve.copy.' . $preference);
+			$options[$preference] = __('plugins.generic.bookReviewManager.reserve.copy.' . $preference);
 		}
 		return $options;
 	}
