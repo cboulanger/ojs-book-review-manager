@@ -1800,3 +1800,33 @@ msgstr "Rezensierte Werke"
 
 msgid "plugins.generic.bookReviewManager.invitation.search.hint"
 msgstr "Lassen Sie das Feld leer, um die Nutzer:innen dieser Zeitschrift alphabetisch aufzulisten."
+
+msgid "plugins.generic.bookReviewManager.myReviews.title"
+msgstr "Meine Rezensionen"
+
+msgid "plugins.generic.bookReviewManager.myReviews.invited.reserve"
+msgstr "Sie wurden eingeladen, dieses Werk zu rezensieren. Bitte antworten Sie bis zum {$deadline}."
+
+msgid "plugins.generic.bookReviewManager.myReviews.invited.bid"
+msgstr "Sie wurden eingeladen, sich um die Rezension dieses Werks zu bewerben. Bitte antworten Sie bis zum {$deadline}."
+
+msgid "plugins.generic.bookReviewManager.myReviews.respond"
+msgstr "Auf die Einladung antworten"
+
+msgid "plugins.generic.bookReviewManager.myReviews.submit"
+msgstr "Rezension einreichen"
+
+msgid "plugins.generic.bookReviewManager.myReviews.showInList"
+msgstr "In der Liste anzeigen"
+
+msgid "plugins.generic.bookReviewManager.myReviews.submitHint"
+msgstr "Um Ihre Rezension einzureichen, beginnen Sie eine neue Einreichung und wählen Sie das Werk im Schritt „Für die Redaktion“ unter „Rezensierte Werke“ aus."
+
+msgid "plugins.generic.bookReviewManager.myReviews.empty"
+msgstr "Sie haben keine offenen Reservierungen."
+
+msgid "plugins.generic.bookReviewManager.myReviews.copy"
+msgstr "Rezensionsexemplar"
+
+msgid "plugins.generic.bookReviewManager.myReviews.publicPage"
+msgstr "Alle Rezensionsangebote (öffentliche Seite)"

@@ -1801,3 +1801,33 @@ msgstr "Reviewed works"
 
 msgid "plugins.generic.bookReviewManager.invitation.search.hint"
 msgstr "Leave the field empty to list the users of this journal alphabetically."
+
+msgid "plugins.generic.bookReviewManager.myReviews.title"
+msgstr "My book reviews"
+
+msgid "plugins.generic.bookReviewManager.myReviews.invited.reserve"
+msgstr "You have been invited to review this work. Please respond by {$deadline}."
+
+msgid "plugins.generic.bookReviewManager.myReviews.invited.bid"
+msgstr "You have been invited to apply for the review of this work. Please respond by {$deadline}."
+
+msgid "plugins.generic.bookReviewManager.myReviews.respond"
+msgstr "Respond to the invitation"
+
+msgid "plugins.generic.bookReviewManager.myReviews.submit"
+msgstr "Submit your review"
+
+msgid "plugins.generic.bookReviewManager.myReviews.showInList"
+msgstr "Show in the list"
+
+msgid "plugins.generic.bookReviewManager.myReviews.submitHint"
+msgstr "To submit your review, start a new submission and select the work under \"Reviewed works\" in the step \"For the Editors\"."
+
+msgid "plugins.generic.bookReviewManager.myReviews.empty"
+msgstr "You have no open reservations."
+
+msgid "plugins.generic.bookReviewManager.myReviews.copy"
+msgstr "Review copy"
+
+msgid "plugins.generic.bookReviewManager.myReviews.publicPage"
+msgstr "All books for review (public page)"

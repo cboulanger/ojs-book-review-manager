@@ -23,6 +23,7 @@ use APP\plugins\generic\bookReviewManager\classes\AssignmentWorkflow;
 use APP\plugins\generic\bookReviewManager\classes\BundleWorkflow;
 use APP\plugins\generic\bookReviewManager\classes\CopyWorkflow;
 use APP\plugins\generic\bookReviewManager\classes\InvitationWorkflow;
+use APP\plugins\generic\bookReviewManager\classes\MyReviews;
 use APP\plugins\generic\bookReviewManager\classes\Reservation;
 use APP\plugins\generic\bookReviewManager\classes\ReservationEmailEventType;
 use APP\template\TemplateManager;
@@ -141,6 +142,8 @@ class ObjectsForReviewHandler extends Handler {
 		$templateMgr->assign($this->contractTemplateData($request, $reserveState) + [
 			'bookReviewManager' => $gridData,
 			'currentUser' => $currentUser,
+			// "Your book reviews": open invitations, contract offers and reservations
+			'myReviews' => $currentUser ? MyReviews::rows($contextId, $currentUser->getId(), MyReviews::PUBLIC_STATUSES) : [],
 			'instructions' => $instructions,
 			'reserveDialogTemplate' => $plugin->getTemplateResource('frontend/reserveDialog.tpl'),
 			'reserveOpenObjectId' => $openObjectId,
@@ -177,7 +180,7 @@ class ObjectsForReviewHandler extends Handler {
 		if ($assignment) {
 			AssignmentWorkflow::retract($this->plugin(), $object, $assignment, $user);
 		}
-		$request->redirect(null, self::PAGE);
+		$this->redirectBack($request);
 	}
 
 	/**
@@ -190,7 +193,7 @@ class ObjectsForReviewHandler extends Handler {
 		if ($assignment && CopyWorkflow::getStatus($assignment) === CopyWorkflow::SENT) {
 			CopyWorkflow::confirmReceipt($this->plugin(), $context, $object, $assignment, $user);
 		}
-		$request->redirect(null, self::PAGE);
+		$this->redirectBack($request);
 	}
 
 	/**
@@ -230,6 +233,22 @@ class ObjectsForReviewHandler extends Handler {
 		$object = $this->getObject($request, (int) $request->getUserVar('objectId'));
 		$assignment = $object ? AssignmentWorkflow::dao()->getByObjectAndUser($object->getId(), $request->getUser()->getId(), [Assignment::STATUS_OFFERED]) : null;
 		return $this->showResponsePage($request, $assignment ? 'contract' : 'invalid', $object, $assignment);
+	}
+
+	/**
+	 * The invitation page for a logged-in invitee (from "Your book reviews"),
+	 * the same as behind the invitation email's link.
+	 */
+	function invitation($args, $request) {
+		if (!$request->getUser()) {
+			Validation::redirectLogin();
+		}
+		$object = $this->getObject($request, (int) $request->getUserVar('objectId'));
+		$assignment = $object ? AssignmentWorkflow::dao()->getByObjectAndUser($object->getId(), $request->getUser()->getId(), [Assignment::STATUS_INVITED]) : null;
+		if (!$assignment) {
+			return $this->showResponsePage($request, 'invalid');
+		}
+		return $this->showInvitationPage($request, $object, $assignment, '');
 	}
 
 	/**
@@ -273,7 +292,7 @@ class ObjectsForReviewHandler extends Handler {
 			}
 			$object = $this->getObject($request, (int) $request->getUserVar('objectId'));
 			$assignment = $object ? AssignmentWorkflow::dao()->getByObjectAndUser($object->getId(), $request->getUser()->getId(),
-				[Assignment::STATUS_OFFERED, Assignment::STATUS_BID, Assignment::STATUS_UNSUCCESSFUL]) : null;
+				[Assignment::STATUS_OFFERED, Assignment::STATUS_BID, Assignment::STATUS_UNSUCCESSFUL, Assignment::STATUS_INVITED]) : null;
 		}
 		if (!$assignment) {
 			return $this->showResponsePage($request, 'invalid');
@@ -281,8 +300,9 @@ class ObjectsForReviewHandler extends Handler {
 		$extra = $key !== '' ? ['key' => $key] : [];
 		$decision = (string) $request->getUserVar('decision');
 
-		if ($link?->action === ActionLink::ACTION_INVITATION) {
-			return $this->respondToInvitation($request, $link, $object, $assignment, $key, $decision);
+		// From the invitation email's link, or from the logged-in invitation page
+		if ($link?->action === ActionLink::ACTION_INVITATION || (!$link && $assignment->getStatus() === Assignment::STATUS_INVITED)) {
+			return $this->respondToInvitation($request, $object, $assignment, $key, $decision);
 		}
 		if ($link && in_array($link->action, array_keys(self::COPY_LINK_STEPS), true) || $link?->action === ActionLink::ACTION_RETRACT) {
 			return $this->confirmLink($request, $link, $object, $assignment);
@@ -330,7 +350,7 @@ class ObjectsForReviewHandler extends Handler {
 	/**
 	 * Answer to an invitation (POST from the invitation page).
 	 */
-	protected function respondToInvitation($request, object $link, $object, Assignment $assignment, string $key, string $decision) {
+	protected function respondToInvitation($request, $object, Assignment $assignment, string $key, string $decision) {
 		$plugin = $this->plugin();
 		$context = $request->getContext();
 		if (!InvitationWorkflow::isAnswerable($object, $assignment)) {
@@ -494,6 +514,17 @@ class ObjectsForReviewHandler extends Handler {
 	protected function getObject($request, int $objectId) {
 		$object = $objectId ? DAORegistry::getDAO('BookReviewManagerObjectDAO')->getById($objectId) : null;
 		return $object && $object->getContextId() == $request->getContext()->getId() ? $object : null;
+	}
+
+	/**
+	 * After a POST action of the list page: back to the list, or to the
+	 * backend page "My book reviews" when the action was taken there.
+	 */
+	protected function redirectBack($request): void {
+		if ($request->getUserVar('returnTo') === MyBookReviewsHandler::PAGE) {
+			$request->redirect(null, MyBookReviewsHandler::PAGE);
+		}
+		$request->redirect(null, self::PAGE);
 	}
 
 	/**

@@ -57,7 +57,7 @@
 		<form class="ofrContractForm ofrInvitationForm" method="post" action="{url op="respond"}">
 			{csrf}
 			<input type="hidden" name="decision" value="accept" />
-			<input type="hidden" name="key" value="{$key|escape}" />
+			{if $key}<input type="hidden" name="key" value="{$key|escape}" />{else}<input type="hidden" name="objectId" value="{$objectId|escape}" />{/if}
 			{if $kind == 'bid'}
 				<div class="ofrField">
 					<label for="ofrStatement">{translate key="plugins.generic.bookReviewManager.bid.statement"}</label>
@@ -81,7 +81,7 @@
 			<form class="ofrDeclineForm" method="post" action="{url op="respond"}">
 				{csrf}
 				<input type="hidden" name="decision" value="decline" />
-				<input type="hidden" name="key" value="{$key|escape}" />
+				{if $key}<input type="hidden" name="key" value="{$key|escape}" />{else}<input type="hidden" name="objectId" value="{$objectId|escape}" />{/if}
 				<div class="ofrField">
 					<label for="ofrDeclineReason">{translate key="plugins.generic.bookReviewManager.contract.declineReason"}</label>
 					<textarea id="ofrDeclineReason" name="declineReason" rows="3" maxlength="{$maxStatementLength|escape}"></textarea>

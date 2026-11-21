@@ -25,6 +25,46 @@
     <p>{translate key='plugins.generic.bookReviewManager.logInToReserve'}</p>
   {/if}
 
+  {if $myReviews}
+    {* The current user's open invitations, contract offers and reservations *}
+    <section class="ofrMyReviews" id="my-book-reviews">
+      <h2>{translate key="plugins.generic.bookReviewManager.myReviews.title"}</h2>
+      <ul>
+        {foreach from=$myReviews item=r}
+          <li class="ofrMyReview ofrMyReview-{$r.status|escape}">
+            <span class="ofrMyReviewTitle">{$r.citation|strip_unsafe_html}</span>
+            {if $r.status == 'invited'}
+              <span class="ofrMyStatus">{translate key="plugins.generic.bookReviewManager.myReviews.invited.`$r.invitationKind`" deadline=$r.invitationDeadline|date_format:$dateFormatShort}</span>
+              <a class="pkp_button" href="{url op="invitation" objectId=$r.objectId}">{translate key="plugins.generic.bookReviewManager.myReviews.respond"}</a>
+            {elseif $r.status == 'offered'}
+              <span class="ofrMyStatus">{translate key="plugins.generic.bookReviewManager.bid.selected" deadline=$r.contractDeadline|date_format:$dateFormatShort}</span>
+              <a class="pkp_button" href="{url op="contract" objectId=$r.objectId}">{translate key="plugins.generic.bookReviewManager.bid.respond"}</a>
+            {else}
+              <span class="ofrMyStatus{if $r.overdue} ofrOverdue{/if}">
+                {if $r.dueDate}{translate key="plugins.generic.bookReviewManager.reserve.yourDueDate" dueDate=$r.dueDate|date_format:$dateFormatShort}{/if}
+                {if $r.copyStatus && $r.copyStatus != 'notNeeded' && $r.copyStatus != 'received'}{translate key="plugins.generic.bookReviewManager.copy.reviewerStatus.`$r.copyStatus`"}{/if}
+              </span>
+              <a class="pkp_button" href="{url page="submission"}">{translate key="plugins.generic.bookReviewManager.myReviews.submit"}</a>
+              <a href="#ofrObject-{$r.objectId|escape}">{translate key="plugins.generic.bookReviewManager.myReviews.showInList"}</a>
+            {/if}
+          </li>
+        {/foreach}
+      </ul>
+      <p class="ofrHint">{translate key="plugins.generic.bookReviewManager.myReviews.submitHint"}</p>
+    </section>
+    <style>
+      .ofrMyReviews { border: 1px solid #ddd; padding: 0.75rem 1rem; margin: 1rem 0 1.5rem; }
+      .ofrMyReviews h2 { margin-top: 0; font-size: 1.25rem; }
+      .ofrMyReviews ul { list-style: none; margin: 0; padding: 0; }
+      .ofrMyReviews li { padding: 0.5rem 0; border-top: 1px solid #eee; }
+      .ofrMyReviews li:first-child { border-top: 0; }
+      .ofrMyReviewTitle { display: block; font-style: italic; }
+      .ofrMyReviews .ofrMyStatus { display: block; font-size: 0.875rem; margin: 0.25rem 0; }
+      .ofrMyReviews .ofrOverdue { color: #b00; font-weight: bold; }
+      .ofrMyReviews .ofrHint { font-size: 0.875rem; color: #555; margin-bottom: 0; }
+    </style>
+  {/if}
+
 		<table id="book-review-manager-table" style="width:100%">
       <tr data-sort-method='none'>
         <th>{translate key="plugins.generic.bookReviewManager.itemTitle"}</th>
@@ -34,7 +74,7 @@
         <th></th> 
       </tr>
 			{foreach from=$bookReviewManager item=objectForReview}
-      <tr>
+      <tr id="ofrObject-{$objectForReview.objectId|escape}">
 				<td data-sort="{$objectForReview.title|escape}">
             {$objectForReview.title|escape}
             {if $objectForReview.reviewEssay}
