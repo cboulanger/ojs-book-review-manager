@@ -63,3 +63,26 @@ ensure_api_ready() {
 		sleep 1
 	fi
 }
+
+# --- Database snapshot, so that a suite leaves no test data behind -------------------
+# db_snapshot dumps the OJS database inside the container; db_restore loads it again and
+# clears OJS's data caches. A snapshot left by an interrupted run is restored first, so
+# the journal returns to its state before that run. OFR_E2E_KEEP=1 keeps the test data.
+DB_SNAPSHOT=/tmp/ofr-e2e-snapshot.sql
+DB_ARGS="-uojs -pojs ojs"
+
+db_snapshot() {
+	[ "${OFR_E2E_KEEP:-}" = 1 ] && { echo "OFR_E2E_KEEP=1: test data will be kept" >&2; return; }
+	if in_container_root test -s "$DB_SNAPSHOT"; then
+		echo "Restoring the database snapshot of an interrupted run first" >&2
+		db_restore
+	fi
+	in_container_root sh -c "mariadb-dump $DB_ARGS --single-transaction --skip-lock-tables > $DB_SNAPSHOT.part && mv $DB_SNAPSHOT.part $DB_SNAPSHOT"
+}
+
+db_restore() {
+	[ "${OFR_E2E_KEEP:-}" = 1 ] && return
+	in_container_root test -s "$DB_SNAPSHOT" || return 0
+	echo "Removing the test data (restoring the database snapshot)" >&2
+	in_container_root sh -c "mariadb $DB_ARGS < $DB_SNAPSHOT && rm -f $DB_SNAPSHOT && rm -rf cache/_db/* cache/opcache/* cache/t_cache/*"
+}

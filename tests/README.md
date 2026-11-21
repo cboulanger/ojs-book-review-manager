@@ -31,7 +31,8 @@ tests/run.sh unit/php -- --filter IsbnLookupTest   # arguments after -- go to ea
 ### e2e/api
 
 - Each test file covers one area. `fixtures.mjs` has clients per role (`as('admin' | 'bre' | 'author')`), `raw()` for requests without the client, `rejects(promise, status, code)`, and factories (`newWork`, `newBiddingWork`, `newUser`, `newPublisherContact`).
-- **Test data is unique per run.** It uses random valid ISBNs, DOIs with the test prefix `10.5555`, and `e2e-*@example.org` addresses. So the suite needs no reset, can be repeated, and its files run in parallel. Works are created hidden, so they stay off the public list. The data accumulates in the dev journal; `dev/ojs-dev.sh reset` removes it.
+- **Test data is unique per run.** It uses random valid ISBNs, DOIs with the test prefix `10.5555`, and `e2e-*@example.org` addresses. So the suite needs no reset, can be repeated, and its files run in parallel. Works are created hidden, so they stay off the public list.
+- **The suite leaves no data behind.** `run.sh` dumps the database before the tests and restores it when they end, also after a failure or Ctrl-C, and then clears OJS's data caches. Changes made in the dev journal by hand during a test run are lost too. If a run was killed so hard that it couldn't restore (e.g. `kill -9`), the next run restores the leftover snapshot first. `OFR_E2E_KEEP=1` keeps the test data, e.g. to look at it in the browser. The helpers are `db_snapshot` and `db_restore` in `lib/env.sh`.
 - `OFR_E2E_OFFLINE=1` skips the tests that query Crossref and Open Library.
 - `run.sh` sets `api_key_secret` and passes the Authorization header through Apache in containers built before the API existed.
 - Two tests are skipped in the standard dev journal: attaching an imported review to a submission (it has no submissions), and refusing a section editor who isn't a book review editor (it has no such account). Add that data and they run.
@@ -40,11 +41,11 @@ tests/run.sh unit/php -- --filter IsbnLookupTest   # arguments after -- go to ea
 
 | File | For |
 | --- | --- |
-| `env.sh` | Shell suites: `PODMAN`, `OFR_CONTAINER`, `OFR_E2E_URL`, `in_container`, `require_container`, `require_node`, `ensure_phpunit`, `ensure_api_ready` |
+| `env.sh` | Shell suites: `PODMAN`, `OFR_CONTAINER`, `OFR_E2E_URL`, `in_container`, `require_container`, `require_node`, `ensure_phpunit`, `ensure_api_ready`, `db_snapshot` / `db_restore` |
 | `ojs.mjs` | JS suites: `exec()` and `sql()` in the container, `apiKey(username)`, `mailsSince(timestamp)` (emails from the container log), `history(objectId)` (event log), unique data (`uid`, `email`, `isbn13`, `isbn10`, `doi`, `date`), dev accounts (`USERS`) |
 | `php/api-key.php` | Prints a user's API key (reuses an existing one, so parallel processes agree) |
 
-Configuration through the environment: `OFR_CONTAINER` (default `ojs-bookreviewmanager`), `PODMAN` (default `podman`), `OFR_E2E_URL` or `OJS_PORT`, and `OFR_E2E_OFFLINE`.
+Configuration through the environment: `OFR_CONTAINER` (default `ojs-bookreviewmanager`), `PODMAN` (default `podman`), `OFR_E2E_URL` or `OJS_PORT`, `OFR_E2E_OFFLINE`, and `OFR_E2E_KEEP`.
 
 ## Adding a suite
 
