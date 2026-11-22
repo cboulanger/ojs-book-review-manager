@@ -47,6 +47,24 @@ msgstr "Display a list of reviewed works under the abstract"
 msgid "plugins.generic.bookReviewManager.settings.onlyReserved"
 msgstr "Only allow works entered by the editors"
 
+msgid "plugins.generic.bookReviewManager.settings.suppressEmails"
+msgstr "Emails"
+
+msgid "plugins.generic.bookReviewManager.settings.suppressEmails.description"
+msgstr "While emails are switched off, the plugin sends no emails: no messages, reminders or notices to reviewers, publishers or editors. They are still recorded in the history, marked as not sent, and the daily task (reminders, expiring offers and invitations) pauses. Switch emails on once the data is complete, for example after an import."
+
+msgid "plugins.generic.bookReviewManager.settings.suppressEmails.checkbox"
+msgstr "Do not send emails (switched off)"
+
+msgid "plugins.generic.bookReviewManager.emailsSuppressed.notice"
+msgstr "Emails of the Book Review Manager are switched off: nothing is sent to reviewers, publishers or editors, and reminders pause. A journal manager can switch them on in the settings."
+
+msgid "plugins.generic.bookReviewManager.emailsSuppressed.form"
+msgstr "Emails are switched off: this email will be recorded in the history but not sent."
+
+msgid "plugins.generic.bookReviewManager.email.notSent"
+msgstr "[not sent]"
+
 msgid "plugins.generic.bookReviewManager.settings.notifyEmail"
 msgstr "Email for notifying reservations and cancellations"
 

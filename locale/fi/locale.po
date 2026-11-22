@@ -47,6 +47,24 @@ msgstr "Näytä arvioidut kohteet abstraktin alapuolella."
 msgid "plugins.generic.bookReviewManager.settings.onlyReserved"
 msgstr "Salli vain toimittajien luomat arvioinnin kohteet"
 
+msgid "plugins.generic.bookReviewManager.settings.suppressEmails"
+msgstr "Sähköpostit"
+
+msgid "plugins.generic.bookReviewManager.settings.suppressEmails.description"
+msgstr "Kun sähköpostit on kytketty pois päältä, lisäosa ei lähetä sähköposteja: ei viestejä, muistutuksia tai ilmoituksia arvioijille, kustantajille tai toimittajille. Ne kirjataan silti historiaan lähettämättöminä, ja päivittäinen tehtävä (muistutukset, vanhenevat tarjoukset ja kutsut) on tauolla. Kytke sähköpostit päälle, kun tiedot ovat valmiit, esimerkiksi tuonnin jälkeen."
+
+msgid "plugins.generic.bookReviewManager.settings.suppressEmails.checkbox"
+msgstr "Älä lähetä sähköposteja (pois päältä)"
+
+msgid "plugins.generic.bookReviewManager.emailsSuppressed.notice"
+msgstr "Book Review Managerin sähköpostit on kytketty pois päältä: arvioijille, kustantajille tai toimittajille ei lähetetä mitään, ja muistutukset ovat tauolla. Lehden hallinnoija voi kytkeä ne päälle asetuksista."
+
+msgid "plugins.generic.bookReviewManager.emailsSuppressed.form"
+msgstr "Sähköpostit on kytketty pois päältä: tämä sähköposti kirjataan historiaan, mutta sitä ei lähetetä."
+
+msgid "plugins.generic.bookReviewManager.email.notSent"
+msgstr "[ei lähetetty]"
+
 msgid "plugins.generic.bookReviewManager.settings.notifyEmail"
 msgstr "Sähköposti varausten ja peruutusten ilmoittamiseen"
 

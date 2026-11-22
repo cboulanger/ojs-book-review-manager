@@ -209,7 +209,10 @@ class DevSetupTool extends \PKP\cliTool\CommandLineTool
 		$contexts = Application::getContextDAO()->getAll();
 		while ($context = $contexts->next()) {
 			$pluginSettingsDao->updateSetting($context->getId(), 'bookreviewmanagerplugin', 'enabled', true, 'bool');
-			echo "Enabled bookReviewManager in journal '{$context->getPath()}'.\n";
+			// The dev container's mail driver only writes to the log, so its emails can be on (in a
+			// real journal they are off until a journal manager switches them on)
+			$pluginSettingsDao->updateSetting($context->getId(), 'bookreviewmanagerplugin', 'ofrSuppressEmails', false, 'bool');
+			echo "Enabled bookReviewManager (with emails) in journal '{$context->getPath()}'.\n";
 		}
 	}
 }

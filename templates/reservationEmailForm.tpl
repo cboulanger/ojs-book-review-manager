@@ -21,6 +21,9 @@
 	{if $step}<input type="hidden" name="step" value="{$step|escape}" />{/if}
 
 	{fbvFormArea id="ofrReservationEmailFormArea"}
+		{if $ofrEmailsSuppressed}
+			<div class="pkp_notification" role="status"><div class="notifyWarning">{translate key="plugins.generic.bookReviewManager.emailsSuppressed.form"}</div></div>
+		{/if}
 		<p class="ofrReservationObject"><em>{$objectDescription|strip_unsafe_html}</em></p>
 		{if $mode == 'cancel'}
 			<p>{if $cancelOffer}{translate key="plugins.generic.bookReviewManager.contractOffer.cancel.description" reviewer=$reviewerName|escape}{else}{translate key="plugins.generic.bookReviewManager.reservations.cancel.description" reviewer=$reviewerName|escape}{/if}</p>

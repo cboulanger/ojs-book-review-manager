@@ -665,6 +665,7 @@ class ObjectsForReviewManagementHandler extends Handler {
 			'view' => $view,
 			'pageTitle' => __($titleKey),
 			'ofrObjectCell' => $this->plugin->getTemplateResource('managementObjectCell.tpl'),
+			'ofrEmailsSuppressed' => \APP\plugins\generic\bookReviewManager\classes\ReservationMailer::emailsSuppressed($request->getContext()?->getId()),
 		]);
 		return $templateMgr->display($this->plugin->getTemplateResource('management.tpl'));
 	}

@@ -910,8 +910,7 @@ class BookReviewManagerPlugin extends GenericPlugin implements HasTaskScheduler 
 			->subject($template->getLocalizedData('subject', $locale))
 			->body($body);
 
-		Mail::send($mailable);
-
+		ReservationMailer::dispatch($mailable, $contextId);
 	}
 }
 ?>

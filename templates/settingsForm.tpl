@@ -23,6 +23,10 @@
 
 			<!--{fbvElement type="select" id="section" from=$sections selected=$section translate=false size=$fbvStyles.size.SMALL}-->
 
+		{fbvFormSection list=true label="plugins.generic.bookReviewManager.settings.suppressEmails" description="plugins.generic.bookReviewManager.settings.suppressEmails.description"}
+			{fbvElement type="checkbox" id="ofrSuppressEmails" value="1" label="plugins.generic.bookReviewManager.settings.suppressEmails.checkbox" checked=$ofrSuppressEmails}
+		{/fbvFormSection}
+
 		{fbvFormSection list=true}
 			{fbvElement type="checkbox" id="onlyReserved" value="1" label="plugins.generic.bookReviewManager.settings.onlyReserved" checked=$onlyReserved}
 		{/fbvFormSection}

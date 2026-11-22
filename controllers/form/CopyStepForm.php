@@ -140,6 +140,7 @@ class CopyStepForm extends \PKP\form\Form {
 		$recipients = $this->recipient ? [['name' => $this->recipient->getFullName(), 'email' => $this->recipient->getEmail()]] : [];
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign([
+			'ofrEmailsSuppressed' => \APP\plugins\generic\bookReviewManager\classes\ReservationMailer::emailsSuppressed($request->getContext()?->getId()),
 			'mode' => 'copyStep',
 			'step' => $this->step,
 			'objectId' => $this->object->getId(),

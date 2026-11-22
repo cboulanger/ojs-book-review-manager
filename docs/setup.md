@@ -86,6 +86,7 @@ Open *Book Reviews › Settings*, or the plugin's *Settings* link in the plugin 
 
 | Setting | Effect |
 | --- | --- |
+| Emails: Do not send emails | **On after installation.** The plugin then sends no emails at all (messages, reminders, notices to reviewers, publishers and editors). They are recorded in each work's history, marked *[not sent]*, and the daily task (reminders, expiring offers and invitations) pauses. A notice on every *Book Reviews* page and in the email forms says that emails are off. Switch emails on once the data is complete, e.g. after importing existing review processes. |
 | Only allow objects created by the manager | Authors can only attach works the journal has offered, not enter other works themselves. |
 | Display a list of reviewed objects under the abstract | Shows the reviewed work on the article page. |
 | Email for notifying reservations and cancellations | Fallback recipient of the notifications for offers without a responsible book review editor. If empty, the journal's primary contact is used. |

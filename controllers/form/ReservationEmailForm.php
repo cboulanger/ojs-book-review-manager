@@ -149,6 +149,7 @@ class ReservationEmailForm extends \PKP\form\Form {
 		$first = $recipients[0] ?? ['name' => '', 'email' => ''];
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign([
+			'ofrEmailsSuppressed' => \APP\plugins\generic\bookReviewManager\classes\ReservationMailer::emailsSuppressed($request->getContext()?->getId()),
 			'mode' => $this->mode,
 			'objectId' => $this->object->getId(),
 			'assignmentIds' => array_map(fn ($a) => $a->getId(), $this->assignments),

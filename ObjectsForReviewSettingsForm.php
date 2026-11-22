@@ -85,6 +85,7 @@ class ObjectsForReviewSettingsForm extends \PKP\form\Form {
 			'ofrNotifyEmail' => $this->_plugin->getSetting($this->_journalId, 'ofrNotifyEmail'),
 			'ofrInstructions' => $this->_plugin->getSetting($this->_journalId, 'ofrInstructions'),
 			'ofrContract' => $this->_plugin->getSetting($this->_journalId, 'ofrContract'),
+			'ofrSuppressEmails' => \APP\plugins\generic\bookReviewManager\classes\ReservationMailer::emailsSuppressed((int) $this->_journalId),
 		);
 		[$this->_data['ofrDueMonthsDefault'], $this->_data['ofrDueMonthsMax']] = Reservation::getDueMonths($this->_plugin, $this->_journalId);
 		$this->_data['ofrReminderDays'] = Reservation::getReminderDays($this->_plugin, $this->_journalId);
@@ -109,7 +110,7 @@ class ObjectsForReviewSettingsForm extends \PKP\form\Form {
 	 */
 	function readInputData() {
 		$this->readUserVars(array('displayAsSubtitle', 'displayAsList', 'onlyReserved', 'ofrNotifyEmail', 'ofrInstructions', 'ofrContract', 'ofrDueMonthsDefault', 'ofrDueMonthsMax', 'ofrReminderDays',
-			'ofrContractDays', 'ofrContractReminderDays', 'ofrDefaultMode', 'ofrDefaultEditorId', 'ofrPublisherReminderDays', 'ofrInvitationDays', 'ofrInvitationReminderDays'));
+			'ofrContractDays', 'ofrContractReminderDays', 'ofrDefaultMode', 'ofrDefaultEditorId', 'ofrPublisherReminderDays', 'ofrInvitationDays', 'ofrInvitationReminderDays', 'ofrSuppressEmails'));
 	}
 
 	/**
@@ -139,6 +140,8 @@ class ObjectsForReviewSettingsForm extends \PKP\form\Form {
 		$this->_plugin->updateSetting($this->_journalId, 'displayAsList', $this->getData('displayAsList'), 'bool');
 		$this->_plugin->updateSetting($this->_journalId, 'onlyReserved', $this->getData('onlyReserved'), 'bool');
 		$this->_plugin->updateSetting($this->_journalId, 'ofrNotifyEmail', $this->getData('ofrNotifyEmail'), 'string');
+		$this->_plugin->updateSetting($this->_journalId, \APP\plugins\generic\bookReviewManager\classes\ReservationMailer::SETTING_SUPPRESS,
+			(bool) $this->getData('ofrSuppressEmails'), 'bool');
 		$this->_plugin->updateSetting($this->_journalId, 'ofrInstructions', $this->getData('ofrInstructions'));
 		$this->_plugin->updateSetting($this->_journalId, 'ofrContract', $this->getData('ofrContract'));
 		$this->_plugin->updateSetting($this->_journalId, 'ofrDueMonthsDefault', (int) $this->getData('ofrDueMonthsDefault'), 'int');

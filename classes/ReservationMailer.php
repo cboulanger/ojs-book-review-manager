@@ -34,9 +34,44 @@ use APP\plugins\generic\bookReviewManager\pages\ObjectsForReviewManagementHandle
 use Illuminate\Support\Facades\Mail;
 use PKP\core\PKPString;
 use PKP\identity\Identity;
+use PKP\db\DAORegistry;
 use PKP\user\User;
 
 class ReservationMailer {
+
+	/** Plugin setting: true (or not set) = the plugin sends no emails, see emailsSuppressed() */
+	const SETTING_SUPPRESS = 'ofrSuppressEmails';
+
+	/**
+	 * Whether the plugin's emails are switched off for a journal. They are until a journal
+	 * manager switches them on in the settings, so that installing the plugin or importing
+	 * data never emails reviewers or publishers. Suppressed emails are still recorded in the
+	 * audit trail, marked as not sent.
+	 */
+	public static function emailsSuppressed(?int $contextId): bool {
+		if (!$contextId) {
+			return true;
+		}
+		$value = DAORegistry::getDAO('PluginSettingsDAO')->getSetting($contextId, 'bookreviewmanagerplugin', self::SETTING_SUPPRESS);
+		return $value === null || (bool) $value;
+	}
+
+	/**
+	 * Send a mailable unless the journal's emails are switched off.
+	 * @return bool Whether it was sent
+	 */
+	public static function dispatch($mailable, ?int $contextId): bool {
+		if (self::emailsSuppressed($contextId)) {
+			return false;
+		}
+		Mail::send($mailable);
+		return true;
+	}
+
+	/** Log subject of an email that was not sent */
+	protected static function logSubject(bool $sent, string $subject): string {
+		return $sent ? $subject : __('plugins.generic.bookReviewManager.email.notSent') . ' ' . $subject;
+	}
 
 	const MAILABLES = [
 		ReservationEmailEventType::MESSAGE->value => ObjectsForReviewMessage::class,
@@ -163,8 +198,8 @@ class ReservationMailer {
 		$mailable = new $mailableClass($context, []);
 		$from = self::setFrom($mailable, $context, $sender);
 		$mailable->recipients([$recipient])->subject($subject)->body($body);
-		Mail::send($mailable);
-		ReservationLog::logEmail($object, $type, $sender, $recipient, $from, $subject, $body);
+		$sent = self::dispatch($mailable, $context->getId());
+		ReservationLog::logEmail($object, $type, $sender, $recipient, $from, self::logSubject($sent, $subject), $body);
 	}
 
 	/**
@@ -195,8 +230,8 @@ class ReservationMailer {
 			$body = Mail::compileParams($body, ['recipientName' => htmlspecialchars($context->getData('contactName'))]);
 		}
 		$mailable->subject($subject)->body($body);
-		Mail::send($mailable);
-		ReservationLog::logEmail($object, $type, null, $recipient, $from, $subject, $body);
+		$sent = self::dispatch($mailable, $context->getId());
+		ReservationLog::logEmail($object, $type, null, $recipient, $from, self::logSubject($sent, $subject), $body);
 	}
 
 	/**

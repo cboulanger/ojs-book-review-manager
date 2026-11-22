@@ -14,6 +14,12 @@
 		{$pageTitle|escape}
 	</h1>
 
+	{if $ofrEmailsSuppressed}
+		<div class="pkp_notification" role="status">
+			<div class="notifyWarning">{translate key="plugins.generic.bookReviewManager.emailsSuppressed.notice"}</div>
+		</div>
+	{/if}
+
 	<div class="app__contentPanel bookReviewManagerManagement">
 		{if $view == 'available'}
 			{load_url_in_div id="bookReviewManagerGridContainer" url=$gridUrl}

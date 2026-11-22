@@ -46,6 +46,11 @@ class ReservationReminder extends ScheduledTask {
 			if (!$pluginSettingsDao->getSetting($context->getId(), 'bookreviewmanagerplugin', 'enabled')) {
 				continue;
 			}
+			// With emails switched off nothing happens: no reminder is marked as sent, and no
+			// invitation or contract offer expires without the people concerned being told.
+			if (ReservationMailer::emailsSuppressed($context->getId())) {
+				continue;
+			}
 			ReservationMailer::ensureTemplates($plugin, $context->getId());
 			$counts = [
 				'reminders' => $this->sendDueDateReminders($plugin, $context),

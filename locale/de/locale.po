@@ -47,6 +47,24 @@ msgstr "Eine Liste rezensierter Werke unterhalb des Abstracts anzeigen"
 msgid "plugins.generic.bookReviewManager.settings.onlyReserved"
 msgstr "Nur von der Redaktion angelegte Werke zulassen"
 
+msgid "plugins.generic.bookReviewManager.settings.suppressEmails"
+msgstr "E-Mails"
+
+msgid "plugins.generic.bookReviewManager.settings.suppressEmails.description"
+msgstr "Solange E-Mails ausgeschaltet sind, verschickt das Plugin keine E-Mails: keine Nachrichten, Erinnerungen oder Hinweise an Rezensent:innen, Verlage oder Redaktion. Sie werden trotzdem im Verlauf festgehalten und als nicht gesendet markiert; die tägliche Aufgabe (Erinnerungen, ablaufende Angebote und Einladungen) pausiert. Schalten Sie E-Mails ein, sobald die Daten vollständig sind, zum Beispiel nach einem Import."
+
+msgid "plugins.generic.bookReviewManager.settings.suppressEmails.checkbox"
+msgstr "Keine E-Mails senden (ausgeschaltet)"
+
+msgid "plugins.generic.bookReviewManager.emailsSuppressed.notice"
+msgstr "Die E-Mails des Book Review Managers sind ausgeschaltet: An Rezensent:innen, Verlage und Redaktion wird nichts verschickt, Erinnerungen pausieren. Eine Zeitschriftenverwaltung kann sie in den Einstellungen einschalten."
+
+msgid "plugins.generic.bookReviewManager.emailsSuppressed.form"
+msgstr "E-Mails sind ausgeschaltet: Diese E-Mail wird im Verlauf festgehalten, aber nicht gesendet."
+
+msgid "plugins.generic.bookReviewManager.email.notSent"
+msgstr "[nicht gesendet]"
+
 msgid "plugins.generic.bookReviewManager.settings.notifyEmail"
 msgstr "E-Mail für Benachrichtigungen über Reservierungen und Stornierungen"
 
