@@ -116,10 +116,14 @@ NER is not perfect: it can miss inflected or unusual names (e.g. a genitive "Luh
    }]
    ```
 6. **Complete the people locally** (user). `people <work>` shows which tokens lack `givenName`, `familyName` or `mailingAddress`. The user edits `private.json`. Publisher contacts need a mailing address if `returnRequired` is true. A physical copy that hasn't been sent needs `"shippingAddress": "@P0007"`.
-7. **Convert**: `node scripts/cases-to-import.js <work>/cases.json --work <work> --out <work>/import.json`. Fix all errors. Read the warnings with the user, especially past or near due dates and contract deadlines, because the daily task sends reminders right after the import.
-8. **Import, only when the user says so**, with the API skill's client:
+7. **Convert**: `node scripts/cases-to-import.js <work>/cases.json --work <work> --out <work>/import.json`. Fix all errors. Read the warnings with the user, especially past or near due dates, contract deadlines and copy requests. Once emails are switched on, the daily task reminds reviewers of near due dates and publishers of copy requests that are older than the configured number of days.
+8. **Import, only when the user says so**, with the API skill's client.
+   - **Emails off first.** The import itself sends no emails. But in a real journal, check with the user that *Book Reviews › Settings › Do not send emails* is ticked (the default after installation). Leave it ticked until the user has checked the imported processes in the journal; the user switches emails on, not you.
+   - **API key in a file.** The user creates the key in their OJS profile and saves it in a file only they can read (`chmod 600`). Pass it as `OFR_TOKEN_FILE`. Never ask for the key in the chat, and never print it.
+   - **Dry run first**, then show the user the counts (created / already there / errors). Works that already exist are skipped together with their review processes, unless `--include-existing` is given.
 
    ```sh
+   export OFR_URL=https://<host>/index.php/<journal> OFR_TOKEN_FILE=<key file>
    node api/bin/ofr.js import <work>/import.json --dry-run 2>&1 | node <skill>/scripts/eml.js mask <work>
    node api/bin/ofr.js import <work>/import.json          2>&1 | node <skill>/scripts/eml.js mask <work>
    ```
