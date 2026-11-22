@@ -23,6 +23,7 @@ use APP\plugins\generic\bookReviewManager\classes\AssignmentDAO;
 use APP\plugins\generic\bookReviewManager\classes\AssignmentWorkflow;
 use APP\plugins\generic\bookReviewManager\classes\ReservationMailer;
 use APP\plugins\generic\bookReviewManager\classes\Roles;
+use APP\plugins\generic\bookReviewManager\classes\MyReviews;
 
 use APP\plugins\generic\bookReviewManager\controllers\grid\ObjectsForReviewGridHandler;
 use APP\plugins\generic\bookReviewManager\controllers\grid\ObjectsForReviewManagementGridHandler;
@@ -30,6 +31,7 @@ use APP\plugins\generic\bookReviewManager\ObjectsForReviewSchemaMigration;
 use APP\plugins\generic\bookReviewManager\api\ObjectsForReviewController;
 use APP\plugins\generic\bookReviewManager\pages\ObjectsForReviewHandler;
 use APP\plugins\generic\bookReviewManager\pages\ObjectsForReviewManagementHandler;
+use APP\plugins\generic\bookReviewManager\pages\MyBookReviewsHandler;
 
 use APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewNew;
 use APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewCancel;
@@ -289,6 +291,7 @@ class BookReviewManagerPlugin extends GenericPlugin implements HasTaskScheduler 
 		}
 		$userRoles = (array) $router->getHandler()->getAuthorizedContextObject(Application::ASSOC_TYPE_USER_ROLES);
 		$contextId = $request->getContext()->getId();
+		$this->addMyReviewsMenu($request, $contextId);
 		if (!Roles::canManage($this, $contextId, $request->getUser()->getId(), $userRoles)) {
 			return false;
 		}
@@ -331,6 +334,33 @@ class BookReviewManagerPlugin extends GenericPlugin implements HasTaskScheduler 
 			: array_slice($menu, 0, $pos, true) + ['bookReviewManager' => $entry] + array_slice($menu, $pos, null, true);
 		$templateMgr->setState(['menu' => $menu]);
 		return false;
+	}
+
+	/**
+	 * Add "My book reviews" to the backend's left menu, after "My Submissions",
+	 * for users with open reservations (reviews still to be submitted).
+	 */
+	protected function addMyReviewsMenu($request, int $contextId): void {
+		$count = MyReviews::countReservations($contextId, $request->getUser()->getId());
+		$onPage = $request->getRequestedPage() === MyBookReviewsHandler::PAGE;
+		if (!$count && !$onPage) {
+			return;
+		}
+		$entry = [
+			'name' => __('plugins.generic.bookReviewManager.myReviews.title') . ($count ? ' (' . $count . ')' : ''),
+			'url' => $request->getRouter()->url($request, null, MyBookReviewsHandler::PAGE),
+			'isCurrent' => $onPage,
+			'icon' => 'Book',
+		];
+		$templateMgr = TemplateManager::getManager($request);
+		$menu = (array) $templateMgr->getState('menu');
+		$keys = array_keys($menu);
+		$pos = array_search('mySubmissions', $keys, true);
+		$pos = $pos === false ? array_search('submit', $keys, true) : $pos + 1;
+		$menu = $pos === false
+			? $menu + ['bookReviewManagerMyReviews' => $entry]
+			: array_slice($menu, 0, $pos, true) + ['bookReviewManagerMyReviews' => $entry] + array_slice($menu, $pos, null, true);
+		$templateMgr->setState(['menu' => $menu]);
 	}
 
 	/**
@@ -714,6 +744,11 @@ class BookReviewManagerPlugin extends GenericPlugin implements HasTaskScheduler 
         if ($this->getEnabled() && $page === ObjectsForReviewHandler::PAGE) {
 			$handler =& $args[3];
             $handler = new ObjectsForReviewHandler($this);
+            return true;
+        }
+        if ($this->getEnabled() && $page === MyBookReviewsHandler::PAGE) {
+			$handler =& $args[3];
+            $handler = new MyBookReviewsHandler($this);
             return true;
         }
         if ($this->getEnabled() && $page === ObjectsForReviewManagementHandler::PAGE) {

@@ -33,6 +33,7 @@ use APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewReminder;
 use APP\plugins\generic\bookReviewManager\pages\ObjectsForReviewManagementHandler;
 use Illuminate\Support\Facades\Mail;
 use PKP\core\PKPString;
+use PKP\identity\Identity;
 use PKP\user\User;
 
 class ReservationMailer {
@@ -185,7 +186,12 @@ class ReservationMailer {
 			$recipient = $editor;
 		} else {
 			$recipient = $plugin->getSetting($context->getId(), 'ofrNotifyEmail') ?: $context->getData('contactEmail');
-			$mailable->to($recipient);
+			// The mailables use the Recipient trait, which only accepts identities, not to()
+			$locale = $context->getPrimaryLocale();
+			$identity = new Identity();
+			$identity->setEmail($recipient);
+			$identity->setGivenName((string) $context->getData('contactName'), $locale);
+			$mailable->recipients([$identity], $locale);
 			$body = Mail::compileParams($body, ['recipientName' => htmlspecialchars($context->getData('contactName'))]);
 		}
 		$mailable->subject($subject)->body($body);

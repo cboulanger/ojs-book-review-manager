@@ -1,6 +1,6 @@
 ---
 name: book-review-manager-email-import
-description: Use when book review processes (review copies, reviewer agreements, deadlines, submitted reviews) exist only as email correspondence and should be migrated into the OJS "Book Review Manager" plugin, especially when mails are exported as .eml files (eM Client, Thunderbird, Outlook, Apple Mail) and personal data must not reach the AI model.
+description: Use when book review processes (review copies, reviewer agreements, deadlines, submitted reviews) exist only as email correspondence and should be migrated into the OJS "Book Review Manager" plugin, especially when mails are exported as .eml files (eM Client, Thunderbird, Outlook, Apple Mail) and personal data must not reach the AI model, or the mail text should only be read by a privacy-compliant OpenAI-compatible endpoint (a research computing centre, a self-hosted model) while a stronger model orchestrates.
 ---
 
 # Importing review processes from exported emails
@@ -10,6 +10,8 @@ description: Use when book review processes (review copies, reviewer agreements,
 ## Overview
 
 You reconstruct the state of each review process from a folder tree of `.eml` files, write a cases file, and import it through the Book Review Manager API (skill `book-review-manager-api`, client `api/bin/ofr.js`).
+
+**Two modes.** In **mode A (direct)** you read the masked mails yourself. In **mode B (delegated)**, a model on an OpenAI-compatible endpoint chosen by the user for its privacy guarantees reads them. Examples are a research computing centre or a self-hosted vLLM. That model reads one case per request and returns structured JSON. You orchestrate: you define the cases, merge the results into the cases file, look up identifiers, ask the user, convert and import. You never see mail text. Mode B also works better with open models: in tests they failed at the agent role (losing track, re-reading, planning instead of working) far more than at reading one case.
 
 **Core principle: you only ever see pseudonyms.** `scripts/eml.js` replaces every person locally with a stable token (`P0012`). That covers names, email addresses, phone numbers and postal-address lines, in headers, subjects, folder names, attachment names and body text. The real values and the mail file paths are kept in `<work>/private.json`. `scripts/cases-to-import.js` puts them back only in the import file.
 
@@ -21,6 +23,8 @@ You reconstruct the state of each review process from a folder tree of `.eml` fi
 | Read `<work>/index.json` and `<work>/cases.json` | Read `<work>/private.json` or the generated `import.json` |
 | Run `cases-to-import.js` (its messages use tokens) | Print `ofr` results unmasked: pipe them through `eml.js mask <work>` |
 | Run `ofr lookup` (public bibliographic data) | Ask the user to paste real names or addresses into the chat |
+
+**In mode B** don't use `show` or `grep` (they print mail text), and don't read `index.json`. Use `folders`, `threads`, `people`, `extract.js list` and the extraction results. The results are validated and cleaned of private data before they reach you. Each record says which values were removed (`removed`); if any were, tell the user.
 
 **People who never appear in a mail header** (third parties named in the text, signatures, addresses written out) are only masked with **`index --ner`**. That flag runs a local NER model (GLiNER multilingual PII, ONNX on the CPU, about 0.2 s per mail). Each name it finds becomes a name-only token, and each street address or phone number becomes `[address]` / `[phone]`. All of this is stored in `private.json`, so `show`, `grep` and `mask` don't need the model. One-time setup, network only for downloads: `cd ner && npm install && ./download-model.sh` (1.2 GB, full precision; the int8 build is useless).
 
@@ -37,6 +41,14 @@ NER is not perfect: it can miss inflected or unusual names (e.g. a genitive "Luh
    > Masking reduces what reaches the AI model, but it does not make the processing lawful. The mails contain personal data of third parties: correspondents, reviewers, publisher staff. Even the masked text (tokens, dates, subjects, book titles, institutional email domains, the course of a conversation) can still be personal data under the GDPR, because people can be re-identified from context. Before continuing, make absolutely sure that the inference endpoint you use complies with the GDPR and any other applicable privacy rules. That means: a legal basis for the processing; a data processing agreement with the provider; no use of the data for training (check the account's privacy settings and contract terms); retention and deletion terms you accept; and safeguards for any transfer outside the EU/EEA. If in doubt, ask your data protection officer, or use a model that runs entirely locally.
 
    Don't run `index` or show any mail data until the user confirms.
+   Then ask which mode to use. Recommend **mode B** if the user has access to an OpenAI-compatible endpoint whose operator guarantees what step 0 requires. That means no training on the data and no retention beyond the request, and for European journals processing in the EU under a data processing agreement. Mode A sends the masked mail text to the endpoint you run on.
+
+   **For mode B, ask the user to store the API key in a file** before anything else, e.g. `~/.config/book-review-manager/llm-key` with mode 600, outside any git repository. Never ask them to paste the key into the chat, and never print it (`cat`, `echo`, logs). Ask for the base URL (e.g. `https://chat-ai.academiccloud.de/v1`) and which models the endpoint offers, then pick a model. Prefer a strong instruct or reasoning model with JSON output. Verify the setup with synthetic data only:
+
+   ```sh
+   export OFR_LLM_BASE_URL=<base URL> OFR_LLM_KEY_FILE=<key file>
+   node scripts/extract.js check --model <name>      # "ok, JSON answer"
+   ```
 1. **Export** (user). Export the whole workflow folder tree as `.eml` files, keeping the folder structure. In eM Client that's *File › Export › EML*, ticking the folders; there's no mbox export. Any tree of `.eml` files works.
 2. **Index**: `node scripts/eml.js index <mail dir> --out <work dir> --ner`. Use a work dir outside any git repository. The command prints counts only. Check that the "me" token is the journal's address (`--me addr1,addr2` otherwise; the user types the addresses, you don't need to see them).
 3. **Learn the user's workflow.** Run `folders` and ask the user what each folder means. The skill doesn't assume a structure. Example tree and mapping:
@@ -54,9 +66,25 @@ NER is not perfect: it can miss inflected or unusual names (e.g. a genitive "Luh
    | `General/Publisher contacts` | Publisher contacts | `users` with role `publisherContact` |
 
    Also ask: **do publishers want to be notified when the review is published?** If yes, every work needs a publisher contact. Find the person who handled review copies or offers for each publisher in the mails, list them under `users` with role `publisherContact`, and set `publisherContactEmail` and `notifyPublisher: true` on each of the publisher's works. Report the works whose publisher has no contact in the mails.
-4. **Read each case**: `show <work> <folder>` (one folder per case) or `show <work> <thread>`. Use `threads --folder X`, `grep <work> REGEX` and `people <work>` to find things. Thread grouping uses Message-ID references, plus the same subject with a shared correspondent. One thread can cover several books, and one book can span several threads.
+4. **Mode B: have each case read.** Define the cases with `extract.js list`, using the user's folder meanings (step 3), and show the list to the user. Then run `extract.js run` with the same specs (see *Delegated reading* below). Every request is one case and nothing else. With a second model you can run the same specs again and compare the two per case: where they disagree, ask the user. Skip the rest of this step and go on with step 5.
+
+   **Mode A: read each case**: `show <work> <folder>` (one folder per case) or `show <work> <thread>`. Use `threads --folder X`, `grep <work> REGEX` and `people <work>` to find things. Thread grouping uses Message-ID references, plus the same subject with a shared correspondent. One thread can cover several books, and one book can span several threads.
    If a reviewer agreed to review several books in one text (one thread or folder about several books, one deadline), that is a **review essay**: one review of several works. Ask the user if unsure.
-5. **Write `<work>/cases.json`** in the import format (skill `book-review-manager-api`, section 4), with tokens for people and bookkeeping fields starting with `_`:
+5. **Write `<work>/cases.json`**. In mode B, start with the mechanical merge of the results. Pass the user's folder meanings, look up missing ISBNs by title, then review the draft with the user and copy it to `<work>/cases.json`:
+
+   ```sh
+   node scripts/merge-extract.js <work>/extract/<model> --submitted "4 Submitted" [--skip "<case>"] --title-lookup
+   ```
+
+   The merge applies these rules; check every case against them:
+   - **Statuses:** `review.status` `accepted` and `submitted` are imported as such. `proposed`, `invited`, `bid` and `offered` become a work without a review process, unless the user wants bidding imported. `published`, `declined` and `withdrawn` are left out.
+   - **Earlier reviewers:** `formerReviewers` are finished; don't import them.
+   - **Identifiers:** prefer a valid ISBN; otherwise look the title up (Crossref title search, public data) or ask the user. Merge the same book across cases.
+   - **Essays:** a review essay needs at least two works; otherwise treat it as a single review and ask.
+   - **Publisher contacts** come from `publisherContacts`.
+   - **What to ask the user:** every `questions` entry, every `issues` entry, and missing due dates.
+
+   In both modes the format is the import format (skill `book-review-manager-api`, section 4), with tokens for people and bookkeeping fields starting with `_`:
 
    ```json
    {
@@ -97,6 +125,40 @@ NER is not perfect: it can miss inflected or unusual names (e.g. a genitive "Luh
    ```
 
    The import creates the works first, then combines each essay's works (`ofr bundle create` under the hood) and imports the reviewer on the essay. A re-run finds the essay, because all its works are in it, and skips it. In the dry run, an essay's works that the same file would create have no id yet (`works: [null, ...]`).
+
+## Delegated reading (`scripts/extract.js`)
+
+```sh
+export OFR_LLM_BASE_URL=<base URL> OFR_LLM_KEY_FILE=<key file>     # see step 0
+node scripts/extract.js check --model <name>
+node scripts/extract.js list <work> each-folder:"3 Assigned" each-thread:"1 Proposals" --exclude _Declined
+node scripts/extract.js run  <work> <same specs> --model <name> --editor P0001,P0008
+```
+
+| Case spec | One case is |
+| --- | --- |
+| `folder:<end of folder>` | all messages filed in that folder |
+| `thread:t0145+t0160` | these threads |
+| `each-folder:<stage>` | each subfolder of the stage (threads filed directly in the stage are cases too) |
+| `each-thread:<folder>` | each thread with a message in the folder or its subfolders |
+
+`--editor` names the journal's own tokens (all the editor's addresses), so the model doesn't take the editor for a reviewer.
+
+**What the script does:** it sends one case per request (masked, quoted replies cut, `--max-message` characters per message, default 3000) with a fixed JSON schema:
+- **works:** title, ISBN, DOI, URL, publisher;
+- **publisher contacts;**
+- **review:** the current reviewer, status, agreement date, due date with its basis, copies per work;
+- **earlier reviewers, questions** and **confidence**;
+- **evidence:** message IDs for every value.
+
+**What comes back:** results go to `<work>/extract/<model>/<case>.json`:
+- `result` holds the answer;
+- `issues` lists validation problems: not a bare token, unknown person, invalid ISBN, a date not in YYYY-MM-DD, evidence from outside the case;
+- `removed` lists values deleted because they contained private data.
+
+A second run skips finished cases; failed ones are tried again (`--force` redoes all). Rate limits (HTTP 429) and server errors are retried. Reasoning models may need `--max-tokens 32768`, otherwise their reasoning can use up the answer. The model is told not to repeat personal circumstances (health, family, moves) in any field.
+
+`merge-extract.js <extract dir>` builds a draft cases file (`<extract dir>/cases.json`) from the results with fixed rules (step 5). Things it can't decide go into `_unresolved`: works without an identifier, and a work reviewed on its own and in an essay. Left-out cases go into `_skipped`. `--title-lookup` sends only book titles to Crossref and caches the answers.
 
 ## Quick reference (`scripts/eml.js`)
 

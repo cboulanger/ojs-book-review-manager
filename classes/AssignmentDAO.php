@@ -74,6 +74,22 @@ class AssignmentDAO extends DAO {
 	}
 
 	/**
+	 * A user's assignments in a journal, oldest first, without the mirrors of
+	 * review essay assignments (the essay's own assignment stands for them).
+	 * @param string[] $statuses Only assignments with one of these statuses
+	 * @return Assignment[]
+	 */
+	public function getByUser(int $userId, int $contextId, array $statuses): array {
+		return $this->toObjects(DB::table(self::TABLE)
+			->where('user_id', $userId)
+			->where('context_id', $contextId)
+			->whereIn('status', $statuses)
+			->whereNotIn('assignment_id', DB::table(self::SETTINGS_TABLE)->where('setting_name', 'bundleAssignmentId')->select('assignment_id'))
+			->orderBy('date_created')->orderBy('assignment_id')
+			->get());
+	}
+
+	/**
 	 * The reviewer of an object (accepted, submitted or completed), if any.
 	 */
 	public function getReviewer(int $objectId): ?Assignment {

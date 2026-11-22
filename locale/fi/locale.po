@@ -1801,3 +1801,33 @@ msgstr "Arvioidut julkaisut"
 
 msgid "plugins.generic.bookReviewManager.invitation.search.hint"
 msgstr "Jätä kenttä tyhjäksi, niin julkaisun käyttäjät luetellaan aakkosjärjestyksessä."
+
+msgid "plugins.generic.bookReviewManager.myReviews.title"
+msgstr "Omat kirja-arvioni"
+
+msgid "plugins.generic.bookReviewManager.myReviews.invited.reserve"
+msgstr "Sinut on kutsuttu arvioimaan tämä julkaisu. Vastaathan viimeistään {$deadline}."
+
+msgid "plugins.generic.bookReviewManager.myReviews.invited.bid"
+msgstr "Sinut on kutsuttu hakemaan tämän julkaisun arvioijaksi. Vastaathan viimeistään {$deadline}."
+
+msgid "plugins.generic.bookReviewManager.myReviews.respond"
+msgstr "Vastaa kutsuun"
+
+msgid "plugins.generic.bookReviewManager.myReviews.submit"
+msgstr "Lähetä arviosi"
+
+msgid "plugins.generic.bookReviewManager.myReviews.showInList"
+msgstr "Näytä luettelossa"
+
+msgid "plugins.generic.bookReviewManager.myReviews.submitHint"
+msgstr "Lähetä arviosi aloittamalla uusi käsikirjoituksen lähetys ja valitsemalla julkaisu kohdassa \"Arvioidut julkaisut\" vaiheessa \"Toimittajille\"."
+
+msgid "plugins.generic.bookReviewManager.myReviews.empty"
+msgstr "Sinulla ei ole avoimia varauksia."
+
+msgid "plugins.generic.bookReviewManager.myReviews.copy"
+msgstr "Arvostelukappale"
+
+msgid "plugins.generic.bookReviewManager.myReviews.publicPage"
+msgstr "Kaikki arvioitavat julkaisut (julkinen sivu)"

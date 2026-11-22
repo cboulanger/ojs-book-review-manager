@@ -22,24 +22,10 @@
 
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, relative, resolve, dirname, sep } from 'node:path';
-import { parseEmlFile, stripQuoted } from './lib/eml.js';
+import { parseEmlFile } from './lib/eml.js';
+import { parseArgs, privatePath, indexPath, loadWork, savePrivate, day, maskedText } from './lib/work.js';
 import { findDois, findIsbns } from './lib/identifiers.js';
 import { Pseudonymizer, lowercaseWords } from './lib/pseudonymize.js';
-
-function parseArgs(argv) {
-  const pos = [];
-  const opt = {};
-  for (let i = 0; i < argv.length; i++) {
-    const a = argv[i];
-    if (a.startsWith('--')) {
-      const [k, v] = a.slice(2).split('=', 2);
-      if (v !== undefined) opt[k] = v;
-      else if (argv[i + 1] !== undefined && !argv[i + 1].startsWith('--')) opt[k] = argv[++i];
-      else opt[k] = true;
-    } else pos.push(a);
-  }
-  return { pos, opt };
-}
 
 function* walkEml(dir) {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
@@ -55,21 +41,6 @@ const normSubject = (s) =>
     .replace(/\s+/g, ' ')
     .trim()
     .toLowerCase();
-
-const privatePath = (work) => join(work, 'private.json');
-const indexPath = (work) => join(work, 'index.json');
-
-function loadWork(work) {
-  if (!existsSync(indexPath(work))) throw new Error(`no index in ${work}; run "eml.js index <mail dir> --out ${work}"`);
-  const priv = JSON.parse(readFileSync(privatePath(work), 'utf8'));
-  return { index: JSON.parse(readFileSync(indexPath(work), 'utf8')), priv, pseudo: new Pseudonymizer(priv.people, priv.literals ?? [], { commonWords: priv.commonWords ?? [] }) };
-}
-
-function savePrivate(work, priv, pseudo) {
-  priv.people = pseudo.people;
-  priv.literals = pseudo.literals;
-  writeFileSync(privatePath(work), JSON.stringify(priv, null, 1));
-}
 
 async function buildIndex(root, work, opt) {
   // keep the tokens of an earlier run stable
@@ -265,17 +236,10 @@ async function nerPass(items, pseudo, opt) {
   console.error(`\nNER: ${counts.person} new names, ${counts.address} addresses, ${counts.phone} phone numbers (${Math.round((Date.now() - started) / 1000)} s)`);
 }
 
-const day = (iso) => (iso ? iso.slice(0, 10) : '????-??-??');
-
 function threadLine(t) {
   const who = t.participants.slice(0, 4).map((p) => (p.domain ? `${p.person}@${p.domain}` : p.person)).join(', ');
   const ids = [...t.isbns, ...t.dois].join(' ');
   return `${t.id}  ${day(t.start)}..${day(t.end)}  ${String(t.count).padStart(3)}  [${t.folders.join(' | ')}]  ${t.subject}  <${who}>${ids ? '  ' + ids : ''}`;
-}
-
-function maskedText(work, m, full) {
-  const mail = parseEmlFile(join(work.priv.root, work.priv.files[m.id]));
-  return work.pseudo.mask(full ? mail.text : stripQuoted(mail.text));
 }
 
 const BODY_WITHHELD = '[message body withheld: the index was built without --ner, so only header data is shown]';
