@@ -36,6 +36,7 @@ enum ReservationEmailEventType: int implements EmailLogEventType
 	case INVITATION_REMINDER = 0x1F0F114;
 	case INVITATION_EXHAUSTED = 0x1F0F115;
 	case ESSAY_CHANGED = 0x1F0F116;
+	case DUE_DATE_CHANGED = 0x1F0F117;
 
 	public function labelKey(): string
 	{
@@ -62,6 +63,7 @@ enum ReservationEmailEventType: int implements EmailLogEventType
 			self::INVITATION_REMINDER => 'plugins.generic.bookReviewManager.history.email.invitationReminder',
 			self::INVITATION_EXHAUSTED => 'plugins.generic.bookReviewManager.history.email.invitationExhausted',
 			self::ESSAY_CHANGED => 'plugins.generic.bookReviewManager.history.email.essayChanged',
+			self::DUE_DATE_CHANGED => 'plugins.generic.bookReviewManager.history.email.dueDateChanged',
 		};
 	}
 }

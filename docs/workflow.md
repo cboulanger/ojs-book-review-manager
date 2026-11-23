@@ -404,7 +404,8 @@ Only if the offer requires returns and the review won't come.
 
 - **Confirmation.** After accepting the agreement, the reviewer receives a confirmation with the work, the due date and an "I cannot write this review" link.
 - **Reminder.** Before the due date (14 days by default), the reviewer is reminded automatically. The reminder contains the same link.
-- **Overdue reviews.** Reviews past their due date are listed on To-do under *Overdue reviews*. From there you can email the reviewer, cancel the reservation or request the return of a printed copy.
+- **Overdue reviews.** Reviews past their due date are listed on To-do under *Overdue reviews*. From there you can email the reviewer, change the due date, cancel the reservation or request the return of a printed copy.
+- **Changing the due date.** **Change due date** (on To-do under *Overdue reviews*, and on *Reviewers & bidders*) sets a new due date for a reserved review. The new date can be any day from today on; the maximum from the settings applies only to the reviewer's own choice. The reminder is sent again before the new date. Unless you untick the option, the reviewer is told by the email "Due date changed", which gives the old and new date and the link to the submission page. For a review essay, the works follow the new date. The change is recorded in the history.
 - **Messages.** From *Reviewers & bidders* you can email any bidder or reviewer, or cancel a reservation, with an editable email.
 
 ### 8. Submission and publication
@@ -485,7 +486,7 @@ Until the review is submitted, you can change which works an essay covers:
 
 ![The history of an offer](images/history.png)
 
-**Reviewers & bidders** lists all assignments, with a filter by status. It shows the due dates, the chosen type of copy and the delivery details (as long as they are stored), with actions to email, cancel or view the history.
+**Reviewers & bidders** lists all assignments, with a filter by status. It shows the due dates, the chosen type of copy and the delivery details (as long as they are stored), with actions to email, change the due date, cancel or view the history.
 
 ![Reviewers and bidders](images/assignments.png)
 

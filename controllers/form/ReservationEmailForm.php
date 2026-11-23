@@ -18,6 +18,7 @@
  *    (they stay on the list), optionally by email
  *  - invitation: invite someone on the invitation list (InvitationWorkflow)
  *  - round: start a sequential invitation round (the text is stored and reused)
+ *  - dueDate: change the due date of an accepted review, optionally notifying the reviewer
  */
 
 namespace APP\plugins\generic\bookReviewManager\controllers\form;
@@ -44,9 +45,10 @@ class ReservationEmailForm extends \PKP\form\Form {
 	const MODE_UNSUCCESSFUL = 'unsuccessful';
 	const MODE_INVITATION = 'invitation';
 	const MODE_ROUND = 'round';
+	const MODE_DUE_DATE = 'dueDate';
 
 	/** Modes in which sending the email is optional */
-	const OPTIONAL_EMAIL_MODES = [self::MODE_CANCEL, self::MODE_UNSUCCESSFUL];
+	const OPTIONAL_EMAIL_MODES = [self::MODE_CANCEL, self::MODE_UNSUCCESSFUL, self::MODE_DUE_DATE];
 
 	/** Handler operation that saves each mode */
 	const SAVE_OPS = [
@@ -56,6 +58,7 @@ class ReservationEmailForm extends \PKP\form\Form {
 		self::MODE_UNSUCCESSFUL => 'notifyUnsuccessful',
 		self::MODE_INVITATION => 'sendInvitation',
 		self::MODE_ROUND => 'startRound',
+		self::MODE_DUE_DATE => 'changeDueDate',
 	];
 
 	protected $plugin;
@@ -96,6 +99,14 @@ class ReservationEmailForm extends \PKP\form\Form {
 			$this->addCheck(new FormValidatorCustom($this, 'body', 'required', 'plugins.generic.bookReviewManager.invitation.linkRequired',
 				fn ($body) => str_contains((string) $body, '{$invitationUrl}')));
 		}
+		if ($mode === self::MODE_DUE_DATE) {
+			// One check per message; each passes when the date fails an earlier one
+			$error = fn ($date) => ($a = reset($this->assignments)) ? AssignmentWorkflow::validateNewDueDate($a, (string) $date) : null;
+			foreach (['plugins.generic.bookReviewManager.reserve.error.dueDate', 'plugins.generic.bookReviewManager.dueDate.error.past',
+					'plugins.generic.bookReviewManager.dueDate.error.unchanged'] as $key) {
+				$this->addCheck(new FormValidatorCustom($this, 'dueDate', 'required', $key, fn ($date) => $error($date) !== $key));
+			}
+		}
 		$this->addCheck(new FormValidatorPost($this));
 		$this->addCheck(new FormValidatorCSRF($this));
 	}
@@ -108,6 +119,7 @@ class ReservationEmailForm extends \PKP\form\Form {
 				: ReservationEmailEventType::CONTRACT_OFFER,
 			self::MODE_UNSUCCESSFUL => ReservationEmailEventType::BID_UNSUCCESSFUL,
 			self::MODE_INVITATION, self::MODE_ROUND => InvitationWorkflow::getEmailType($this->object),
+			self::MODE_DUE_DATE => ReservationEmailEventType::DUE_DATE_CHANGED,
 			default => ReservationEmailEventType::MESSAGE,
 		};
 	}
@@ -127,6 +139,13 @@ class ReservationEmailForm extends \PKP\form\Form {
 		if ($this->mode === self::MODE_INVITATION) {
 			$extra['invitationDeadline'] = $this->formatDate(InvitationWorkflow::getDeadline($this->plugin, $this->object));
 		}
+		if ($this->mode === self::MODE_DUE_DATE) {
+			// The new date is chosen in the same form and filled in when sending
+			$current = (string) $assignment?->getData('dueDate');
+			$extra['dueDate'] = '{$dueDate}';
+			$extra['previousDueDate'] = $current ? $this->formatDate($current) : '';
+			$this->setData('dueDate', substr($current, 0, 10));
+		}
 		// In batches, {$recipientName} is filled in per recipient when sending
 		$recipient = $assignment ? ($this->recipients[$assignment->getId()] ?? null) : null;
 		[$subject, $body] = ReservationMailer::compose($this->context, $this->emailType(), $this->object, $assignment, $recipient, $sender, $extra);
@@ -138,7 +157,8 @@ class ReservationEmailForm extends \PKP\form\Form {
 	}
 
 	public function readInputData() {
-		$this->readUserVars(['subject', 'body', 'sendEmail', 'hideOffer']);
+		$this->readUserVars(['subject', 'body', 'sendEmail', 'hideOffer', 'dueDate']);
+		$this->setData('dueDate', trim((string) $this->getData('dueDate')));
 	}
 
 	public function fetch($request, $template = null, $display = false) {
@@ -179,6 +199,16 @@ class ReservationEmailForm extends \PKP\form\Form {
 			'hideOffer' => (bool) $this->getData('hideOffer'),
 			'bodyHint' => __('plugins.generic.bookReviewManager.invitation.round.hint'),
 			'submitKey' => $this->object->isBidding() ? 'plugins.generic.bookReviewManager.invitation.round.startParallel' : 'plugins.generic.bookReviewManager.invitation.round.start',
+		] : []) + ($this->mode === self::MODE_DUE_DATE ? [
+			'stepDescription' => __('plugins.generic.bookReviewManager.dueDate.description', [
+				'reviewer' => $first['name'],
+				'dueDate' => ($current = (string) reset($this->assignments)?->getData('dueDate')) ? $this->formatDate($current) : '–',
+			]),
+			'dueDate' => (string) $this->getData('dueDate'),
+			'dueDateError' => $this->getErrorsArray()['dueDate'] ?? null,
+			'minDueDate' => date('Y-m-d'),
+			'bodyHint' => __('plugins.generic.bookReviewManager.dueDate.linkHint'),
+			'submitKey' => 'plugins.generic.bookReviewManager.dueDate.submit',
 		] : []) + [
 			'actionUrl' => $request->getDispatcher()->url($request, Application::ROUTE_COMPONENT, null,
 				ReservationActionsHandler::COMPONENT, self::SAVE_OPS[$this->mode]),
@@ -222,6 +252,11 @@ class ReservationEmailForm extends \PKP\form\Form {
 				case self::MODE_INVITATION:
 					$key = InvitationWorkflow::invite($this->object, $assignment, $sender, InvitationWorkflow::getDeadline($this->plugin, $this->object));
 					$late['invitationUrl'] = ActionLink::url($this->context, $key);
+					break;
+				case self::MODE_DUE_DATE:
+					$dueDate = (string) $this->getData('dueDate');
+					AssignmentWorkflow::changeDueDate($this->object, $assignment, $sender, $dueDate);
+					$late['dueDate'] = $this->formatDate($dueDate);
 					break;
 			}
 			if ($sendEmail && $recipient) {

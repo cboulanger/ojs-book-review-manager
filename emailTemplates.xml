@@ -34,4 +34,5 @@
   <email key="BRM_INVITATION_EXHAUSTED" subject="emails.brmInvitationExhausted.subject" name="emails.brmInvitationExhausted.name" body="emails.brmInvitationExhausted.body"/>
   <email key="BRM_CONFIRMATION" subject="emails.brmConfirmation.subject" name="emails.brmConfirmation.name" body="emails.brmConfirmation.body"/>
   <email key="BRM_REVIEW_ESSAY_CHANGED" subject="emails.brmReviewEssayChanged.subject" name="emails.brmReviewEssayChanged.name" body="emails.brmReviewEssayChanged.body"/>
+  <email key="BRM_DUE_DATE_CHANGED" subject="emails.brmDueDateChanged.subject" name="emails.brmDueDateChanged.name" body="emails.brmDueDateChanged.body"/>
 </emails>

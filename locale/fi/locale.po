@@ -1849,3 +1849,30 @@ msgstr "Arvostelukappale"
 
 msgid "plugins.generic.bookReviewManager.myReviews.publicPage"
 msgstr "Kaikki arvioitavat julkaisut (julkinen sivu)"
+
+msgid "plugins.generic.bookReviewManager.dueDate.change"
+msgstr "Muuta määräpäivää"
+
+msgid "plugins.generic.bookReviewManager.dueDate.description"
+msgstr "Arvioijan {$reviewer} arvion määräpäivä on tällä hetkellä {$dueDate}. Valitse uusi määräpäivä. Muistutus ennen määräpäivää lähetetään uudelleen uuden päivän mukaan."
+
+msgid "plugins.generic.bookReviewManager.dueDate.new"
+msgstr "Uusi määräpäivä"
+
+msgid "plugins.generic.bookReviewManager.dueDate.submit"
+msgstr "Muuta määräpäivää"
+
+msgid "plugins.generic.bookReviewManager.dueDate.linkHint"
+msgstr "{$dueDate} korvataan lähetettäessä uudella määräpäivällä."
+
+msgid "plugins.generic.bookReviewManager.dueDate.error.past"
+msgstr "Uusi määräpäivä ei voi olla menneisyydessä."
+
+msgid "plugins.generic.bookReviewManager.dueDate.error.unchanged"
+msgstr "Valitse eri päivä kuin nykyinen määräpäivä."
+
+msgid "plugins.generic.bookReviewManager.history.event.dueDateChanged"
+msgstr "Arvioijan {$recipientName} arvion määräpäivä muutettu: {$previousDueDate} → {$reviewDueDate}"
+
+msgid "plugins.generic.bookReviewManager.history.email.dueDateChanged"
+msgstr "Arvioijalle ilmoitettu: määräpäivä on muuttunut"

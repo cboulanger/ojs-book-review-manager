@@ -1849,3 +1849,30 @@ msgstr "Review copy"
 
 msgid "plugins.generic.bookReviewManager.myReviews.publicPage"
 msgstr "All books for review (public page)"
+
+msgid "plugins.generic.bookReviewManager.dueDate.change"
+msgstr "Change due date"
+
+msgid "plugins.generic.bookReviewManager.dueDate.description"
+msgstr "The review by {$reviewer} is currently due on {$dueDate}. Choose the new due date. The reminder before the due date will be sent again for the new date."
+
+msgid "plugins.generic.bookReviewManager.dueDate.new"
+msgstr "New due date"
+
+msgid "plugins.generic.bookReviewManager.dueDate.submit"
+msgstr "Change due date"
+
+msgid "plugins.generic.bookReviewManager.dueDate.linkHint"
+msgstr "{$dueDate} is replaced with the new due date when the email is sent."
+
+msgid "plugins.generic.bookReviewManager.dueDate.error.past"
+msgstr "The new due date cannot be in the past."
+
+msgid "plugins.generic.bookReviewManager.dueDate.error.unchanged"
+msgstr "Please choose a date different from the current due date."
+
+msgid "plugins.generic.bookReviewManager.history.event.dueDateChanged"
+msgstr "Due date of the review by {$recipientName} changed from {$previousDueDate} to {$reviewDueDate}"
+
+msgid "plugins.generic.bookReviewManager.history.email.dueDateChanged"
+msgstr "Reviewer informed: the due date has changed"

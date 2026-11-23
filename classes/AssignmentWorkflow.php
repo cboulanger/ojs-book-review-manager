@@ -330,6 +330,47 @@ class AssignmentWorkflow {
 	}
 
 	/**
+	 * Whether a due date (Y-m-d) can replace an accepted assignment's current one:
+	 * a valid date, not in the past and different from the current due date.
+	 * @return ?string Locale key of the error, null if the date is fine
+	 */
+	public static function validateNewDueDate(Assignment $assignment, string $date): ?string {
+		$parsed = \DateTimeImmutable::createFromFormat('!Y-m-d', $date);
+		if (!$parsed || $parsed->format('Y-m-d') !== $date) {
+			return 'plugins.generic.bookReviewManager.reserve.error.dueDate';
+		}
+		if ($date < date('Y-m-d')) {
+			return 'plugins.generic.bookReviewManager.dueDate.error.past';
+		}
+		if ($date === substr((string) $assignment->getData('dueDate'), 0, 10)) {
+			return 'plugins.generic.bookReviewManager.dueDate.error.unchanged';
+		}
+		return null;
+	}
+
+	/**
+	 * The book review editor changes the due date of an accepted review. The reminder
+	 * before the due date is sent again for the new date; the works of a review essay
+	 * follow.
+	 * @return string The previous due date (Y-m-d, or '' if there was none)
+	 */
+	public static function changeDueDate(ObjectForReview $object, Assignment $assignment, User $editor, string $dueDate): string {
+		self::requireStatus($assignment, [Assignment::STATUS_ACCEPTED]);
+		if ($error = self::validateNewDueDate($assignment, $dueDate)) {
+			throw new \InvalidArgumentException(__($error));
+		}
+		$previous = substr((string) $assignment->getData('dueDate'), 0, 10);
+		$assignment->setData('dueDate', $dueDate);
+		$assignment->setData('reminderSent', null);
+		self::dao()->updateObject($assignment);
+		$reviewer = Repo::user()->get($assignment->getUserId(), true);
+		ReservationLog::logEvent($object, ReservationLog::EVENT_DUE_DATE_CHANGED, $editor, $reviewer,
+			['reviewDueDate' => $dueDate, 'previousDueDate' => $previous]);
+		self::syncBundle($object);
+		return $previous;
+	}
+
+	/**
 	 * The reviewer retracts (cancels the reservation on the public page).
 	 */
 	public static function retract($plugin, ObjectForReview $object, Assignment $assignment, User $user, bool $viaLink = false): void {

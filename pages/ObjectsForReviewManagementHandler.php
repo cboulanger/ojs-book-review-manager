@@ -175,7 +175,7 @@ class ObjectsForReviewManagementHandler extends Handler {
 						'copyStatusLabel' => CopyWorkflow::getStatus($assignment) === CopyWorkflow::NOT_NEEDED ? '' : CopyWorkflow::getStatusLabel($assignment),
 						'actions' => array_merge(
 							$this->copyActions($request, $object, $assignment),
-							$this->assignmentActions($request, $object, $assignment, ['email', 'cancel', 'history'])
+							$this->assignmentActions($request, $object, $assignment, ['email', 'dueDate', 'cancel', 'history'])
 						),
 					];
 				}
@@ -274,7 +274,7 @@ class ObjectsForReviewManagementHandler extends Handler {
 					'dateCreated' => $assignment->getDateCreated(),
 					'dateStatus' => $assignment->getDateStatus(),
 					'contractDeadline' => $assignment->getStatus() === Assignment::STATUS_OFFERED ? $assignment->getData('contractDeadline') : null,
-					'actions' => $this->assignmentActions($request, $objects[$objectId], $assignment, $active ? ['email', 'cancel', 'history'] : ['history']),
+					'actions' => $this->assignmentActions($request, $objects[$objectId], $assignment, $active ? ['email', 'dueDate', 'cancel', 'history'] : ['history']),
 				] + Reservation::getDisplayData($assignment);
 			}
 		}
@@ -524,18 +524,23 @@ class ObjectsForReviewManagementHandler extends Handler {
 	}
 
 	/**
-	 * Modal actions for an assignment (or, without one, for the object): email, cancel, audit trail.
+	 * Modal actions for an assignment (or, without one, for the object): email, change the due date
+	 * (accepted reviews only, skipped otherwise), cancel, audit trail.
 	 * @return LinkAction[]
 	 */
 	protected function assignmentActions($request, $object, ?Assignment $assignment, array $names): array {
 		$definitions = [
 			'email' => ['emailForm', 'plugins.generic.bookReviewManager.reservations.email', 'modal_email'],
+			'dueDate' => ['dueDateForm', 'plugins.generic.bookReviewManager.dueDate.change', 'modal_edit'],
 			'cancel' => ['cancelForm', $assignment?->getStatus() === Assignment::STATUS_OFFERED
 				? 'plugins.generic.bookReviewManager.contractOffer.cancel' : 'plugins.generic.bookReviewManager.reservations.cancel', 'modal_delete'],
 			'history' => ['history', 'plugins.generic.bookReviewManager.history', 'modal_information'],
 		];
 		$actions = [];
 		foreach ($names as $name) {
+			if ($name === 'dueDate' && $assignment?->getStatus() !== Assignment::STATUS_ACCEPTED) {
+				continue;
+			}
 			[$op, $labelKey, $modalClass] = $definitions[$name];
 			$params = ['objectId' => $object->getId()] + ($assignment && $name !== 'history' ? ['assignmentId' => $assignment->getId()] : []);
 			$actions[$name] = $this->linkAction($request, $op, $params, $labelKey, $modalClass,

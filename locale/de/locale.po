@@ -1848,3 +1848,30 @@ msgstr "Rezensionsexemplar"
 
 msgid "plugins.generic.bookReviewManager.myReviews.publicPage"
 msgstr "Alle Rezensionsangebote (öffentliche Seite)"
+
+msgid "plugins.generic.bookReviewManager.dueDate.change"
+msgstr "Abgabetermin ändern"
+
+msgid "plugins.generic.bookReviewManager.dueDate.description"
+msgstr "Die Rezension von {$reviewer} ist derzeit am {$dueDate} fällig. Wählen Sie den neuen Abgabetermin. Die Erinnerung vor dem Abgabetermin wird für den neuen Termin erneut verschickt."
+
+msgid "plugins.generic.bookReviewManager.dueDate.new"
+msgstr "Neuer Abgabetermin"
+
+msgid "plugins.generic.bookReviewManager.dueDate.submit"
+msgstr "Abgabetermin ändern"
+
+msgid "plugins.generic.bookReviewManager.dueDate.linkHint"
+msgstr "{$dueDate} wird beim Versand durch den neuen Abgabetermin ersetzt."
+
+msgid "plugins.generic.bookReviewManager.dueDate.error.past"
+msgstr "Der neue Abgabetermin darf nicht in der Vergangenheit liegen."
+
+msgid "plugins.generic.bookReviewManager.dueDate.error.unchanged"
+msgstr "Bitte wählen Sie ein anderes Datum als den bisherigen Abgabetermin."
+
+msgid "plugins.generic.bookReviewManager.history.event.dueDateChanged"
+msgstr "Abgabetermin der Rezension von {$recipientName} von {$previousDueDate} auf {$reviewDueDate} geändert"
+
+msgid "plugins.generic.bookReviewManager.history.email.dueDateChanged"
+msgstr "Rezensent:in informiert: Der Abgabetermin wurde geändert"

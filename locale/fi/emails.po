@@ -312,3 +312,15 @@ msgstr "Kooste-arviosi lehteen {$journalName}: teosluettelo on muuttunut"
 
 msgid "emails.brmReviewEssayChanged.body"
 msgstr "<p>Hyvä {$reviewerName},</p><p>kooste-arvio, jonka lupauduit kirjoittamaan, kattaa nyt seuraavat teokset:<br />{$objectDescription}</p><p>Määräpäivä: {$dueDate}</p><p>Jos sinulla on kysyttävää, ota meihin yhteyttä.</p><p>Ystävällisin terveisin<br />{$journalName}</p>"
+
+msgid "emails.brmDueDateChanged.name"
+msgstr "Määräpäivä muuttunut (arvioijalle)"
+
+msgid "emails.brmDueDateChanged.description"
+msgstr "Kirja-arvioiden toimittaja lähettää tämän arvioijalle, kun arvion määräpäivää on muutettu. Viestissä on linkki lähetyssivulle."
+
+msgid "emails.brmDueDateChanged.subject"
+msgstr "Arviosi uusi määräpäivä: {$dueDate}"
+
+msgid "emails.brmDueDateChanged.body"
+msgstr "<p>Hyvä {$recipientName},</p><p>seuraavan julkaisun arviosi määräpäivä on muutettu päivästä {$previousDueDate} päivään <strong>{$dueDate}</strong>:<br />{$objectDescription}</p><p>Kun arviosi on valmis, lähetä se täällä:<br /><a href=\"{$submissionUrl}\">{$submissionUrl}</a></p><p>Ystävällisin terveisin<br />{$senderName}<br />{$contextName}</p>"

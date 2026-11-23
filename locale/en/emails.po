@@ -312,3 +312,15 @@ msgstr "Your review essay for {$journalName}: the list of works has changed"
 
 msgid "emails.brmReviewEssayChanged.body"
 msgstr "<p>Dear {$reviewerName},</p><p>the review essay you agreed to write now covers these works:<br />{$objectDescription}</p><p>Due date: {$dueDate}</p><p>If you have any questions, please contact us.</p><p>Kind regards,<br />{$journalName}</p>"
+
+msgid "emails.brmDueDateChanged.name"
+msgstr "Due date changed (to the reviewer)"
+
+msgid "emails.brmDueDateChanged.description"
+msgstr "Sent by the book review editor to the reviewer when the due date of the review has been changed, with the link to the submission page."
+
+msgid "emails.brmDueDateChanged.subject"
+msgstr "New due date for your review: {$dueDate}"
+
+msgid "emails.brmDueDateChanged.body"
+msgstr "<p>Dear {$recipientName},</p><p>the due date of your review of the following work has been changed from {$previousDueDate} to <strong>{$dueDate}</strong>:<br />{$objectDescription}</p><p>When your review is ready, please submit it here:<br /><a href=\"{$submissionUrl}\">{$submissionUrl}</a></p><p>Kind regards,<br />{$senderName}<br />{$contextName}</p>"

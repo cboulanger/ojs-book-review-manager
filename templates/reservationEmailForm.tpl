@@ -4,7 +4,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * A workflow step with a prefilled, editable email (see ReservationEmailForm):
- * $mode message | cancel | contractOffer | unsuccessful | copyStep (see CopyStepForm)
+ * $mode message | cancel | contractOffer | unsuccessful | invitation | round | dueDate | copyStep (see CopyStepForm)
  *}
 <script>
 	$(function() {ldelim}
@@ -44,6 +44,14 @@
 						<span class="ofrDetail">{$address|escape|nl2br}</span>
 					</label>
 				{/foreach}
+			{/fbvFormSection}
+		{/if}
+
+		{if $mode == 'dueDate'}
+			{fbvFormSection label="plugins.generic.bookReviewManager.dueDate.new" for="ofrNewDueDate" required=true}
+				{* A plain date input is not an fbvElement, so its error is shown here *}
+				{if $dueDateError}<span class="error">{$dueDateError|escape}</span>{/if}
+				<input type="date" id="ofrNewDueDate" name="dueDate" value="{$dueDate|escape}" min="{$minDueDate|escape}" required />
 			{/fbvFormSection}
 		{/if}
 

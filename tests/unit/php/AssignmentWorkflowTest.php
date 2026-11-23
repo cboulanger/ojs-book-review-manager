@@ -93,4 +93,17 @@ class AssignmentWorkflowTest extends TestCase {
 		$this->assertTrue($mirror->isMirror());
 		$this->assertSame(12, $mirror->getBundleAssignmentId());
 	}
+
+	public function testNewDueDateValidation(): void {
+		$assignment = $this->assignment(Assignment::STATUS_ACCEPTED, ['dueDate' => '2099-01-31']);
+		foreach (['', '2099-02-30', '31.01.2099', 'tomorrow'] as $bad) {
+			$this->assertSame('plugins.generic.bookReviewManager.reserve.error.dueDate', W::validateNewDueDate($assignment, $bad), $bad);
+		}
+		$this->assertSame('plugins.generic.bookReviewManager.dueDate.error.past',
+			W::validateNewDueDate($assignment, date('Y-m-d', strtotime('-1 day'))));
+		$this->assertSame('plugins.generic.bookReviewManager.dueDate.error.unchanged', W::validateNewDueDate($assignment, '2099-01-31'));
+		$this->assertNull(W::validateNewDueDate($assignment, '2099-03-01'));
+		$this->assertNull(W::validateNewDueDate($assignment, date('Y-m-d')), 'today is allowed');
+		$this->assertNull(W::validateNewDueDate($this->assignment(Assignment::STATUS_ACCEPTED), '2099-03-01'), 'no due date yet');
+	}
 }

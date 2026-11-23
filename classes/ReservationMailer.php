@@ -96,6 +96,7 @@ class ReservationMailer {
 		ReservationEmailEventType::INVITATION_REMINDER->value => \APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewInvitationReminder::class,
 		ReservationEmailEventType::INVITATION_EXHAUSTED->value => \APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewInvitationExhausted::class,
 		ReservationEmailEventType::ESSAY_CHANGED->value => \APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewEssayChanged::class,
+		ReservationEmailEventType::DUE_DATE_CHANGED->value => \APP\plugins\generic\bookReviewManager\mailables\ObjectsForReviewDueDateChanged::class,
 	];
 
 	/** Placeholders filled in by send(), per recipient */
@@ -150,6 +151,8 @@ class ReservationMailer {
 			'forReviewUrl' => $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $context->getPath(), \APP\plugins\generic\bookReviewManager\pages\ObjectsForReviewHandler::PAGE),
 			'deskUrl' => $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $context->getPath(),
 				ObjectsForReviewManagementHandler::PAGE, 'desk'),
+			// Where the reviewer submits the review (the submission wizard)
+			'submissionUrl' => $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $context->getPath(), 'submission'),
 		];
 		if ($recipient) {
 			$params['recipientName'] = htmlspecialchars($recipient->getFullName());

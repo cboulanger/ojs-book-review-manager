@@ -218,6 +218,7 @@ class BookReviewManagerPlugin extends GenericPlugin implements HasTaskScheduler 
 			Hook::Add('SitemapHandler::createJournalSitemap', array($this, 'addSitemapURLs'));
 
 			Hook::add('Mailer::Mailables', [$this, 'addMailable']);
+			Hook::add('Schema::get::eventLog', [$this, 'addEventLogProperties']);
 			Hook::add('Publication::publish', [$this, 'completeOnPublish']);
 
 			// REST API for imports: /index.php/{journal}/api/v1/bookReviewManager/... (see skills/book-review-manager-api/SKILL.md)
@@ -240,6 +241,17 @@ class BookReviewManagerPlugin extends GenericPlugin implements HasTaskScheduler 
 		}
 		// Stores the new schema version itself (it also runs as the install migration)
 		(new ObjectsForReviewSchemaMigration($version))->up();
+	}
+
+	/**
+	 * Event log data of the plugin's own events that OJS has no property for
+	 * (unknown properties are not stored).
+	 */
+	public function addEventLogProperties(string $hookName, array $params): bool {
+		$schema = $params[0];
+		// The previous due date of a review (ReservationLog::EVENT_DUE_DATE_CHANGED)
+		$schema->properties->previousDueDate = (object) ['type' => 'string', 'validation' => ['nullable']];
+		return false;
 	}
 
 	/**

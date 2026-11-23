@@ -83,6 +83,8 @@ class ReservationLog {
 	const EVENT_ESSAY_MEMBER_ADDED = 0x1F0F236;
 	const EVENT_ESSAY_MEMBER_REMOVED = 0x1F0F237;
 	const EVENT_ESSAY_DISSOLVED = 0x1F0F238;
+	/** The editor changed the due date of a review (reviewDueDate: new, previousDueDate: previous) */
+	const EVENT_DUE_DATE_CHANGED = 0x1F0F239;
 
 	const EVENT_MESSAGES = [
 		self::EVENT_RESERVED => 'plugins.generic.bookReviewManager.history.event.reserved',
@@ -130,6 +132,7 @@ class ReservationLog {
 		self::EVENT_ESSAY_MEMBER_ADDED => 'plugins.generic.bookReviewManager.history.event.essayMemberAdded',
 		self::EVENT_ESSAY_MEMBER_REMOVED => 'plugins.generic.bookReviewManager.history.event.essayMemberRemoved',
 		self::EVENT_ESSAY_DISSOLVED => 'plugins.generic.bookReviewManager.history.event.essayDissolved',
+		self::EVENT_DUE_DATE_CHANGED => 'plugins.generic.bookReviewManager.history.event.dueDateChanged',
 		self::EVENT_LIST_DISCARDED => 'plugins.generic.bookReviewManager.history.event.listDiscarded',
 		self::EVENT_COMPLETED => 'plugins.generic.bookReviewManager.history.event.completed',
 		self::EVENT_COPY_REQUESTED => 'plugins.generic.bookReviewManager.history.event.copyRequested',

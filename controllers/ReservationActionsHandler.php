@@ -9,7 +9,7 @@
  * @ingroup plugins_generic_bookReviewManager
  *
  * @brief Modals and actions of the book review editor's pages: email a
- *  reviewer, cancel a contract offer or reservation, select a bidder (contract
+ *  reviewer, change the due date of a review, cancel a contract offer or reservation, select a bidder (contract
  *  offer), notify unsuccessful bidders, reopen bidding, switch to direct
  *  reservation, close or reopen an offer, and show the audit trail.
  */
@@ -53,6 +53,8 @@ class ReservationActionsHandler extends Handler {
 		'sendInvitation' => ReservationEmailForm::MODE_INVITATION,
 		'roundForm' => ReservationEmailForm::MODE_ROUND,
 		'startRound' => ReservationEmailForm::MODE_ROUND,
+		'dueDateForm' => ReservationEmailForm::MODE_DUE_DATE,
+		'changeDueDate' => ReservationEmailForm::MODE_DUE_DATE,
 	];
 
 	const OFFER_ACTIONS = ['reopenBidding', 'switchToDirect', 'closeOffer', 'reopenOffer'];
@@ -94,6 +96,8 @@ class ReservationActionsHandler extends Handler {
 	public function sendInvitation($args, $request) { return $this->saveForm($request, 'sendInvitation'); }
 	public function roundForm($args, $request) { return $this->showForm($request, 'roundForm'); }
 	public function startRound($args, $request) { return $this->saveForm($request, 'startRound'); }
+	public function dueDateForm($args, $request) { return $this->showForm($request, 'dueDateForm'); }
+	public function changeDueDate($args, $request) { return $this->saveForm($request, 'changeDueDate'); }
 
 	public function reopenBidding($args, $request) { return $this->offerAction($request, 'reopenBidding'); }
 	public function switchToDirect($args, $request) { return $this->offerAction($request, 'switchToDirect'); }
@@ -286,6 +290,7 @@ class ReservationActionsHandler extends Handler {
 				&& in_array($state, [AssignmentWorkflow::STATE_OPEN, AssignmentWorkflow::STATE_SELECTION], true),
 			ReservationEmailForm::MODE_INVITATION => in_array($assignment->getStatus(), InvitationWorkflow::SENDABLE_STATUSES, true)
 				&& InvitationWorkflow::canInvite($object, $all) && !InvitationWorkflow::isRoundActive($object),
+			ReservationEmailForm::MODE_DUE_DATE => $assignment->getStatus() === Assignment::STATUS_ACCEPTED,
 			default => in_array($assignment->getStatus(), [Assignment::STATUS_OFFERED, Assignment::STATUS_ACCEPTED], true),
 		};
 		return $allowed ? [$object, [$assignment]] : [null, []];

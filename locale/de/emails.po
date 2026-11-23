@@ -309,3 +309,15 @@ msgstr "Ihre Sammelrezension für {$journalName}: Liste der Werke geändert"
 
 msgid "emails.brmReviewEssayChanged.body"
 msgstr "<p>Liebe:r {$reviewerName},</p><p>die Sammelrezension, die Sie übernommen haben, umfasst jetzt diese Werke:<br />{$objectDescription}</p><p>Abgabetermin: {$dueDate}</p><p>Bei Fragen wenden Sie sich gern an uns.</p><p>Mit freundlichen Grüßen<br />{$journalName}</p>"
+
+msgid "emails.brmDueDateChanged.name"
+msgstr "Abgabetermin geändert (an Rezensent:in)"
+
+msgid "emails.brmDueDateChanged.description"
+msgstr "Wird von der Rezensionsredaktion an die Rezensentin/den Rezensenten gesendet, wenn der Abgabetermin der Rezension geändert wurde, mit dem Link zur Einreichungsseite."
+
+msgid "emails.brmDueDateChanged.subject"
+msgstr "Neuer Abgabetermin für Ihre Rezension: {$dueDate}"
+
+msgid "emails.brmDueDateChanged.body"
+msgstr "<p>Liebe:r {$recipientName},</p><p>der Abgabetermin Ihrer Rezension des folgenden Werks wurde vom {$previousDueDate} auf den <strong>{$dueDate}</strong> geändert:<br />{$objectDescription}</p><p>Wenn Ihre Rezension fertig ist, reichen Sie sie bitte hier ein:<br /><a href=\"{$submissionUrl}\">{$submissionUrl}</a></p><p>Mit freundlichen Grüßen<br />{$senderName}<br />{$contextName}</p>"
