@@ -679,6 +679,10 @@ class BookReviewManagerPlugin extends GenericPlugin implements HasTaskScheduler 
 				. ' .bookReviewManagerManagement .ofrIdentifier { margin-top: 0.25rem; font-size: 0.875rem; }'
 				. ' .bookReviewManagerManagement .ofrFilter { margin-bottom: 1rem; }'
 				. ' .bookReviewManagerManagement .ofrNoWrap { white-space: nowrap; }'
+				// Long unbroken text (email addresses) may break, and the panel scrolls rather than the table spilling over it (#7)
+				. ' .bookReviewManagerManagement { overflow-x: auto; }'
+				. ' .bookReviewManagerManagement .ofrTable td { overflow-wrap: anywhere; }'
+				. ' .bookReviewManagerManagement .ofrTable td.ofrNoWrap, .bookReviewManagerManagement .ofrTable td.ofrActions, .bookReviewManagerManagement .ofrIdentifier { overflow-wrap: normal; }'
 				. ' .bookReviewManagerManagement .ofrActions a { display: block; white-space: nowrap; margin-bottom: 0.25rem; }'
 				. ' .bookReviewManagerManagement .ofrDetail { margin-top: 0.25rem; font-size: 0.875rem; }'
 				. ' .bookReviewManagerManagement .ofrFilter label { margin: 0 0.5rem 0 1rem; font-weight: bold; }'

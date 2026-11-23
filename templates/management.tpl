@@ -146,10 +146,10 @@
 							<tr>
 								<td>{include file=$ofrObjectCell row=$row}</td>
 								<td>{$row.user|escape}</td>
-								<td class="ofrNoWrap">
-									{translate key="plugins.generic.bookReviewManager.column.offeredOn"}: {$row.dateOffered|date_format:$dateFormatShort}<br />
-									<strong>{translate key="plugins.generic.bookReviewManager.column.answerBy"}: {$row.contractDeadline|date_format:$dateFormatShort}</strong>
-									{if $row.contractReminderSent}<br />{translate key="plugins.generic.bookReviewManager.column.reminderSent"}: {$row.contractReminderSent|date_format:$dateFormatShort}{/if}
+								<td class="ofrDates">
+									{translate key="plugins.generic.bookReviewManager.column.offeredOn"}: <span class="ofrNoWrap">{$row.dateOffered|date_format:$dateFormatShort}</span><br />
+									<strong>{translate key="plugins.generic.bookReviewManager.column.answerBy"}: <span class="ofrNoWrap">{$row.contractDeadline|date_format:$dateFormatShort}</span></strong>
+									{if $row.contractReminderSent}<br />{translate key="plugins.generic.bookReviewManager.column.reminderSent"}: <span class="ofrNoWrap">{$row.contractReminderSent|date_format:$dateFormatShort}</span>{/if}
 								</td>
 								<td class="ofrActions">
 									{foreach from=$row.actions item=action}
@@ -202,9 +202,9 @@
 							<tr>
 								<td>{include file=$ofrObjectCell row=$row}</td>
 								<td>{$row.reviewer|escape}{if $row.copyStatusLabel}<div class="ofrDetail">{$row.copyStatusLabel|escape}</div>{/if}</td>
-								<td class="ofrNoWrap">
-									<strong class="ofrWarning">{translate key="plugins.generic.bookReviewManager.reserve.dueDate"}: {$row.dueDate|date_format:$dateFormatShort}</strong>
-									{if $row.reminderSent}<br />{translate key="plugins.generic.bookReviewManager.column.reminderSent"}: {$row.reminderSent|date_format:$dateFormatShort}{/if}
+								<td class="ofrDates">
+									<strong class="ofrWarning">{translate key="plugins.generic.bookReviewManager.reserve.dueDate"}: <span class="ofrNoWrap">{$row.dueDate|date_format:$dateFormatShort}</span></strong>
+									{if $row.reminderSent}<br />{translate key="plugins.generic.bookReviewManager.column.reminderSent"}: <span class="ofrNoWrap">{$row.reminderSent|date_format:$dateFormatShort}</span>{/if}
 								</td>
 								<td class="ofrActions">
 									{foreach from=$row.actions item=action}
@@ -345,11 +345,11 @@
 								<td>{include file=$ofrObjectCell row=$row}</td>
 								<td>{$row.user|escape}</td>
 								<td class="ofrNoWrap">{translate key="plugins.generic.bookReviewManager.status.`$row.status`"}<br /><span class="ofrDetail">{$row.dateStatus|date_format:$dateFormatShort}</span></td>
-								<td class="ofrNoWrap">
-									{if $row.dateReserved}{translate key="plugins.generic.bookReviewManager.column.reservedOn"}: {$row.dateReserved|date_format:$dateFormatShort}<br />{/if}
-									{if $row.dueDate}<strong>{translate key="plugins.generic.bookReviewManager.reserve.dueDate"}: {$row.dueDate|date_format:$dateFormatShort}</strong>{/if}
-									{if $row.contractDeadline}<strong>{translate key="plugins.generic.bookReviewManager.column.answerBy"}: {$row.contractDeadline|date_format:$dateFormatShort}</strong>{/if}
-									{if $row.reminderSent}<br />{translate key="plugins.generic.bookReviewManager.column.reminderSent"}: {$row.reminderSent|date_format:$dateFormatShort}{/if}
+								<td class="ofrDates">
+									{if $row.dateReserved}{translate key="plugins.generic.bookReviewManager.column.reservedOn"}: <span class="ofrNoWrap">{$row.dateReserved|date_format:$dateFormatShort}</span><br />{/if}
+									{if $row.dueDate}<strong>{translate key="plugins.generic.bookReviewManager.reserve.dueDate"}: <span class="ofrNoWrap">{$row.dueDate|date_format:$dateFormatShort}</span></strong>{/if}
+									{if $row.contractDeadline}<strong>{translate key="plugins.generic.bookReviewManager.column.answerBy"}: <span class="ofrNoWrap">{$row.contractDeadline|date_format:$dateFormatShort}</span></strong>{/if}
+									{if $row.reminderSent}<br />{translate key="plugins.generic.bookReviewManager.column.reminderSent"}: <span class="ofrNoWrap">{$row.reminderSent|date_format:$dateFormatShort}</span>{/if}
 								</td>
 								<td>
 									{$row.copyPreferenceLabel|escape|nl2br}
