@@ -82,11 +82,9 @@
               <ul class="ofrEssayWorks">
                 {foreach from=$objectForReview.members item=member}
                   <li>
-                    {if $member.identifierUrl}
-                      <a href="{$member.identifierUrl|escape}" target="_blank" rel="noopener noreferrer">{$member.citation|escape}</a>
-                    {else}
-                      {$member.citation|escape}
-                    {/if}
+                    {$member.citation|escape}
+                    {* escaped: "type: identifier", linked where possible (IdentifierLinks) *}
+                    {if $member.identifierHtml}<br />{$member.identifierHtml}{/if}
                     {if $member.copyStatus && $member.copyStatus != 'notNeeded' && $member.copyStatus != 'received'}
                       <span class="ofrMyStatus ofrCopyStatus">{translate key="plugins.generic.bookReviewManager.copy.reviewerStatus.`$member.copyStatus`"}</span>
                     {/if}
@@ -102,12 +100,8 @@
               </ul>
             {else}
               <br />
-              {$objectForReview.identifierType|escape}:
-              {if $objectForReview.identifierUrl}
-                <a href="{$objectForReview.identifierUrl|escape}" target="_blank" rel="noopener noreferrer">{$objectForReview.identifier|escape}</a>
-              {else}
-                {$objectForReview.identifier|escape}
-              {/if}
+              {* escaped: "type: identifier", linked where possible (IdentifierLinks) *}
+              {$objectForReview.identifierHtml}
             {/if}
             {if $objectForReview.description}
               <div class="ofrObjectDescription">{$objectForReview.description|strip_unsafe_html}</div>

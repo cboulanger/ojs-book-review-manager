@@ -238,21 +238,25 @@ class ObjectForReview extends \PKP\core\DataObject {
 	}
 
 	/**
-	 * Get a URL for the identifier, if it can be linked (DOI, ISBN via WorldCat, or web link).
+	 * Get a URL for the identifier, if it can be linked (see IdentifierLinks).
 	 * @return string|null
 	 */
 	function getIdentifierUrl() {
-		$identifier = trim((string) $this->getData('identifier'));
-		switch (strtolower((string) $this->getData('identifierType'))) {
-			case 'doi':
-				return CrossrefLookup::doiUrl($identifier);
-			case 'isbn':
-				return IsbnLookup::worldcatUrl($identifier);
-			case 'uri': // "Link" in the forms
-			case 'link':
-				return preg_match('#^https?://#i', $identifier) ? $identifier : null;
-		}
-		return null;
+		return IdentifierLinks::url($this->getData('identifierType'), $this->getData('identifier'));
+	}
+
+	/**
+	 * The identifier as "type: identifier", e.g. "isbn: 9780262046305".
+	 */
+	function getIdentifierLabel(): string {
+		return IdentifierLinks::label($this->getData('identifierType'), $this->getData('identifier'));
+	}
+
+	/**
+	 * The identifier as HTML "type: identifier", linked to its resource where possible.
+	 */
+	function getIdentifierHtml(): string {
+		return IdentifierLinks::html($this->getData('identifierType'), $this->getData('identifier'));
 	}
 
 	/**

@@ -564,6 +564,7 @@ class BookReviewManagerPlugin extends GenericPlugin implements HasTaskScheduler 
 					'identifierType' => $objectForReview->getIdentifierType(),
 					'identifier' => $objectForReview->getIdentifier(),
 					'identifierUrl' => $objectForReview->getIdentifierUrl(),
+					'identifierHtml' => $objectForReview->getIdentifierHtml(),
 					'description' => $objectForReview->getCitation()
 				);
 			}

@@ -17,6 +17,7 @@ namespace APP\plugins\generic\bookReviewManager\controllers\grid;
 
 
 use PKP\controllers\grid\GridCellProvider;
+use PKP\core\PKPString;
 
 class ObjectsForReviewGridCellProvider extends GridCellProvider {
 
@@ -33,12 +34,14 @@ class ObjectsForReviewGridCellProvider extends GridCellProvider {
 	function getTemplateVarsFromRowColumn($row, $column) {
 		$bookReviewManagerItem = $row->getData();
 		switch ($column->getId()) {
-			case 'identifierType':
-				return array('label' => $bookReviewManagerItem['identifierType']);
-			case 'identifier':
-				return array('label' => $bookReviewManagerItem['identifier']);
 			case 'description':
-				return array('label' => $bookReviewManagerItem['description']);
+				// The citation (column flag anyhtml, so sanitized here) with "type: identifier" below it,
+				// linked to the resource where possible (escaped HTML, IdentifierLinks)
+				$description = PKPString::stripUnsafeHtml((string) $bookReviewManagerItem['description']);
+				if (!empty($bookReviewManagerItem['identifierHtml'])) {
+					$description .= '<div class="ofrIdentifier">' . $bookReviewManagerItem['identifierHtml'] . '</div>';
+				}
+				return array('label' => $description);
 		}
 	}
 }

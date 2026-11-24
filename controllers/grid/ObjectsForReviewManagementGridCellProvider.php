@@ -35,10 +35,6 @@ class ObjectsForReviewManagementGridCellProvider extends GridCellProvider {
 	function getTemplateVarsFromRowColumn($row, $column) {
 		$bookReviewManagerItem = $row->getData();
 		switch ($column->getId()) {
-			case 'identifierType':
-				return array('label' => $bookReviewManagerItem['identifierType']);
-			case 'identifier':
-				return array('label' => $bookReviewManagerItem['identifier']);
 			case 'description':
 				return array('label' => $this->getDescriptionHtml($bookReviewManagerItem));
 			case 'user':
@@ -47,11 +43,15 @@ class ObjectsForReviewManagementGridCellProvider extends GridCellProvider {
 	}
 
 	/**
-	 * The description (column flag anyhtml): a review essay is labelled as such, its works
-	 * are indented below it.
+	 * The description (column flag anyhtml) with the identifier below it: a review essay is
+	 * labelled as such, its works are indented below it.
 	 */
 	protected function getDescriptionHtml(array $item): string {
 		$description = PKPString::stripUnsafeHtml((string) $item['description']);
+		// "type: identifier", linked to the resource where possible (escaped HTML, IdentifierLinks)
+		if (!empty($item['identifierHtml'])) {
+			$description .= '<div class="ofrIdentifier">' . $item['identifierHtml'] . '</div>';
+		}
 		switch ($item['essayRole'] ?? null) {
 			case 'container':
 				return '<strong>' . htmlspecialchars(__('plugins.generic.bookReviewManager.reviewEssay.label')) . '</strong> ' . $description;

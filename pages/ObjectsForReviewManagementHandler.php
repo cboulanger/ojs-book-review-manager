@@ -677,6 +677,7 @@ class ObjectsForReviewManagementHandler extends Handler {
 			'identifierType' => $object->getIdentifierType(),
 			'identifier' => $object->getIdentifier(),
 			'identifierUrl' => $object->getIdentifierUrl(),
+			'identifierHtml' => $object->getIdentifierHtml(),
 			'hidden' => $object->isHidden(),
 			'essayTitle' => BundleWorkflow::getContainer($object)?->getTitle(),
 		];

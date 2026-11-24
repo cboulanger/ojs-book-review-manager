@@ -18,12 +18,8 @@
 			{foreach from=$bookReviewManager item=objectForReview}
 				<li>
           {$objectForReview.description|strip_unsafe_html}
-          {$objectForReview.identifierType|escape}:
-          {if $objectForReview.identifierUrl}
-            <a href="{$objectForReview.identifierUrl|escape}" target="_blank" rel="noopener noreferrer">{$objectForReview.identifier|escape}</a>
-          {else}
-            {$objectForReview.identifier|escape}
-          {/if}
+          {* escaped: "type: identifier", linked where possible (IdentifierLinks) *}
+          {$objectForReview.identifierHtml}
 				</li>
 			{/foreach}
 		</ul>

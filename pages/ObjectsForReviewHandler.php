@@ -106,6 +106,7 @@ class ObjectsForReviewHandler extends Handler {
 				'identifierType' => $objectForReview->getIdentifierType(),
 				'identifier' => $objectForReview->getIdentifier(),
 				'identifierUrl' => $objectForReview->getIdentifierUrl(),
+				'identifierHtml' => $objectForReview->getIdentifierHtml(),
 				'authors' => $objectForReview->getAuthors(),
 				'title' => $objectForReview->getTitle(),
 				'publisher' => $objectForReview->getPublisher(),
@@ -485,7 +486,7 @@ class ObjectsForReviewHandler extends Handler {
 	/**
 	 * The works of a review essay for the list and the contract fields ([] for any other object).
 	 * @param ?\PKP\user\User $user With a user who has an accepted assignment (the mirror) on a work: copyStatus is that work's copy status
-	 * @return array [['id' => ..., 'citation' => ..., 'identifierUrl' => ..., 'copyStatus' => ...], ...]
+	 * @return array [['id' => ..., 'citation' => ..., 'identifierUrl' => ..., 'identifierHtml' => ..., 'copyStatus' => ...], ...]
 	 */
 	protected function memberRows($object, $user = null): array {
 		return array_map(function ($member) use ($user) {
@@ -494,6 +495,7 @@ class ObjectsForReviewHandler extends Handler {
 				'id' => $member->getId(),
 				'citation' => $member->getCitation(),
 				'identifierUrl' => $member->getIdentifierUrl(),
+				'identifierHtml' => $member->getIdentifierHtml(),
 				'copyStatus' => $mirror ? CopyWorkflow::getStatus($mirror) : null,
 			];
 		}, BundleWorkflow::membersOf($object));

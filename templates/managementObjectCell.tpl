@@ -5,16 +5,10 @@
  *
  * Object description with (linked) identifier, used in the backend tables.
  *
- * $row: objectId, description, identifierType, identifier, identifierUrl, hidden, essayTitle
+ * $row: objectId, description, identifierType, identifier, identifierUrl, identifierHtml, hidden, essayTitle
  *}
 {$row.description|strip_unsafe_html}
 {if $row.hidden} <span class="ofrBadge">{translate key="plugins.generic.bookReviewManager.hidden"}</span>{/if}
 {if $row.essayTitle} <span class="ofrDetail">{translate key="plugins.generic.bookReviewManager.reviewEssay.memberOf" title=$row.essayTitle|escape}</span>{/if}
-<div class="ofrIdentifier">
-	{$row.identifierType|escape}:
-	{if $row.identifierUrl}
-		<a href="{$row.identifierUrl|escape}" target="_blank" rel="noopener noreferrer">{$row.identifier|escape}</a>
-	{else}
-		{$row.identifier|escape}
-	{/if}
-</div>
+{* identifierHtml is escaped: "type: identifier", linked where possible (IdentifierLinks) *}
+{if $row.identifierHtml}<div class="ofrIdentifier">{$row.identifierHtml}</div>{/if}

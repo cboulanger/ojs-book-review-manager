@@ -164,20 +164,6 @@ class ObjectsForReviewManagementGridHandler extends GridHandler {
 			array('anyhtml' => true)
 		));
 		$this->addColumn(new GridColumn(
-			'identifierType',
-			'plugins.generic.bookReviewManager.itemIdentifierType',
-			null,
-			'controllers/grid/gridCell.tpl',
-			$cellProvider
-		));
-		$this->addColumn(new GridColumn(
-			'identifier',
-			'plugins.generic.bookReviewManager.itemIdentifier',
-			null,
-			'controllers/grid/gridCell.tpl',
-			$cellProvider
-		));
-		$this->addColumn(new GridColumn(
 			'user',
 			'common.status',
 			null,
@@ -210,6 +196,7 @@ class ObjectsForReviewManagementGridHandler extends GridHandler {
 		return array(
 			'identifierType' => $objectForReview->getIdentifierType(),
 			'identifier' => $objectForReview->getIdentifier(),
+			'identifierHtml' => $objectForReview->getIdentifierHtml(),
 			'description' => $objectForReview->getCitation(),
 			'user' => $userName,
 			'hidden' => $objectForReview->isHidden(),

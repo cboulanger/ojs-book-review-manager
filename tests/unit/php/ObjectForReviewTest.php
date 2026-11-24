@@ -60,13 +60,21 @@ class ObjectForReviewTest extends TestCase {
 			'upper-case type' => ['ISBN', '9780262046305', 'https://www.worldcat.org/isbn/9780262046305'],
 			'link not http' => ['uri', 'javascript:alert(1)', null],
 			'link without scheme' => ['link', 'example.org/work', null],
-			'other type' => ['handle', '20.500.12345/1', null],
+			'handle' => ['handle', '20.500.12345/1', 'https://hdl.handle.net/20.500.12345/1'],
+			'type without a resolver' => ['other', '20.500.12345/1', null],
 		];
 	}
 
 	#[DataProvider('identifierUrls')]
 	public function testIdentifierUrl(string $type, string $identifier, ?string $expected): void {
 		$this->assertSame($expected, $this->object(['identifierType' => $type, 'identifier' => $identifier])->getIdentifierUrl());
+	}
+
+	public function testIdentifierLabelAndHtml(): void {
+		$object = $this->object(['identifierType' => 'isbn', 'identifier' => '9780262046305']);
+		$this->assertSame('isbn: 9780262046305', $object->getIdentifierLabel());
+		$this->assertSame('isbn: <a href="https://www.worldcat.org/isbn/9780262046305" target="_blank" rel="noopener noreferrer">9780262046305</a>',
+			$object->getIdentifierHtml());
 	}
 
 	public function testAssignmentStatusGroups(): void {

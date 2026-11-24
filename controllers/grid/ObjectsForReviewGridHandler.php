@@ -122,6 +122,7 @@ class ObjectsForReviewGridHandler extends GridHandler {
 			$gridData[$objectId] = array(
 				'identifierType' => $objectForReview->getIdentifierType(),
 				'identifier' => $objectForReview->getIdentifier(),
+				'identifierHtml' => $objectForReview->getIdentifierHtml(),
 				'description' => $objectForReview->getCitation(),
 				'reviewEssay' => $objectForReview->isReviewEssay()
 			);
@@ -157,21 +158,7 @@ class ObjectsForReviewGridHandler extends GridHandler {
 			null,
 			'controllers/grid/gridCell.tpl',
 			$cellProvider,
-			array('html' => true)
-		));
-		$this->addColumn(new GridColumn(
-			'identifierType',
-			'plugins.generic.bookReviewManager.itemIdentifierType',
-			null,
-			'controllers/grid/gridCell.tpl',
-			$cellProvider
-		));
-		$this->addColumn(new GridColumn(
-			'identifier',
-			'plugins.generic.bookReviewManager.itemIdentifier',
-			null,
-			'controllers/grid/gridCell.tpl',
-			$cellProvider
+			array('anyhtml' => true)
 		));
 
 	}
