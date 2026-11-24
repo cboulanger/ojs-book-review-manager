@@ -13,7 +13,7 @@
 <version>
 	<application>bookReviewManager</application>
 	<type>plugins.generic</type>
-	<release>1.0.3.0</release>
+	<release>1.0.4.0</release>
 	<date>2026-11-24</date>
 	<lazy-load>1</lazy-load>
 	<class>BookReviewManagerPlugin</class>
