@@ -97,7 +97,7 @@ class ObjectsForReviewManagementHandler extends Handler {
 		$context = $request->getContext();
 		$contextId = $context->getId();
 		$assignmentsByObject = AssignmentWorkflow::dao()->getByContextId($contextId);
-		$selection = $offers = $unsuccessful = $closed = $copies = $notifications = $overdue = $invitations = [];
+		$selection = $offers = $unsuccessful = $closed = $copies = $notifications = $overdue = $unlinked = $invitations = [];
 		$today = date('Y-m-d');
 		$userCache = [];
 
@@ -179,6 +179,14 @@ class ObjectsForReviewManagementHandler extends Handler {
 						),
 					];
 				}
+				// Marked as submitted, but the work is not attached to the submission (older imports)
+				if ($assignment->getStatus() === Assignment::STATUS_SUBMITTED && ReservationActionsHandler::canLinkSubmission($object, $assignment)) {
+					$unlinked[] = $row + [
+						'reviewer' => $this->userName($assignment->getUserId(), $userCache),
+						'dateStatus' => $assignment->getDateStatus(),
+						'actions' => $this->assignmentActions($request, $object, $assignment, ['link', 'history']),
+					];
+				}
 				if (CopyWorkflow::isOpen($object, $assignment)) {
 					$copies[] = $row + $this->copyRow($request, $object, $assignment, $userCache);
 				}
@@ -213,6 +221,7 @@ class ObjectsForReviewManagementHandler extends Handler {
 			'copies' => $copies,
 			'notifications' => $notifications,
 			'overdue' => $overdue,
+			'unlinked' => $unlinked,
 			'invitations' => $invitations,
 			'ofrInviteButton' => $this->plugin->getTemplateResource('inviteButton.tpl'),
 		]);
@@ -226,7 +235,8 @@ class ObjectsForReviewManagementHandler extends Handler {
 		$statusFilter = (string) ($request->getUserVar('status') ?? 'active');
 		$filterUserId = (int) $request->getUserVar('userId');
 		$statuses = match ($statusFilter) {
-			'active' => [Assignment::STATUS_OFFERED, Assignment::STATUS_ACCEPTED],
+			// Also reviews marked as submitted without their submission (they need "Link submission")
+			'active' => [Assignment::STATUS_OFFERED, Assignment::STATUS_ACCEPTED, Assignment::STATUS_SUBMITTED],
 			'all' => null,
 			default => [$statusFilter],
 		};
@@ -243,6 +253,10 @@ class ObjectsForReviewManagementHandler extends Handler {
 			}
 			foreach ($assignments as $assignment) {
 				if ($assignment->isMirror()) {
+					continue;
+				}
+				if ($statusFilter === 'active' && $assignment->getStatus() === Assignment::STATUS_SUBMITTED
+						&& !ReservationActionsHandler::canLinkSubmission($objects[$objectId], $assignment)) {
 					continue;
 				}
 				$userId = $assignment->getUserId();
@@ -274,7 +288,7 @@ class ObjectsForReviewManagementHandler extends Handler {
 					'dateCreated' => $assignment->getDateCreated(),
 					'dateStatus' => $assignment->getDateStatus(),
 					'contractDeadline' => $assignment->getStatus() === Assignment::STATUS_OFFERED ? $assignment->getData('contractDeadline') : null,
-					'actions' => $this->assignmentActions($request, $objects[$objectId], $assignment, $active ? ['email', 'dueDate', 'link', 'cancel', 'history'] : ['history']),
+					'actions' => $this->assignmentActions($request, $objects[$objectId], $assignment, $active ? ['email', 'dueDate', 'link', 'cancel', 'history'] : ['link', 'history']),
 				] + Reservation::getDisplayData($assignment);
 			}
 		}
@@ -501,13 +515,8 @@ class ObjectsForReviewManagementHandler extends Handler {
 			}
 			$submission = Repo::submission()->get((int) $object->getSubmissionId());
 			$publication = $submission ? $submission->getCurrentPublication() : null;
-			$historyUrl = $dispatcher->url($request, Application::ROUTE_COMPONENT, null,
-				ReservationActionsHandler::COMPONENT, 'history', null, ['objectId' => $object->getId()]);
 			$rows[] = $this->objectRow($object) + [
-				// The work's description opens its history
-				'historyAction' => new LinkAction('ofr-history-' . $object->getId(),
-					new AjaxModal($historyUrl, __('plugins.generic.bookReviewManager.history'), 'modal_information'),
-					trim(strip_tags($object->getCitation()))),
+				'historyAction' => $this->assignmentActions($request, $object, null, ['history'])['history'],
 				'submissionId' => $object->getSubmissionId(),
 				'submissionTitle' => $publication ? $publication->getLocalizedFullTitle() : null,
 				'submissionStatus' => $submission ? __($submission->getStatusKey()) : null,

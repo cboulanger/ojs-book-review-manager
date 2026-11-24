@@ -139,11 +139,17 @@ test('import on an essay: without copies every work is "have"; copies are valida
   }
 });
 
-test('import a submitted review essay: the works get submitted mirrors with their copy status', async () => {
+test('import a submitted review essay: the works get submitted mirrors with their copy status', async (t) => {
+  // "submitted" needs the review submission (without it, the reservation is imported as accepted)
+  const [submission] = sql('SELECT submission_id FROM submissions WHERE context_id = 1 ORDER BY submission_id DESC LIMIT 1');
+  if (!submission) {
+    t.skip('the dev journal has no submission');
+    return;
+  }
   const { bundle, works: [a, b] } = await newBundle();
   const reviewer = await newUser();
   const assignment = await admin().addAssignment(bundle.id, {
-    email: reviewer.email, status: 'submitted', dateStatus: '2026-10-15 09:00:00',
+    email: reviewer.email, status: 'submitted', dateStatus: '2026-10-15 09:00:00', submissionId: Number(submission.submission_id),
     copies: [
       { objectId: a.id, copyPreference: 'physical', copyStatus: 'returnRequested', copyStatusDate: '2026-10-20' },
       { objectId: b.id, copyPreference: 'electronic' },
@@ -165,6 +171,21 @@ test('import a submitted review essay: the works get submitted mirrors with thei
   assert.deepEqual([mirrorOf(a).copyPreference, mirrorOf(a).copyStatus, mirrorOf(a).copyStatusDate],
     ['physical', 'returnRequested', '2026-10-20 00:00:00']);
   assert.deepEqual([mirrorOf(b).copyPreference, mirrorOf(b).copyStatus], ['electronic', 'notNeeded']);
+});
+
+test('import a submitted review essay without its submission: accepted, copies received, with a warning', async () => {
+  const { bundle, works: [a, b] } = await newBundle();
+  const assignment = await admin().addAssignment(bundle.id, {
+    email: (await newUser()).email, status: 'submitted', dateStatus: '2026-10-15 09:00:00',
+    copies: [{ objectId: a.id, copyPreference: 'physical' }, { objectId: b.id, copyPreference: 'have' }],
+  });
+  assert.equal(assignment.status, 'accepted');
+  assert.equal(assignment.dueDate, '2026-10-15');
+  assert.deepEqual(assignment.warnings.map((w) => w.code), ['submittedWithoutSubmission']);
+  const container = await admin().getObject(bundle.id);
+  const mirrorOf = (work) => container.members.find((m) => m.id === work.id).assignments[0];
+  assert.deepEqual([mirrorOf(a).status, mirrorOf(a).copyStatus], ['accepted', 'received']);
+  assert.deepEqual([mirrorOf(b).status, mirrorOf(b).copyStatus], ['accepted', 'notNeeded']);
 });
 
 test('import with copy statuses: a mirror whose copy has arrived keeps no delivery details', async () => {

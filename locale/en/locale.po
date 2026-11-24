@@ -1945,3 +1945,12 @@ msgstr "Enter a valid date, today or earlier."
 
 msgid "plugins.generic.bookReviewManager.history.note.error.failed"
 msgstr "The note could not be saved. Please try again."
+
+msgid "plugins.generic.bookReviewManager.desk.unlinked"
+msgstr "Submitted reviews without a submission"
+
+msgid "plugins.generic.bookReviewManager.desk.unlinked.description"
+msgstr "These reviews are marked as submitted, but the work is not attached to the review submission, so it is missing from Submitted reviews and the article page. Link each to its submission."
+
+msgid "plugins.generic.bookReviewManager.desk.unlinked.submitted"
+msgstr "Submitted"

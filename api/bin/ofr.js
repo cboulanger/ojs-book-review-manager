@@ -258,6 +258,9 @@ function progress(event) {
   process.stderr.write(type === 'error'
     ? `! ${rest.kind} ${JSON.stringify(rest.record)}: ${message}\n`
     : `${type} ${action}${rest.id ? ` #${rest.id}` : ''}${what ? `: ${what}` : ''}\n`);
+  for (const warning of rest.warnings ?? []) {
+    process.stderr.write(`  warning: ${warning.message}\n`);
+  }
 }
 
 function finishImport(report) {

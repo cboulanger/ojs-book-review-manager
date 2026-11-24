@@ -410,16 +410,21 @@ class AssignmentWorkflow {
 	/**
 	 * The book review editor links an accepted reservation to a submission that the reviewer
 	 * submitted without choosing the reserved work (or that was submitted on their behalf).
-	 * The same as attach(), recorded as the editor's step. If the submission is already
+	 * The same as attach(), recorded as the editor's step. A reservation already marked as submitted
+	 * without its submission (an older import) keeps its status and date. If the submission is already
 	 * published, the review is completed at once, since Publication::publish has passed.
 	 */
 	public static function attachByEditor(ObjectForReview $object, Assignment $assignment, User $editor, \APP\submission\Submission $submission): void {
-		self::requireStatus($assignment, [Assignment::STATUS_ACCEPTED]);
+		self::requireStatus($assignment, [Assignment::STATUS_ACCEPTED, Assignment::STATUS_SUBMITTED]);
 		if ($object->getSubmissionId() || $object->isBundleMember() || $assignment->isMirror()) {
 			throw new \InvalidArgumentException('Object ' . $object->getId() . ' cannot be linked to a submission');
 		}
 		Reservation::erasePersonalData($assignment);
-		self::setStatus($assignment, Assignment::STATUS_SUBMITTED);
+		if ($assignment->getStatus() === Assignment::STATUS_ACCEPTED) {
+			self::setStatus($assignment, Assignment::STATUS_SUBMITTED);
+		} else {
+			self::dao()->updateObject($assignment);
+		}
 		$object->setSubmissionId($submission->getId());
 		(new ObjectForReviewDAO())->updateObject($object);
 		ReservationLog::logEvent($object, ReservationLog::EVENT_LINKED_BY_EDITOR, $editor, Repo::user()->get($assignment->getUserId(), true),

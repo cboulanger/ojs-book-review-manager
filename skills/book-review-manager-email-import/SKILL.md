@@ -60,7 +60,7 @@ NER is not perfect: it can miss inflected or unusual names (e.g. a genitive "Luh
    | `1 Proposals/_Declined` | Not to be reviewed | skip |
    | `2 Requested/<case>` | Reviewer asked, no answer yet | the work only; invitations can't be imported, so note it for the user |
    | `3 Assigned/<reviewer> - <author>` | Reviewer agreed, writing | `accepted` + `dueDate` + review copy status |
-   | `4 Submitted/<case>` | Review is in OJS | `submitted` + `submissionId` (ask the user) |
+   | `4 Submitted/<case>` | Review is in OJS | `submitted` + `submissionId` (ask the user; without it the API records `accepted` and the editor links it later with "Link submission") |
    | `5 Archive/<year>/<case>` | Published | skip, or `completed` if the history is wanted |
    | `5 Archive/_Not realized/<case>` | Abandoned | skip |
    | `General/Publisher contacts` | Publisher contacts | `users` with role `publisherContact` |

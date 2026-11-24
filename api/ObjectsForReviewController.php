@@ -275,19 +275,55 @@ class ObjectsForReviewController extends PKPBaseController {
 			return $this->error(Response::HTTP_NOT_FOUND, 'objectNotFound', 'The object for review was not found.');
 		}
 		$input = (array) $illuminateRequest->input();
+		$this->importWarnings = [];
 		try {
 			$assignment = $this->importAssignment($object, $input);
 		} catch (ApiError $e) {
 			return $e->response();
 		}
-		return response()->json($this->assignmentToArray($assignment), Response::HTTP_OK);
+		return response()->json($this->assignmentToArray($assignment) + ($this->importWarnings ? ['warnings' => $this->importWarnings] : []),
+			Response::HTTP_OK);
 	}
+
+	/** @var array[] Warnings of the current import: [code, message], returned with the result */
+	protected array $importWarnings = [];
 
 	protected function importAssignment(ObjectForReview $object, array $input): Assignment {
 		$status = (string) ($input['status'] ?? '');
 		if (!in_array($status, self::IMPORT_STATUSES, true)) {
 			throw new ApiError(Response::HTTP_BAD_REQUEST, 'invalidStatus', 'status must be one of: ' . implode(', ', self::IMPORT_STATUSES) . '.');
 		}
+		// A review submitted to OJS without the submission's id cannot be attached to it: it is recorded as
+		// accepted (the editor links it with "Link submission"), so that nothing of the process is lost.
+		// It is due since it was submitted; a copy the reviewer asked for has evidently arrived.
+		// (The editor's own UI never creates this state: AssignmentWorkflow::attach() sets both.)
+		$submittedWithoutSubmission = $status === Assignment::STATUS_SUBMITTED && empty($input['submissionId']);
+		if ($submittedWithoutSubmission) {
+			$status = Assignment::STATUS_ACCEPTED;
+			$input['status'] = $status;
+			if (empty($input['dueDate'])) {
+				$input['dueDate'] = !empty($input['dateStatus'])
+					? substr($this->validDateTime($input['dateStatus'], 'dateStatus'), 0, 10) : date('Y-m-d');
+			}
+			// Delivery details are deleted when a copy arrives, so they are not taken over
+			unset($input['shippingAddress'], $input['phone']);
+			if (!isset($input['copyStatus']) && in_array($input['copyPreference'] ?? null, [Reservation::COPY_PHYSICAL, Reservation::COPY_ELECTRONIC], true)) {
+				$input['copyStatus'] = CopyWorkflow::RECEIVED;
+			}
+			if (is_array($input['copies'] ?? null)) {
+				foreach ($input['copies'] as &$copy) {
+					if (is_array($copy) && !isset($copy['copyStatus'])
+							&& in_array($copy['copyPreference'] ?? null, [Reservation::COPY_PHYSICAL, Reservation::COPY_ELECTRONIC], true)) {
+						$copy['copyStatus'] = CopyWorkflow::RECEIVED;
+					}
+				}
+				unset($copy);
+			}
+			$this->importWarnings[] = ['code' => 'submittedWithoutSubmission', 'message' =>
+				'status submitted needs submissionId: the reservation was recorded as accepted (due ' . $input['dueDate']
+				. '). Link it to the review submission with "Link submission" on Reviewers & bidders or To-do.'];
+		}
+
 		// The works of a review essay are reviewed through the essay (their mirrors follow its reviewer)
 		if ($object->isBundleMember()) {
 			throw new ApiError(Response::HTTP_CONFLICT, 'member_of_review_essay',

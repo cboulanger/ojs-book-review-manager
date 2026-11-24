@@ -172,11 +172,12 @@ class ReservationActionsHandler extends Handler {
 	}
 
 	/**
-	 * An accepted reservation not yet attached to a submission (a review essay as a whole, not its works).
+	 * A reservation not yet attached to a submission (a review essay as a whole, not its works): accepted,
+	 * or marked as submitted without the submission (e.g. imported before the import refused that).
 	 */
 	public static function canLinkSubmission($object, Assignment $assignment): bool {
 		return $assignment->getObjectId() === $object->getId()
-			&& $assignment->getStatus() === Assignment::STATUS_ACCEPTED
+			&& in_array($assignment->getStatus(), [Assignment::STATUS_ACCEPTED, Assignment::STATUS_SUBMITTED], true)
 			&& !$assignment->isMirror()
 			&& !$object->isBundleMember()
 			&& !$object->getSubmissionId();

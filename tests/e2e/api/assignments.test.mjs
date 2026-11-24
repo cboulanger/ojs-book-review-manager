@@ -133,12 +133,18 @@ test('submitted and completed reviews', async () => {
   assert.equal(completed.dateStatus, '2025-10-01 12:00:00');
   assert.equal(completed.copyStatus, 'notNeeded');
 
+  // Without submissionId the work can't be attached: recorded as accepted, with a warning, to be linked in OJS
   const work = await newWork();
-  await addAssignment(work, { email: (await newUser()).email, status: 'submitted', copyPreference: 'physical', shippingAddress: 'Not kept', phone: '123' })
-    .then((assignment) => {
-      assert.equal(assignment.shippingAddress, null, 'personal data is not kept for submitted reviews');
-      assert.equal(assignment.phone, null);
-    });
+  const unlinked = await addAssignment(work, {
+    email: (await newUser()).email, status: 'submitted', dateStatus: '2026-04-30', copyPreference: 'physical', shippingAddress: 'Not kept', phone: '123',
+  });
+  assert.equal(unlinked.status, 'accepted');
+  assert.equal(unlinked.dueDate, '2026-04-30', 'due since it was submitted');
+  assert.equal(unlinked.copyStatus, 'received', 'a requested copy has arrived');
+  assert.equal(unlinked.shippingAddress, null, 'delivery details are not kept');
+  assert.equal(unlinked.phone, null);
+  assert.deepEqual(unlinked.warnings.map((w) => w.code), ['submittedWithoutSubmission']);
+  assert.equal((await admin().getObject(work.id)).state, 'assigned');
   await rejects(addAssignment(await newWork(), { email: (await newUser()).email, status: 'submitted', submissionId: 999999999 }), 400, 'submissionNotFound');
 });
 

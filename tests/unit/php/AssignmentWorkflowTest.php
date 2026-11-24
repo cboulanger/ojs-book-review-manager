@@ -110,7 +110,9 @@ class AssignmentWorkflowTest extends TestCase {
 	public function testCanLinkSubmission(): void {
 		$can = fn ($object, $assignment) => \APP\plugins\generic\bookReviewManager\controllers\ReservationActionsHandler::canLinkSubmission($object, $assignment);
 		$this->assertTrue($can($this->object(), $this->assignment(Assignment::STATUS_ACCEPTED)));
-		foreach ([Assignment::STATUS_OFFERED, Assignment::STATUS_BID, Assignment::STATUS_SUBMITTED, Assignment::STATUS_COMPLETED, Assignment::STATUS_CANCELLED] as $status) {
+		$this->assertTrue($can($this->object(), $this->assignment(Assignment::STATUS_SUBMITTED)), 'submitted without its submission');
+		$this->assertFalse($can($this->object(['submissionId' => 5]), $this->assignment(Assignment::STATUS_SUBMITTED)), 'submitted and attached');
+		foreach ([Assignment::STATUS_OFFERED, Assignment::STATUS_BID, Assignment::STATUS_COMPLETED, Assignment::STATUS_CANCELLED] as $status) {
 			$this->assertFalse($can($this->object(), $this->assignment($status)), $status);
 		}
 		$this->assertFalse($can($this->object(['submissionId' => 5]), $this->assignment(Assignment::STATUS_ACCEPTED)), 'already attached');

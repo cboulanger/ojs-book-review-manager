@@ -412,7 +412,7 @@ Only if the offer requires returns and the review won't come.
 
 The reviewer submits the review as an ordinary submission. In the submission wizard, under *For the Editors › Reviewed works*, they pick the work they reserved. The offer then shows "Review submitted", and the reviewer's delivery details are deleted. In the editorial workflow, the review is handled like any other submission. If you are a section editor of the book review section, you can be assigned to it there.
 
-**If the reviewer submitted without choosing the work.** Sometimes the review arrives without the link to the reservation. The reviewer might have used another account, typed in the book's details by hand, or someone else might have submitted it for them. In that case the offer still shows "Reserved" and the review is soon listed as overdue. Click **Link submission** on the reservation (on *Reviewers & bidders*, or on To-do under *Overdue reviews*). The form suggests the reviewer's submissions in the journal, those they submitted and those that list them as an author with the same email address. You can also enter the ID of any submission. Linking has the same effect as the reviewer choosing the work in the wizard: the offer shows "Review submitted", the delivery details are deleted, and the work appears under *Submitted reviews*. If the submission is already published, the review is marked as published right away. No email is sent, and the step is recorded in the history. For a review essay, link the essay; its works follow. To undo a wrong link, remove the work from the *Reviewed works* section on the submission's publication page.
+**If the reviewer submitted without choosing the work.** Sometimes the review arrives without the link to the reservation. The reviewer might have used another account, typed in the book's details by hand, or someone else might have submitted it for them. In that case the offer still shows "Reserved" and the review is soon listed as overdue. Click **Link submission** on the reservation (on *Reviewers & bidders*, or on To-do under *Overdue reviews*). The form suggests the reviewer's submissions in the journal, those they submitted and those that list them as an author with the same email address. You can also enter the ID of any submission. Linking has the same effect as the reviewer choosing the work in the wizard: the offer shows "Review submitted", the delivery details are deleted, and the work appears under *Submitted reviews*. If the submission is already published, the review is marked as published right away. No email is sent, and the step is recorded in the history. For a review essay, link the essay; its works follow. A review that is marked as submitted but has no submission attached (possible in data imported before version 1.0.4) is listed on To-do under *Submitted reviews without a submission*, with the same action. To undo a wrong link, remove the work from the *Reviewed works* section on the submission's publication page.
 
 When the review is **published**:
 
@@ -494,7 +494,7 @@ Until the review is submitted, you can change which works an essay covers:
 
 ![Reviewers and bidders](images/assignments.png)
 
-**Submitted reviews** lists all works attached to review submissions, with the review submission and its status. Click a work to see its history.
+**Submitted reviews** lists all works attached to review submissions, with the review submission, its status and the work's history.
 
 ## Reference: statuses
 

@@ -1944,3 +1944,12 @@ msgstr "Geben Sie ein gültiges Datum ein, heute oder früher."
 
 msgid "plugins.generic.bookReviewManager.history.note.error.failed"
 msgstr "Die Notiz konnte nicht gespeichert werden. Bitte versuchen Sie es erneut."
+
+msgid "plugins.generic.bookReviewManager.desk.unlinked"
+msgstr "Eingereichte Rezensionen ohne Einreichung"
+
+msgid "plugins.generic.bookReviewManager.desk.unlinked.description"
+msgstr "Diese Rezensionen sind als eingereicht markiert, das Werk ist aber keiner Einreichung zugeordnet. Es fehlt deshalb unter „Eingereichte Rezensionen“ und auf der Artikelseite. Ordnen Sie jede ihrer Einreichung zu."
+
+msgid "plugins.generic.bookReviewManager.desk.unlinked.submitted"
+msgstr "Eingereicht"

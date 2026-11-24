@@ -28,7 +28,7 @@
 			{load_url_in_div id="bookReviewManagerSettingsContainer" url=$settingsUrl}
 
 		{elseif $view == 'desk'}
-			{if !$selection && !$offers && !$unsuccessful && !$copies && !$notifications && !$overdue && !$invitations}
+			{if !$selection && !$offers && !$unsuccessful && !$copies && !$notifications && !$overdue && !$unlinked && !$invitations}
 				<p class="ofrDeskEmpty">{translate key="plugins.generic.bookReviewManager.desk.empty"}</p>
 			{/if}
 
@@ -206,6 +206,35 @@
 									<strong class="ofrWarning">{translate key="plugins.generic.bookReviewManager.reserve.dueDate"}: <span class="ofrNoWrap">{$row.dueDate|date_format:$dateFormatShort}</span></strong>
 									{if $row.reminderSent}<br />{translate key="plugins.generic.bookReviewManager.column.reminderSent"}: <span class="ofrNoWrap">{$row.reminderSent|date_format:$dateFormatShort}</span>{/if}
 								</td>
+								<td class="ofrActions">
+									{foreach from=$row.actions item=action}
+										{include file="linkAction/linkAction.tpl" action=$action contextId="ofrDesk"}
+									{/foreach}
+								</td>
+							</tr>
+						{/foreach}
+					</tbody>
+				</table>
+			{/if}
+
+			{if $unlinked}
+				<h2>{translate key="plugins.generic.bookReviewManager.desk.unlinked"}</h2>
+				<p class="ofrHint">{translate key="plugins.generic.bookReviewManager.desk.unlinked.description"}</p>
+				<table class="ofrTable ofrUnlinked">
+					<thead>
+						<tr>
+							<th>{translate key="plugins.generic.bookReviewManager.column.object"}</th>
+							<th>{translate key="plugins.generic.bookReviewManager.column.reviewer"}</th>
+							<th>{translate key="plugins.generic.bookReviewManager.column.dates"}</th>
+							<th><span class="pkp_screen_reader">{translate key="grid.columns.actions"}</span></th>
+						</tr>
+					</thead>
+					<tbody>
+						{foreach from=$unlinked item=row}
+							<tr>
+								<td>{include file=$ofrObjectCell row=$row}</td>
+								<td>{$row.reviewer|escape}</td>
+								<td class="ofrDates">{translate key="plugins.generic.bookReviewManager.desk.unlinked.submitted"}: <span class="ofrNoWrap">{$row.dateStatus|date_format:$dateFormatShort}</span></td>
 								<td class="ofrActions">
 									{foreach from=$row.actions item=action}
 										{include file="linkAction/linkAction.tpl" action=$action contextId="ofrDesk"}
@@ -399,6 +428,7 @@
 							<th>{translate key="plugins.generic.bookReviewManager.column.object"}</th>
 							<th>{translate key="plugins.generic.bookReviewManager.column.submission"}</th>
 							<th>{translate key="common.status"}</th>
+							<th><span class="pkp_screen_reader">{translate key="grid.columns.actions"}</span></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -413,6 +443,7 @@
 									{/if}
 								</td>
 								<td>{$row.submissionStatus|escape}</td>
+								<td class="ofrActions">{include file="linkAction/linkAction.tpl" action=$row.historyAction contextId="ofrReviewedWorks"}</td>
 							</tr>
 						{/foreach}
 					</tbody>

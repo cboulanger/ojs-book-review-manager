@@ -141,7 +141,7 @@ See `api/examples/import.example.json` for a complete example.
 | `unsuccessful` | Applied, not chosen (on the waiting list) | Bidding mode. `statement` |
 | `offered` | Chosen bidder, contract offered, not yet accepted | Bidding mode, one per work. `contractDeadline` (`Y-m-d`; default from settings), `dateOffered`. Closes bidding |
 | `accepted` | Reviewer agreed and is writing | One reviewer per work. **`dueDate` required** (`Y-m-d`; may be in the past if overdue). Review copy fields below |
-| `submitted` | Review submitted to OJS | One reviewer per work. `submissionId` attaches the work to the review submission (needed for the work to show as "submitted") |
+| `submitted` | Review submitted to OJS | One reviewer per work. **`submissionId` required** to attach the work to the review submission. Without it the reservation is recorded as `accepted` (due on `dateStatus`, or today; a requested copy counts as received) and the response has `warnings: [{code: "submittedWithoutSubmission", message}]`; the editor then links it with "Link submission" |
 | `completed` | Review published | As submitted |
 
 The importer can't create `declined`, `cancelled` or the invitation statuses. Leave finished or abandoned processes out of the import.

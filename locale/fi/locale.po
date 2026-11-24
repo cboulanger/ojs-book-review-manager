@@ -1945,3 +1945,12 @@ msgstr "Anna kelvollinen päivämäärä, tänään tai aiemmin."
 
 msgid "plugins.generic.bookReviewManager.history.note.error.failed"
 msgstr "Muistiinpanoa ei voitu tallentaa. Yritä uudelleen."
+
+msgid "plugins.generic.bookReviewManager.desk.unlinked"
+msgstr "Lähetetyt arviot ilman käsikirjoitusta"
+
+msgid "plugins.generic.bookReviewManager.desk.unlinked.description"
+msgstr "Nämä arviot on merkitty lähetetyiksi, mutta julkaisua ei ole liitetty arvion käsikirjoitukseen, joten se puuttuu lähetettyjen arvioiden luettelosta ja artikkelisivulta. Liitä kukin käsikirjoitukseensa."
+
+msgid "plugins.generic.bookReviewManager.desk.unlinked.submitted"
+msgstr "Lähetetty"

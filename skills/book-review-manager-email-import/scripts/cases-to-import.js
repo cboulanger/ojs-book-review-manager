@@ -121,7 +121,7 @@ function checkAssignment(a, w, bidding) {
     }
   }
   if (['submitted', 'completed'].includes(a.status) && !a.submissionId) {
-    warnings.push(`${w}: no submissionId; the work won't show as submitted`);
+    warnings.push(`${w}: no submissionId; imported as accepted, to be linked to the submission in OJS ("Link submission")`);
   }
   for (const f of ['dueDate', 'contractDeadline', 'dateOffered', 'dateCreated', 'dateStatus', 'copyStatusDate']) {
     if (a[f] && !DATE.test(a[f])) errors.push(`${w}: ${f} must be Y-m-d`);

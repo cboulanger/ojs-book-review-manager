@@ -389,7 +389,7 @@ export class ObjectsForReviewClient {
         }
         try {
           const saved = await this.addAssignment(object.id, assignment);
-          const result = { ...label, id: saved.id, userId: saved.userId, action: 'created' };
+          const result = { ...label, id: saved.id, userId: saved.userId, status: saved.status, action: 'created', ...(saved.warnings ? { warnings: saved.warnings } : {}) };
           report.assignments.push(result);
           onProgress({ type: 'assignment', ...result });
         } catch (error) {
@@ -459,7 +459,7 @@ export class ObjectsForReviewClient {
           }
           const data = assignment.copies ? { ...assignment, copies } : assignment;
           const saved = await this.addAssignment(essayId, data);
-          const result = { ...aLabel, id: saved.id, userId: saved.userId, action: 'created' };
+          const result = { ...aLabel, id: saved.id, userId: saved.userId, status: saved.status, action: 'created', ...(saved.warnings ? { warnings: saved.warnings } : {}) };
           report.assignments.push(result);
           onProgress({ type: 'assignment', ...result });
         } catch (error) {
