@@ -1954,3 +1954,12 @@ msgstr "These reviews are marked as submitted, but the work is not attached to t
 
 msgid "plugins.generic.bookReviewManager.desk.unlinked.submitted"
 msgstr "Submitted"
+
+msgid "plugins.generic.bookReviewManager.cards.sortBy"
+msgstr "Sort by"
+
+msgid "plugins.generic.bookReviewManager.column.deadline"
+msgstr "Deadline"
+
+msgid "plugins.generic.bookReviewManager.column.lastChange"
+msgstr "Last change"

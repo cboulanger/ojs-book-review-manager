@@ -297,6 +297,14 @@ class ObjectsForReviewManagementHandler extends Handler {
 			?: strcmp((string) $b['dateStatus'], (string) $a['dateStatus']));
 		return $this->display($request, 'assignments', 'plugins.generic.bookReviewManager.menu.assignments', [
 			'rows' => $rows,
+			// The header of the card list (sort keys => labels); the rows are sorted by deadline
+			'sorts' => [
+				'work' => __('plugins.generic.bookReviewManager.column.object'),
+				'person' => __('plugins.generic.bookReviewManager.column.person'),
+				'status' => __('common.status'),
+				'deadline' => __('plugins.generic.bookReviewManager.column.deadline'),
+				'lastChange' => __('plugins.generic.bookReviewManager.column.lastChange'),
+			],
 			'users' => $users,
 			'filterUserId' => $filterUserId,
 			'statusFilter' => $statusFilter,
@@ -690,6 +698,8 @@ class ObjectsForReviewManagementHandler extends Handler {
 			'view' => $view,
 			'pageTitle' => __($titleKey),
 			'ofrObjectCell' => $this->plugin->getTemplateResource('managementObjectCell.tpl'),
+			'ofrCardListHeader' => $this->plugin->getTemplateResource('cardListHeader.tpl'),
+			'ofrCard' => $this->plugin->getTemplateResource('card.tpl'),
 			'ofrEmailsSuppressed' => \APP\plugins\generic\bookReviewManager\classes\ReservationMailer::emailsSuppressed($request->getContext()?->getId()),
 		]);
 		return $templateMgr->display($this->plugin->getTemplateResource('management.tpl'));

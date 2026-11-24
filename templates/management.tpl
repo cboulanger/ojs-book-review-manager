@@ -357,59 +357,91 @@
 				<noscript><button type="submit" class="pkp_button">{translate key="plugins.generic.bookReviewManager.filter.apply"}</button></noscript>
 			</form>
 			{if $rows|@count}
-				<table class="ofrTable">
-					<thead>
-						<tr>
-							<th>{translate key="plugins.generic.bookReviewManager.column.object"}</th>
-							<th>{translate key="plugins.generic.bookReviewManager.column.person"}</th>
-							<th>{translate key="common.status"}</th>
-							<th>{translate key="plugins.generic.bookReviewManager.column.dates"}</th>
-							<th>{translate key="plugins.generic.bookReviewManager.reserve.copy"}</th>
-							<th><span class="pkp_screen_reader">{translate key="grid.columns.actions"}</span></th>
-						</tr>
-					</thead>
-					<tbody>
-						{foreach from=$rows item=row}
-							<tr>
-								<td>{include file=$ofrObjectCell row=$row}</td>
-								<td>{$row.user|escape}</td>
-								<td class="ofrNoWrap">{translate key="plugins.generic.bookReviewManager.status.`$row.status`"}<br /><span class="ofrDetail">{$row.dateStatus|date_format:$dateFormatShort}</span></td>
-								<td class="ofrDates">
-									{if $row.dateReserved}{translate key="plugins.generic.bookReviewManager.column.reservedOn"}: <span class="ofrNoWrap">{$row.dateReserved|date_format:$dateFormatShort}</span><br />{/if}
-									{if $row.dueDate}<strong>{translate key="plugins.generic.bookReviewManager.reserve.dueDate"}: <span class="ofrNoWrap">{$row.dueDate|date_format:$dateFormatShort}</span></strong>{/if}
-									{if $row.contractDeadline}<strong>{translate key="plugins.generic.bookReviewManager.column.answerBy"}: <span class="ofrNoWrap">{$row.contractDeadline|date_format:$dateFormatShort}</span></strong>{/if}
-									{if $row.reminderSent}<br />{translate key="plugins.generic.bookReviewManager.column.reminderSent"}: <span class="ofrNoWrap">{$row.reminderSent|date_format:$dateFormatShort}</span>{/if}
-								</td>
-								<td>
-									{$row.copyPreferenceLabel|escape|nl2br}
-									{if $row.copyStatusLabel}<div><strong>{$row.copyStatusLabel|escape}</strong></div>{/if}
-									{if $row.members}
-										<ul class="ofrDetail">
-											{foreach from=$row.members item=member}
-												<li>{$member.description|strip_unsafe_html}{if $member.copyStatusLabel}: <strong>{$member.copyStatusLabel|escape}</strong>{/if}
-													{foreach from=$member.copyActions item=action}
-														{include file="linkAction/linkAction.tpl" action=$action contextId="ofrAssignments"}
-													{/foreach}
-												</li>
-											{/foreach}
-										</ul>
-									{/if}
-									{if $row.shippingAddress}<div class="ofrDetail">{$row.shippingAddress|escape|nl2br}</div>{/if}
-									{if $row.phone}<div class="ofrDetail">{translate key="plugins.generic.bookReviewManager.reserve.phone"}: {$row.phone|escape}</div>{/if}
-									{if $row.copyNote}<div class="ofrDetail">{$row.copyNote|escape|nl2br}</div>{/if}
-								</td>
-								<td class="ofrActions">
-									{foreach from=$row.copyActions item=action}
-										{include file="linkAction/linkAction.tpl" action=$action contextId="ofrAssignments"}
-									{/foreach}
-									{foreach from=$row.actions item=action}
-										{include file="linkAction/linkAction.tpl" action=$action contextId="ofrAssignments"}
-									{/foreach}
-								</td>
-							</tr>
-						{/foreach}
-					</tbody>
-				</table>
+				{* Cards rather than a table: the access to a review essay's works can be long (#8) *}
+				<div class="ofrCardList" id="ofrAssignmentsList">
+					{include file=$ofrCardListHeader sorts=$sorts sortedBy="deadline"}
+					{foreach from=$rows item=row}
+						{capture assign="ofrStatusLabel"}{translate key="plugins.generic.bookReviewManager.status.`$row.status`"}{/capture}
+						{capture assign="ofrFacts"}
+							<div class="ofrFact">
+								<div class="ofrFactLabel">{translate key="plugins.generic.bookReviewManager.column.person"}</div>
+								{$row.user|escape}
+							</div>
+							<div class="ofrFact">
+								<div class="ofrFactLabel">{translate key="common.status"}</div>
+								{$ofrStatusLabel|escape} <span class="ofrDetail ofrNoWrap">{$row.dateStatus|date_format:$dateFormatShort}</span>
+							</div>
+							{if $row.dateReserved}
+								<div class="ofrFact">
+									<div class="ofrFactLabel">{translate key="plugins.generic.bookReviewManager.column.reservedOn"}</div>
+									<span class="ofrNoWrap">{$row.dateReserved|date_format:$dateFormatShort}</span>
+								</div>
+							{/if}
+							{if $row.dueDate}
+								<div class="ofrFact">
+									<div class="ofrFactLabel">{translate key="plugins.generic.bookReviewManager.reserve.dueDate"}</div>
+									<strong class="ofrNoWrap">{$row.dueDate|date_format:$dateFormatShort}</strong>
+								</div>
+							{/if}
+							{if $row.contractDeadline}
+								<div class="ofrFact">
+									<div class="ofrFactLabel">{translate key="plugins.generic.bookReviewManager.column.answerBy"}</div>
+									<strong class="ofrNoWrap">{$row.contractDeadline|date_format:$dateFormatShort}</strong>
+								</div>
+							{/if}
+							{if $row.reminderSent}
+								<div class="ofrFact">
+									<div class="ofrFactLabel">{translate key="plugins.generic.bookReviewManager.column.reminderSent"}</div>
+									<span class="ofrNoWrap">{$row.reminderSent|date_format:$dateFormatShort}</span>
+								</div>
+							{/if}
+						{/capture}
+						{capture assign="ofrDetails"}{strip}
+							{if $row.copyPreferenceLabel || $row.copyStatusLabel || $row.members || $row.shippingAddress || $row.phone || $row.copyNote}
+								<div class="ofrFactLabel">{translate key="plugins.generic.bookReviewManager.reserve.copy"}</div>
+								{$row.copyPreferenceLabel|escape|nl2br}
+								{if $row.copyStatusLabel}<div><strong>{$row.copyStatusLabel|escape}</strong></div>{/if}
+								{if $row.members}
+									<ul class="ofrCardWorks">
+										{foreach from=$row.members item=member}
+											<li>
+												<span class="ofrCardWork">{$member.description|strip_unsafe_html}</span>
+												{if $member.copyStatusLabel} <strong class="ofrCardWorkStatus">{$member.copyStatusLabel|escape}</strong>{/if}
+												{if $member.copyActions}
+													<span class="ofrInlineActions">
+														{foreach from=$member.copyActions item=action}
+															{include file="linkAction/linkAction.tpl" action=$action contextId="ofrAssignments"}
+														{/foreach}
+													</span>
+												{/if}
+											</li>
+										{/foreach}
+									</ul>
+								{/if}
+								{if $row.shippingAddress}<div class="ofrDetail">{$row.shippingAddress|escape|nl2br}</div>{/if}
+								{if $row.phone}<div class="ofrDetail">{translate key="plugins.generic.bookReviewManager.reserve.phone"}: {$row.phone|escape}</div>{/if}
+								{if $row.copyNote}<div class="ofrDetail">{$row.copyNote|escape|nl2br}</div>{/if}
+							{/if}
+						{/strip}{/capture}
+						{capture assign="ofrActions"}{strip}
+							{foreach from=$row.copyActions item=action}
+								{include file="linkAction/linkAction.tpl" action=$action contextId="ofrAssignments"}
+							{/foreach}
+							{foreach from=$row.actions item=action}
+								{include file="linkAction/linkAction.tpl" action=$action contextId="ofrAssignments"}
+							{/foreach}
+						{/strip}{/capture}
+						{capture assign="ofrTitle"}{include file=$ofrObjectCell row=$row}{/capture}
+						{assign var="ofrDeadline" value=$row.dueDate|default:$row.contractDeadline}
+						{include file=$ofrCard
+							title=$ofrTitle
+							facts=$ofrFacts
+							details=$ofrDetails
+							actions=$ofrActions
+							sortValues=["work" => $row.description, "person" => $row.user, "status" => $ofrStatusLabel, "deadline" => $ofrDeadline, "lastChange" => $row.dateStatus]
+						}
+					{/foreach}
+				</div>
 			{else}
 				<p>{translate key="plugins.generic.bookReviewManager.assignments.none"}</p>
 			{/if}

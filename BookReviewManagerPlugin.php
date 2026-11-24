@@ -672,6 +672,15 @@ class BookReviewManagerPlugin extends GenericPlugin implements HasTaskScheduler 
 				'priority' => TemplateManager::STYLE_SEQUENCE_LAST,
 			]
 		);
+		// Sorting of card lists (templates/cardListHeader.tpl)
+		$templateMgr->addJavaScript(
+			'ObjectsForReviewCardListJs',
+			$this->getJavaScriptURL($request, false) . '/CardList.js',
+			[
+				'contexts' => 'backend',
+				'priority' => TemplateManager::STYLE_SEQUENCE_LAST,
+			]
+		);
 		$templateMgr->addStylesheet(
 			'ObjectsForReviewGridHandlerStyles',
 			'.bookReviewManagerWorkflowGrid { margin: 1rem; } .orIdLookup .orIdLookupButton, .orIdLookup .orIdLookupStatus { margin-left: 0.5em; }'
@@ -707,6 +716,25 @@ class BookReviewManagerPlugin extends GenericPlugin implements HasTaskScheduler 
 				. ' .bookReviewManagerManagement .ofrNewInvitee label { display: block; font-weight: bold; }'
 				. ' .bookReviewManagerManagement .ofrNewInvitee input { width: 100%; max-width: 30rem; }'
 				. ' .bookReviewManagerManagement input[type=text], .bookReviewManagerManagement input[type=email], .bookReviewManagerManagement input[type=search] { border: 1px solid #bbb; border-radius: 3px; padding: 0.4rem 0.5rem; font: inherit; }'
+				// Card lists (templates/cardListHeader.tpl, card.tpl): rows whose parts can be long (#8)
+				. ' .bookReviewManagerManagement .ofrCardListHeader { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.5rem; padding: 0.5rem 0; border-bottom: 1px solid #ddd; }'
+				. ' .bookReviewManagerManagement .ofrCardListHeaderLabel { font-weight: bold; margin-right: 0.25rem; }'
+				. ' .bookReviewManagerManagement .ofrCardSort { background: none; border: 1px solid transparent; border-radius: 3px; padding: 0.25rem 0.5rem; font: inherit; color: #006798; cursor: pointer; }'
+				. ' .bookReviewManagerManagement .ofrCardSort:hover, .bookReviewManagerManagement .ofrCardSort:focus-visible { border-color: #bbb; }'
+				. ' .bookReviewManagerManagement .ofrCardSort[aria-sort] { border-color: #006798; font-weight: bold; }'
+				. ' .bookReviewManagerManagement .ofrCardSort[aria-sort=ascending]::after { content: " \\25B2"; font-size: 0.7em; }'
+				. ' .bookReviewManagerManagement .ofrCardSort[aria-sort=descending]::after { content: " \\25BC"; font-size: 0.7em; }'
+				. ' .bookReviewManagerManagement .ofrCard { display: flex; flex-wrap: wrap; gap: 0.75rem 2rem; padding: 1rem 0; border-bottom: 1px solid #ddd; }'
+				. ' .bookReviewManagerManagement .ofrCardMain { flex: 1 1 28rem; min-width: 0; overflow-wrap: anywhere; }'
+				. ' .bookReviewManagerManagement .ofrCardActions { flex: 0 0 auto; }'
+				. ' .bookReviewManagerManagement .ofrCardTitle { font-weight: 600; } .bookReviewManagerManagement .ofrCardTitle .ofrIdentifier, .bookReviewManagerManagement .ofrCardTitle .ofrDetail, .bookReviewManagerManagement .ofrCardTitle .ofrBadge { font-weight: normal; }'
+				. ' .bookReviewManagerManagement .ofrCardFacts { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; margin-top: 0.75rem; }'
+				. ' .bookReviewManagerManagement .ofrFact { max-width: 100%; }'
+				. ' .bookReviewManagerManagement .ofrFactLabel { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.03em; color: #666; }'
+				. ' .bookReviewManagerManagement .ofrCardDetails { margin-top: 0.75rem; }'
+				. ' .bookReviewManagerManagement .ofrCardWorks { margin: 0.25rem 0 0; padding-left: 1.25rem; }'
+				. ' .bookReviewManagerManagement .ofrCardWorks li { margin-bottom: 0.25rem; }'
+				. ' .bookReviewManagerManagement .ofrCardWorks .ofrInlineActions { display: inline-flex; margin: 0 0 0 0.5rem; }'
 				. ' .ofrBadge { display: inline-block; margin-left: 0.25rem; padding: 0 0.4rem; border: 1px solid #888; border-radius: 3px; font-size: 0.75rem; line-height: 1.4; color: #555; vertical-align: middle; }'
 				. ' .ofrEssayMember { display: inline-block; padding-left: 1.5rem; }'
 				. ' .ofrEssayWorkChoice { list-style: none; padding: 0; } .ofrEssayWorkChoice li { margin-bottom: 0.5rem; } .ofrEssayCopyPreference { margin: 0.25rem 0 0 1.5rem; }'

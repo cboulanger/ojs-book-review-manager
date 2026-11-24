@@ -1953,3 +1953,12 @@ msgstr "Diese Rezensionen sind als eingereicht markiert, das Werk ist aber keine
 
 msgid "plugins.generic.bookReviewManager.desk.unlinked.submitted"
 msgstr "Eingereicht"
+
+msgid "plugins.generic.bookReviewManager.cards.sortBy"
+msgstr "Sortieren nach"
+
+msgid "plugins.generic.bookReviewManager.column.deadline"
+msgstr "Frist"
+
+msgid "plugins.generic.bookReviewManager.column.lastChange"
+msgstr "Letzte Änderung"

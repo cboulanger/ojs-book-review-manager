@@ -1954,3 +1954,12 @@ msgstr "Nämä arviot on merkitty lähetetyiksi, mutta julkaisua ei ole liitetty
 
 msgid "plugins.generic.bookReviewManager.desk.unlinked.submitted"
 msgstr "Lähetetty"
+
+msgid "plugins.generic.bookReviewManager.cards.sortBy"
+msgstr "Lajittele"
+
+msgid "plugins.generic.bookReviewManager.column.deadline"
+msgstr "Määräaika"
+
+msgid "plugins.generic.bookReviewManager.column.lastChange"
+msgstr "Viimeisin muutos"
