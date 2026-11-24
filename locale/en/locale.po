@@ -225,7 +225,7 @@ msgid "plugins.generic.bookReviewManager.menu.reservations"
 msgstr "Reservations"
 
 msgid "plugins.generic.bookReviewManager.menu.reviewedWorks"
-msgstr "Reviewed works"
+msgstr "Submitted reviews"
 
 msgid "plugins.generic.bookReviewManager.menu.settings"
 msgstr "Settings"
@@ -1876,3 +1876,42 @@ msgstr "Due date of the review by {$recipientName} changed from {$previousDueDat
 
 msgid "plugins.generic.bookReviewManager.history.email.dueDateChanged"
 msgstr "Reviewer informed: the due date has changed"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.action"
+msgstr "Link submission"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.work"
+msgstr "Work"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.reviewer"
+msgstr "Reviewer"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.choose"
+msgstr "The reviewer's submissions"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.chooseNone"
+msgstr "— Choose a submission —"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.noSuggestions"
+msgstr "No submissions by the reviewer were found in this journal, neither as submitter nor as author with the same email address. Enter the ID of the submission below."
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.otherId"
+msgstr "Or submission ID"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.otherId.description"
+msgstr "The number shown before the title of the submission (for example 123). It takes precedence over the choice above."
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.notice"
+msgstr "Use this when the reviewer submitted the review without choosing the reserved work in the submission wizard. The work is attached to the submission as if the reviewer had chosen it: the offer shows \"Review submitted\", the reviewer's delivery details are deleted, and the work appears under Submitted reviews. If the submission is already published, the review is marked as published. No email is sent. To undo, remove the work from the Reviewed works section of the submission."
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.submit"
+msgstr "Link"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.error.required"
+msgstr "Choose a submission or enter its ID."
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.error.notFound"
+msgstr "There is no submission with this ID in this journal."
+
+msgid "plugins.generic.bookReviewManager.history.event.linkedByEditor"
+msgstr "Review by {$recipientName} linked to submission #{$submissionId} by the editors"

@@ -11,7 +11,8 @@
  * @brief Modals and actions of the book review editor's pages: email a
  *  reviewer, change the due date of a review, cancel a contract offer or reservation, select a bidder (contract
  *  offer), notify unsuccessful bidders, reopen bidding, switch to direct
- *  reservation, close or reopen an offer, and show the audit trail.
+ *  reservation, close or reopen an offer, link an accepted reservation to the
+ *  review submission, and show the audit trail.
  */
 
 namespace APP\plugins\generic\bookReviewManager\controllers;
@@ -26,6 +27,7 @@ use APP\plugins\generic\bookReviewManager\classes\ReservationMailer;
 use APP\plugins\generic\bookReviewManager\classes\Roles;
 use APP\plugins\generic\bookReviewManager\classes\CopyWorkflow;
 use APP\plugins\generic\bookReviewManager\controllers\form\CopyStepForm;
+use APP\plugins\generic\bookReviewManager\controllers\form\LinkSubmissionForm;
 use APP\plugins\generic\bookReviewManager\controllers\form\ReservationEmailForm;
 use APP\template\TemplateManager;
 use PKP\core\JSONMessage;
@@ -67,7 +69,7 @@ class ReservationActionsHandler extends Handler {
 		$this->plugin = $plugin;
 		$this->addRoleAssignment(
 			[Role::ROLE_ID_MANAGER, Role::ROLE_ID_SITE_ADMIN, Role::ROLE_ID_SUB_EDITOR],
-			array_merge(array_keys(self::FORM_OPS), self::OFFER_ACTIONS, ['history', 'copyStepForm', 'copyStep'])
+			array_merge(array_keys(self::FORM_OPS), self::OFFER_ACTIONS, ['history', 'copyStepForm', 'copyStep', 'linkSubmissionForm', 'linkSubmission'])
 		);
 	}
 
@@ -130,6 +132,54 @@ class ReservationActionsHandler extends Handler {
 		}
 		$form->execute();
 		return DAO::getDataChangedEvent($object->getId());
+	}
+
+	/**
+	 * Link an accepted reservation to the review submission, see LinkSubmissionForm.
+	 */
+	public function linkSubmissionForm($args, $request) {
+		[$object, $assignment] = $this->getLinkTarget($request);
+		if (!$object) {
+			return new JSONMessage(false, __('plugins.generic.bookReviewManager.desk.notPossible'));
+		}
+		$form = new LinkSubmissionForm($this->plugin, $request->getContext(), $object, $assignment);
+		$form->initData();
+		return new JSONMessage(true, $form->fetch($request));
+	}
+
+	public function linkSubmission($args, $request) {
+		[$object, $assignment] = $this->getLinkTarget($request);
+		if (!$object || !$request->checkCSRF()) {
+			return new JSONMessage(false, __('plugins.generic.bookReviewManager.desk.notPossible'));
+		}
+		$form = new LinkSubmissionForm($this->plugin, $request->getContext(), $object, $assignment);
+		$form->readInputData();
+		if (!$form->validate()) {
+			return new JSONMessage(true, $form->fetch($request));
+		}
+		$form->execute();
+		return DAO::getDataChangedEvent($object->getId());
+	}
+
+	/**
+	 * The object and its accepted reviewer assignment, if the reservation can be linked.
+	 * @return array [ObjectForReview|null, Assignment|null]
+	 */
+	protected function getLinkTarget($request): array {
+		$object = $this->getObject($request);
+		$assignment = $object ? AssignmentWorkflow::dao()->getById((int) $request->getUserVar('assignmentId')) : null;
+		return $assignment && self::canLinkSubmission($object, $assignment) ? [$object, $assignment] : [null, null];
+	}
+
+	/**
+	 * An accepted reservation not yet attached to a submission (a review essay as a whole, not its works).
+	 */
+	public static function canLinkSubmission($object, Assignment $assignment): bool {
+		return $assignment->getObjectId() === $object->getId()
+			&& $assignment->getStatus() === Assignment::STATUS_ACCEPTED
+			&& !$assignment->isMirror()
+			&& !$object->isBundleMember()
+			&& !$object->getSubmissionId();
 	}
 
 	/**

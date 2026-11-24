@@ -106,4 +106,16 @@ class AssignmentWorkflowTest extends TestCase {
 		$this->assertNull(W::validateNewDueDate($assignment, date('Y-m-d')), 'today is allowed');
 		$this->assertNull(W::validateNewDueDate($this->assignment(Assignment::STATUS_ACCEPTED), '2099-03-01'), 'no due date yet');
 	}
+
+	public function testCanLinkSubmission(): void {
+		$can = fn ($object, $assignment) => \APP\plugins\generic\bookReviewManager\controllers\ReservationActionsHandler::canLinkSubmission($object, $assignment);
+		$this->assertTrue($can($this->object(), $this->assignment(Assignment::STATUS_ACCEPTED)));
+		foreach ([Assignment::STATUS_OFFERED, Assignment::STATUS_BID, Assignment::STATUS_SUBMITTED, Assignment::STATUS_COMPLETED, Assignment::STATUS_CANCELLED] as $status) {
+			$this->assertFalse($can($this->object(), $this->assignment($status)), $status);
+		}
+		$this->assertFalse($can($this->object(['submissionId' => 5]), $this->assignment(Assignment::STATUS_ACCEPTED)), 'already attached');
+		$this->assertFalse($can($this->object(['bundleId' => 3]), $this->assignment(Assignment::STATUS_ACCEPTED)), 'work of a review essay');
+		$this->assertFalse($can($this->object(), $this->assignment(Assignment::STATUS_ACCEPTED, ['bundleAssignmentId' => 12])), 'mirror');
+		$this->assertFalse($can($this->object(), $this->assignment(Assignment::STATUS_ACCEPTED, ['objectId' => 2])), 'other object');
+	}
 }

@@ -5,9 +5,14 @@
  *
  * Object description with (linked) identifier, used in the backend tables.
  *
- * $row: objectId, description, identifierType, identifier, identifierUrl, hidden, essayTitle
+ * $row: objectId, description, identifierType, identifier, identifierUrl, hidden, essayTitle,
+ *  historyAction (optional: the description opens the history)
  *}
-{$row.description|strip_unsafe_html}
+{if $row.historyAction}
+	{include file="linkAction/linkAction.tpl" action=$row.historyAction contextId="ofrObject"}
+{else}
+	{$row.description|strip_unsafe_html}
+{/if}
 {if $row.hidden} <span class="ofrBadge">{translate key="plugins.generic.bookReviewManager.hidden"}</span>{/if}
 {if $row.essayTitle} <span class="ofrDetail">{translate key="plugins.generic.bookReviewManager.reviewEssay.memberOf" title=$row.essayTitle|escape}</span>{/if}
 <div class="ofrIdentifier">

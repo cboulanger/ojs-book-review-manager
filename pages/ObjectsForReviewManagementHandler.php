@@ -175,7 +175,7 @@ class ObjectsForReviewManagementHandler extends Handler {
 						'copyStatusLabel' => CopyWorkflow::getStatus($assignment) === CopyWorkflow::NOT_NEEDED ? '' : CopyWorkflow::getStatusLabel($assignment),
 						'actions' => array_merge(
 							$this->copyActions($request, $object, $assignment),
-							$this->assignmentActions($request, $object, $assignment, ['email', 'dueDate', 'cancel', 'history'])
+							$this->assignmentActions($request, $object, $assignment, ['email', 'dueDate', 'link', 'cancel', 'history'])
 						),
 					];
 				}
@@ -274,7 +274,7 @@ class ObjectsForReviewManagementHandler extends Handler {
 					'dateCreated' => $assignment->getDateCreated(),
 					'dateStatus' => $assignment->getDateStatus(),
 					'contractDeadline' => $assignment->getStatus() === Assignment::STATUS_OFFERED ? $assignment->getData('contractDeadline') : null,
-					'actions' => $this->assignmentActions($request, $objects[$objectId], $assignment, $active ? ['email', 'dueDate', 'cancel', 'history'] : ['history']),
+					'actions' => $this->assignmentActions($request, $objects[$objectId], $assignment, $active ? ['email', 'dueDate', 'link', 'cancel', 'history'] : ['history']),
 				] + Reservation::getDisplayData($assignment);
 			}
 		}
@@ -489,7 +489,7 @@ class ObjectsForReviewManagementHandler extends Handler {
 	}
 
 	/**
-	 * Reviewed works: all objects attached to a submission.
+	 * Submitted reviews: all objects attached to a submission.
 	 */
 	public function reviewedWorks($args, $request) {
 		$dispatcher = $request->getDispatcher();
@@ -501,7 +501,13 @@ class ObjectsForReviewManagementHandler extends Handler {
 			}
 			$submission = Repo::submission()->get((int) $object->getSubmissionId());
 			$publication = $submission ? $submission->getCurrentPublication() : null;
+			$historyUrl = $dispatcher->url($request, Application::ROUTE_COMPONENT, null,
+				ReservationActionsHandler::COMPONENT, 'history', null, ['objectId' => $object->getId()]);
 			$rows[] = $this->objectRow($object) + [
+				// The work's description opens its history
+				'historyAction' => new LinkAction('ofr-history-' . $object->getId(),
+					new AjaxModal($historyUrl, __('plugins.generic.bookReviewManager.history'), 'modal_information'),
+					trim(strip_tags($object->getCitation()))),
 				'submissionId' => $object->getSubmissionId(),
 				'submissionTitle' => $publication ? $publication->getLocalizedFullTitle() : null,
 				'submissionStatus' => $submission ? __($submission->getStatusKey()) : null,
@@ -525,13 +531,14 @@ class ObjectsForReviewManagementHandler extends Handler {
 
 	/**
 	 * Modal actions for an assignment (or, without one, for the object): email, change the due date
-	 * (accepted reviews only, skipped otherwise), cancel, audit trail.
+	 * and link the review submission (accepted reviews only, skipped otherwise), cancel, audit trail.
 	 * @return LinkAction[]
 	 */
 	protected function assignmentActions($request, $object, ?Assignment $assignment, array $names): array {
 		$definitions = [
 			'email' => ['emailForm', 'plugins.generic.bookReviewManager.reservations.email', 'modal_email'],
 			'dueDate' => ['dueDateForm', 'plugins.generic.bookReviewManager.dueDate.change', 'modal_edit'],
+			'link' => ['linkSubmissionForm', 'plugins.generic.bookReviewManager.linkSubmission.action', 'modal_add_item'],
 			'cancel' => ['cancelForm', $assignment?->getStatus() === Assignment::STATUS_OFFERED
 				? 'plugins.generic.bookReviewManager.contractOffer.cancel' : 'plugins.generic.bookReviewManager.reservations.cancel', 'modal_delete'],
 			'history' => ['history', 'plugins.generic.bookReviewManager.history', 'modal_information'],
@@ -539,6 +546,9 @@ class ObjectsForReviewManagementHandler extends Handler {
 		$actions = [];
 		foreach ($names as $name) {
 			if ($name === 'dueDate' && $assignment?->getStatus() !== Assignment::STATUS_ACCEPTED) {
+				continue;
+			}
+			if ($name === 'link' && (!$assignment || !ReservationActionsHandler::canLinkSubmission($object, $assignment))) {
 				continue;
 			}
 			[$op, $labelKey, $modalClass] = $definitions[$name];

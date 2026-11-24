@@ -30,7 +30,7 @@ You work from the backend menu section **Book Reviews**:
 - **To-do** lists everything that needs a decision or is waiting for someone. This is your starting point.
 - **Offered works** lists your offers. Here you create and edit them, hide them from the public page, and invite reviewers.
 - **Reviewers & bidders** lists every bidder and reviewer, with their status, due date and delivery details.
-- **Reviewed works** lists works attached to review submissions.
+- **Submitted reviews** lists works attached to review submissions.
 
 Most steps that concern someone else come with a prefilled email that you can edit before it is sent. Everything is recorded in the offer's **history**.
 
@@ -404,13 +404,15 @@ Only if the offer requires returns and the review won't come.
 
 - **Confirmation.** After accepting the agreement, the reviewer receives a confirmation with the work, the due date and an "I cannot write this review" link.
 - **Reminder.** Before the due date (14 days by default), the reviewer is reminded automatically. The reminder contains the same link.
-- **Overdue reviews.** Reviews past their due date are listed on To-do under *Overdue reviews*. From there you can email the reviewer, change the due date, cancel the reservation or request the return of a printed copy.
+- **Overdue reviews.** Reviews past their due date are listed on To-do under *Overdue reviews*. From there you can email the reviewer, change the due date, link the review submission if it was submitted without the reservation, cancel the reservation or request the return of a printed copy.
 - **Changing the due date.** **Change due date** (on To-do under *Overdue reviews*, and on *Reviewers & bidders*) sets a new due date for a reserved review. The new date can be any day from today on; the maximum from the settings applies only to the reviewer's own choice. The reminder is sent again before the new date. Unless you untick the option, the reviewer is told by the email "Due date changed", which gives the old and new date and the link to the submission page. For a review essay, the works follow the new date. The change is recorded in the history.
 - **Messages.** From *Reviewers & bidders* you can email any bidder or reviewer, or cancel a reservation, with an editable email.
 
 ### 8. Submission and publication
 
 The reviewer submits the review as an ordinary submission. In the submission wizard, under *For the Editors › Reviewed works*, they pick the work they reserved. The offer then shows "Review submitted", and the reviewer's delivery details are deleted. In the editorial workflow, the review is handled like any other submission. If you are a section editor of the book review section, you can be assigned to it there.
+
+**If the reviewer submitted without choosing the work.** Sometimes the review arrives without the link to the reservation. The reviewer might have used another account, typed in the book's details by hand, or someone else might have submitted it for them. In that case the offer still shows "Reserved" and the review is soon listed as overdue. Click **Link submission** on the reservation (on *Reviewers & bidders*, or on To-do under *Overdue reviews*). The form suggests the reviewer's submissions in the journal, those they submitted and those that list them as an author with the same email address. You can also enter the ID of any submission. Linking has the same effect as the reviewer choosing the work in the wizard: the offer shows "Review submitted", the delivery details are deleted, and the work appears under *Submitted reviews*. If the submission is already published, the review is marked as published right away. No email is sent, and the step is recorded in the history. For a review essay, link the essay; its works follow. To undo a wrong link, remove the work from the *Reviewed works* section on the submission's publication page.
 
 When the review is **published**:
 
@@ -490,7 +492,7 @@ Until the review is submitted, you can change which works an essay covers:
 
 ![Reviewers and bidders](images/assignments.png)
 
-**Reviewed works** lists all works attached to review submissions.
+**Submitted reviews** lists all works attached to review submissions, with the review submission and its status. Click a work to see its history.
 
 ## Reference: statuses
 

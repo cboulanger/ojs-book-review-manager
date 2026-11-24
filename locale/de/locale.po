@@ -224,7 +224,7 @@ msgid "plugins.generic.bookReviewManager.menu.reservations"
 msgstr "Reservierungen"
 
 msgid "plugins.generic.bookReviewManager.menu.reviewedWorks"
-msgstr "Rezensierte Werke"
+msgstr "Eingereichte Rezensionen"
 
 msgid "plugins.generic.bookReviewManager.menu.settings"
 msgstr "Einstellungen"
@@ -1875,3 +1875,42 @@ msgstr "Abgabetermin der Rezension von {$recipientName} von {$previousDueDate} a
 
 msgid "plugins.generic.bookReviewManager.history.email.dueDateChanged"
 msgstr "Rezensent:in informiert: Der Abgabetermin wurde geändert"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.action"
+msgstr "Einreichung zuordnen"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.work"
+msgstr "Werk"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.reviewer"
+msgstr "Rezensent*in"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.choose"
+msgstr "Einreichungen der Rezensent*in"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.chooseNone"
+msgstr "— Einreichung auswählen —"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.noSuggestions"
+msgstr "In dieser Zeitschrift wurden keine Einreichungen der Rezensent*in gefunden, weder als Einreichende*r noch als Autor*in mit derselben E-Mail-Adresse. Geben Sie unten die ID der Einreichung ein."
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.otherId"
+msgstr "Oder ID der Einreichung"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.otherId.description"
+msgstr "Die Nummer vor dem Titel der Einreichung (zum Beispiel 123). Sie hat Vorrang vor der Auswahl oben."
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.notice"
+msgstr "Verwenden Sie dies, wenn die Rezension eingereicht wurde, ohne im Einreichungsassistenten das reservierte Werk auszuwählen. Das Werk wird der Einreichung zugeordnet, als hätte die Rezensent*in es ausgewählt: Das Angebot zeigt „Rezension eingereicht“, die Lieferdaten der Rezensent*in werden gelöscht, und das Werk erscheint unter „Eingereichte Rezensionen“. Ist die Einreichung bereits veröffentlicht, wird die Rezension als veröffentlicht markiert. Es wird keine E-Mail verschickt. Zum Rückgängigmachen entfernen Sie das Werk im Abschnitt „Rezensierte Werke“ der Einreichung."
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.submit"
+msgstr "Zuordnen"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.error.required"
+msgstr "Wählen Sie eine Einreichung aus oder geben Sie ihre ID ein."
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.error.notFound"
+msgstr "In dieser Zeitschrift gibt es keine Einreichung mit dieser ID."
+
+msgid "plugins.generic.bookReviewManager.history.event.linkedByEditor"
+msgstr "Rezension von {$recipientName} von der Redaktion der Einreichung #{$submissionId} zugeordnet"

@@ -204,7 +204,7 @@ msgid "plugins.generic.bookReviewManager.menu.reservations"
 msgstr "Varaukset"
 
 msgid "plugins.generic.bookReviewManager.menu.reviewedWorks"
-msgstr "Arvioidut julkaisut"
+msgstr "Lähetetyt arviot"
 
 msgid "plugins.generic.bookReviewManager.menu.settings"
 msgstr "Asetukset"
@@ -1876,3 +1876,42 @@ msgstr "Arvioijan {$recipientName} arvion määräpäivä muutettu: {$previousDu
 
 msgid "plugins.generic.bookReviewManager.history.email.dueDateChanged"
 msgstr "Arvioijalle ilmoitettu: määräpäivä on muuttunut"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.action"
+msgstr "Liitä käsikirjoitukseen"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.work"
+msgstr "Julkaisu"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.reviewer"
+msgstr "Arvioija"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.choose"
+msgstr "Arvioijan käsikirjoitukset"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.chooseNone"
+msgstr "— Valitse käsikirjoitus —"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.noSuggestions"
+msgstr "Arvioijan käsikirjoituksia ei löytynyt tästä lehdestä, ei lähettäjänä eikä kirjoittajana samalla sähköpostiosoitteella. Anna käsikirjoituksen tunniste alla."
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.otherId"
+msgstr "Tai käsikirjoituksen tunniste"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.otherId.description"
+msgstr "Käsikirjoituksen otsikon edessä näkyvä numero (esimerkiksi 123). Se ohittaa yllä olevan valinnan."
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.notice"
+msgstr "Käytä tätä, kun arvio on lähetetty valitsematta varattua julkaisua lähetyksen ohjatussa toiminnossa. Julkaisu liitetään käsikirjoitukseen kuin arvioija olisi valinnut sen: tarjouksen tila on ”Arvio lähetetty”, arvioijan toimitustiedot poistetaan ja julkaisu näkyy lähetettyjen arvioiden luettelossa. Jos käsikirjoitus on jo julkaistu, arvio merkitään julkaistuksi. Sähköpostia ei lähetetä. Kumoa poistamalla julkaisu käsikirjoituksen arvioitujen julkaisujen osiosta."
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.submit"
+msgstr "Liitä"
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.error.required"
+msgstr "Valitse käsikirjoitus tai anna sen tunniste."
+
+msgid "plugins.generic.bookReviewManager.linkSubmission.error.notFound"
+msgstr "Tässä lehdessä ei ole käsikirjoitusta tällä tunnisteella."
+
+msgid "plugins.generic.bookReviewManager.history.event.linkedByEditor"
+msgstr "Toimitus liitti arvioijan {$recipientName} arvion käsikirjoitukseen #{$submissionId}"

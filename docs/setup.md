@@ -27,7 +27,7 @@ The backend menu section has these pages:
 | Offered works | Create and edit offers | managers, book review editors |
 | To-do | Everything that needs a decision or is waiting for someone | managers, book review editors |
 | Reviewers & bidders | All bidders and reviewers, with filters | managers, book review editors |
-| Reviewed works | Works attached to review submissions | managers, book review editors |
+| Submitted reviews | Works attached to review submissions | managers, book review editors |
 | Settings | Plugin settings | managers only |
 | Public page | Opens the public list in a new tab | managers, book review editors |
 

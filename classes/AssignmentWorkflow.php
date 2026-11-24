@@ -408,6 +408,29 @@ class AssignmentWorkflow {
 	}
 
 	/**
+	 * The book review editor links an accepted reservation to a submission that the reviewer
+	 * submitted without choosing the reserved work (or that was submitted on their behalf).
+	 * The same as attach(), recorded as the editor's step. If the submission is already
+	 * published, the review is completed at once, since Publication::publish has passed.
+	 */
+	public static function attachByEditor(ObjectForReview $object, Assignment $assignment, User $editor, \APP\submission\Submission $submission): void {
+		self::requireStatus($assignment, [Assignment::STATUS_ACCEPTED]);
+		if ($object->getSubmissionId() || $object->isBundleMember() || $assignment->isMirror()) {
+			throw new \InvalidArgumentException('Object ' . $object->getId() . ' cannot be linked to a submission');
+		}
+		Reservation::erasePersonalData($assignment);
+		self::setStatus($assignment, Assignment::STATUS_SUBMITTED);
+		$object->setSubmissionId($submission->getId());
+		(new ObjectForReviewDAO())->updateObject($object);
+		ReservationLog::logEvent($object, ReservationLog::EVENT_LINKED_BY_EDITOR, $editor, Repo::user()->get($assignment->getUserId(), true),
+			['submissionId' => $submission->getId()]);
+		self::syncBundle($object);
+		if ($submission->getData('status') === \APP\submission\Submission::STATUS_PUBLISHED) {
+			self::complete($object);
+		}
+	}
+
+	/**
 	 * The object was removed from the submission again: the reviewer is back to "accepted".
 	 */
 	public static function detach(ObjectForReview $object): void {
