@@ -1915,3 +1915,33 @@ msgstr "Tässä lehdessä ei ole käsikirjoitusta tällä tunnisteella."
 
 msgid "plugins.generic.bookReviewManager.history.event.linkedByEditor"
 msgstr "Toimitus liitti arvioijan {$recipientName} arvion käsikirjoitukseen #{$submissionId}"
+
+msgid "plugins.generic.bookReviewManager.history.note"
+msgstr "Muistiinpano"
+
+msgid "plugins.generic.bookReviewManager.history.note.add"
+msgstr "Lisää muistiinpano"
+
+msgid "plugins.generic.bookReviewManager.history.note.text"
+msgstr "Muistiinpano"
+
+msgid "plugins.generic.bookReviewManager.history.note.description"
+msgstr "Esimerkiksi puhelimitse tai sähköpostitse saatu vastaus, sopimus arvioijan tai kustantajan kanssa tai asian tilanne. Muistiinpanot näkyvät vain kirja-arvioiden toimittajille ja lehden hallinnoijille, eikä niitä voi muuttaa jälkikäteen."
+
+msgid "plugins.generic.bookReviewManager.history.note.date"
+msgstr "Päivämäärä"
+
+msgid "plugins.generic.bookReviewManager.history.note.save"
+msgstr "Tallenna muistiinpano"
+
+msgid "plugins.generic.bookReviewManager.history.note.error.required"
+msgstr "Kirjoita muistiinpanon teksti."
+
+msgid "plugins.generic.bookReviewManager.history.note.error.tooLong"
+msgstr "Muistiinpano on liian pitkä (enintään {$max} merkkiä)."
+
+msgid "plugins.generic.bookReviewManager.history.note.error.date"
+msgstr "Anna kelvollinen päivämäärä, tänään tai aiemmin."
+
+msgid "plugins.generic.bookReviewManager.history.note.error.failed"
+msgstr "Muistiinpanoa ei voitu tallentaa. Yritä uudelleen."

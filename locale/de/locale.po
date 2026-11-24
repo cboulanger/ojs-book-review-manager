@@ -1914,3 +1914,33 @@ msgstr "In dieser Zeitschrift gibt es keine Einreichung mit dieser ID."
 
 msgid "plugins.generic.bookReviewManager.history.event.linkedByEditor"
 msgstr "Rezension von {$recipientName} von der Redaktion der Einreichung #{$submissionId} zugeordnet"
+
+msgid "plugins.generic.bookReviewManager.history.note"
+msgstr "Notiz"
+
+msgid "plugins.generic.bookReviewManager.history.note.add"
+msgstr "Notiz hinzufügen"
+
+msgid "plugins.generic.bookReviewManager.history.note.text"
+msgstr "Notiz"
+
+msgid "plugins.generic.bookReviewManager.history.note.description"
+msgstr "Zum Beispiel eine Antwort per Telefon oder E-Mail, eine Absprache mit der Rezensent*in oder dem Verlag oder der Stand der Dinge. Notizen sehen nur die Rezensionsredaktion und die Zeitschriftenverwaltung; sie können später nicht geändert werden."
+
+msgid "plugins.generic.bookReviewManager.history.note.date"
+msgstr "Datum"
+
+msgid "plugins.generic.bookReviewManager.history.note.save"
+msgstr "Notiz speichern"
+
+msgid "plugins.generic.bookReviewManager.history.note.error.required"
+msgstr "Geben Sie den Text der Notiz ein."
+
+msgid "plugins.generic.bookReviewManager.history.note.error.tooLong"
+msgstr "Die Notiz ist zu lang (höchstens {$max} Zeichen)."
+
+msgid "plugins.generic.bookReviewManager.history.note.error.date"
+msgstr "Geben Sie ein gültiges Datum ein, heute oder früher."
+
+msgid "plugins.generic.bookReviewManager.history.note.error.failed"
+msgstr "Die Notiz konnte nicht gespeichert werden. Bitte versuchen Sie es erneut."

@@ -1915,3 +1915,33 @@ msgstr "There is no submission with this ID in this journal."
 
 msgid "plugins.generic.bookReviewManager.history.event.linkedByEditor"
 msgstr "Review by {$recipientName} linked to submission #{$submissionId} by the editors"
+
+msgid "plugins.generic.bookReviewManager.history.note"
+msgstr "Note"
+
+msgid "plugins.generic.bookReviewManager.history.note.add"
+msgstr "Add note"
+
+msgid "plugins.generic.bookReviewManager.history.note.text"
+msgstr "Note"
+
+msgid "plugins.generic.bookReviewManager.history.note.description"
+msgstr "For example a reply by phone or email, an arrangement with the reviewer or publisher, or the state of the case. Notes are visible to the book review editors and journal managers only, and cannot be changed later."
+
+msgid "plugins.generic.bookReviewManager.history.note.date"
+msgstr "Date"
+
+msgid "plugins.generic.bookReviewManager.history.note.save"
+msgstr "Save note"
+
+msgid "plugins.generic.bookReviewManager.history.note.error.required"
+msgstr "Enter the text of the note."
+
+msgid "plugins.generic.bookReviewManager.history.note.error.tooLong"
+msgstr "The note is too long (at most {$max} characters)."
+
+msgid "plugins.generic.bookReviewManager.history.note.error.date"
+msgstr "Enter a valid date, today or earlier."
+
+msgid "plugins.generic.bookReviewManager.history.note.error.failed"
+msgstr "The note could not be saved. Please try again."

@@ -486,6 +486,8 @@ Until the review is submitted, you can change which works an essay covers:
 
 **History.** Every offer has a history, which you open with **History** on To-do or in the lists. It records who did what and when, and every email sent, with its full text. Steps taken through an email link are marked "via email link"; steps taken by the daily task are marked "automatically".
 
+**Notes.** Replies and arrangements that don't go through the plugin aren't recorded by themselves: a reviewer's answer to your email, a phone call, an agreement with the publisher. Record them with **Add note** at the top of the history. Enter the text and the date it refers to, which is today by default, so you can also record something that happened earlier. The note appears in the history with your name. Notes are seen only by book review editors and journal managers, and they can't be changed or deleted, like the rest of the history.
+
 ![The history of an offer](images/history.png)
 
 **Reviewers & bidders** lists all assignments, with a filter by status. It shows the due dates, the chosen type of copy and the delivery details (as long as they are stored), with actions to email, change the due date, cancel or view the history.

@@ -12,7 +12,7 @@
  *  reviewer, change the due date of a review, cancel a contract offer or reservation, select a bidder (contract
  *  offer), notify unsuccessful bidders, reopen bidding, switch to direct
  *  reservation, close or reopen an offer, link an accepted reservation to the
- *  review submission, and show the audit trail.
+ *  review submission, and show the audit trail and add notes to it.
  */
 
 namespace APP\plugins\generic\bookReviewManager\controllers;
@@ -69,7 +69,7 @@ class ReservationActionsHandler extends Handler {
 		$this->plugin = $plugin;
 		$this->addRoleAssignment(
 			[Role::ROLE_ID_MANAGER, Role::ROLE_ID_SITE_ADMIN, Role::ROLE_ID_SUB_EDITOR],
-			array_merge(array_keys(self::FORM_OPS), self::OFFER_ACTIONS, ['history', 'copyStepForm', 'copyStep', 'linkSubmissionForm', 'linkSubmission'])
+			array_merge(array_keys(self::FORM_OPS), self::OFFER_ACTIONS, ['history', 'copyStepForm', 'copyStep', 'linkSubmissionForm', 'linkSubmission', 'addNote'])
 		);
 	}
 
@@ -215,12 +215,36 @@ class ReservationActionsHandler extends Handler {
 		if (!$object) {
 			return new JSONMessage(false, __('user.authorization.accessDenied'));
 		}
+		return new JSONMessage(true, $this->fetchHistory($request, $object));
+	}
+
+	/**
+	 * Add a note to the history (from the form in the history modal), then show the history again.
+	 */
+	public function addNote($args, $request) {
+		$object = $this->getObject($request);
+		if (!$object || !$request->isPost() || !$request->checkCSRF()) {
+			return new JSONMessage(false, __('user.authorization.accessDenied'));
+		}
+		$note = (string) $request->getUserVar('note');
+		$date = trim((string) $request->getUserVar('noteDate')) ?: date('Y-m-d');
+		if ($error = ReservationLog::validateNote($note, $date)) {
+			return new JSONMessage(false, __($error, ['max' => ReservationLog::MAX_NOTE_LENGTH]));
+		}
+		ReservationLog::addNote($object, $request->getUser(), $note, $date);
+		return new JSONMessage(true, $this->fetchHistory($request, $object));
+	}
+
+	protected function fetchHistory($request, $object): string {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign([
+			'objectId' => $object->getId(),
 			'objectDescription' => $object->getCitation(),
 			'history' => ReservationLog::getHistory($object),
+			'today' => date('Y-m-d'),
+			'maxNoteLength' => ReservationLog::MAX_NOTE_LENGTH,
 		]);
-		return new JSONMessage(true, $templateMgr->fetch($this->plugin->getTemplateResource('reservationHistory.tpl')));
+		return $templateMgr->fetch($this->plugin->getTemplateResource('reservationHistory.tpl'));
 	}
 
 	protected function showForm($request, string $op) {

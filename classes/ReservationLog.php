@@ -87,6 +87,11 @@ class ReservationLog {
 	const EVENT_DUE_DATE_CHANGED = 0x1F0F239;
 	/** The editor linked an accepted reservation to a submission (submissionId) */
 	const EVENT_LINKED_BY_EDITOR = 0x1F0F23A;
+	/** A note of the editor (a reply by phone or email, a status report); the message is the note text */
+	const EVENT_NOTE = 0x1F0F23B;
+
+	/** Longest note, in characters */
+	const MAX_NOTE_LENGTH = 10000;
 
 	const EVENT_MESSAGES = [
 		self::EVENT_RESERVED => 'plugins.generic.bookReviewManager.history.event.reserved',
@@ -136,6 +141,8 @@ class ReservationLog {
 		self::EVENT_ESSAY_DISSOLVED => 'plugins.generic.bookReviewManager.history.event.essayDissolved',
 		self::EVENT_DUE_DATE_CHANGED => 'plugins.generic.bookReviewManager.history.event.dueDateChanged',
 		self::EVENT_LINKED_BY_EDITOR => 'plugins.generic.bookReviewManager.history.event.linkedByEditor',
+		// Logged with the note text as an already translated message
+		self::EVENT_NOTE => 'plugins.generic.bookReviewManager.history.note',
 		self::EVENT_LIST_DISCARDED => 'plugins.generic.bookReviewManager.history.event.listDiscarded',
 		self::EVENT_COMPLETED => 'plugins.generic.bookReviewManager.history.event.completed',
 		self::EVENT_COPY_REQUESTED => 'plugins.generic.bookReviewManager.history.event.copyRequested',
@@ -175,6 +182,40 @@ class ReservationLog {
 	}
 
 	/**
+	 * Add a note of the editor to the history.
+	 * @param string $date Y-m-d: the day the note refers to (today or earlier). An earlier day is
+	 *  logged at midnight and shown without a time.
+	 * @throws \InvalidArgumentException With a locale key, if the note or the date is invalid
+	 */
+	public static function addNote($object, User $editor, string $note, string $date): void {
+		if ($error = self::validateNote($note, $date)) {
+			throw new \InvalidArgumentException($error);
+		}
+		self::logEvent($object, self::EVENT_NOTE, $editor, null, [
+			'message' => trim($note),
+			'isTranslated' => true,
+			'dateLogged' => $date === date('Y-m-d') ? Core::getCurrentDate() : $date . ' 00:00:00',
+		]);
+	}
+
+	/**
+	 * @return ?string Locale key of the error, or null if the note can be added
+	 */
+	public static function validateNote(string $note, string $date): ?string {
+		if (trim($note) === '') {
+			return 'plugins.generic.bookReviewManager.history.note.error.required';
+		}
+		if (mb_strlen(trim($note)) > self::MAX_NOTE_LENGTH) {
+			return 'plugins.generic.bookReviewManager.history.note.error.tooLong';
+		}
+		$parsed = \DateTime::createFromFormat('!Y-m-d', $date);
+		if (!$parsed || $parsed->format('Y-m-d') !== $date || $date > date('Y-m-d')) {
+			return 'plugins.generic.bookReviewManager.history.note.error.date';
+		}
+		return null;
+	}
+
+	/**
 	 * Event data for a step taken through a one-click link: the actor's name is marked "via link".
 	 */
 	public static function viaLink(?User $actor): array {
@@ -208,12 +249,26 @@ class ReservationLog {
 
 	/**
 	 * All log entries of an object, newest first.
-	 * @return array[] Each with: date, type ('event'|'email'), label, actor, and for emails: recipients, subject, body
+	 * @return array[] Each with: date, type ('event'|'email'|'note'), label, actor, for emails: recipients, subject, body,
+	 *  for notes: body (plain text), dateOnly
 	 */
 	public static function getHistory($object): array {
 		$history = [];
 		$events = Repo::eventLog()->getCollector()->filterByAssoc(self::ASSOC_TYPE, [$object->getId()])->getMany();
 		foreach ($events as $event) {
+			if ((int) $event->getData('eventType') === self::EVENT_NOTE) {
+				$history[] = [
+					'date' => $event->getDateLogged(),
+					'id' => (int) $event->getId(),
+					'type' => 'note',
+					'label' => __(self::EVENT_MESSAGES[self::EVENT_NOTE]),
+					'actor' => $event->getData('userFullName'),
+					'body' => $event->getMessage(),
+					// Added for an earlier day: no time
+					'dateOnly' => str_ends_with((string) $event->getDateLogged(), ' 00:00:00'),
+				];
+				continue;
+			}
 			$history[] = [
 				'date' => $event->getDateLogged(),
 				'id' => (int) $event->getId(),
