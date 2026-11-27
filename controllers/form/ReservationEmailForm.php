@@ -19,6 +19,9 @@
  *  - invitation: invite someone on the invitation list (InvitationWorkflow)
  *  - round: start a sequential invitation round (the text is stored and reused)
  *  - dueDate: change the due date of an accepted review, optionally notifying the reviewer
+ *
+ *  The email opens in the interface language (if the journal supports it); the editor
+ *  can switch to the journal's other languages (see reservationEmailForm.tpl).
  */
 
 namespace APP\plugins\generic\bookReviewManager\controllers\form;
@@ -36,6 +39,7 @@ use APP\template\TemplateManager;
 use PKP\form\validation\FormValidatorCSRF;
 use PKP\form\validation\FormValidatorCustom;
 use PKP\form\validation\FormValidatorPost;
+use PKP\facades\Locale;
 
 class ReservationEmailForm extends \PKP\form\Form {
 
@@ -69,6 +73,8 @@ class ReservationEmailForm extends \PKP\form\Form {
 	protected string $mode;
 	/** @var \PKP\user\User[] assignmentId => user */
 	protected array $recipients = [];
+	/** Language of the email */
+	protected string $locale;
 
 	/**
 	 * @param Assignment[] $assignments One assignment, or several for MODE_UNSUCCESSFUL
@@ -80,6 +86,9 @@ class ReservationEmailForm extends \PKP\form\Form {
 		$this->object = $object;
 		$this->assignments = $assignments;
 		$this->mode = $mode;
+		// Chosen in the form, otherwise the language of the interface
+		$requested = (string) Application::get()->getRequest()->getUserVar('locale');
+		$this->locale = ReservationMailer::emailLocale($context, $requested ?: Locale::getLocale());
 		foreach ($assignments as $assignment) {
 			if ($user = Repo::user()->get($assignment->getUserId(), true)) {
 				$this->recipients[$assignment->getId()] = $user;
@@ -125,6 +134,22 @@ class ReservationEmailForm extends \PKP\form\Form {
 	}
 
 	public function initData() {
+		if ($this->mode === self::MODE_DUE_DATE) {
+			$this->setData('dueDate', substr((string) reset($this->assignments)?->getData('dueDate'), 0, 10));
+		}
+		[$subject, $body] = $this->composeEmail($this->locale);
+		$this->setData('subject', $subject);
+		$this->setData('body', $body);
+		$this->setData('sendEmail', true);
+		// Hidden by default only in sequential rounds
+		$this->setData('hideOffer', !$this->object->isBidding());
+	}
+
+	/**
+	 * The prefilled email in a language.
+	 * @return array [subject, body]
+	 */
+	protected function composeEmail(string $locale): array {
 		$sender = Application::get()->getRequest()->getUser();
 		// Batches and rounds: {$recipientName} (and the deadline) are filled in for each recipient
 		$single = count($this->assignments) === 1 && !in_array($this->mode, [self::MODE_UNSUCCESSFUL, self::MODE_ROUND], true);
@@ -134,26 +159,20 @@ class ReservationEmailForm extends \PKP\form\Form {
 			// The deadline the offer will get
 			[$days] = AssignmentWorkflow::getContractDays($this->plugin, $this->context->getId());
 			$deadline = (new \DateTimeImmutable('today'))->modify("+{$days} days")->format('Y-m-d');
-			$extra['contractDeadline'] = date(\PKP\core\PKPString::convertStrftimeFormat($this->context->getLocalizedDateFormatShort()), strtotime($deadline));
+			$extra['contractDeadline'] = ReservationMailer::formatDate($this->context, $deadline, $locale);
 		}
 		if ($this->mode === self::MODE_INVITATION) {
-			$extra['invitationDeadline'] = $this->formatDate(InvitationWorkflow::getDeadline($this->plugin, $this->object));
+			$extra['invitationDeadline'] = ReservationMailer::formatDate($this->context, InvitationWorkflow::getDeadline($this->plugin, $this->object), $locale);
 		}
 		if ($this->mode === self::MODE_DUE_DATE) {
 			// The new date is chosen in the same form and filled in when sending
 			$current = (string) $assignment?->getData('dueDate');
 			$extra['dueDate'] = '{$dueDate}';
-			$extra['previousDueDate'] = $current ? $this->formatDate($current) : '';
-			$this->setData('dueDate', substr($current, 0, 10));
+			$extra['previousDueDate'] = ReservationMailer::formatDate($this->context, $current, $locale);
 		}
 		// In batches, {$recipientName} is filled in per recipient when sending
 		$recipient = $assignment ? ($this->recipients[$assignment->getId()] ?? null) : null;
-		[$subject, $body] = ReservationMailer::compose($this->context, $this->emailType(), $this->object, $assignment, $recipient, $sender, $extra);
-		$this->setData('subject', $subject);
-		$this->setData('body', $body);
-		$this->setData('sendEmail', true);
-		// Hidden by default only in sequential rounds
-		$this->setData('hideOffer', !$this->object->isBidding());
+		return ReservationMailer::compose($this->context, $this->emailType(), $this->object, $assignment, $recipient, $sender, $extra, $locale);
 	}
 
 	public function readInputData() {
@@ -178,7 +197,7 @@ class ReservationEmailForm extends \PKP\form\Form {
 			'reviewerName' => $first['name'],
 			'optionalEmail' => in_array($this->mode, self::OPTIONAL_EMAIL_MODES, true),
 			'cancelOffer' => $this->mode === self::MODE_CANCEL && reset($this->assignments)?->getStatus() === Assignment::STATUS_OFFERED,
-		] + ($this->mode === self::MODE_INVITATION ? [
+		] + self::languageChoice($this->context, $this->locale, fn ($locale) => $this->composeEmail($locale)) + ($this->mode === self::MODE_INVITATION ? [
 			'stepDescription' => __('plugins.generic.bookReviewManager.invitation.send.description.' . InvitationWorkflow::getKind($this->object), [
 				'name' => $first['name'],
 				'deadline' => $this->formatDate(InvitationWorkflow::getDeadline($this->plugin, $this->object)),
@@ -216,15 +235,34 @@ class ReservationEmailForm extends \PKP\form\Form {
 		return parent::fetch($request, $template, $display);
 	}
 
+	/**
+	 * Template variables of the language choice (reservationEmailForm.tpl), also used by CopyStepForm.
+	 * @param callable $compose fn (string $locale): [subject, body]
+	 */
+	public static function languageChoice($context, string $locale, callable $compose): array {
+		$locales = ReservationMailer::emailLocales($context);
+		$variants = [];
+		if (count($locales) > 1) {
+			foreach (array_keys($locales) as $l) {
+				[$subject, $body] = $compose($l);
+				$variants[$l] = ['subject' => $subject, 'body' => $body];
+			}
+		}
+		return ['emailLocale' => $locale, 'emailLocales' => $locales, 'emailVariants' => $variants,
+			// Safe inside <script>
+			'emailVariantsJson' => json_encode((object) $variants, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT)];
+	}
+
+	/** A date for the form (in the interface language) */
 	protected function formatDate(string $date): string {
-		return date(\PKP\core\PKPString::convertStrftimeFormat($this->context->getLocalizedDateFormatShort()), strtotime($date));
+		return ReservationMailer::formatDate($this->context, $date, Locale::getLocale());
 	}
 
 	public function execute(...$functionArgs) {
 		$sender = Application::get()->getRequest()->getUser();
 		if ($this->mode === self::MODE_ROUND) {
 			InvitationWorkflow::startRound($this->plugin, $this->context, $this->object, $sender,
-				trim((string) $this->getData('subject')), (string) $this->getData('body'), (bool) $this->getData('hideOffer'));
+				trim((string) $this->getData('subject')), (string) $this->getData('body'), (bool) $this->getData('hideOffer'), $this->locale);
 			return parent::execute(...$functionArgs);
 		}
 		$sendEmail = !in_array($this->mode, self::OPTIONAL_EMAIL_MODES, true) || $this->getData('sendEmail');
@@ -241,26 +279,26 @@ class ReservationEmailForm extends \PKP\form\Form {
 					break;
 				case self::MODE_CONTRACT_OFFER:
 					$key = AssignmentWorkflow::offerContract($this->plugin, $this->context, $this->object, $assignment, $sender);
-					$late['contractUrl'] = ActionLink::url($this->context, $key);
+					$late['contractUrl'] = ActionLink::url($this->context, $key, $this->locale);
 					break;
 				case self::MODE_UNSUCCESSFUL:
 					AssignmentWorkflow::markUnsuccessful($this->object, $assignment, $sender);
 					$key = ActionLink::create($assignment->getId(), ActionLink::ACTION_LEAVE,
 						(new \DateTimeImmutable('today'))->modify('+' . ActionLink::DEFAULT_VALIDITY_DAYS . ' days')->format('Y-m-d 23:59:59'));
-					$late['removeUrl'] = ActionLink::url($this->context, $key);
+					$late['removeUrl'] = ActionLink::url($this->context, $key, $this->locale);
 					break;
 				case self::MODE_INVITATION:
-					$key = InvitationWorkflow::invite($this->object, $assignment, $sender, InvitationWorkflow::getDeadline($this->plugin, $this->object));
-					$late['invitationUrl'] = ActionLink::url($this->context, $key);
+					$key = InvitationWorkflow::invite($this->object, $assignment, $sender, InvitationWorkflow::getDeadline($this->plugin, $this->object), $this->locale);
+					$late['invitationUrl'] = ActionLink::url($this->context, $key, $this->locale);
 					break;
 				case self::MODE_DUE_DATE:
 					$dueDate = (string) $this->getData('dueDate');
 					AssignmentWorkflow::changeDueDate($this->object, $assignment, $sender, $dueDate);
-					$late['dueDate'] = $this->formatDate($dueDate);
+					$late['dueDate'] = ReservationMailer::formatDate($this->context, $dueDate, $this->locale);
 					break;
 			}
 			if ($sendEmail && $recipient) {
-				ReservationMailer::send($this->context, $type, $this->object, $recipient, $sender, $subject, $body, $late);
+				ReservationMailer::send($this->context, $type, $this->object, $recipient, $sender, $subject, $body, $late, null, $this->locale);
 			}
 		}
 		parent::execute(...$functionArgs);

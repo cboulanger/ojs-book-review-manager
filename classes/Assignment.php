@@ -62,7 +62,7 @@ class Assignment extends DataObject {
 	 */
 	const FIELDS = ['statement', 'dateOffered', 'contractDeadline', 'contractReminderSent', 'declineReason',
 		'copyStatus', 'copyStatusDate', 'copySentBy', 'returnTarget', 'copyReminderSent', 'copyReminderCount',
-		'position', 'invitedBy', 'dateInvited', 'invitationDeadline', 'invitationDeclineReason', 'invitationReminderSent',
+		'position', 'invitedBy', 'dateInvited', 'invitationDeadline', 'invitationLocale', 'invitationDeclineReason', 'invitationReminderSent',
 		'bundleAssignmentId'];
 
 	/** A mirror carries the review copy status of one member work of a review essay. */

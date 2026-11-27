@@ -62,6 +62,12 @@ msgstr "Emails of the Book Review Manager are switched off: nothing is sent to r
 msgid "plugins.generic.bookReviewManager.emailsSuppressed.form"
 msgstr "Emails are switched off: this email will be recorded in the history but not sent."
 
+msgid "plugins.generic.bookReviewManager.email.language"
+msgstr "Language of the email"
+
+msgid "plugins.generic.bookReviewManager.email.languageHint"
+msgstr "Switching the language replaces subject and text with the template in that language; changes are lost."
+
 msgid "plugins.generic.bookReviewManager.email.notSent"
 msgstr "[not sent]"
 

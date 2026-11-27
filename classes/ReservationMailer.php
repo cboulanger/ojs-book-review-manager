@@ -134,25 +134,54 @@ class ReservationMailer {
 	}
 
 	/**
+	 * The language of an email: the requested one if the journal supports it, otherwise its primary language.
+	 */
+	public static function emailLocale($context, ?string $locale = null): string {
+		return $locale && in_array($locale, (array) $context->getSupportedLocales(), true) ? $locale : $context->getPrimaryLocale();
+	}
+
+	/**
+	 * The languages an editor can choose for an email: locale => name.
+	 */
+	public static function emailLocales($context): array {
+		return $context->getSupportedLocaleNames();
+	}
+
+	/**
+	 * A date in the short format of the email's language (default: the journal's primary language).
+	 */
+	public static function formatDate($context, ?string $date, ?string $locale = null): string {
+		if (!$date) {
+			return '';
+		}
+		$locale = self::emailLocale($context, $locale);
+		$format = PKPString::convertStrftimeFormat($context->getLocalizedDateFormatShort($locale));
+		// Translated month and day names (date() only knows English), as OJS's date_format modifier does
+		return (new \Carbon\Carbon($date))->locale($locale)->translatedFormat($format);
+	}
+
+	/**
 	 * Values for the template variables.
 	 * @param ?User $recipient null: leave {$recipientName} for send() (batch emails)
 	 */
 	public static function getParams($context, ObjectForReview $object, ?Assignment $assignment, ?User $recipient, ?User $sender,
 			string $locale, array $extra = []): array {
 		$request = Application::get()->getRequest();
-		$dateFormat = PKPString::convertStrftimeFormat($context->getLocalizedDateFormatShort($locale));
-		$formatDate = fn ($date) => $date ? date($dateFormat, strtotime($date)) : '';
+		$formatDate = fn ($date) => self::formatDate($context, $date, $locale);
 		$params = [
 			'objectDescription' => htmlspecialchars(strip_tags($object->getCitation())),
 			'dueDate' => $formatDate($assignment?->getData('dueDate')),
 			'contractDeadline' => $formatDate($assignment?->getData('contractDeadline')),
 			'contextName' => htmlspecialchars($context->getLocalizedName($locale)),
 			'senderName' => htmlspecialchars($sender ? $sender->getFullName() : $context->getData('contactName')),
-			'forReviewUrl' => $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $context->getPath(), \APP\plugins\generic\bookReviewManager\pages\ObjectsForReviewHandler::PAGE),
+			// Pages for the recipient open in the email's language
+			'forReviewUrl' => $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $context->getPath(), \APP\plugins\generic\bookReviewManager\pages\ObjectsForReviewHandler::PAGE,
+				null, null, null, null, false, $locale),
 			'deskUrl' => $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $context->getPath(),
 				ObjectsForReviewManagementHandler::PAGE, 'desk'),
 			// Where the reviewer submits the review (the submission wizard)
-			'submissionUrl' => $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $context->getPath(), 'submission'),
+			'submissionUrl' => $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $context->getPath(), 'submission',
+				null, null, null, null, false, $locale),
 		];
 		if ($recipient) {
 			$params['recipientName'] = htmlspecialchars($recipient->getFullName());
@@ -162,11 +191,12 @@ class ReservationMailer {
 
 	/**
 	 * Subject and body of a template with the variables filled in.
+	 * @param ?string $locale Language of the email (default: the journal's primary language)
 	 * @return array [subject, body]
 	 */
 	public static function compose($context, ReservationEmailEventType $type, ObjectForReview $object, ?Assignment $assignment,
-			?User $recipient, ?User $sender, array $extra = []): array {
-		$locale = $context->getPrimaryLocale();
+			?User $recipient, ?User $sender, array $extra = [], ?string $locale = null): array {
+		$locale = self::emailLocale($context, $locale);
 		$template = Repo::emailTemplate()->getByKey($context->getId(), self::MAILABLES[$type->value]::getEmailTemplateKey());
 		$params = self::getParams($context, $object, $assignment, $recipient, $sender, $locale, $extra);
 		return [
@@ -180,17 +210,18 @@ class ReservationMailer {
 	 * @param ?User $sender null for automatic emails (sent from the journal contact)
 	 * @param array $late Values for LATE_VARIABLES (e.g. ['contractUrl' => ...])
 	 * @param ?Assignment $assignment The assignment the one-click link (LINKS) acts on
+	 * @param ?string $locale Language of the email (default: the journal's primary language)
 	 */
 	public static function send($context, ReservationEmailEventType $type, ObjectForReview $object, User $recipient, ?User $sender,
-			string $subject, string $body, array $late = [], ?Assignment $assignment = null): void {
+			string $subject, string $body, array $late = [], ?Assignment $assignment = null, ?string $locale = null): void {
 		$late['recipientName'] = htmlspecialchars($recipient->getFullName());
 		if ($assignment && isset(self::LINKS[$type->value])) {
 			[$action, $variable, $labelKey] = self::LINKS[$type->value];
 			$expires = (new \DateTimeImmutable('today'))->modify('+' . ActionLink::DEFAULT_VALIDITY_DAYS . ' days')->format('Y-m-d 23:59:59');
-			$url = ActionLink::url($context, ActionLink::create($assignment->getId(), $action, $expires));
+			$url = ActionLink::url($context, ActionLink::create($assignment->getId(), $action, $expires), self::emailLocale($context, $locale));
 			$late[$variable] = $url;
 			if (!str_contains($body, '{$' . $variable . '}')) {
-				$label = __('plugins.generic.bookReviewManager.' . $labelKey, [], $context->getPrimaryLocale());
+				$label = __('plugins.generic.bookReviewManager.' . $labelKey, [], self::emailLocale($context, $locale));
 				$body .= '<p>' . htmlspecialchars($label) . ':<br /><a href="{$' . $variable . '}">{$' . $variable . '}</a></p>';
 			}
 		}

@@ -62,6 +62,12 @@ msgstr "Die E-Mails des Book Review Managers sind ausgeschaltet: An Rezensent:in
 msgid "plugins.generic.bookReviewManager.emailsSuppressed.form"
 msgstr "E-Mails sind ausgeschaltet: Diese E-Mail wird im Verlauf festgehalten, aber nicht gesendet."
 
+msgid "plugins.generic.bookReviewManager.email.language"
+msgstr "Sprache der E-Mail"
+
+msgid "plugins.generic.bookReviewManager.email.languageHint"
+msgstr "Beim Wechsel der Sprache werden Betreff und Text durch die Vorlage in dieser Sprache ersetzt; Änderungen gehen verloren."
+
 msgid "plugins.generic.bookReviewManager.email.notSent"
 msgstr "[nicht gesendet]"
 

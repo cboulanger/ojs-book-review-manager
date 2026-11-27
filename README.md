@@ -36,7 +36,7 @@ Changed or new in Book Review Manager:
 - **Reservation management.** Editors can email reviewers, cancel reservations and see overdue reviews. A daily task sends reminders to reviewers, selected bidders and publishers.
 - **Audit trail.** Every step and every email is recorded in the offer's history.
 - **Privacy.** Delivery addresses and phone numbers are deleted once the copy has arrived, and bid statements once the review is published. Copies are never forwarded from one reviewer to the next.
-- **Editable emails.** All emails are templates under Settings › Emails, in English, German and Finnish.
+- **Editable emails.** All emails are templates under Settings › Emails, in English, German and Finnish. Emails you edit before sending open in your interface language; you can switch to any of the journal's languages. Reminders to invitees follow the language of the invitation.
 - **API for imports.** Works (by DOI or ISBN), reviewers, publisher contacts and review processes already under way can be imported with an OJS API key, with a Node command line client. See [skills/book-review-manager-api/SKILL.md](skills/book-review-manager-api/SKILL.md). Review processes kept only in email can be migrated with [skills/book-review-manager-email-import](skills/book-review-manager-email-import/SKILL.md).
 
 ## Documentation

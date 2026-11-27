@@ -5,8 +5,8 @@
  *
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @brief Notices to the editor, and the switch that turns the plugin's emails off
- *  (writes to the database, mail is faked).
+ * @brief Notices to the editor, the switch that turns the plugin's emails off, and
+ *  the language of an email (writes to the database, mail is faked).
  */
 
 namespace APP\plugins\generic\bookReviewManager\tests\unit;
@@ -111,5 +111,51 @@ class ReservationMailerTest extends TestCase {
 		ReservationMailer::notifyEditor($this->noticePlugin(), $context, ReservationEmailEventType::INVITATION_DECLINED, $work, null);
 		Mail::assertSent(ObjectsForReviewInvitationDeclined::class,
 			fn ($mailable) => $mailable->hasTo('notices@example.org'));
+	}
+
+	/** The language of an email: a supported one as requested, anything else falls back to the primary language */
+	public function testEmailLocaleFallsBackToPrimaryLanguage(): void {
+		$context = Application::getContextDAO()->getById(self::CONTEXT_ID);
+		$primary = $context->getPrimaryLocale();
+		$this->assertSame($primary, ReservationMailer::emailLocale($context));
+		$this->assertSame($primary, ReservationMailer::emailLocale($context, 'xx'));
+		foreach ($context->getSupportedLocales() as $locale) {
+			$this->assertSame($locale, ReservationMailer::emailLocale($context, $locale));
+		}
+		$this->assertSame($context->getSupportedLocaleNames(), ReservationMailer::emailLocales($context));
+	}
+
+	/** The template is filled in the requested language (used to be always the primary language) */
+	public function testComposeUsesRequestedLanguage(): void {
+		$context = Application::getContextDAO()->getById(self::CONTEXT_ID);
+		$locales = $context->getSupportedLocales();
+		if (!in_array('de', $locales, true) || !in_array('en', $locales, true)) {
+			$this->markTestSkipped('The dev journal needs English and German');
+		}
+		ReservationMailer::ensureTemplates($this->noticePlugin(), self::CONTEXT_ID);
+		$work = $this->work();
+		$template = \APP\facades\Repo::emailTemplate()->getByKey(self::CONTEXT_ID,
+			ReservationMailer::MAILABLES[ReservationEmailEventType::INVITATION_RESERVE->value]::getEmailTemplateKey());
+		foreach (['de', 'en'] as $locale) {
+			[$subject] = ReservationMailer::compose($context, ReservationEmailEventType::INVITATION_RESERVE, $work, null, null, null, [], $locale);
+			$expected = Mail::compileParams((string) $template->getLocalizedData('subject', $locale),
+				ReservationMailer::getParams($context, $work, null, null, null, $locale));
+			$this->assertSame($expected, $subject, $locale);
+		}
+		[$de] = ReservationMailer::compose($context, ReservationEmailEventType::INVITATION_RESERVE, $work, null, null, null, [], 'de');
+		[$en] = ReservationMailer::compose($context, ReservationEmailEventType::INVITATION_RESERVE, $work, null, null, null, [], 'en');
+		$this->assertNotSame($de, $en);
+	}
+
+	/** Dates follow the email's language, with translated month names */
+	public function testFormatDateInEmailLanguage(): void {
+		$context = Application::getContextDAO()->getById(self::CONTEXT_ID);
+		$this->assertSame('', ReservationMailer::formatDate($context, null, 'en'));
+		$this->assertSame('', ReservationMailer::formatDate($context, '', 'en'));
+		foreach ($context->getSupportedLocales() as $locale) {
+			$format = \PKP\core\PKPString::convertStrftimeFormat($context->getLocalizedDateFormatShort($locale));
+			$this->assertSame((new \Carbon\Carbon('2026-03-05'))->locale($locale)->translatedFormat($format),
+				ReservationMailer::formatDate($context, '2026-03-05', $locale), $locale);
+		}
 	}
 }

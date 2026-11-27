@@ -102,9 +102,11 @@ class ActionLink {
 	/**
 	 * The public URL of a link.
 	 */
-	public static function url($context, string $key): string {
+	public static function url($context, string $key, ?string $locale = null): string {
 		$request = Application::get()->getRequest();
-		return $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $context->getPath(), \APP\plugins\generic\bookReviewManager\pages\ObjectsForReviewHandler::PAGE, 'link', [$key]);
+		// $locale: the language of the email, so that the page opens in it (null: the current language)
+		return $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $context->getPath(), \APP\plugins\generic\bookReviewManager\pages\ObjectsForReviewHandler::PAGE, 'link', [$key],
+			null, null, false, $locale);
 	}
 
 	protected static function hash(string $key): string {

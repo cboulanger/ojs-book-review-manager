@@ -40,6 +40,7 @@ class ObjectForReview extends \PKP\core\DataObject {
 	 * Invitation round (see InvitationWorkflow), while one is running:
 	 * - invitationMode: 'sequential'
 	 * - invitationSubject, invitationBody: the email text edited when the round started
+ * - invitationLocale: its language (the invitations' deadline and links follow it)
 	 * - invitationStarted, invitationStartedBy: when and by whom (the sender of the emails)
 	 * - invitationExhausted: date the round reached the end of the list
 	 * Review essays (one review of several works; the container owns the offer):
@@ -48,7 +49,7 @@ class ObjectForReview extends \PKP\core\DataObject {
 	 */
 	const OFFER_FIELDS = ['assignmentMode', 'bidDeadline', 'biddingClosed', 'responsibleEditorId', 'offerClosed', 'hidden',
 		'publisherContactId', 'journalHoldsCopy', 'returnRequired', 'notifyPublisher', 'publisherNotified',
-		'invitationMode', 'invitationSubject', 'invitationBody', 'invitationStarted', 'invitationStartedBy', 'invitationExhausted',
+		'invitationMode', 'invitationSubject', 'invitationBody', 'invitationLocale', 'invitationStarted', 'invitationStartedBy', 'invitationExhausted',
 		'bundleId', 'bundlePosition'];
 
 	/** Resource type of a review essay container */

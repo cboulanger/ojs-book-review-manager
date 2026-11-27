@@ -62,6 +62,12 @@ msgstr "Book Review Managerin sähköpostit on kytketty pois päältä: arvioiji
 msgid "plugins.generic.bookReviewManager.emailsSuppressed.form"
 msgstr "Sähköpostit on kytketty pois päältä: tämä sähköposti kirjataan historiaan, mutta sitä ei lähetetä."
 
+msgid "plugins.generic.bookReviewManager.email.language"
+msgstr "Sähköpostin kieli"
+
+msgid "plugins.generic.bookReviewManager.email.languageHint"
+msgstr "Kielen vaihtaminen korvaa aiheen ja tekstin kyseisen kielen pohjalla; muutokset menetetään."
+
 msgid "plugins.generic.bookReviewManager.email.notSent"
 msgstr "[ei lähetetty]"
 

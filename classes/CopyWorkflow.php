@@ -234,9 +234,10 @@ class CopyWorkflow {
 	/**
 	 * Template variables of the copy emails.
 	 * @param ?string $step The step the email belongs to (determines who sent the copy)
+	 * @param ?string $locale Language of the email (default: the journal's primary language)
 	 */
-	public static function getEmailParams($context, ObjectForReview $object, Assignment $assignment, ?string $step): array {
-		$locale = $context->getPrimaryLocale();
+	public static function getEmailParams($context, ObjectForReview $object, Assignment $assignment, ?string $step, ?string $locale = null): array {
+		$locale = ReservationMailer::emailLocale($context, $locale);
 		$reviewer = Repo::user()->get($assignment->getUserId(), true);
 		$preference = $assignment->getData('copyPreference');
 		$sentBy = match ($step) {

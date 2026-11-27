@@ -29,6 +29,7 @@ use PKP\core\Core;
 use PKP\form\validation\FormValidatorCSRF;
 use PKP\form\validation\FormValidatorCustom;
 use PKP\form\validation\FormValidatorPost;
+use PKP\facades\Locale;
 
 class CopyStepForm extends \PKP\form\Form {
 
@@ -47,9 +48,13 @@ class CopyStepForm extends \PKP\form\Form {
 	protected bool $emailRequired = false;
 	/** @var array target => address, for requestReturn */
 	protected array $returnTargets = [];
+	/** Language of the email (see ReservationEmailForm) */
+	protected string $locale;
 
 	public function __construct($plugin, $context, $object, Assignment $assignment, string $step) {
 		parent::__construct($plugin->getTemplateResource('reservationEmailForm.tpl'));
+		$requested = (string) Application::get()->getRequest()->getUserVar('locale');
+		$this->locale = ReservationMailer::emailLocale($context, $requested ?: Locale::getLocale());
 		$this->plugin = $plugin;
 		$this->context = $context;
 		$this->object = $object;
@@ -100,19 +105,27 @@ class CopyStepForm extends \PKP\form\Form {
 		if (!$this->emailType) {
 			return;
 		}
-		$sender = Application::get()->getRequest()->getUser();
-		[$subject, $body] = ReservationMailer::compose($this->context, $this->emailType, $this->object, $this->assignment,
-			$this->recipient, $sender, $this->emailParams());
+		[$subject, $body] = $this->composeEmail($this->locale);
 		$this->setData('subject', $subject);
 		$this->setData('body', $body);
 	}
 
 	/**
+	 * The prefilled email in a language.
+	 * @return array [subject, body]
+	 */
+	protected function composeEmail(string $locale): array {
+		$sender = Application::get()->getRequest()->getUser();
+		return ReservationMailer::compose($this->context, $this->emailType, $this->object, $this->assignment,
+			$this->recipient, $sender, $this->emailParams($locale), $locale);
+	}
+
+	/**
 	 * Template variables of the copy emails.
 	 */
-	protected function emailParams(): array {
+	protected function emailParams(string $locale): array {
 		$params = CopyWorkflow::getEmailParams($this->context, $this->object, $this->assignment,
-			$this->step === self::NOTIFY_PUBLISHER ? null : $this->step);
+			$this->step === self::NOTIFY_PUBLISHER ? null : $this->step, $locale);
 		if ($this->step === self::NOTIFY_PUBLISHER) {
 			$params['reviewUrl'] = $this->getReviewUrl();
 		}
@@ -159,7 +172,7 @@ class CopyStepForm extends \PKP\form\Form {
 			'submitKey' => 'plugins.generic.bookReviewManager.copy.step.' . $this->step,
 			'actionUrl' => $request->getDispatcher()->url($request, Application::ROUTE_COMPONENT, null,
 				ReservationActionsHandler::COMPONENT, 'copyStep'),
-		]);
+		] + ($this->emailType ? ReservationEmailForm::languageChoice($this->context, $this->locale, fn ($locale) => $this->composeEmail($locale)) : []));
 		return parent::fetch($request, $template, $display);
 	}
 
@@ -179,7 +192,7 @@ class CopyStepForm extends \PKP\form\Form {
 				$late['returnAddress'] = nl2br(htmlspecialchars($this->returnTargets[$this->getData('returnTarget')] ?? ''));
 			}
 			ReservationMailer::send($this->context, $this->emailType, $this->object, $this->recipient, $sender,
-				trim((string) $this->getData('subject')), (string) $this->getData('body'), $late, $this->assignment);
+				trim((string) $this->getData('subject')), (string) $this->getData('body'), $late, $this->assignment, $this->locale);
 		}
 		parent::execute(...$functionArgs);
 	}

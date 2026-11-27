@@ -5,6 +5,8 @@
  *
  * A workflow step with a prefilled, editable email (see ReservationEmailForm):
  * $mode message | cancel | contractOffer | unsuccessful | invitation | round | dueDate | copyStep (see CopyStepForm)
+ * $emailLocale, $emailLocales, $emailVariants: the email's language and the prefilled text in each of the
+ *   journal's languages (see ReservationEmailForm::languageChoice())
  *}
 <script>
 	$(function() {ldelim}
@@ -19,6 +21,7 @@
 		<input type="hidden" name="assignmentIds[]" value="{$assignmentId|escape}" />
 	{/foreach}
 	{if $step}<input type="hidden" name="step" value="{$step|escape}" />{/if}
+	{if $emailLocale}<input type="hidden" name="locale" value="{$emailLocale|escape}" />{/if}
 
 	{fbvFormArea id="ofrReservationEmailFormArea"}
 		{if $ofrEmailsSuppressed}
@@ -74,6 +77,16 @@
 					<p class="ofrRecipient">{$recipient.name|escape} &lt;{$recipient.email|escape}&gt;</p>
 				{/foreach}
 			{/fbvFormSection}
+			{if $emailVariants|@count > 1}
+				{fbvFormSection label="plugins.generic.bookReviewManager.email.language" for="ofrEmailLocale"}
+					<select id="ofrEmailLocale" class="ofrEmailLocale">
+						{foreach from=$emailLocales key=localeKey item=localeName}
+							<option value="{$localeKey|escape}"{if $localeKey == $emailLocale} selected{/if}>{$localeName|escape}</option>
+						{/foreach}
+					</select>
+					<p class="ofrHint">{translate key="plugins.generic.bookReviewManager.email.languageHint"}</p>
+				{/fbvFormSection}
+			{/if}
 			{fbvFormSection label="email.subject" required=true}
 				{fbvElement type="text" id="subject" value=$subject maxlength="255" required=true}
 			{/fbvFormSection}
@@ -114,6 +127,24 @@
 			{rdelim}
 			$toggle.on('change', sync);
 			sync();
+		{rdelim});
+	</script>
+{/if}
+
+{if $emailVariants|@count > 1}
+	<script>
+		$(function() {ldelim}
+			// Switching the language replaces subject and body with the template in that language
+			var $form = $('#ofrReservationEmailForm'),
+				variants = {$emailVariantsJson};
+			$form.find('#ofrEmailLocale').on('change', function() {ldelim}
+				var variant = variants[this.value], $body = $form.find('textarea[name="body"]');
+				if (!variant) return;
+				$form.find('input[name="locale"]').val(this.value);
+				$form.find('input[name="subject"]').val(variant.subject);
+				var editor = window.tinymce && tinymce.get($body.attr('id'));
+				editor ? editor.setContent(variant.body) : $body.val(variant.body);
+			{rdelim});
 		{rdelim});
 	</script>
 {/if}

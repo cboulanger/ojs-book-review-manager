@@ -32,7 +32,7 @@ You work from the backend menu section **Book Reviews**:
 - **Reviewers & bidders** lists every bidder and reviewer, with their status, due date and delivery details.
 - **Submitted reviews** lists works attached to review submissions.
 
-Most steps that concern someone else come with a prefilled email that you can edit before it is sent. Everything is recorded in the offer's **history**.
+Most steps that concern someone else come with a prefilled email that you can edit before it is sent. It opens in the language of your interface; under **Language of the email** you can switch to another of the journal's languages (this replaces the text with the template in that language). Dates and links in the email follow the chosen language, and so do the reminders for an invitation. Everything is recorded in the offer's **history**.
 
 ## Flowcharts
 

@@ -248,9 +248,10 @@ class InvitationWorkflow {
 
 	/**
 	 * Send (or send again) an invitation: the assignment becomes "invited".
+	 * @param ?string $locale Language of the invitation, also used for its reminder (null: the journal's primary language)
 	 * @return string Key of the one-click link (valid until the deadline)
 	 */
-	public static function invite(ObjectForReview $object, Assignment $assignment, ?User $editor, string $deadline): string {
+	public static function invite(ObjectForReview $object, Assignment $assignment, ?User $editor, string $deadline, ?string $locale = null): string {
 		if (!in_array($assignment->getStatus(), self::SENDABLE_STATUSES, true)) {
 			throw new \InvalidArgumentException('Assignment ' . $assignment->getId() . ' has status ' . $assignment->getStatus());
 		}
@@ -258,6 +259,7 @@ class InvitationWorkflow {
 		$assignment->setData('invitedBy', $editor?->getId() ?? $object->getData('invitationStartedBy'));
 		$assignment->setData('dateInvited', Core::getCurrentDate());
 		$assignment->setData('invitationDeadline', $deadline);
+		$locale ? $assignment->setData('invitationLocale', $locale) : $assignment->unsetData('invitationLocale');
 		$assignment->unsetData('invitationDeclineReason');
 		$assignment->unsetData('invitationReminderSent');
 		$assignment->setStatus(Assignment::STATUS_INVITED);
@@ -455,7 +457,8 @@ class InvitationWorkflow {
 	 * The subject and body keep {$recipientName}, {$invitationDeadline} and
 	 * {$invitationUrl}, which are filled in for each invitee.
 	 */
-	public static function startRound($plugin, $context, ObjectForReview $object, User $editor, string $subject, string $body, bool $hide): void {
+	public static function startRound($plugin, $context, ObjectForReview $object, User $editor, string $subject, string $body, bool $hide,
+			?string $locale = null): void {
 		if (!self::canStartRound($object)) {
 			throw new \InvalidArgumentException('A sequential round cannot be started for object ' . $object->getId());
 		}
@@ -463,6 +466,7 @@ class InvitationWorkflow {
 		$object->setOfferSetting('invitationMode', $mode);
 		$object->setOfferSetting('invitationSubject', $subject);
 		$object->setOfferSetting('invitationBody', $body);
+		$object->setOfferSetting('invitationLocale', $locale);
 		$object->setOfferSetting('invitationStarted', Core::getCurrentDate());
 		$object->setOfferSetting('invitationStartedBy', $editor->getId());
 		$object->setOfferSetting('invitationExhausted', null);
@@ -537,12 +541,13 @@ class InvitationWorkflow {
 			return;
 		}
 		$deadline = self::getDeadline($plugin, $object);
-		$key = self::invite($object, $assignment, $actor, $deadline);
+		$locale = $object->getData('invitationLocale') ?: null;
+		$key = self::invite($object, $assignment, $actor, $deadline, $locale);
 		ReservationMailer::send($context, self::getEmailType($object), $object, $invitee, $sender,
 			(string) $object->getData('invitationSubject'), (string) $object->getData('invitationBody'), [
-				'invitationUrl' => ActionLink::url($context, $key),
-				'invitationDeadline' => self::formatDate($context, $deadline),
-			]);
+				'invitationUrl' => ActionLink::url($context, $key, $locale),
+				'invitationDeadline' => self::formatDate($context, $deadline, $locale),
+			], null, $locale);
 	}
 
 	/**
@@ -629,7 +634,7 @@ class InvitationWorkflow {
 		if (!$object->getData('invitationMode')) {
 			return;
 		}
-		foreach (['invitationMode', 'invitationSubject', 'invitationBody', 'invitationStarted', 'invitationStartedBy', 'invitationExhausted'] as $name) {
+		foreach (['invitationMode', 'invitationSubject', 'invitationBody', 'invitationLocale', 'invitationStarted', 'invitationStartedBy', 'invitationExhausted'] as $name) {
 			$object->setOfferSetting($name, null);
 		}
 		(new ObjectForReviewDAO())->updateObject($object);
@@ -645,15 +650,21 @@ class InvitationWorkflow {
 			return false;
 		}
 		$key = ActionLink::create($assignment->getId(), ActionLink::ACTION_INVITATION, $deadline . ' 23:59:59');
-		$late = ['invitationUrl' => ActionLink::url($context, $key), 'invitationDeadline' => self::formatDate($context, $deadline)];
-		[$subject, $body] = ReservationMailer::compose($context, ReservationEmailEventType::INVITATION_REMINDER, $object, $assignment, $invitee, null, $late);
-		ReservationMailer::send($context, ReservationEmailEventType::INVITATION_REMINDER, $object, $invitee, null, $subject, $body, $late);
+		// In the language of the invitation
+		$locale = $assignment->getData('invitationLocale') ?: null;
+		$late = ['invitationUrl' => ActionLink::url($context, $key, $locale), 'invitationDeadline' => self::formatDate($context, $deadline, $locale)];
+		[$subject, $body] = ReservationMailer::compose($context, ReservationEmailEventType::INVITATION_REMINDER, $object, $assignment, $invitee, null,
+			$late, $locale);
+		ReservationMailer::send($context, ReservationEmailEventType::INVITATION_REMINDER, $object, $invitee, null, $subject, $body, $late, null, $locale);
 		$assignment->setData('invitationReminderSent', Core::getCurrentDate());
 		AssignmentWorkflow::dao()->updateObject($assignment);
 		return true;
 	}
 
-	public static function formatDate($context, string $date): string {
-		return date(\PKP\core\PKPString::convertStrftimeFormat($context->getLocalizedDateFormatShort()), strtotime($date));
+	/**
+	 * @param ?string $locale Language of the email (default: the journal's primary language)
+	 */
+	public static function formatDate($context, string $date, ?string $locale = null): string {
+		return ReservationMailer::formatDate($context, $date, $locale);
 	}
 }
