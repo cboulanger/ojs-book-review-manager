@@ -198,7 +198,7 @@ flowchart TD
 
 ### 1. Offering a work
 
-Under **Offered works › Add work**, enter the work. With a DOI or ISBN, the lookup button fills in the authors, title, publisher and year. The optional **Description** (formatted text) appears below the title in the public list, e.g. to say what the work is about or what kind of review you are looking for.
+Under **Offered works › Add work**, enter the work. With a DOI or ISBN, the lookup button fills in the authors, title, publisher and year. It also sets **Open access** if Crossref lists an open (Creative Commons) license; otherwise the status stays *Unknown*, and you can set it yourself (open access, partly open access, not open access). **Publisher's page** is the work's web address at the publisher. Left empty, the DOI or, for an ISBN, the WorldCat entry is used; an ISBN found at Crossref fills in the book's DOI link. The invitation emails contain both (variable `{$workDetails}`, or `{$publisherUrl}` and `{$openAccessStatus}` on their own), and the public list shows the publisher's page and an open access label. The optional **Description** (formatted text) appears below the title in the public list, e.g. to say what the work is about or what kind of review you are looking for.
 
 ![The offer form](images/offer-form.png)
 

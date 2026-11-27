@@ -21,12 +21,17 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use APP\facades\Repo;
+use PKP\facades\Locale;
 
 
 class ObjectsForReviewSchemaMigration extends Migration
 {
     /** Increase when tables or data migrations are added */
-    const SCHEMA_VERSION = 5;
+    const SCHEMA_VERSION = 6;
+
+    /** Schema version 6: email templates whose default text changed (the work's link and open access status) */
+    const CHANGED_TEMPLATES_6 = ['BRM_INVITATION_RESERVE', 'BRM_INVITATION_BID'];
 
     /** Reservation fields that were stored with the object before schema version 2 */
     const LEGACY_RESERVATION_FIELDS = ['dateReserved', 'dueDate', 'copyPreference', 'shippingAddress', 'phone', 'copyNote', 'reminderSent'];
@@ -171,6 +176,10 @@ class ObjectsForReviewSchemaMigration extends Migration
         }
         if ($this->fromVersion < 4) {
             $this->plainTextTitles();
+        }
+        // New installations get the current texts when the email templates are installed
+        if ($this->fromVersion > 0 && $this->fromVersion < 6) {
+            $this->refreshDefaultEmailTexts(self::CHANGED_TEMPLATES_6);
         }
 
         DB::table('plugin_settings')->updateOrInsert(
@@ -317,6 +326,29 @@ class ObjectsForReviewSchemaMigration extends Migration
             ->update(['message' => DB::raw('REPLACE(message, ' . DB::getPdo()->quote(self::FORK_LOCALE_PREFIX) . ', ' . DB::getPdo()->quote(self::LOCALE_PREFIX) . ')')]);
 
         return $forkVersion;
+    }
+
+    /**
+     * Schema version 6: replace the default texts of email templates with the current ones.
+     * Plugin upgrades only install templates that are missing, so changed default texts
+     * would not arrive otherwise. Templates a journal has customized are not changed.
+     */
+    protected function refreshDefaultEmailTexts(array $keys): void
+    {
+        $file = __DIR__ . '/emailTemplates.xml';
+        $locales = array_filter(\PKP\db\DAORegistry::getDAO('SiteDAO')->getSite()?->getInstalledLocales() ?? [],
+            fn (string $locale) => file_exists(__DIR__ . "/locale/{$locale}/emails.po"));
+        if (!$locales || !Schema::hasTable('email_templates_default_data')) {
+            return;
+        }
+        // The texts come from the plugin's locale files
+        Locale::registerPath(__DIR__ . '/locale');
+        foreach ($keys as $key) {
+            // Only templates that are installed: missing ones are added with the current text anyway
+            if (DB::table('email_templates_default_data')->where('email_key', $key)->exists()) {
+                Repo::emailTemplate()->dao->installEmailTemplateLocaleData($file, $locales, $key);
+            }
+        }
     }
 
     /**

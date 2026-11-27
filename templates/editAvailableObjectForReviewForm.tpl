@@ -58,6 +58,14 @@
 		{fbvFormSection label="plugins.generic.bookReviewManager.itemYear" for="year"}
 			{fbvElement type="text" id="year" value=$year maxlength="255" inline=true multilingual=false size=$fbvStyles.size.SMALL}
 		{/fbvFormSection}
+
+		{fbvFormSection label="plugins.generic.bookReviewManager.itemPublisherUrl" description="plugins.generic.bookReviewManager.itemPublisherUrl.description" for="publisherUrl"}
+			{fbvElement type="url" id="publisherUrl" value=$publisherUrl maxlength="2048" inline=true multilingual=false size=$fbvStyles.size.LARGE}
+		{/fbvFormSection}
+
+		{fbvFormSection label="plugins.generic.bookReviewManager.openAccess" description="plugins.generic.bookReviewManager.openAccess.description" for="openAccess"}
+			{fbvElement type="select" id="openAccess" from=$openAccessStatuses selected=$openAccess translate=false size=$fbvStyles.size.MEDIUM}
+		{/fbvFormSection}
 	{/fbvFormArea}
 
 	{include file=$offerSettingsTemplate formId="availableObjectsForReviewForm" areaId="availableObjectsForReviewOfferArea"}

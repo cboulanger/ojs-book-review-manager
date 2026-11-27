@@ -1969,3 +1969,60 @@ msgstr "Määräaika"
 
 msgid "plugins.generic.bookReviewManager.column.lastChange"
 msgstr "Viimeisin muutos"
+
+msgid "plugins.generic.bookReviewManager.itemPublisherUrl"
+msgstr "Kustantajan sivu"
+
+msgid "plugins.generic.bookReviewManager.itemPublisherUrl.description"
+msgstr "Teoksen verkko-osoite kustantajan sivustolla. Jätä tyhjäksi, jos haluat linkittää DOI:n tai ISBN:n tapauksessa WorldCat-tietueen."
+
+msgid "plugins.generic.bookReviewManager.itemPublisherUrl.invalid"
+msgstr "Anna verkko-osoite, joka alkaa http:// tai https://."
+
+msgid "plugins.generic.bookReviewManager.openAccess"
+msgstr "Avoin saatavuus"
+
+msgid "plugins.generic.bookReviewManager.openAccess.description"
+msgstr "Täytetään DOI- tai ISBN-haussa, jos Crossref ilmoittaa avoimen lisenssin."
+
+msgid "plugins.generic.bookReviewManager.openAccess.invalid"
+msgstr "Valitse avoimen saatavuuden tila luettelosta."
+
+msgid "plugins.generic.bookReviewManager.openAccess.unknown"
+msgstr "Ei tiedossa"
+
+msgid "plugins.generic.bookReviewManager.openAccess.open"
+msgstr "Avoimesti saatavilla"
+
+msgid "plugins.generic.bookReviewManager.openAccess.partial"
+msgstr "Osittain avoimesti saatavilla (esim. osa luvuista)"
+
+msgid "plugins.generic.bookReviewManager.openAccess.closed"
+msgstr "Ei avoimesti saatavilla"
+
+msgid "plugins.generic.bookReviewManager.email.workUrl"
+msgstr "Lisätietoja teoksesta"
+
+msgid "plugins.generic.bookReviewManager.email.openAccess"
+msgstr "Avoin saatavuus"
+
+msgid "plugins.generic.bookReviewManager.email.openAccess.open"
+msgstr "kyllä"
+
+msgid "plugins.generic.bookReviewManager.email.openAccess.partial"
+msgstr "osittain"
+
+msgid "plugins.generic.bookReviewManager.email.openAccess.closed"
+msgstr "ei"
+
+msgid "plugins.generic.bookReviewManager.email.openAccess.unknown"
+msgstr "ei tiedossa"
+
+msgid "plugins.generic.bookReviewManager.forReview.openAccess"
+msgstr "Avoimesti saatavilla"
+
+msgid "plugins.generic.bookReviewManager.forReview.openAccessPartial"
+msgstr "Osittain avoimesti saatavilla"
+
+msgid "plugins.generic.bookReviewManager.forReview.workUrl"
+msgstr "Kustantajan sivu"

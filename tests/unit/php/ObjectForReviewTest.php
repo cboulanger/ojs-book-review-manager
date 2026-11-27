@@ -102,4 +102,39 @@ class ObjectForReviewTest extends TestCase {
 		$this->assertTrue($member->isBundleMember());
 		$this->assertSame(7, $member->getBundleId());
 	}
+
+	/** The work's page: the publisher's page if entered, otherwise the DOI or WorldCat link */
+	public function testWorkUrl(): void {
+		$doi = $this->object(['identifierType' => 'doi', 'identifier' => '10.1515/9783110732870']);
+		$this->assertNull($doi->getPublisherUrl());
+		$this->assertSame('https://doi.org/10.1515/9783110732870', $doi->getWorkUrl());
+		$isbn = $this->object(['identifierType' => 'isbn', 'identifier' => '9780262046305']);
+		$this->assertStringContainsString('worldcat.org', (string) $isbn->getWorkUrl());
+		$isbn->setPublisherUrl(' https://mitpress.mit.edu/9780262046305 ');
+		$this->assertSame('https://mitpress.mit.edu/9780262046305', $isbn->getWorkUrl());
+		$isbn->setPublisherUrl('');
+		$this->assertNull($isbn->getData('publisherUrl'));
+		$this->assertNull($this->object(['identifierType' => 'other', 'identifier' => 'x'])->getWorkUrl());
+	}
+
+	public function testOpenAccessStatus(): void {
+		$object = $this->object();
+		$this->assertNull($object->getOpenAccess());
+		foreach (ObjectForReview::OPEN_ACCESS_STATUSES as $status) {
+			$object->setOpenAccess($status);
+			$this->assertSame($status, $object->getOpenAccess());
+		}
+		$object->setOpenAccess('maybe');
+		$this->assertNull($object->getOpenAccess());
+		$this->assertNull($object->getData('openAccess'));
+	}
+
+	public function testValidUrl(): void {
+		$this->assertTrue(ObjectForReview::isValidUrl(''));
+		$this->assertTrue(ObjectForReview::isValidUrl('https://www.transcript-verlag.de/978-3-8394-5729-0'));
+		$this->assertTrue(ObjectForReview::isValidUrl('http://example.org/book?id=1'));
+		$this->assertFalse(ObjectForReview::isValidUrl('javascript:alert(1)'));
+		$this->assertFalse(ObjectForReview::isValidUrl('ftp://example.org/book'));
+		$this->assertFalse(ObjectForReview::isValidUrl('not a url'));
+	}
 }

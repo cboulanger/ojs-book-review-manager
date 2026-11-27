@@ -248,7 +248,7 @@ msgid "emails.brmInvitationReserve.subject"
 msgstr "Einladung zur Rezension: {$objectDescription}"
 
 msgid "emails.brmInvitationReserve.body"
-msgstr "<p>Liebe/r {$recipientName},</p><p>wir möchten Sie einladen, das folgende Werk für {$contextName} zu rezensieren:<br />{$objectDescription}</p><p>Wenn Sie die Rezension übernehmen möchten, nehmen Sie bitte bis zum <strong>{$invitationDeadline}</strong> die Rezensionsvereinbarung an. Wenn Sie sie nicht schreiben können, teilen Sie uns dies bitte über denselben Link mit:<br /><a href=\"{$invitationUrl}\">{$invitationUrl}</a></p><p>Mit freundlichen Grüßen<br />{$senderName}<br />{$contextName}</p>"
+msgstr "<p>Liebe/r {$recipientName},</p><p>wir möchten Sie einladen, das folgende Werk für {$contextName} zu rezensieren:<br />{$objectDescription}{$workDetails}</p><p>Wenn Sie die Rezension übernehmen möchten, nehmen Sie bitte bis zum <strong>{$invitationDeadline}</strong> die Rezensionsvereinbarung an. Wenn Sie sie nicht schreiben können, teilen Sie uns dies bitte über denselben Link mit:<br /><a href=\"{$invitationUrl}\">{$invitationUrl}</a></p><p>Mit freundlichen Grüßen<br />{$senderName}<br />{$contextName}</p>"
 
 msgid "emails.brmInvitationBid.name"
 msgstr "Einladung zur Bewerbung um eine Rezension (Bewerbungsverfahren)"
@@ -260,7 +260,7 @@ msgid "emails.brmInvitationBid.subject"
 msgstr "Einladung zur Bewerbung um eine Rezension: {$objectDescription}"
 
 msgid "emails.brmInvitationBid.body"
-msgstr "<p>Liebe/r {$recipientName},</p><p>wir möchten Sie einladen, sich um die Rezension des folgenden Werks für {$contextName} zu bewerben:<br />{$objectDescription}</p><p>Die Rezensionsredaktion wählt unter den Bewerbungen aus. Wenn Sie Interesse haben, bewerben Sie sich bitte bis zum <strong>{$invitationDeadline}</strong>. Wenn nicht, teilen Sie uns dies bitte über denselben Link mit:<br /><a href=\"{$invitationUrl}\">{$invitationUrl}</a></p><p>Mit freundlichen Grüßen<br />{$senderName}<br />{$contextName}</p>"
+msgstr "<p>Liebe/r {$recipientName},</p><p>wir möchten Sie einladen, sich um die Rezension des folgenden Werks für {$contextName} zu bewerben:<br />{$objectDescription}{$workDetails}</p><p>Die Rezensionsredaktion wählt unter den Bewerbungen aus. Wenn Sie Interesse haben, bewerben Sie sich bitte bis zum <strong>{$invitationDeadline}</strong>. Wenn nicht, teilen Sie uns dies bitte über denselben Link mit:<br /><a href=\"{$invitationUrl}\">{$invitationUrl}</a></p><p>Mit freundlichen Grüßen<br />{$senderName}<br />{$contextName}</p>"
 
 msgid "emails.brmInvitationDeclined.name"
 msgstr "Einladung abgelehnt oder unbeantwortet (an die Rezensionsredaktion)"

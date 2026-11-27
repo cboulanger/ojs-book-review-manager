@@ -17,7 +17,8 @@ Carried over from Objects for Review:
 Changed or new in Book Review Manager:
 
 - **OJS 3.5 support.** The backend has its own menu section with an overview of the work to be done.
-- **DOI and ISBN lookup.** Editors fill in the metadata from Crossref or from the ISBN. DOIs and ISBNs are linked on the public page and on the article page.
+- **DOI and ISBN lookup.** Editors fill in the metadata from Crossref or from the ISBN, including the open access status (from the license Crossref lists). DOIs and ISBNs are linked on the public page and on the article page.
+- **Publisher's page and open access status.** Each work can have a link to its page at the publisher (otherwise the DOI or WorldCat link is used) and an open access status. Both are shown on the public list and in the invitation emails.
 - **Book review editor role.** A user group created by the plugin. Each offer has a responsible book review editor who receives its notifications and manages it.
 - **Two ways to assign a review, chosen per offer:**
   - *direct reservation*: first come, first served;

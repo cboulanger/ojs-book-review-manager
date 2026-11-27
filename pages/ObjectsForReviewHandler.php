@@ -107,6 +107,9 @@ class ObjectsForReviewHandler extends Handler {
 				'identifier' => $objectForReview->getIdentifier(),
 				'identifierUrl' => $objectForReview->getIdentifierUrl(),
 				'identifierHtml' => $objectForReview->getIdentifierHtml(),
+				// The identifier is linked already: only a publisher's page entered by the editor is shown
+				'publisherUrl' => $objectForReview->getPublisherUrl(),
+				'openAccess' => $objectForReview->getOpenAccess(),
 				'authors' => $objectForReview->getAuthors(),
 				'title' => $objectForReview->getTitle(),
 				'publisher' => $objectForReview->getPublisher(),
@@ -147,6 +150,7 @@ class ObjectsForReviewHandler extends Handler {
 			'myReviews' => $currentUser ? MyReviews::rows($contextId, $currentUser->getId(), MyReviews::PUBLIC_STATUSES) : [],
 			'instructions' => $instructions,
 			'reserveDialogTemplate' => $plugin->getTemplateResource('frontend/reserveDialog.tpl'),
+			'workAccessTemplate' => $plugin->getTemplateResource('frontend/workAccess.tpl'),
 			'reserveOpenObjectId' => $openObjectId,
 			'maxStatementLength' => self::MAX_STATEMENT_LENGTH,
 		]);
@@ -453,6 +457,9 @@ class ObjectsForReviewHandler extends Handler {
 			'view' => $view,
 			'objectId' => $object?->getId(),
 			'objectDescription' => $object?->getCitation(),
+			// The work's page and open access status (a review essay: its works)
+			'works' => $object ? array_map(fn ($o) => ['citation' => $o->getCitation(), 'workUrl' => $o->getWorkUrl(), 'openAccess' => $o->getOpenAccess()],
+				$object->isReviewEssay() ? BundleWorkflow::membersOf($object) : [$object]) : [],
 			'reviewerName' => $assignment ? Repo::user()->get($assignment->getUserId(), true)?->getFullName() : null,
 			'publisherName' => $object ? CopyWorkflow::getPublisherContact($object)?->getFullName() : null,
 			'contractDeadline' => $assignment?->getData('contractDeadline'),
@@ -496,6 +503,8 @@ class ObjectsForReviewHandler extends Handler {
 				'citation' => $member->getCitation(),
 				'identifierUrl' => $member->getIdentifierUrl(),
 				'identifierHtml' => $member->getIdentifierHtml(),
+				'publisherUrl' => $member->getPublisherUrl(),
+				'openAccess' => $member->getOpenAccess(),
 				'copyStatus' => $mirror ? CopyWorkflow::getStatus($mirror) : null,
 			];
 		}, BundleWorkflow::membersOf($object));

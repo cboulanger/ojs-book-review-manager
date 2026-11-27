@@ -12,6 +12,7 @@
 namespace APP\plugins\generic\bookReviewManager\tests\unit;
 
 use APP\core\Application;
+use APP\plugins\generic\bookReviewManager\classes\ObjectForReview;
 use APP\plugins\generic\bookReviewManager\classes\ObjectForReviewDAO;
 use APP\plugins\generic\bookReviewManager\classes\ReservationEmailEventType;
 use APP\plugins\generic\bookReviewManager\classes\ReservationLog;
@@ -156,6 +157,60 @@ class ReservationMailerTest extends TestCase {
 			$format = \PKP\core\PKPString::convertStrftimeFormat($context->getLocalizedDateFormatShort($locale));
 			$this->assertSame((new \Carbon\Carbon('2026-03-05'))->locale($locale)->translatedFormat($format),
 				ReservationMailer::formatDate($context, '2026-03-05', $locale), $locale);
+		}
+	}
+
+	/** The invitation tells where to find the work and whether it is open access */
+	public function testWorkParams(): void {
+		$work = $this->work();
+		$work->setIdentifierType('doi');
+		$work->setIdentifier('10.1515/9783110732870');
+		$params = ReservationMailer::workParams($work, 'en');
+		$this->assertSame('https://doi.org/10.1515/9783110732870', $params['publisherUrl']);
+		$this->assertSame('unknown', $params['openAccessStatus']);
+		// Unknown status: only the link
+		$this->assertSame('<br />More about the work: <a href="https://doi.org/10.1515/9783110732870">https://doi.org/10.1515/9783110732870</a>', $params['workDetails']);
+
+		$work->setPublisherUrl('https://press.example/book?a=1&b=2');
+		$work->setOpenAccess(ObjectForReview::OPEN_ACCESS);
+		$params = ReservationMailer::workParams($work, 'de');
+		$this->assertSame('https://press.example/book?a=1&amp;b=2', $params['publisherUrl']);
+		$this->assertSame('ja', $params['openAccessStatus']);
+		$this->assertStringContainsString('<a href="https://press.example/book?a=1&amp;b=2">', $params['workDetails']);
+		$this->assertStringEndsWith('<br />Open Access: ja', $params['workDetails']);
+	}
+
+	/** The default invitation texts contain the work's details */
+	public function testInvitationTemplatesShowWorkDetails(): void {
+		$context = Application::getContextDAO()->getById(self::CONTEXT_ID);
+		ReservationMailer::ensureTemplates($this->noticePlugin(), self::CONTEXT_ID);
+		$work = $this->work();
+		$work->setIdentifier('9780262046305'); // a valid ISBN (work() makes random ones)
+		$work->setOpenAccess(ObjectForReview::OPEN_ACCESS_PARTIAL);
+		foreach ([ReservationEmailEventType::INVITATION_RESERVE, ReservationEmailEventType::INVITATION_BID] as $type) {
+			[, $body] = ReservationMailer::compose($context, $type, $work, null, null, null, [], 'en');
+			$this->assertStringContainsString('Open access: partly', $body, $type->value);
+			$this->assertStringContainsString('worldcat.org', $body, $type->value);
+		}
+	}
+
+	/** Upgrades replace outdated default texts of changed templates (schema version 6), not customized ones */
+	public function testUpgradeRefreshesChangedDefaultTexts(): void {
+		$key = 'BRM_INVITATION_RESERVE';
+		ReservationMailer::ensureTemplates($this->noticePlugin(), self::CONTEXT_ID);
+		$saved = DB::table('email_templates_default_data')->where('email_key', $key)->get()->map(fn ($row) => (array) $row)->all();
+		try {
+			DB::table('email_templates_default_data')->where('email_key', $key)->update(['body' => '<p>old text</p>']);
+			$migration = new \APP\plugins\generic\bookReviewManager\ObjectsForReviewSchemaMigration(5);
+			$this->invoke($migration, 'refreshDefaultEmailTexts', [$key]);
+			$bodies = DB::table('email_templates_default_data')->where('email_key', $key)->pluck('body', 'locale')->all();
+			$this->assertNotEmpty($bodies);
+			foreach ($bodies as $locale => $body) {
+				$this->assertStringContainsString('{$workDetails}', $body, $locale);
+			}
+		} finally {
+			DB::table('email_templates_default_data')->where('email_key', $key)->delete();
+			DB::table('email_templates_default_data')->insert($saved);
 		}
 	}
 }

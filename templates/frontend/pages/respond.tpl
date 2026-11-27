@@ -51,6 +51,16 @@
 	{elseif $view == 'invitation'}
 		<h1>{translate key="plugins.generic.bookReviewManager.invitation.page.title.$kind"}</h1>
 		<p class="ofrReserveObject">{$objectDescription|strip_unsafe_html}</p>
+		{* Where to find out more about the work before answering *}
+		{foreach from=$works item=work}
+			{if $work.workUrl || $work.openAccess}
+				<p class="ofrDetail">
+					{if $works|@count > 1}{$work.citation|escape}: {/if}
+					{if $work.workUrl}<a href="{$work.workUrl|escape}" target="_blank" rel="noopener">{translate key="plugins.generic.bookReviewManager.email.workUrl"}</a>{/if}
+					{if $work.openAccess}{if $work.workUrl} · {/if}{translate key="plugins.generic.bookReviewManager.openAccess.`$work.openAccess`"}{/if}
+				</p>
+			{/if}
+		{/foreach}
 		<p>{translate key="plugins.generic.bookReviewManager.invitation.page.intro.$kind" name=$reviewerName|escape deadline=$invitationDeadline|date_format:$dateFormatShort}</p>
 		{if $editorName}<p class="ofrDetail">{translate key="plugins.generic.bookReviewManager.invitation.page.editor" name=$editorName|escape}</p>{/if}
 

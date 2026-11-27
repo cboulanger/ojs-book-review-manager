@@ -177,7 +177,7 @@ export class ObjectsForReviewClient {
    * Create a work offered for review. With doi or isbn, the metadata is looked up and
    * fields given here override it. Without, identifier, identifierType and title are required.
    * Fields: doi, isbn, identifier, identifierType, resourceType, title, authors, publisher,
-   * year, description, assignmentMode (direct|bidding), bidDeadline, responsibleEditorId |
+   * year, publisherUrl, openAccess (open|partial|closed|null), description, assignmentMode (direct|bidding), bidDeadline, responsibleEditorId |
    * responsibleEditorEmail, publisherContactId | publisherContactEmail, journalHoldsCopy,
    * returnRequired, notifyPublisher, hidden, dateCreated, lookup (false: no lookup),
    * onDuplicate (error|skip|update; default error).

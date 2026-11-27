@@ -997,6 +997,20 @@ class ObjectsForReviewController extends PKPBaseController {
 				$object->$setter(trim((string) $input[$field]));
 			}
 		}
+		if ($has('publisherUrl')) {
+			$url = trim((string) $input['publisherUrl']);
+			if (!ObjectForReview::isValidUrl($url)) {
+				throw new ApiError(Response::HTTP_BAD_REQUEST, 'invalidPublisherUrl', 'publisherUrl must be an http(s) URL.');
+			}
+			$object->setPublisherUrl($url);
+		}
+		if ($has('openAccess')) {
+			$status = $input['openAccess'];
+			if ($status !== null && $status !== '' && !in_array($status, ObjectForReview::OPEN_ACCESS_STATUSES, true)) {
+				throw new ApiError(Response::HTTP_BAD_REQUEST, 'invalidOpenAccess', 'openAccess must be one of: ' . implode(', ', ObjectForReview::OPEN_ACCESS_STATUSES) . ' (or null: unknown).');
+			}
+			$object->setOpenAccess($status ?: null);
+		}
 		if ($has('description')) {
 			$description = trim((string) $input['description']);
 			$object->setDescription(trim(strip_tags($description)) === '' ? null : $description);
@@ -1128,6 +1142,10 @@ class ObjectsForReviewController extends PKPBaseController {
 			'authors' => $object->getAuthors(),
 			'publisher' => $object->getPublisher(),
 			'year' => $object->getYear(),
+			'publisherUrl' => $object->getPublisherUrl(),
+			// The publisher's page, or the DOI / WorldCat link
+			'workUrl' => $object->getWorkUrl(),
+			'openAccess' => $object->getOpenAccess(),
 			'description' => $object->getDescription(),
 			'creator' => $object->getCreator(),
 			'dateCreated' => $object->getDateCreated(),

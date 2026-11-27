@@ -155,7 +155,27 @@ class CrossrefLookup {
 			'publisher' => self::clean($work['publisher'] ?? ''),
 			'year' => $year,
 			'resourceType' => self::TYPE_MAP[$work['type'] ?? ''] ?? null,
+			// Only evidence of open access is used; without it the status stays unknown
+			'openAccess' => self::isOpenAccess($work) ? ObjectForReview::OPEN_ACCESS : null,
 		];
+	}
+
+	/**
+	 * Is the work open access? Crossref lists its licenses: a Creative Commons license
+	 * (or public domain mark) for the published version that applies without embargo.
+	 * Text and data mining licenses don't count.
+	 */
+	public static function isOpenAccess(array $work): bool {
+		foreach ($work['license'] ?? [] as $license) {
+			$url = (string) ($license['URL'] ?? '');
+			$version = (string) ($license['content-version'] ?? 'unspecified');
+			if (preg_match('#^https?://(www\.)?creativecommons\.org/(licenses|publicdomain)/#i', $url)
+					&& in_array($version, ['vor', 'unspecified'], true)
+					&& (int) ($license['delay-in-days'] ?? 0) <= 0) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**

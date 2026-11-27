@@ -53,7 +53,30 @@ class CrossrefLookupTest extends TestCase {
 			'publisher' => 'De Gruyter',
 			'year' => '2021',
 			'resourceType' => self::BOOK,
+			'openAccess' => null,
 		], $data);
+	}
+
+	public static function licenses(): array {
+		$cc = 'https://creativecommons.org/licenses/by/4.0';
+		return [
+			'CC BY, published version' => [[['URL' => $cc, 'content-version' => 'vor', 'delay-in-days' => 0]], true],
+			'CC without version' => [[['URL' => 'http://creativecommons.org/licenses/by-nc-nd/4.0/']], true],
+			'public domain mark' => [[['URL' => 'https://creativecommons.org/publicdomain/zero/1.0/', 'content-version' => 'unspecified']], true],
+			'CC after an embargo' => [[['URL' => $cc, 'content-version' => 'vor', 'delay-in-days' => 365]], false],
+			'CC for text and data mining only' => [[['URL' => $cc, 'content-version' => 'tdm']], false],
+			'CC for the accepted manuscript only' => [[['URL' => $cc, 'content-version' => 'am']], false],
+			'publisher license' => [[['URL' => 'https://www.springer.com/tdm', 'content-version' => 'tdm']], false],
+			'lookalike host' => [[['URL' => 'https://creativecommons.org.example.com/licenses/by/4.0']], false],
+			'no license' => [[], false],
+			'CC among others' => [[['URL' => 'https://www.springer.com/tdm', 'content-version' => 'tdm'], ['URL' => $cc, 'content-version' => 'vor']], true],
+		];
+	}
+
+	#[DataProvider('licenses')]
+	public function testIsOpenAccess(array $licenses, bool $expected): void {
+		$this->assertSame($expected, CrossrefLookup::isOpenAccess(['license' => $licenses]));
+		$this->assertSame($expected ? 'open' : null, CrossrefLookup::mapWork(['license' => $licenses], '10.1/x')['openAccess']);
 	}
 
 	public function testMapWorkFallsBackToEditors(): void {

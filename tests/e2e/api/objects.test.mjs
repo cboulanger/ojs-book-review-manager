@@ -135,6 +135,26 @@ test('update changes only the given fields', async () => {
   await rejects(admin().updateObject(999999999, { year: '2000' }), 404, 'objectNotFound');
 });
 
+test("publisher's page and open access status", async () => {
+  const isbn = isbn13();
+  const work = await newWork({ isbn, publisherUrl: 'https://press.example/book', openAccess: 'partial' });
+  assert.equal(work.publisherUrl, 'https://press.example/book');
+  assert.equal(work.workUrl, 'https://press.example/book');
+  assert.equal(work.openAccess, 'partial');
+  const cleared = await admin().updateObject(work.id, { publisherUrl: '', openAccess: null });
+  assert.equal(cleared.publisherUrl, null);
+  assert.match(cleared.workUrl, new RegExp(`worldcat\\.org.*${isbn}`), 'default: WorldCat for an ISBN');
+  assert.equal(cleared.openAccess, null);
+  await rejects(admin().updateObject(work.id, { publisherUrl: 'javascript:alert(1)' }), 400, 'invalidPublisherUrl');
+  await rejects(admin().updateObject(work.id, { openAccess: 'maybe' }), 400, 'invalidOpenAccess');
+});
+
+test('a DOI lookup stores the open access status', { skip: OFFLINE && 'OFR_E2E_OFFLINE is set' }, async () => {
+  const work = await admin().addObject({ doi: REAL_WORKS.openAccess.doi, hidden: true, returnRequired: false, onDuplicate: 'skip' });
+  assert.equal(work.openAccess, 'open');
+  assert.equal(work.workUrl, `https://doi.org/${REAL_WORKS.openAccess.doi}`);
+});
+
 test('an invalid update changes nothing', async () => {
   const work = await newWork({ year: '2020' });
   await rejects(admin().updateObject(work.id, { year: '2030', assignmentMode: 'auction' }), 400, 'invalidAssignmentMode');

@@ -29,7 +29,7 @@ Works offered for review:
   Fields for add-book / add-books (override the lookup):
     --mode direct|bidding  --bid-deadline Y-m-d  --editor <email>  --publisher-contact <email>
     --journal-holds-copy  --no-return  --notify-publisher  --hidden  --no-lookup
-    --title --authors --publisher --year --description --resource-type <${Object.keys(RESOURCE_TYPES).join('|')}|URI>
+    --title --authors --publisher --year --publisher-url <url> --open-access open|partial|closed --description --resource-type <${Object.keys(RESOURCE_TYPES).join('|')}|URI>
     --on-duplicate error|skip|update   (add-book: error, add-books: skip)
 
 People:
@@ -80,6 +80,8 @@ const OPTIONS = {
   title: { type: 'string' },
   authors: { type: 'string' },
   publisher: { type: 'string' },
+  'publisher-url': { type: 'string' },
+  'open-access': { type: 'string' },
   year: { type: 'string' },
   description: { type: 'string' },
   'resource-type': { type: 'string' },
@@ -231,6 +233,8 @@ function objectFields(opts) {
     title: opts.title,
     authors: opts.authors,
     publisher: opts.publisher,
+    publisherUrl: opts['publisher-url'],
+    openAccess: opts['open-access'],
     year: opts.year,
     description: opts.description,
     resourceType: opts['resource-type'] ? RESOURCE_TYPES[opts['resource-type']] ?? opts['resource-type'] : undefined,

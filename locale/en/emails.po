@@ -251,7 +251,7 @@ msgid "emails.brmInvitationReserve.subject"
 msgstr "Invitation to review: {$objectDescription}"
 
 msgid "emails.brmInvitationReserve.body"
-msgstr "<p>Dear {$recipientName},</p><p>we would like to invite you to review the following work for {$contextName}:<br />{$objectDescription}</p><p>If you would like to write the review, please accept the review agreement by <strong>{$invitationDeadline}</strong>. If you cannot write it, please let us know with the same link:<br /><a href=\"{$invitationUrl}\">{$invitationUrl}</a></p><p>Kind regards,<br />{$senderName}<br />{$contextName}</p>"
+msgstr "<p>Dear {$recipientName},</p><p>we would like to invite you to review the following work for {$contextName}:<br />{$objectDescription}{$workDetails}</p><p>If you would like to write the review, please accept the review agreement by <strong>{$invitationDeadline}</strong>. If you cannot write it, please let us know with the same link:<br /><a href=\"{$invitationUrl}\">{$invitationUrl}</a></p><p>Kind regards,<br />{$senderName}<br />{$contextName}</p>"
 
 msgid "emails.brmInvitationBid.name"
 msgstr "Invitation to apply for a review (bidding)"
@@ -263,7 +263,7 @@ msgid "emails.brmInvitationBid.subject"
 msgstr "Invitation to apply for a review: {$objectDescription}"
 
 msgid "emails.brmInvitationBid.body"
-msgstr "<p>Dear {$recipientName},</p><p>we would like to invite you to apply for the review of the following work for {$contextName}:<br />{$objectDescription}</p><p>The book review editor will choose among the applicants. If you are interested, please apply by <strong>{$invitationDeadline}</strong>. If you are not, please let us know with the same link:<br /><a href=\"{$invitationUrl}\">{$invitationUrl}</a></p><p>Kind regards,<br />{$senderName}<br />{$contextName}</p>"
+msgstr "<p>Dear {$recipientName},</p><p>we would like to invite you to apply for the review of the following work for {$contextName}:<br />{$objectDescription}{$workDetails}</p><p>The book review editor will choose among the applicants. If you are interested, please apply by <strong>{$invitationDeadline}</strong>. If you are not, please let us know with the same link:<br /><a href=\"{$invitationUrl}\">{$invitationUrl}</a></p><p>Kind regards,<br />{$senderName}<br />{$contextName}</p>"
 
 msgid "emails.brmInvitationDeclined.name"
 msgstr "Invitation declined or not answered (to the book review editor)"

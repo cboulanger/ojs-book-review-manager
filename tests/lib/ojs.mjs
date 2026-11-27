@@ -122,4 +122,6 @@ export function date(days = 0) {
 export const REAL_WORKS = {
   isbn: { isbn: '9780262046305', isbn10: '026204630X', title: /Introduction to Algorithms/ },
   doi: { doi: '10.4324/9781003080114', title: /The Home in the Digital Age/, publisher: /Routledge|Informa/ },
+  // An open access book (CC BY in Crossref)
+  openAccess: { doi: '10.14361/9783839457290', isbn: '9783839457290' },
 };

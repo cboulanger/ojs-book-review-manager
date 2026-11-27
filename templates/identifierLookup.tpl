@@ -78,6 +78,9 @@
 					setValue('title', data.title);
 					setValue('publisher', data.publisher);
 					setValue('year', data.year);
+					// Only in the editor's form (offered works)
+					setValue('publisherUrl', data.publisherUrl);
+					setValue('openAccess', data.openAccess);
 					$status.text(data.message || $box.data(type + 'Done'));
 				})
 				.fail(function() {

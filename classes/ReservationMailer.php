@@ -183,10 +183,41 @@ class ReservationMailer {
 			'submissionUrl' => $request->getDispatcher()->url($request, Application::ROUTE_PAGE, $context->getPath(), 'submission',
 				null, null, null, null, false, $locale),
 		];
+		$params += self::workParams($object, $locale);
 		if ($recipient) {
 			$params['recipientName'] = htmlspecialchars($recipient->getFullName());
 		}
 		return array_merge($params, $extra);
+	}
+
+	/**
+	 * Where to find the work and whether it is open access:
+	 * - publisherUrl: the publisher's page, or the DOI / WorldCat link (empty for a review essay)
+	 * - openAccessStatus: "yes", "partly", "no" or "unknown" in the email's language
+	 * - workDetails: both as HTML lines, each starting with <br /> (empty if nothing is known);
+	 *   for a review essay one line per work
+	 */
+	public static function workParams(ObjectForReview $object, string $locale): array {
+		$t = fn (string $key, array $params = []) => __('plugins.generic.bookReviewManager.' . $key, $params, $locale);
+		$status = fn (ObjectForReview $o) => $t('email.openAccess.' . ($o->getOpenAccess() ?? 'unknown'));
+		$link = fn (string $url) => '<a href="' . htmlspecialchars($url) . '">' . htmlspecialchars($url) . '</a>';
+		if ($object->isReviewEssay()) {
+			$lines = [];
+			foreach ((new ObjectForReviewDAO())->getMembers((int) $object->getId()) as $member) {
+				$parts = array_filter([
+					($url = $member->getWorkUrl()) ? $link($url) : null,
+					$member->getOpenAccess() ? $t('email.openAccess') . ': ' . htmlspecialchars($status($member)) : null,
+				]);
+				if ($parts) {
+					$lines[] = '<br />' . htmlspecialchars((string) $member->getTitle()) . ': ' . implode(', ', $parts);
+				}
+			}
+			return ['publisherUrl' => '', 'openAccessStatus' => '', 'workDetails' => implode('', $lines)];
+		}
+		$url = (string) $object->getWorkUrl();
+		$details = ($url ? '<br />' . htmlspecialchars($t('email.workUrl')) . ': ' . $link($url) : '')
+			. ($object->getOpenAccess() ? '<br />' . htmlspecialchars($t('email.openAccess')) . ': ' . htmlspecialchars($status($object)) : '');
+		return ['publisherUrl' => htmlspecialchars($url), 'openAccessStatus' => htmlspecialchars($status($object)), 'workDetails' => $details];
 	}
 
 	/**

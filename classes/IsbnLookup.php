@@ -149,6 +149,10 @@ class IsbnLookup {
 		}
 		$data = CrossrefLookup::mapWork($work, $isbn);
 		unset($data['identifier'], $data['resourceType']);
+		// The book's DOI leads to its page at the publisher (better than WorldCat, the default for ISBNs)
+		if ($url = CrossrefLookup::doiUrl($work['DOI'] ?? '')) {
+			$data['publisherUrl'] = $url;
+		}
 		return $data + ['source' => 'Crossref'];
 	}
 

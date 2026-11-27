@@ -22,6 +22,12 @@ class ObjectForReview extends \PKP\core\DataObject {
 	const MODE_BIDDING = 'bidding';
 	const MODES = [self::MODE_DIRECT, self::MODE_BIDDING];
 
+	/** Open access status of a work (not set: unknown) */
+	const OPEN_ACCESS = 'open';
+	const OPEN_ACCESS_PARTIAL = 'partial';
+	const OPEN_ACCESS_CLOSED = 'closed';
+	const OPEN_ACCESS_STATUSES = [self::OPEN_ACCESS, self::OPEN_ACCESS_PARTIAL, self::OPEN_ACCESS_CLOSED];
+
 	/**
 	 * Offer settings (see ObjectForReviewDAO::getAdditionalFieldNames()):
 	 * - assignmentMode: MODE_DIRECT or MODE_BIDDING (unset: direct)
@@ -244,6 +250,46 @@ class ObjectForReview extends \PKP\core\DataObject {
 	 */
 	function getIdentifierUrl() {
 		return IdentifierLinks::url($this->getData('identifierType'), $this->getData('identifier'));
+	}
+
+	/**
+	 * The work's page at the publisher, as entered (may be empty, see getWorkUrl()).
+	 */
+	function getPublisherUrl(): ?string {
+		return $this->getData('publisherUrl') ?: null;
+	}
+
+	function setPublisherUrl(?string $url): void {
+		$url = trim((string) $url);
+		$url === '' ? $this->unsetData('publisherUrl') : $this->setData('publisherUrl', $url);
+	}
+
+	/**
+	 * Where readers find out more about the work: the publisher's page if entered,
+	 * otherwise the DOI or the WorldCat entry of the ISBN (null if there is none).
+	 */
+	function getWorkUrl(): ?string {
+		return $this->getPublisherUrl() ?? $this->getIdentifierUrl();
+	}
+
+	/**
+	 * Open access status: one of OPEN_ACCESS_STATUSES, null if unknown.
+	 */
+	function getOpenAccess(): ?string {
+		$status = $this->getData('openAccess');
+		return in_array($status, self::OPEN_ACCESS_STATUSES, true) ? $status : null;
+	}
+
+	function setOpenAccess(?string $status): void {
+		in_array($status, self::OPEN_ACCESS_STATUSES, true) ? $this->setData('openAccess', $status) : $this->unsetData('openAccess');
+	}
+
+	/**
+	 * A URL that may be stored as the publisher's page: http(s) only.
+	 */
+	static function isValidUrl(?string $url): bool {
+		$url = trim((string) $url);
+		return $url === '' || (filter_var($url, FILTER_VALIDATE_URL) !== false && preg_match('#^https?://#i', $url));
 	}
 
 	/**

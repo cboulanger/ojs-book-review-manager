@@ -36,6 +36,17 @@ test('DOI lookup, from a resolver URL', network, async () => {
   assert.match(data.publisher, REAL_WORKS.doi.publisher);
 });
 
+test('open access is found in the Crossref license; ISBN lookups link the DOI', network, async () => {
+  const byDoi = await admin().lookup({ doi: REAL_WORKS.openAccess.doi });
+  assert.equal(byDoi.openAccess, 'open');
+  assert.equal(byDoi.publisherUrl, undefined, 'a DOI is linked anyway');
+  const byIsbn = await admin().lookup({ isbn: REAL_WORKS.openAccess.isbn });
+  assert.equal(byIsbn.openAccess, 'open');
+  assert.equal(byIsbn.publisherUrl, `https://doi.org/${REAL_WORKS.openAccess.doi}`);
+  const closed = await admin().lookup({ doi: REAL_WORKS.doi.doi });
+  assert.equal(closed.openAccess ?? null, null, 'no open license: unknown, not "closed"');
+});
+
 test('unknown DOI: 404', network, async () => {
   await rejects(admin().lookup({ doi: doi() }), 404, 'doiNotFound');
 });

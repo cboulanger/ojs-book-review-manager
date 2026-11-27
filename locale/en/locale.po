@@ -1969,3 +1969,60 @@ msgstr "Deadline"
 
 msgid "plugins.generic.bookReviewManager.column.lastChange"
 msgstr "Last change"
+
+msgid "plugins.generic.bookReviewManager.itemPublisherUrl"
+msgstr "Publisher's page"
+
+msgid "plugins.generic.bookReviewManager.itemPublisherUrl.description"
+msgstr "Web address of the work at the publisher. Leave empty to link the DOI or, for an ISBN, the WorldCat entry."
+
+msgid "plugins.generic.bookReviewManager.itemPublisherUrl.invalid"
+msgstr "Please enter a web address starting with http:// or https://."
+
+msgid "plugins.generic.bookReviewManager.openAccess"
+msgstr "Open access"
+
+msgid "plugins.generic.bookReviewManager.openAccess.description"
+msgstr "Filled in by the DOI or ISBN lookup if Crossref lists an open license."
+
+msgid "plugins.generic.bookReviewManager.openAccess.invalid"
+msgstr "Please choose an open access status from the list."
+
+msgid "plugins.generic.bookReviewManager.openAccess.unknown"
+msgstr "Unknown"
+
+msgid "plugins.generic.bookReviewManager.openAccess.open"
+msgstr "Open access"
+
+msgid "plugins.generic.bookReviewManager.openAccess.partial"
+msgstr "Partly open access (e.g. some chapters)"
+
+msgid "plugins.generic.bookReviewManager.openAccess.closed"
+msgstr "Not open access"
+
+msgid "plugins.generic.bookReviewManager.email.workUrl"
+msgstr "More about the work"
+
+msgid "plugins.generic.bookReviewManager.email.openAccess"
+msgstr "Open access"
+
+msgid "plugins.generic.bookReviewManager.email.openAccess.open"
+msgstr "yes"
+
+msgid "plugins.generic.bookReviewManager.email.openAccess.partial"
+msgstr "partly"
+
+msgid "plugins.generic.bookReviewManager.email.openAccess.closed"
+msgstr "no"
+
+msgid "plugins.generic.bookReviewManager.email.openAccess.unknown"
+msgstr "unknown"
+
+msgid "plugins.generic.bookReviewManager.forReview.openAccess"
+msgstr "Open access"
+
+msgid "plugins.generic.bookReviewManager.forReview.openAccessPartial"
+msgstr "Partly open access"
+
+msgid "plugins.generic.bookReviewManager.forReview.workUrl"
+msgstr "Publisher's page"

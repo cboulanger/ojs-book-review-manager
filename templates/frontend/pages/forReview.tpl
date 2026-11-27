@@ -85,6 +85,7 @@
                     {$member.citation|escape}
                     {* escaped: "type: identifier", linked where possible (IdentifierLinks) *}
                     {if $member.identifierHtml}<br />{$member.identifierHtml}{/if}
+                    {include file=$workAccessTemplate work=$member}
                     {if $member.copyStatus && $member.copyStatus != 'notNeeded' && $member.copyStatus != 'received'}
                       <span class="ofrMyStatus ofrCopyStatus">{translate key="plugins.generic.bookReviewManager.copy.reviewerStatus.`$member.copyStatus`"}</span>
                     {/if}
@@ -102,6 +103,7 @@
               <br />
               {* escaped: "type: identifier", linked where possible (IdentifierLinks) *}
               {$objectForReview.identifierHtml}
+              {include file=$workAccessTemplate work=$objectForReview}
             {/if}
             {if $objectForReview.description}
               <div class="ofrObjectDescription">{$objectForReview.description|strip_unsafe_html}</div>

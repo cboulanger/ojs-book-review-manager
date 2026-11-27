@@ -82,7 +82,7 @@ ofr bundle remove 20 15                  # take work 15 out of essay 20; it is o
 ofr import data.json [--dry-run] [--on-duplicate skip|error|update] [--include-existing]
 ```
 
-`add-book` options that override the lookup: `--title --authors --publisher --year --description --resource-type` (`book`, `bookPart`, `journalArticle`, ... or a COAR URI). `--no-lookup` stores the identifier without querying Crossref or Open Library; `--title` is then required.
+`add-book` options that override the lookup: `--title --authors --publisher --year --publisher-url --open-access --description --resource-type` (`book`, `bookPart`, `journalArticle`, ... or a COAR URI). `--no-lookup` stores the identifier without querying Crossref or Open Library; `--title` is then required.
 
 **Review essays** (one review of several works). The essay is an object of its own (`isReviewEssay: true`) with its works in `members`; each work has `bundleId`. The essay holds the offer, the bids, invitations and the reviewer. Each work keeps its publisher contact and copy settings, and has its own copy record (a *mirror* assignment, with `bundleAssignmentId`) for the review copy steps and the publisher notification. `bundle create` takes the offer settings not given from the first work. If one of the works already has an accepted reviewer, that reviewer becomes the essay's reviewer (no email is sent through the API); give their access to the other works with `copyPreferences` in the HTTP call (`{"<objectId>": "physical", ...}`; `ofr bundle create` has no option for it, the default is `have`). A work in an essay can't get an assignment of its own: import the reviewer on the essay (see `copies` in section 4).
 
@@ -118,6 +118,8 @@ See `api/examples/import.example.json` for a complete example.
 | `identifier` + `identifierType` | Instead of doi/isbn: `doi issn isbn uri urn pmid pmcid purl arxiv ark handle uuid ecli accession other` |
 | `lookup` | `false`: don't look up the DOI/ISBN (then `title` is required) |
 | `title`, `authors` (`"Family, Given; Family, Given"`), `publisher`, `year`, `description` (HTML allowed) | Metadata |
+| `publisherUrl` | The work's page at the publisher (http/https). Empty: the DOI or WorldCat link is used (`workUrl` in the output) |
+| `openAccess` | `open`, `partial` or `closed`; `null` = unknown. The lookup sets `open` if Crossref lists a Creative Commons license |
 | `resourceType` | COAR URI; default book. See `RESOURCE_TYPES` in `api/src/client.js` |
 | `assignmentMode` | `direct` (first come, first served) or `bidding`; default from the plugin settings |
 | `bidDeadline` | `Y-m-d`, bidding only |

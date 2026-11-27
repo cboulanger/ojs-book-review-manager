@@ -1968,3 +1968,60 @@ msgstr "Frist"
 
 msgid "plugins.generic.bookReviewManager.column.lastChange"
 msgstr "Letzte Änderung"
+
+msgid "plugins.generic.bookReviewManager.itemPublisherUrl"
+msgstr "Verlagsseite"
+
+msgid "plugins.generic.bookReviewManager.itemPublisherUrl.description"
+msgstr "Webadresse des Werks beim Verlag. Leer lassen, um den DOI oder bei einer ISBN den WorldCat-Eintrag zu verlinken."
+
+msgid "plugins.generic.bookReviewManager.itemPublisherUrl.invalid"
+msgstr "Bitte geben Sie eine Webadresse ein, die mit http:// oder https:// beginnt."
+
+msgid "plugins.generic.bookReviewManager.openAccess"
+msgstr "Open Access"
+
+msgid "plugins.generic.bookReviewManager.openAccess.description"
+msgstr "Wird bei der Suche nach DOI oder ISBN ausgefüllt, wenn Crossref eine offene Lizenz angibt."
+
+msgid "plugins.generic.bookReviewManager.openAccess.invalid"
+msgstr "Bitte wählen Sie einen Open-Access-Status aus der Liste."
+
+msgid "plugins.generic.bookReviewManager.openAccess.unknown"
+msgstr "Unbekannt"
+
+msgid "plugins.generic.bookReviewManager.openAccess.open"
+msgstr "Open Access"
+
+msgid "plugins.generic.bookReviewManager.openAccess.partial"
+msgstr "Teilweise Open Access (z. B. einzelne Kapitel)"
+
+msgid "plugins.generic.bookReviewManager.openAccess.closed"
+msgstr "Kein Open Access"
+
+msgid "plugins.generic.bookReviewManager.email.workUrl"
+msgstr "Mehr zum Werk"
+
+msgid "plugins.generic.bookReviewManager.email.openAccess"
+msgstr "Open Access"
+
+msgid "plugins.generic.bookReviewManager.email.openAccess.open"
+msgstr "ja"
+
+msgid "plugins.generic.bookReviewManager.email.openAccess.partial"
+msgstr "teilweise"
+
+msgid "plugins.generic.bookReviewManager.email.openAccess.closed"
+msgstr "nein"
+
+msgid "plugins.generic.bookReviewManager.email.openAccess.unknown"
+msgstr "unbekannt"
+
+msgid "plugins.generic.bookReviewManager.forReview.openAccess"
+msgstr "Open Access"
+
+msgid "plugins.generic.bookReviewManager.forReview.openAccessPartial"
+msgstr "Teilweise Open Access"
+
+msgid "plugins.generic.bookReviewManager.forReview.workUrl"
+msgstr "Verlagsseite"

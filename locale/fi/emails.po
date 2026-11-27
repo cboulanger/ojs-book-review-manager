@@ -251,7 +251,7 @@ msgid "emails.brmInvitationReserve.subject"
 msgstr "Kutsu arvioijaksi: {$objectDescription}"
 
 msgid "emails.brmInvitationReserve.body"
-msgstr "<p>Hyvä {$recipientName},</p><p>kutsumme sinut arvioimaan seuraavan teoksen julkaisuun {$contextName}:<br />{$objectDescription}</p><p>Jos haluat kirjoittaa arvion, hyväksy arviointisopimus viimeistään <strong>{$invitationDeadline}</strong>. Jos et voi kirjoittaa arviota, ilmoita siitä samalla linkillä:<br /><a href=\"{$invitationUrl}\">{$invitationUrl}</a></p><p>Ystävällisin terveisin<br />{$senderName}<br />{$contextName}</p>"
+msgstr "<p>Hyvä {$recipientName},</p><p>kutsumme sinut arvioimaan seuraavan teoksen julkaisuun {$contextName}:<br />{$objectDescription}{$workDetails}</p><p>Jos haluat kirjoittaa arvion, hyväksy arviointisopimus viimeistään <strong>{$invitationDeadline}</strong>. Jos et voi kirjoittaa arviota, ilmoita siitä samalla linkillä:<br /><a href=\"{$invitationUrl}\">{$invitationUrl}</a></p><p>Ystävällisin terveisin<br />{$senderName}<br />{$contextName}</p>"
 
 msgid "emails.brmInvitationBid.name"
 msgstr "Kutsu hakemaan arvioijaksi (hakumenettely)"
@@ -263,7 +263,7 @@ msgid "emails.brmInvitationBid.subject"
 msgstr "Kutsu hakemaan arvioijaksi: {$objectDescription}"
 
 msgid "emails.brmInvitationBid.body"
-msgstr "<p>Hyvä {$recipientName},</p><p>kutsumme sinut hakemaan seuraavan teoksen arvioijaksi julkaisuun {$contextName}:<br />{$objectDescription}</p><p>Kirja-arvioiden toimittaja valitsee arvioijan hakijoiden joukosta. Jos olet kiinnostunut, hae viimeistään <strong>{$invitationDeadline}</strong>. Jos et ole, ilmoita siitä samalla linkillä:<br /><a href=\"{$invitationUrl}\">{$invitationUrl}</a></p><p>Ystävällisin terveisin<br />{$senderName}<br />{$contextName}</p>"
+msgstr "<p>Hyvä {$recipientName},</p><p>kutsumme sinut hakemaan seuraavan teoksen arvioijaksi julkaisuun {$contextName}:<br />{$objectDescription}{$workDetails}</p><p>Kirja-arvioiden toimittaja valitsee arvioijan hakijoiden joukosta. Jos olet kiinnostunut, hae viimeistään <strong>{$invitationDeadline}</strong>. Jos et ole, ilmoita siitä samalla linkillä:<br /><a href=\"{$invitationUrl}\">{$invitationUrl}</a></p><p>Ystävällisin terveisin<br />{$senderName}<br />{$contextName}</p>"
 
 msgid "emails.brmInvitationDeclined.name"
 msgstr "Kutsusta kieltäydytty tai siihen ei vastattu (kirja-arvioiden toimittajalle)"

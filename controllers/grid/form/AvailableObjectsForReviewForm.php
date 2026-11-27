@@ -50,6 +50,10 @@ class AvailableobjectsForReviewForm extends \PKP\form\Form {
 		$this->addCheck(new \PKP\form\validation\FormValidator($this, 'resourceType', 'required', 'plugins.generic.bookReviewManager.resourceTypeRequired'));
 		$this->addCheck(new \PKP\form\validation\FormValidator($this, 'title', 'required', 'plugins.generic.bookReviewManager.titleRequired'));
 		$this->addCheck(new \PKP\form\validation\FormValidator($this, 'identifier', 'required', 'plugins.generic.bookReviewManager.identifierRequired'));
+		$this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'publisherUrl', 'optional', 'plugins.generic.bookReviewManager.itemPublisherUrl.invalid',
+			fn ($url) => ObjectForReview::isValidUrl($url)));
+		$this->addCheck(new \PKP\form\validation\FormValidatorInSet($this, 'openAccess', 'optional', 'plugins.generic.bookReviewManager.openAccess.invalid',
+			ObjectForReview::OPEN_ACCESS_STATUSES));
 		$this->addCheck(new \PKP\form\validation\FormValidatorInSet($this, 'assignmentMode', 'required', 'plugins.generic.bookReviewManager.offer.modeRequired', ObjectForReview::MODES));
 		$this->addCheck(new \PKP\form\validation\FormValidatorCustom($this, 'bidDeadline', 'optional', 'plugins.generic.bookReviewManager.offer.bidDeadlineInvalid',
 			fn ($date) => ($d = \DateTimeImmutable::createFromFormat('!Y-m-d', (string) $date)) && $d->format('Y-m-d') === $date));
@@ -84,6 +88,8 @@ class AvailableobjectsForReviewForm extends \PKP\form\Form {
 			$this->setData('description', $objectForReview->getDescription());
 			$this->setData('year', $objectForReview->getYear());
 			$this->setData('publisher', $objectForReview->getPublisher());
+			$this->setData('publisherUrl', $objectForReview->getPublisherUrl());
+			$this->setData('openAccess', $objectForReview->getOpenAccess());
 			$this->setData('assignmentMode', $objectForReview->getAssignmentMode());
 			$this->setData('bidDeadline', $objectForReview->getData('bidDeadline'));
 			$this->setData('responsibleEditorId', $objectForReview->getResponsibleEditorId());
@@ -108,7 +114,7 @@ class AvailableobjectsForReviewForm extends \PKP\form\Form {
 	 * @copydoc Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('identifierType', 'resourceType', 'identifier', 'authors', 'title', 'description', 'year', 'publisher', 'assignmentMode', 'bidDeadline', 'responsibleEditorId',
+		$this->readUserVars(array('identifierType', 'resourceType', 'identifier', 'authors', 'title', 'description', 'year', 'publisher', 'publisherUrl', 'openAccess', 'assignmentMode', 'bidDeadline', 'responsibleEditorId',
 			'publisherContactId', 'journalHoldsCopy', 'returnRequired', 'notifyPublisher'));
 	}
 
@@ -122,12 +128,24 @@ class AvailableobjectsForReviewForm extends \PKP\form\Form {
 		$templateMgr->assign('objectId', $this->objectId);
 		$templateMgr->assign('identifierTypes', $identifierTypes);
 		$templateMgr->assign('resourceTypes', $resourceTypes);
+		$templateMgr->assign('openAccessStatuses', self::openAccessOptions());
 		$templateMgr->assign('identifierLookupTemplate', $this->plugin->getTemplateResource('identifierLookup.tpl'));
 		self::assignOfferSettings($templateMgr, $this->plugin, (int) $this->contextId);
 		$publisherContacts = Roles::getMembers($this->plugin, (int) $this->contextId, Roles::PUBLISHER);
 		$templateMgr->assign('hasPublisherContacts', (bool) $publisherContacts);
 		$templateMgr->assign('publisherContacts', ['' => __('plugins.generic.bookReviewManager.offer.noPublisherContact')] + $publisherContacts);
 		return parent::fetch($request);
+	}
+
+	/**
+	 * Choices for the open access status ('' = unknown).
+	 */
+	public static function openAccessOptions(): array {
+		$options = ['' => __('plugins.generic.bookReviewManager.openAccess.unknown')];
+		foreach (ObjectForReview::OPEN_ACCESS_STATUSES as $status) {
+			$options[$status] = __('plugins.generic.bookReviewManager.openAccess.' . $status);
+		}
+		return $options;
 	}
 
 	/**
@@ -168,6 +186,8 @@ class AvailableobjectsForReviewForm extends \PKP\form\Form {
 		$objectForReview->setDescription(trim(strip_tags($description)) === '' ? null : $description);
 		$objectForReview->setYear($this->getData('year'));
 		$objectForReview->setPublisher($this->getData('publisher'));
+		$objectForReview->setPublisherUrl($this->getData('publisherUrl'));
+		$objectForReview->setOpenAccess($this->getData('openAccess') ?: null);
 		$objectForReview->setCreator("manager");
 		$objectForReview->setOfferSetting('assignmentMode', $this->getData('assignmentMode') === ObjectForReview::MODE_BIDDING ? ObjectForReview::MODE_BIDDING : null);
 		$objectForReview->setOfferSetting('bidDeadline', $this->getData('assignmentMode') === ObjectForReview::MODE_BIDDING ? $this->getData('bidDeadline') : null);
